@@ -1,7 +1,10 @@
-import ReactDOM from 'react-dom/client'
-import "./App.scss";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.scss';
 import Root from './routes/Root';
-import HomePage from './pages/HomePage';
+import Home from './pages/Home';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -9,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <Home />,
       }
     ],
   },
