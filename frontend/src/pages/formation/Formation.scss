@@ -1,0 +1,26 @@
+.formation {
+  display: flex;
+  width: 310px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+  gap: 10px;
+  @include tablet {
+    width: 744px;
+  }
+  @include desktop {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 2% 23% 2% 23% 2% 23% 2% 23% 2%;
+    grid-template-rows: 25% 25% 25% 25%;
+    position: relative;
+  }
+}
+
+.pictureManComputer {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}

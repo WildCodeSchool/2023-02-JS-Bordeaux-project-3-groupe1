@@ -1,0 +1,79 @@
+.moduleChooseFormation {
+  background-color: $app-bg;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 150px;
+  height: 145px;
+  @include tablet {
+    width: 300px;
+  }
+  @include desktop {
+    margin: 0 50px;
+    &:nth-child(1) {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+    &:nth-child(2) {
+      grid-column: 3/4;
+      grid-row: 1/2;
+    }
+    &:nth-child(3) {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+    &:nth-child(4) {
+      grid-column: 6/7;
+      grid-row: 1/2;
+    }
+    &:nth-child(5) {
+      grid-column: 1/2;
+      grid-row: 3/4;
+    }
+    &:nth-child(6) {
+      grid-column: 7/8;
+      grid-row: 2/3;
+    }
+    &:nth-child(7) {
+      grid-column: 7/8;
+      grid-row: 1/2;
+    }
+    &:nth-child(8) {
+      grid-column: 7/8;
+      grid-row: 3/4;
+    }
+    &:nth-child(9) {
+      grid-column: 7/8;
+      grid-row: 4/5;
+    }
+    &:nth-child(10) {
+      grid-column: 5/6;
+      grid-row: 4/5;
+    }
+    &:nth-child(11) {
+      grid-column: 3/4;
+      grid-row: 4/5;
+    }
+    &:nth-child(12) {
+      grid-column: 1/2;
+      grid-row: 4/5;
+    }
+  }
+}
+
+.iconFormationChoose {
+  width: 55px;
+  margin-top: 5px;
+  @include tablet {
+    width: 75px;
+  }
+}
+
+.textFormationChoose {
+  text-align: center;
+  margin-top: 10px;
+  @include tablet {
+    margin-top: 20px;
+    font-size: $app-text-size;
+  }
+}
