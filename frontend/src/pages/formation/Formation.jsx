@@ -27,7 +27,6 @@ function Formation() {
   useEffect(() => {
     getIconAndDescription();
   }, []);
-  // console.info(icons[12].iconURL);
   return (
     <div className="formation">
       {isDesktop ? (
