@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.scss";
 import Root from "./routes/Root";
-import Home from "./pages/Home";
 import Formation from "./pages/formation/Formation";
+import Home from "./pages/home/Home";
+import PlatformTutorial from "./pages/platformTutorial/PlatformTutorial";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/formations",
         element: <Formation />,
+      },
+      {
+        path: "/platformTutorial",
+        element: <PlatformTutorial />,
       },
     ],
   },
