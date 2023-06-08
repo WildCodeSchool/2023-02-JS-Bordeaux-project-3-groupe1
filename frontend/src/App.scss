@@ -1,4 +1,13 @@
-@import "//frontend/src/styles/mixins/mixins.scss";
+@import "./assets/mixins/mixins.scss";
+@import "./assets/styles/variables.scss";
+
+/* -----------------------------import Pages -------------------------------- */
+
+@import "../src/pages/formation/Formation.scss";
+
+/* -----------------------------import components -------------------------------- */
+
+@import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 
 body {
   margin: 0;
