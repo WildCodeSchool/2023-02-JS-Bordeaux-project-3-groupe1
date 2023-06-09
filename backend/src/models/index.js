@@ -4,13 +4,12 @@ const mysql = require("mysql2/promise");
 
 // create a connection pool to the database
 
-const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
+const { DB_HOST, DB_PORT, DB_USER, DB_NAME } = process.env;
 
 const pool = mysql.createPool({
   host: DB_HOST,
   port: DB_PORT,
   user: DB_USER,
-  password: DB_PASSWORD,
   database: DB_NAME,
 });
 
@@ -30,9 +29,13 @@ pool.getConnection().catch(() => {
 const models = {};
 
 const ItemManager = require("./ItemManager");
+const IconManager = require("./IconManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
+
+models.icon = new IconManager();
+models.icon.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
