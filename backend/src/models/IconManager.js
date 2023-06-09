@@ -5,10 +5,6 @@ class IconManager extends AbstractManager {
     super({ table: "icons" });
   }
 
-  findAll() {
-    return this.database.query(`select * from  ${this.table}`);
-  }
-
   insert(icon) {
     return this.database.query(`insert into ${this.table} (title) values (?)`, [
       icon.title,
