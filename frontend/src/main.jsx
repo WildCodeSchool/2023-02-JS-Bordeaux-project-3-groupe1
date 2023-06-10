@@ -6,6 +6,7 @@ import Root from "./routes/Root";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
 import PlatformTutorial from "./pages/platformTutorial/PlatformTutorial";
+import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/formations",
         element: <Formation />,
+      },
+      {
+        path: "/formations/tutorials",
+        element: <TutorialChoice />,
       },
       {
         path: "/platformTutorial",
