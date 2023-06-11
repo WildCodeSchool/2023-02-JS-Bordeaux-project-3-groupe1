@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ModuleChooseFormation from "../../components/moduleChooseFormation/ModuleChooseFormation";
 import manComputer from "../../assets/manComputer.svg";
 
 function Formation() {
+  const { isDesktop } = useContext(IsDesktopContext);
   const [icons, setIcons] = useState([]);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
-
-  useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const getIconAndDescription = async () => {
     try {
