@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import arrow from "../../assets/pictures/arrowTutorial.svg";
-import cap from "../../assets/pictures/cap.svg";
-import blueStars from "../../assets/pictures/blueStars.svg";
-import emptyStars from "../../assets/pictures/emptyStars.svg";
+import React, { useContext, useState } from "react";
+import ModuleChooseTutorial from "../../components/moduleChooseTutorial/ModuleChooseTutorial";
+import { IsDesktopContext } from "../../contexts/IsDesktopContext";
+import manDesk from "../../assets/pictures/manDesk.svg";
 
 function TutorialChoice() {
+  const { isDesktop } = useContext(IsDesktopContext);
   const [tutorialSections, setTutorialSections] = useState(
     [...Array(12)].map(() => false)
   );
@@ -19,38 +19,30 @@ function TutorialChoice() {
 
   return (
     <main className="tutorialChoice">
-      {tutorialSections.map((isOpen, index) => (
-        <section
-          className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}
-        >
-          <div className="tutorialStarsAndCap">
-            <img src={blueStars} alt="#" />
-            <img src={emptyStars} alt="#" />
-            <img src={cap} alt="cap" />
+      {isDesktop ? (
+        <>
+          <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
+          <div className="moduleChooseTutorialDesktop">
+            {tutorialSections.map((isOpen, index) => (
+              <ModuleChooseTutorial
+                isOpen={isOpen}
+                index={index}
+                handleArrowClick={handleArrowClick}
+              />
+            ))}
           </div>
-          <p className="tutorialTitle">Arrêter démarrer le téléphone</p>
-          <button
-            type="button"
-            className="arrowButton"
-            onClick={() => handleArrowClick(index)}
-          >
-            <img
-              className={isOpen ? "tutorialArrowUp" : "tutorialArrowDown"}
-              src={arrow}
-              alt="arrow"
+        </>
+      ) : (
+        <>
+          {tutorialSections.map((isOpen, index) => (
+            <ModuleChooseTutorial
+              isOpen={isOpen}
+              index={index}
+              handleArrowClick={handleArrowClick}
             />
-          </button>
-          <ul
-            className={
-              isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"
-            }
-          >
-            <li>Explication</li>
-            <li>Vidéo</li>
-            <li>Quizz</li>
-          </ul>
-        </section>
-      ))}
+          ))}
+        </>
+      )}
     </main>
   );
 }
