@@ -1,0 +1,90 @@
+.containerLevelUser {
+  margin: 0 10%;
+  height: 100vh;
+
+  .levelUser {
+    font-size: $app-heading-three;
+    font-family: $app-primary-font;
+    color: $app-corporate-color;
+    width: 100%;
+    display: flex;
+    text-align: center;
+  }
+
+  .containerButtonLevel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25%;
+
+    .buttonLevelBeginner {
+      border: 0;
+      line-height: 1.5;
+      padding: 0 20px;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: $app-supporting-color;
+      border-radius: 10px;
+      background-color: $app-corporate-color;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+
+      .wordBeginner {
+        text-align: start;
+        font-family: $app-secondary-font;
+      }
+
+      .sentenceBeginner {
+        text-align: start;
+        font-family: $app-secondary-font;
+        font-size: $app-text-size;
+      }
+      .levelBeginner {
+        display: flex;
+        position: relative;
+      }
+
+      .hatLevel {
+        position: absolute;
+        right: 3%;
+        height: 50px;
+        top: 11px;
+      }
+    }
+
+    .buttonLevelIntermediate {
+      border: 0;
+      line-height: 1.5;
+      padding: 0 20px;
+      text-align: center;
+      color: $app-supporting-color;
+      border-radius: 10px;
+      background-color: $app-bg;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+
+      .wordIntermediate {
+        text-align: start;
+        font-family: $app-secondary-font;
+        color: $app-corporate-color;
+      }
+
+      .levelIntermediate {
+        position: relative;
+        display: flex;
+      }
+
+      .hatLevel2 {
+        position: absolute;
+        right: 3%;
+        height: 50px;
+        top: 11px;
+      }
+      .sentenceIntermediate {
+        text-align: start;
+        font-family: $app-secondary-font;
+        font-size: $app-text-size;
+        color: $app-supporting-color-2;
+      }
+    }
+  }
+}
