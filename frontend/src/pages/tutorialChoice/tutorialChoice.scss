@@ -1,0 +1,23 @@
+.tutorialChoice {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+  @include tablet {
+    row-gap: 30px;
+  }
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    .pictureManDesk {
+      height: 300px;
+    }
+    .moduleChooseTutorialDesktop {
+      max-width: 1024px;
+    display: grid;
+    grid-template-columns: 1fr 300px 20px 300px 1fr;
+    grid-template-columns: repeat( auto-fit, minmax(400px, 1fr) );
+    justify-items: center;
+    }
+  }
+}

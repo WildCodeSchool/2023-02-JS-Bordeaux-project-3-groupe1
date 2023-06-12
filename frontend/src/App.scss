@@ -4,10 +4,13 @@
 /* -----------------------------import Pages -------------------------------- */
 
 @import "../src/pages/formation/Formation.scss";
+@import "../src/pages/tutorialChoice/TutorialChoice.scss";
 
 /* -----------------------------import components -------------------------------- */
 
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
+@import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
+
 
 body {
   margin: 0;
