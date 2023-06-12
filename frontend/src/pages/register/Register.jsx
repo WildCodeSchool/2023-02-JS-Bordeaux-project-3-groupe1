@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import visible from "../../assets/visible.png";
 import invisible from "../../assets/invisible.png";
 
 function Register() {
-  const [formData, setFormData] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -27,14 +26,6 @@ function Register() {
       default:
     }
   };
-  useEffect(() => {
-    const form = {
-      email,
-      password,
-      confirmPassword,
-    };
-    setFormData(form);
-  }, [email, password, confirmPassword]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
