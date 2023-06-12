@@ -8,6 +8,7 @@ import Home from "./pages/home/Home";
 import PlatformTutorial from "./pages/platformTutorial/PlatformTutorial";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
+import LevelUser from "./pages/levelUser/LevelUser";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/platformTutorial",
         element: <PlatformTutorial />,
+      },
+      {
+        path: "/levelUser",
+        element: <LevelUser />,
       },
     ],
   },
