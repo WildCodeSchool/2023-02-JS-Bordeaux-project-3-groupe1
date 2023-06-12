@@ -1,4 +1,4 @@
-import "./Home.scss";
+import { Link } from "react-router-dom";
 import ImageAccueil from "../../assets/pictures/femmebureau.svg";
 import Support from "../../assets/pictures/Rectangle_welcome_120.svg";
 import Presenter from "../../assets/pictures/presentatrice 2.jpg";
@@ -25,9 +25,11 @@ function Home() {
         </h2>
       </div>
       <div className="button_debuter_formation">
-        <button className="button_Debuter_Formation" type="button">
-          Débuter ma formation
-        </button>
+        <Link to="/LevelUser">
+          <button className="button_Debuter_Formation" type="button">
+            Débuter ma formation
+          </button>
+        </Link>
       </div>
       <div className="presenter">
         <img className="presenter_img" src={Presenter} alt="présentatrice" />

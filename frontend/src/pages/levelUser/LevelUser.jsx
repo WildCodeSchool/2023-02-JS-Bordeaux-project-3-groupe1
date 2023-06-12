@@ -1,8 +1,7 @@
-import "./LevelUser.scss";
-import "../../assets/styles/variables.scss";
 import { Link } from "react-router-dom";
-import hat from "../../assets/pictures/chapeau.png";
+import "../../assets/styles/variables.scss";
 import hat2 from "../../assets/pictures/hat2.png";
+import hat from "../../assets/pictures/chapeau.png";
 
 function LevelUser() {
   return (
