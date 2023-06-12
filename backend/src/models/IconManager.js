@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager");
 
 class IconManager extends AbstractManager {
   constructor() {
-    super({ table: "icons" });
+    super({ table: "formations" });
   }
 
   insert(icon) {
