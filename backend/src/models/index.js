@@ -30,12 +30,16 @@ const models = {};
 
 const ItemManager = require("./ItemManager");
 const IconManager = require("./IconManager");
+const TutorialManager = require("./TutorialManager");
 
 models.item = new ItemManager();
 models.item.setDatabase(pool);
 
 models.icon = new IconManager();
 models.icon.setDatabase(pool);
+
+models.tutorial = new TutorialManager();
+models.tutorial.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
