@@ -1,0 +1,151 @@
+@import "../../assets/mixins/mixins.scss";
+@import "../../assets/styles/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $app-supporting-color;
+  .secondeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: #ffffff;
+      @include desktop {
+        width: 60vw;
+      }
+
+      h2 {
+        margin: 0 0 1rem 0;
+        color: $app-corporate-color;
+        font-size: $app-heading-two;
+        @include tablet {
+          font-size: $app-heading-two-tablet;
+        }
+        @include desktop {
+          font-size: $app-heading-two-desktop;
+        }
+      }
+      .btn {
+        width: 67%;
+        height: 5.5vh;
+        margin: 0 0 0 2%;
+        background-color: $app-button-secondary-color;
+        border-radius: 5px;
+        border: none;
+        color: $app-primary-fonts-color;
+        font-size: 98%;
+        font-weight: bold;
+        cursor: pointer;
+        @include tablet {
+          font-size: $app-heading-three;
+        }
+        @include desktop {
+          width: 62%;
+          font-size: $app-heading-three;
+          font-weight: bold;
+          height: 6.5vh;
+        }
+      }
+      .btn:hover {
+        box-shadow: 0px 0.2px 4px 1px lightgrey;
+      }
+      .sentence {
+        color: $app-corporate-color;
+        margin: 0.5rem 0 0 0;
+        font-weight: bold;
+        font-size: 95%;
+      }
+      a {
+        color: $app-corporate-color-2;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 95%;
+        cursor: pointer;
+      }
+      label {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.3rem;
+        width: 65vw;
+        font-size: $app-text-size;
+        font-weight: bold;
+        @include desktop {
+          width: 60%;
+        }
+        .dv-input {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          border: 2px solid #c6c3c3;
+          width: 100%;
+          height: 6vh;
+          border-radius: 5px;
+          padding: 1%;
+          @include desktop {
+            width: 100%;
+          }
+        }
+        .btn-visibleImg {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 2%;
+          height: 4vh;
+          border: none;
+          background-color: inherit;
+          margin: 0 6% 0 0;
+          @include tablet {
+          }
+          @include desktop {
+          }
+          .visibleImg {
+            width: 6vw;
+            height: 4vh;
+            margin: 0 3% 0 0;
+
+            @include tablet {
+            }
+            @include desktop {
+            }
+          }
+        }
+        p {
+          color: $app-corporate-color;
+          font-size: 95%;
+          @include tablet {
+            font-size: $app-text-size;
+          }
+          @include desktop {
+            width: 70%;
+          }
+        }
+
+        input {
+          width: 80%;
+          height: 5.9vh;
+          border: none;
+          padding: 0 0rem 0 0.4rem;
+          font-size: $app-text-size;
+          outline: none;
+        }
+      }
+    }
+  }
+}
