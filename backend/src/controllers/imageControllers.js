@@ -30,8 +30,8 @@ const uploadFile = async (req, res) => {
     console.info(fileName, newFileName);
 
     await ImageManager.createUpload(newFileName);
-  } catch (err) {
-    console.warn(`Error uploading file to Firebase Storage: ${err}`);
+  } catch (error) {
+    console.error("Error uploading file to Firebase Storage: ", error);
     res.status(500).json({ message: "Failed to upload file" });
   }
 };
@@ -53,8 +53,8 @@ const getAllFile = async (req, res) => {
         .filter((result) => result.nameFile !== null)
     );
     res.status(200).json(resultsWithUrls);
-  } catch (err) {
-    console.warn(`Error uploading file to Firebase Storage: ${err}`);
+  } catch (error) {
+    console.error("Error fetching URLs from Firebase: ", error);
     res.status(500).json({ message: "Failed to fetch URLs" });
   }
 };
