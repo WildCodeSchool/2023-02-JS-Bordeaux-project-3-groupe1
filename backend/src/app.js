@@ -14,12 +14,7 @@ const cors = require("cors");
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:5173",
-    optionsSuccessStatus: 200,
-  })
-);
+app.use(cors({}));
 
 // import and mount the API routes
 
