@@ -13,6 +13,7 @@ import Footer from "./components/footer/Footer";
 import LegalNotice from "./pages/legalNotice/LegalNotice";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import Register from "./pages/register/Register";
+import CreateTutorial from "./pages/createTutorial/CreateTutorial";
 
 const router = createBrowserRouter([
   {
@@ -52,8 +53,14 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
+
         path: "/register",
         element: <Register />,
+      },
+  { 
+    path: "/create",
+        element: <CreateTutorial />,
+
       },
     ],
   },
