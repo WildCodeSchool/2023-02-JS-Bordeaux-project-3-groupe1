@@ -8,16 +8,15 @@ const path = require("node:path");
 const express = require("express");
 
 const app = express();
-
+const bodyParser = require("body-parser");
+const cors = require("cors");
 // use some application-level middlewares
 
 app.use(express.json());
 
-const cors = require("cors");
-
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
+    origin: process.env.FRONTEND_URL ?? "http://localhost:5173",
     optionsSuccessStatus: 200,
   })
 );
@@ -28,9 +27,13 @@ const router = require("./routes/router");
 
 app.use(router);
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // serve the `backend/public` folder for public resources
 
 app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "./public/data/uploads/")));
 
 // serve REACT APP
 
@@ -56,5 +59,4 @@ if (fs.existsSync(reactIndexFile)) {
 }
 
 // ready to export
-
 module.exports = app;
