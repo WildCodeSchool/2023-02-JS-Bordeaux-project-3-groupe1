@@ -6,8 +6,22 @@ import manComputer from "../../assets/manComputer.svg";
 
 function Formation() {
   const { isDesktop } = useContext(IsDesktopContext);
+  const [data, setData] = useState([]);
   const [icons, setIcons] = useState([]);
-
+  const getData = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/tutorials`
+      );
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  console.info(data);
   const getIconAndDescription = async () => {
     try {
       const response = await axios.get(
@@ -18,7 +32,6 @@ function Formation() {
       console.error(error);
     }
   };
-
   useEffect(() => {
     getIconAndDescription();
   }, []);

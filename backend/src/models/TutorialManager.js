@@ -6,8 +6,11 @@ class TutorialManager extends AbstractManager {
   }
 
   findFormationAndTutorial() {
-    return this.database.query(`SELECT * FROM  ${this.table} 
-    JOIN tutorials ON tutorials.formation_id = ${this.table}.id`);
+    return this.database
+      .query(`SELECT formations.*, GROUP_CONCAT(tutorials.name) AS tutorials_list
+    FROM formations
+    LEFT JOIN tutorials ON formations.id = tutorials.formation_id
+    GROUP BY formations.id;`);
   }
 
   insert(tutorial) {
