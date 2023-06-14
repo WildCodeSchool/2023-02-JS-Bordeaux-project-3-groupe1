@@ -1,12 +1,3 @@
-CREATE TABLE `item` (
-  `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = latin1;
-INSERT INTO
-  `item` (title)
-VALUES
-  ('Stuff'),
-  ('Doodads');
 CREATE TABLE `users` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `role_id` integer NOT NULL,
