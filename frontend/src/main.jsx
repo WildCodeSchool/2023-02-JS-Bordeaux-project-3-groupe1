@@ -14,6 +14,8 @@ import LegalNotice from "./pages/legalNotice/LegalNotice";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import CreateTutorial from "./pages/createTutorial/CreateTutorial";
+
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,9 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },{
+        path: "/create",
+        element: <CreateTutorial />,
       },
     ],
   },
