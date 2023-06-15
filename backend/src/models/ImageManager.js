@@ -1,16 +1,16 @@
 const database = require("../../database");
 
-const getAllImage = async () => {
+const getAllImages = async () => {
   try {
-    const upload = await database.query("SELECT * FROM uploads");
-    return upload;
+    const uploads = await database.query("SELECT * FROM uploads");
+    return uploads;
   } catch (error) {
     console.error(error);
-    throw new Error("Error retrieving user");
+    throw new Error("Error retrieving uploads");
   }
 };
 
-const createUpload = async (newFileName) => {
+const createImage = async (newFileName) => {
   try {
     database.query(
       "INSERT INTO uploads (nameFile) VALUES (?)",
@@ -30,6 +30,6 @@ const createUpload = async (newFileName) => {
 };
 
 module.exports = {
-  getAllImage,
-  createUpload,
+  getAllImages,
+  createImage,
 };

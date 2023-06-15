@@ -18,7 +18,6 @@ function Upload() {
 
   return (
     <div>
-      <h1>Upload</h1>
       <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
         <input
           type="file"

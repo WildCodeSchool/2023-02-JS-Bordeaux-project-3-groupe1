@@ -4,7 +4,7 @@ const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
 const storage = require("../../firebase");
 const ImageManager = require("../models/ImageManager");
 
-const uploadFile = async (req, res) => {
+const create = async (req, res) => {
   try {
     const { file } = req;
 
@@ -36,9 +36,9 @@ const uploadFile = async (req, res) => {
   }
 };
 
-const getAllFile = async (req, res) => {
+const getAll = async (req, res) => {
   try {
-    const results = await ImageManager.getAllImage();
+    const results = await ImageManager.getAllImages();
     const resultsWithUrls = await Promise.all(
       results[0]
         .map(async (result) => {
@@ -59,4 +59,4 @@ const getAllFile = async (req, res) => {
   }
 };
 
-module.exports = { uploadFile, getAllFile };
+module.exports = { create, getAll };
