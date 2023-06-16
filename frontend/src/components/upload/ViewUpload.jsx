@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUploads } from "../../services/uploadService";
+import { getUploads } from "../../services/tutorialService";
 
 function ViewUpload() {
   const [fileNames, setFileNames] = useState([]);

@@ -1,12 +1,12 @@
 import React from "react";
 import Upload from "../../components/upload/Upload";
-import ViewUpload from "../../components/upload/ViewUpload";
+import CreateNameTutorial from "../../components/createTutorial/CreateNameTutorial";
 
 function CreateTutorial() {
   return (
     <div>
+      <CreateNameTutorial />
       <Upload />
-      <ViewUpload />
     </div>
   );
 }

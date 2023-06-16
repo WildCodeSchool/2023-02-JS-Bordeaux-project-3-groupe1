@@ -20,3 +20,21 @@ export const postUpload = async (file) => {
     throw new Error("Erreur lors de l'envoi de l'upload");
   }
 };
+
+export const fetcher = async (url) => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_BASE_API}/${url}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Erreur lors de la récupération des uploads");
+  }
+};
+
+export const getAllNameFormation = async () => {
+  try {
+    const response = await axios.get("http://localhost:5000/formations");
+    return response.data;
+  } catch (error) {
+    throw new Error("Erreur lors de la récupération des uploads");
+  }
+};

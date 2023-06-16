@@ -14,9 +14,14 @@
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
+@import "../src/components/createTutorial/CreateNameTutorial.scss";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
 }

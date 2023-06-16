@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { postUpload } from "../../services/uploadService";
+import { postUpload } from "../../services/tutorialService";
 
 function Upload() {
   const [file, setFile] = useState(null);

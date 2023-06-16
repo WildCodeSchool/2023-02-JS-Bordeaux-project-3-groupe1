@@ -1,6 +1,4 @@
-const path = require("path");
-const fs = require("fs");
-const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
+const { ref, getDownloadURL } = require("firebase/storage");
 const TutorialManager = require("../models/TutorialManager");
 const storage = require("../../firebase");
 
@@ -71,32 +69,18 @@ const update = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { file } = req;
-    const tutorial = req.body;
-    if (!file) {
-      res.status(400).json({ message: "No file uploaded" });
-      return;
+    const { tutorial, newFileName } = req.body;
+
+    const response = await TutorialManager.createTutorialWithImage(
+      tutorial,
+      newFileName
+    );
+
+    if (response) {
+      res.status(201).json(tutorial);
+    } else {
+      res.status(404);
     }
-
-    const fileName = file.originalname;
-    const fileExtension = path.extname(fileName);
-    const fileNameWithoutExtension = path.basename(fileName, fileExtension);
-
-    const newFileName = `${fileNameWithoutExtension}-${Date.now()}${fileExtension}`;
-    const filePath = `images/${newFileName}`;
-
-    const fileRef = ref(storage, filePath);
-    const buffer = fs.readFileSync(file.path);
-    const metadata = {
-      contentType: "image/png",
-    };
-
-    await uploadBytes(fileRef, buffer, metadata);
-    console.info(fileName, newFileName);
-
-    await TutorialManager.createTutorialWithImage(tutorial, newFileName);
-    // Envoyer les réponses au client
-    res.status(201).json(tutorial);
   } catch (error) {
     console.error("Error creating tutorial or uploading file: ", error);
     res
