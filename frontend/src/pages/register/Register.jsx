@@ -81,7 +81,7 @@ function Register() {
           </label>
           <br />
           <label>
-            <p>Confirmez votre mot de passe</p>
+            <p>Confirmer votre mot de passe</p>
 
             <div className="dv-input">
               <input
