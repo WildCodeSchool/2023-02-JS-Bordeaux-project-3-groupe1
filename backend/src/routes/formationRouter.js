@@ -1,8 +1,8 @@
 const express = require("express");
 
 const router = express.Router();
-const formartionControllers = require("../controllers/formartionControllers");
+const formationControllers = require("../controllers/formationControllers");
 
-router.get("/", formartionControllers.getAll);
+router.get("/", formationControllers.getAll);
 
 module.exports = router;
