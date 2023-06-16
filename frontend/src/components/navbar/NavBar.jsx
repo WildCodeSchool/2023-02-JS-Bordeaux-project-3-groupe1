@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import UserIcon from "../../assets/usericon.png";
 import Loupe from "../../assets/loupe.png";
 import Points from "../../assets/petitspoints.png";
 import AdminIcon from "../../assets/iconadmin.png";
-import ConnexionIcon from "../../assets/connexion.png";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
@@ -13,7 +13,7 @@ function Navbar() {
   };
 
   const user = {
-    role: "admin",
+    role: "user",
   };
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,7 +22,7 @@ function Navbar() {
   };
 
   return (
-    <div className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
+    <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
       <img className="logo" src={Logo} alt="logo ligne bleue" />
       <div className="container-icons">
         <img className="points" src={Points} alt="points " />
@@ -35,11 +35,12 @@ function Navbar() {
             type="button"
             onClick={handleLogin}
           >
-            <img
-              className="connexion-icon"
-              src={ConnexionIcon}
-              alt="icon de connexion"
-            />
+            <Link to="/connexion">
+              {" "}
+              <p className="se-connecter" href="/">
+                Connexion
+              </p>
+            </Link>
           </button>
         )}
         {isLoggedIn &&
@@ -121,7 +122,7 @@ function Navbar() {
       <button className="navbar_burger" type="button" onClick={handleShowLinks}>
         <span className="burger_bar" />
       </button>
-    </div>
+    </nav>
   );
 }
 
