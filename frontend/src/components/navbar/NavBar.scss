@@ -1,0 +1,155 @@
+.navbar {
+  height: 75px;
+  width: 100%;
+  background-color: $app-corporate-color;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+  position: fixed;
+  padding: 1rem;
+  z-index: 2;
+  border-bottom: solid #ffcb03 3px;
+  .logo {
+    height: 60px;
+    padding-left: 10px;
+  }
+
+  .navbar_links {
+    list-style: none;
+    padding: 2rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    right: -100vw;
+    bottom: -74px;
+    height: 100vh;
+    background-color: $app-bg;
+    visibility: hidden;
+    transition: right 0.3s ease;
+  }
+  &.show-nav .navbar_links {
+    right: 0;
+    width: 100vw;
+    visibility: visible;
+  }
+  .navbar_links .navbar_link {
+    text-decoration: none;
+    padding: 1.5rem;
+    display: block;
+    color: $app-primary-fonts-color;
+    font-family: $app-secondary-font;
+  }
+  .navbar_burger {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    color: white;
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+  }
+  .navbar_burger:hover {
+    cursor: pointer;
+  }
+  .burger_bar,
+  .burger_bar::before,
+  .burger_bar::after {
+    display: block;
+    width: 40px;
+    height: 3px;
+    position: relative;
+    border-radius: 3px;
+    background-color: $app-bg;
+    transition: all 0.5s ease-in-out;
+  }
+  .burger_bar::before,
+  .burger_bar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+  .burger_bar::before {
+    transform: translateY(-12px);
+  }
+  .burger_bar::after {
+    transform: translateY(12px);
+  }
+  &.show-nav .burger_bar {
+    background: transparent;
+  }
+  &.show-nav .burger_bar::before {
+    transform: rotate(45deg);
+  }
+  &.show-nav .burger_bar::after {
+    transform: rotate(-45deg);
+  }
+  .user-icon {
+    width: 27px;
+  }
+  .admin-icon {
+    width: 27px;
+  }
+  .loupe {
+    width: 27px;
+  }
+
+  .search-bar {
+    border-radius: 5px;
+    height: 32px;
+    width: 218px;
+  }
+  .container-icons {
+    margin-right: 60px;
+    margin-bottom: 4px;
+    display: flex;
+    gap: 15px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .points {
+    width: 25px;
+  }
+  .connexion-icon {
+    width: 40px;
+  }
+
+  .se-connecter {
+    font-family: $app-secondary-font;
+    color: $app-secondary-fonts-color-4;
+    font-size: 20px;
+  }
+  .button-connexion {
+    background-color: transparent;
+    padding: 0;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+  }
+  .line-yellow {
+    height: 10px;
+    color: red;
+  }
+
+  @media (min-width: 1024px) {
+    &.show-nav .navbar_links {
+      width: 30%;
+      border: 1px solid $app-corporate-color;
+    }
+  }
+
+  @media (min-width: 320px) and (max-width: 1023px) {
+    .loupe,
+    .search-bar,
+    .points {
+      display: none;
+    }
+  }
+}
