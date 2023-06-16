@@ -5,9 +5,25 @@ class TutorialManager extends AbstractManager {
     super({ table: "formations" });
   }
 
-  findFormationAndTutorial() {
-    return this.database.query(`SELECT * FROM  ${this.table} 
-    JOIN tutorials ON tutorials.formation_id = ${this.table}.id`);
+  // findFormationAndTutorial() {
+  //   return this.database.query(`SELECT
+  //   formations.iconDescription,
+  //     GROUP_CONCAT(tutorials.name) AS BANANA
+  // FROM formations
+  // left outer join tutorials on formations.id = tutorials.formation_id
+  // WHERE trim(lower(formations.id)) = 2
+  // GROUP BY
+  // formations.iconDescription;
+
+  //     `);
+  // }
+  findFormationAndTutorial(id) {
+    return this.database.query(
+      `SELECT tutorials.name
+      FROM tutorials
+      WHERE tutorials.formation_id = ?`,
+      [id]
+    );
   }
 
   insert(tutorial) {

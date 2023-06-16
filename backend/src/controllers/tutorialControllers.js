@@ -2,9 +2,13 @@ const models = require("../models");
 
 const readAll = (req, res) => {
   models.tutorial
-    .findFormationAndTutorial()
+    .findFormationAndTutorial(req.params.id)
     .then(([rows]) => {
-      res.send(rows);
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
     })
     .catch((err) => {
       console.error(err);
@@ -26,12 +30,12 @@ const browse = (req, res) => {
 
 const read = (req, res) => {
   models.tutorial
-    .find(req.params.id)
-    .then(([rows]) => {
-      if (rows[0] == null) {
+    .findFormationAndTutorial(req.params.id)
+    .then((rows) => {
+      if (rows.length === 0) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.send(rows);
       }
     })
     .catch((err) => {
