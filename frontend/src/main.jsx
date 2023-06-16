@@ -9,6 +9,10 @@ import PlatformTutorial from "./pages/platformTutorial/PlatformTutorial";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
 import LevelUser from "./pages/levelUser/LevelUser";
+import Footer from "./components/footer/Footer";
+import LegalNotice from "./pages/legalNotice/LegalNotice";
+import AboutUs from "./pages/aboutUs/AboutUs";
+import CreateTutorial from "./pages/createTutorial/CreateTutorial";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +38,22 @@ const router = createBrowserRouter([
       {
         path: "/levelUser",
         element: <LevelUser />,
+      },
+      {
+        path: "/footer",
+        element: <Footer />,
+      },
+      {
+        path: "/legalNotice",
+        element: <LegalNotice />,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs />,
+      },
+      {
+        path: "/create",
+        element: <CreateTutorial />,
       },
     ],
   },
