@@ -2,11 +2,14 @@ const FormationManager = require("../models/FormationManager");
 
 const getAll = async (req, res) => {
   try {
-    const response = await FormationManager.getAllFormations();
-    res.send(response[0]);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error retrieving users");
+    const formations = await FormationManager.getAllFormations();
+    if (formations.length === 0) {
+      res.status(404).send("No formations found");
+    } else {
+      res.status(200).send(formations);
+    }
+  } catch (err) {
+    res.status(500).send(err);
   }
 };
 

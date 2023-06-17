@@ -1,69 +1,29 @@
-const { ref, getDownloadURL } = require("firebase/storage");
 const TutorialManager = require("../models/TutorialManager");
-const storage = require("../../firebase");
 
 const getAll = async (req, res) => {
   try {
-    const results = await TutorialManager.getAllTutorials();
-    const resultsWithUrls = await Promise.all(
-      results[0].map(async (result) => {
-        const filePath = `images/${result.pictureTuto}`;
-        console.info(filePath);
-        const fileRef = ref(storage, filePath);
-        const url = await getDownloadURL(fileRef);
-        return {
-          ...result,
-          url,
-        };
-      })
-    );
-
-    res.status(200).json({
-      imagesWithUrls: resultsWithUrls,
-      tutorials: results[0],
-    });
-  } catch (error) {
-    console.error("Error retrieving data: ", error);
-    res.status(500).json({ message: "Failed to retrieve data" });
+    const tutorials = await TutorialManager.getAllTutorials();
+    if (tutorials.length === 0) {
+      res.status(404).send("No tutorials found");
+    } else {
+      res.status(200).send(tutorials);
+    }
+  } catch (err) {
+    res.status(500).send(err);
   }
 };
 
 const getOne = async (req, res) => {
   try {
-    const tutorialID = req.params.id;
-    const response = await TutorialManager.getByIdTutorial(tutorialID);
-    if (response === null || response.length === 0) {
-      res.sendStatus(404);
+    const { id } = req.params;
+    const tutorialById = await TutorialManager.getByIdTutorial(id);
+    if (tutorialById.length === 0) {
+      res.status(404).json({ error: "Tutorial not found" });
     } else {
-      const tutorialId = response[0].id;
-      const foundObject = response.find((objet) => objet.id === tutorialId);
-      if (foundObject) {
-        res.send(foundObject);
-      } else {
-        res.sendStatus(404);
-      }
+      res.status(200).json(tutorialById[0]);
     }
-  } catch (error) {
-    console.error(error);
-    res.sendStatus(500);
-  }
-};
-
-const update = async (req, res) => {
-  try {
-    const tutorial = req.body;
-    const tutorialId = parseInt(req.params.id, 10);
-
-    const response = await TutorialManager.updateTutorial(tutorialId, tutorial);
-    if (response) {
-      const updatedTutorial = await TutorialManager.getByIdTutorial(tutorialId);
-      res.send(updatedTutorial[0]);
-    } else {
-      res.sendStatus(404);
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error updating tutorial");
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -71,12 +31,12 @@ const create = async (req, res) => {
   try {
     const { tutorial, newFileName } = req.body;
 
-    const response = await TutorialManager.createTutorialWithImage(
+    const tutorialCreated = await TutorialManager.createTutorialWithImage(
       tutorial,
       newFileName
     );
 
-    if (response) {
+    if (tutorialCreated) {
       res.status(201).json(tutorial);
     } else {
       res.status(404);
@@ -89,18 +49,33 @@ const create = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  const tutorial = req.body;
+  const { id } = req.params;
+
+  try {
+    const tutorialUpdated = await TutorialManager.updateTutorial(id, tutorial);
+    if (!tutorialUpdated.updatedTutorial) {
+      res.status(404).send("Tutorial not updated");
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 const destroy = async (req, res) => {
   try {
-    const tutorialId = parseInt(req.params.id, 10);
-    const response = await TutorialManager.deleteTutorialAndQuizz(tutorialId);
-    if (response) {
-      res.sendStatus(204);
+    const { id } = req.params;
+    const tutorialDeleted = await TutorialManager.deleteTutorialAndQuizz(id);
+    if (tutorialDeleted.affectedRows === 0) {
+      res.status(404).send("Tutorial not deleted");
     } else {
-      res.sendStatus(404);
+      res.sendStatus(204);
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error deleting tutorial");
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 

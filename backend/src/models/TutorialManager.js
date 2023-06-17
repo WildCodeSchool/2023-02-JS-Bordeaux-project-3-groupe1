@@ -1,125 +1,137 @@
 const database = require("../../database");
+const QuizzManager = require("./QuizzManager");
 
 const getAllTutorials = async () => {
   try {
     const tutorials = await database.query("SELECT * FROM tutorials");
-    return tutorials;
+    return tutorials[0];
   } catch (error) {
-    console.error(error);
     throw new Error("Error retrieving tutorials");
   }
 };
 
-const getByIdTutorial = async (tutorialId) => {
+const getByIdTutorial = async (id) => {
   try {
     const tutorial = await database.query(
       "SELECT * FROM tutorials WHERE id = ?",
-      [tutorialId]
+      [id]
     );
     return tutorial[0];
   } catch (error) {
-    console.error(error);
     throw new Error("Error retrieving tutorial");
   }
 };
 
 const createTutorialWithImage = async (tutorial, newFileName) => {
   try {
-    const [quizResult] = await database.query(
-      `INSERT INTO quizz (question, firstProposal, secondProposal, response) VALUES (?, ?, ?, ?)`,
-      [
-        tutorial.question,
-        tutorial.firstProposal,
-        tutorial.secondProposal,
-        tutorial.response,
-      ]
-    );
-    const quizzId = quizResult.insertId;
+    const { question, firstProposal, secondProposal, response } = tutorial;
+    const quizzQuery = `INSERT INTO quizz (question, firstProposal, secondProposal, response) VALUES (?, ?, ?, ?)`;
 
-    const result = await database.query(
-      `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication, pictureExplication) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        tutorial.formation_id,
-        quizzId,
-        tutorial.level,
-        tutorial.name,
-        tutorial.urlVideo,
-        newFileName,
-        tutorial.objectif,
-        tutorial.explication,
-        tutorial.pictureExplication,
-      ]
-    );
-    return result;
+    const valuesQuizz = [question, firstProposal, secondProposal, response];
+
+    const quizzResult = await database.query(quizzQuery, valuesQuizz);
+    const quizzId = quizzResult.insertId;
+
+    const {
+      formationId,
+      level,
+      name,
+      urlVideo,
+      pictureTuto,
+      objectif,
+      explication,
+      pictureExplication,
+    } = tutorial;
+
+    const tutorialQuery = `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication, pictureExplication) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    const valuesTutorial = [
+      formationId,
+      quizzId,
+      level,
+      name,
+      urlVideo,
+      pictureTuto,
+      objectif,
+      explication,
+      pictureExplication,
+    ];
+
+    const tutorialResult = await database.query(tutorialQuery, valuesTutorial);
+    const tutorialId = tutorialResult.insertId;
+
+    return {
+      quizzId,
+      tutorialId,
+      question,
+      firstProposal,
+      secondProposal,
+      response,
+      formationId,
+      level,
+      name,
+      urlVideo,
+      newFileName,
+      objectif,
+      explication,
+      pictureExplication,
+    };
   } catch (error) {
-    console.error(error);
-    throw new Error("Error inserting tutorial");
+    throw new Error("Error creating tutorial");
   }
 };
 
-const updateTutorial = async (tutorialId, tutorial) => {
+const updateTutorial = async (id, tutorial) => {
   try {
-    await database.query(
-      `UPDATE quizz SET question = ?, firstProposal = ?, secondProposal = ?, response = ? WHERE id = ?`,
-      [
-        tutorial.question,
-        tutorial.firstProposal,
-        tutorial.secondProposal,
-        tutorial.response,
-        tutorialId,
-      ]
-    );
+    const quizzKeys = Object.keys(tutorial.quizz);
+    const quizzValues = Object.values(tutorial.quizz);
 
-    const result = await database.query(
-      `UPDATE tutorials SET formation_id = ?, quizz_id = ?, level = ?, name = ?, urlVideo = ?, pictureTuto = ?, objectif = ?, explication = ?, pictureExplication = ? WHERE id = ?`,
-      [
-        tutorial.formation_id,
-        tutorialId,
-        tutorial.level,
-        tutorial.name,
-        tutorial.urlVideo,
-        tutorial.pictureTuto,
-        tutorial.objectif,
-        tutorial.explication,
-        tutorial.pictureExplication,
-        tutorialId,
-      ]
-    );
+    let quizzQuery = "UPDATE quizz SET ";
+    const quizzUpdateClauses = quizzKeys.map((key) => `${key} = ?`);
+    quizzQuery += quizzUpdateClauses.join(", ");
+    quizzQuery += " WHERE id = ?";
 
-    if (result.affectedRows === 0) {
-      throw new Error("Tutorial not found");
-    }
+    quizzValues.push(id);
 
-    return result;
+    await database.query(quizzQuery, quizzValues);
+
+    const tutorialKeys = Object.keys(tutorial);
+    const tutorialValues = Object.values(tutorial);
+
+    let tutorialQuery = "UPDATE tutorials SET ";
+    const tutorialUpdateClauses = tutorialKeys
+      .filter((key) => key !== "quizz")
+      .map((key) => `${key} = ?`);
+    tutorialQuery += tutorialUpdateClauses.join(", ");
+    tutorialQuery += " WHERE id = ?";
+
+    tutorialValues.push(id);
+
+    await database.query(tutorialQuery, tutorialValues);
+
+    const updatedQuizz = await QuizzManager.getByIdQuizz(id);
+    const updatedTutorial = await getByIdTutorial(id);
+
+    return {
+      updatedQuizz: updatedQuizz[0],
+      updatedTutorial: updatedTutorial[0],
+    };
   } catch (error) {
-    console.error(error);
     throw new Error("Error updating tutorial");
   }
 };
 
 const deleteTutorialAndQuizz = async (id) => {
+  await QuizzManager.deleteQuizzByFormationId(id);
+  const quizzQuery = "DELETE FROM tutorials WHERE id = ?";
   try {
-    let result;
-    // Récupérer l'ID du quizz correspondant au tutoriel
-    const quizzIdResult = await database.query(
-      `SELECT quizz.id FROM quizz WHERE id = ?`,
-      [id]
-    );
-    if (quizzIdResult && quizzIdResult.length > 0) {
-      const quizzId = quizzIdResult[0].id;
-
-      // Supprimer le tutoriel de la table tutorials
-      result = await database.query(`DELETE FROM tutorials WHERE id = ?`, [id]);
-      // Supprimer l'entrée correspondante dans la table quizz
-      result += await database.query(`DELETE FROM quizz WHERE id = ?`, [
-        quizzId,
-      ]);
+    const response = await database.query(quizzQuery, [id]);
+    if (response.affectedRows === 0) {
+      throw new Error(`Tutorial with ID ${id} not found`);
     }
-
-    return result;
+    return response;
   } catch (error) {
-    console.error(error);
     throw new Error("Error deleting tutorial");
   }
 };

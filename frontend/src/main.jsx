@@ -15,6 +15,7 @@ import AboutUs from "./pages/aboutUs/AboutUs";
 import CreateTutorial from "./pages/createTutorial/CreateTutorial";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Child from "./routes/Child";
 
 const router = createBrowserRouter([
   {
@@ -54,16 +55,22 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/create",
-        element: <CreateTutorial />,
-      },
-      {
         path: "/register",
         element: <Register />,
       },
       {
         path: "/login",
         element: <Login />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <Child />,
+    children: [
+      {
+        path: "/tutorials/create",
+        element: <CreateTutorial />,
       },
     ],
   },

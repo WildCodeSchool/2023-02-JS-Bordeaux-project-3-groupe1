@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import starGrey from "../../assets/starGrey.png";
 import starBlue from "../../assets/starBlue.png";
 import student from "../../assets/student.png";
-import { getAllNameFormation } from "../../services/tutorialService";
+import { fetcher } from "../../services/tutorialService";
 
 function CreateNameTutorial() {
   const [nameTutorial, setNameTutorial] = useState("");
@@ -32,7 +32,7 @@ function CreateNameTutorial() {
   };
 
   useEffect(() => {
-    getAllNameFormation()
+    fetcher("tutorials")
       .then((data) => {
         setNameFormation(data);
       })

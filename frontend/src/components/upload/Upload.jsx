@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { postUpload } from "../../services/tutorialService";
+import { sender } from "../../services/tutorialService";
 
 function Upload() {
   const [file, setFile] = useState(null);
@@ -7,7 +7,7 @@ function Upload() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    postUpload(file)
+    sender("tutorials", file)
       .then((data) => {
         console.info(data);
       })

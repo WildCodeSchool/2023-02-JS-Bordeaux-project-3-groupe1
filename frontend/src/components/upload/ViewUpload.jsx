@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getUploads } from "../../services/tutorialService";
+import { fetcher } from "../../services/tutorialService";
 
 function ViewUpload() {
   const [fileNames, setFileNames] = useState([]);
 
   useEffect(() => {
-    getUploads()
+    fetcher("tutorials")
       .then((data) => {
         setFileNames(data);
       })
