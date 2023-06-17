@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUploads } from "../../services/uploadService";
+import { getUploads } from "../../services/tutorialService";
 
 function ViewUpload() {
   const [fileNames, setFileNames] = useState([]);
@@ -18,9 +18,9 @@ function ViewUpload() {
     <div>
       <h2>Uploaded Files</h2>
       <ul>
-        {fileNames?.map((fileName) => (
+        {fileNames.imagesWithUrls?.map((fileName) => (
           <>
-            <li key={fileName.id}>{fileName.nameFile}</li>
+            <li key={fileName.id}>{fileName?.name}</li>
             <img src={fileName.url} alt="" />
           </>
         ))}
