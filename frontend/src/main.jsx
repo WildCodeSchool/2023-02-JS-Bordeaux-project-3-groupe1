@@ -12,10 +12,11 @@ import LevelUser from "./pages/levelUser/LevelUser";
 import Footer from "./components/footer/Footer";
 import LegalNotice from "./pages/legalNotice/LegalNotice";
 import AboutUs from "./pages/aboutUs/AboutUs";
-import CreateTutorial from "./pages/createTutorial/CreateTutorial";
+import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Child from "./routes/Child";
+import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -70,7 +71,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/tutorials/create",
-        element: <CreateTutorial />,
+        element: <CreateTutorialPage />,
+      },
+      {
+        path: "/tutorials/createName",
+        element: <CreateNameTutorialPage />,
       },
     ],
   },
