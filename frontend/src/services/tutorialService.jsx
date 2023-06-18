@@ -11,7 +11,7 @@ export const sender = async (url, file) => {
     );
     return response.data;
   } catch (error) {
-    throw new Error("Error while sending the upload");
+    throw new Error("Error while sending the data");
   }
 };
 
@@ -20,6 +20,6 @@ export const fetcher = async (url) => {
     const response = await axios.get(`${import.meta.env.VITE_BASE_API}/${url}`);
     return response.data;
   } catch (error) {
-    throw new Error("Error while fetching uploads");
+    throw new Error("Error while fetching data");
   }
 };
