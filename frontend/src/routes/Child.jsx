@@ -2,22 +2,25 @@ import { useMemo, useState } from "react";
 import { Outlet } from "react-router-dom";
 import MenuTop from "../components/menuTop/MenuTop";
 import Footer from "../components/footer/Footer";
-import CreateTutorialContext from "../contexts/CreateTutorialContext";
+import { CreateTutorialProvider } from "../contexts/CreateTutorialContext";
+import NameMenuTopContext from "../contexts/NameMenuTopContext";
 
 function Child() {
-  const [newNameTutorial, setNewNameTutorial] = useState({});
+  const [nameMenu, setNameMenu] = useState("");
   return (
     <div>
-      <CreateTutorialContext.Provider
+      <NameMenuTopContext.Provider
         value={useMemo(
-          () => ({ newNameTutorial, setNewNameTutorial }),
-          [newNameTutorial, setNewNameTutorial]
+          () => ({ nameMenu, setNameMenu }),
+          [nameMenu, setNameMenu]
         )}
       >
-        <MenuTop />
-        <Outlet />
-        <Footer />
-      </CreateTutorialContext.Provider>
+        <CreateTutorialProvider>
+          <MenuTop />
+          <Outlet />
+          <Footer />
+        </CreateTutorialProvider>
+      </NameMenuTopContext.Provider>
     </div>
   );
 }

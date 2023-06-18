@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import CreateTutorialContext from "../../contexts/CreateTutorialContext";
+import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 
 function TutorialCreater() {
-  const { newNameTutorial } = useContext(CreateTutorialContext);
+  const { forms } = useContext(CreateTutorialContext);
   const handleSaveTutorial = () => {
-    console.warn("test", newNameTutorial);
+    console.warn("test", forms);
   };
 
   return (

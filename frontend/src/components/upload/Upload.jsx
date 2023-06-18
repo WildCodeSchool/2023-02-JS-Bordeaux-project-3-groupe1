@@ -25,7 +25,6 @@ function Upload() {
           id=""
           onChange={(e) => setFile(e.target.files[0])}
         />
-        <button type="submit">SEND</button>
       </form>
     </div>
   );

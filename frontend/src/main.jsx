@@ -17,6 +17,7 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Child from "./routes/Child";
 import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPage";
+import CreateObjectifTutorial from "./components/createTutorial/CreateObjectifTutorial";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "/tutorials/createName",
         element: <CreateNameTutorialPage />,
+      },
+      {
+        path: "/tutorials/createObjectif",
+        element: <CreateObjectifTutorial />,
       },
     ],
   },

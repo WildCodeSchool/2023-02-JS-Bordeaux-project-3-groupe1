@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import starGrey from "../../assets/starGrey.png";
 import starBlue from "../../assets/starBlue.png";
 import student from "../../assets/student.png";
 import { fetcher } from "../../services/tutorialService";
-import CreateTutorialContext from "../../contexts/CreateTutorialContext";
+import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function CreateNameTutorial() {
-  const { setNewNameTutorial } = useContext(CreateTutorialContext);
+  const { setNameMenu } = useContext(NameMenuTopContext);
+  const { setForms } = useContext(CreateTutorialContext);
   const [nameTutorial, setNameTutorial] = useState("");
   const [titlePreview, setTitlePreview] = useState("Nom du tutoriel");
   const [titleFormation, setTitleFormation] = useState("Utiliser ligne bleue");
@@ -15,6 +18,9 @@ function CreateNameTutorial() {
   const [starLevelStyle, setStarLevelStyle] = useState(false);
   const [nameFormation, setNameFormation] = useState([]);
   const [valuesTag, setValuesTag] = useState([]);
+  const [isValid, setIsValid] = useState(false);
+
+  setNameMenu("Ajouter un tutoriel");
 
   const handleAddValue = () => {
     if (tagTutorial !== "") {
@@ -61,7 +67,18 @@ function CreateNameTutorial() {
       valuesTag,
       levelTutorial,
     };
-    setNewNameTutorial(newValuesTutorial);
+
+    setForms((prevForms) => ({
+      ...prevForms,
+      ...newValuesTutorial,
+    }));
+  };
+
+  const handleRemoveValue = (value) => {
+    setValuesTag((prevValues) => {
+      const updatedValues = prevValues.filter((val) => val !== value);
+      return updatedValues;
+    });
   };
 
   useEffect(() => {
@@ -74,6 +91,15 @@ function CreateNameTutorial() {
       });
   }, [levelTutorial]);
 
+  useEffect(() => {
+    const isValidForm =
+      nameTutorial.trim() !== "" &&
+      titleFormation.trim() !== "" &&
+      valuesTag.length > 0 &&
+      levelTutorial !== "";
+    setIsValid(isValidForm);
+  }, [nameTutorial, titleFormation, valuesTag, levelTutorial]);
+
   return (
     <div className="container-createNameTutorial">
       <input
@@ -83,21 +109,32 @@ function CreateNameTutorial() {
         onChange={handleInputChange}
         value={nameTutorial}
         placeholder="Insérer le nom du tutoriel"
+        required
       />
-      <input
-        type="text"
-        name="tagTutorial"
-        id="tagTutorial"
-        onChange={handleInputChange}
-        value={tagTutorial}
-        placeholder="Insérer le tag du tutoriel"
-      />
-      <button type="button" onClick={handleAddValue}>
-        Add
-      </button>
+      <div className="container-input-tag">
+        <input
+          type="text"
+          name="tagTutorial"
+          id="tagTutorial"
+          onChange={handleInputChange}
+          value={tagTutorial}
+          placeholder="Insérer les tags"
+          required
+        />
+        <button type="button" onClick={handleAddValue}>
+          Ajouter
+        </button>
+      </div>
       <ul>
+        Liste des tags :
         {valuesTag.map((value) => (
-          <li key={value.id}>{value}</li>
+          <button
+            type="button"
+            key={value}
+            onClick={() => handleRemoveValue(value)}
+          >
+            {value}
+          </button>
         ))}
       </ul>
       <div className="choose-lvl-tutorial">
@@ -134,9 +171,11 @@ function CreateNameTutorial() {
         </div>
         <h3>{titlePreview}</h3>
       </div>
-      <button type="button" onClick={handleSaveName}>
-        Suivant
-      </button>
+      <Link to="/tutorials/createObjectif">
+        <button type="button" onClick={handleSaveName} disabled={!isValid}>
+          Valider
+        </button>
+      </Link>
     </div>
   );
 }
