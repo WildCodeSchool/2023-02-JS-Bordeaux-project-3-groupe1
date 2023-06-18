@@ -1,0 +1,124 @@
+.parcours {
+  height: initial;
+  min-height: 600px;
+  display: grid;
+  grid-template-columns: repeat(6, 50px);
+  grid-template-rows: 40px 60px 10px 60px 80px 20px 1fr;
+
+  @include phonelarge {
+    row-gap: 10px;
+  }
+
+  @include tablet {
+    row-gap: 15px;
+  }
+
+  .titleIconSort {
+    grid-column: 1/5;
+    grid-row: 1;
+    padding-left: 10px;
+
+    @include tablet {
+      padding-left: 50px;
+    }
+  }
+
+  .containerRewardIcons {
+    grid-column: 1/-1;
+    grid-row: 2;
+    align-self: end;
+    justify-self: center;
+    display: inline-flex;
+
+    @include tablet {
+      align-self: baseline;
+      margin-top: 15px;
+    }
+  }
+
+  .switchIcon {
+    align-self: end;
+
+    @include tablet {
+      font-size: $app-text-size-xl;
+    }
+  }
+  
+  .sortTitleIcon {
+    grid-column: 1/-1;
+    grid-row: 4;
+    justify-self: center;
+  }
+
+  .containerButtonSortReward {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column: 1/-1;
+    grid-row: 5;
+    justify-content: center;
+    gap: 10px;
+
+    @include phonelarge {
+      width: 75%;
+      justify-self: center;
+      align-self: self-start;
+    }
+
+    @include tablet {
+      grid-column: 2/6;
+      gap: 30px;
+    }
+
+    .buttonSortReward {
+      background-color: $app-button-primary-color;
+      color: $app-secondary-fonts-color-4;
+      width: 140px;
+      padding: $app-button-padding;
+      border-radius: $app-button-border-radius;
+      border: $app-button-color;
+      
+      @include phonelarge {
+        padding: $app-button-padding-phone-large;
+        font-size: large;
+        flex: 2;
+      }
+    }
+  }
+
+  .allRewardSort {
+    grid-column: 1/-1;
+    grid-row: 8;
+
+    .titleSortReward {
+      border-bottom: 2px solid $app-bg-icon-color;
+      padding: 0 0 10px 10px;
+      margin-top: 30px;
+
+      @include tablet {
+        padding-left: 50px;
+      }
+    }
+
+    .iconSortReward {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      
+      @include tablet {
+        width: 75%;
+        column-gap: 40px;
+        margin: 0 auto;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.titleIconSort,
+.switchIcon,
+.sortTitleIcon,
+.titleSortReward {
+  color: $app-primary-fonts-color;
+  font-family: $app-secondary-font;
+}
+
