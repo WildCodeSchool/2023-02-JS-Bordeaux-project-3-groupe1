@@ -89,7 +89,7 @@ function CreateObjectifTutorial() {
           <p>{explicationTutorial}</p>
         </div>
       </div>
-      <Link to="/tutorials/createObjectif">
+      <Link to="/tutorials/createVideo">
         <button
           type="button"
           onClick={handleSaveObjectif}

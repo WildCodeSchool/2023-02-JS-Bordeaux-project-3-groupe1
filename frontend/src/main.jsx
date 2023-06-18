@@ -17,7 +17,8 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Child from "./routes/Child";
 import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPage";
-import CreateObjectifTutorial from "./components/createTutorial/CreateObjectifTutorial";
+import CreateObjectifTutorialPage from "./pages/createTutorial/CreateObjectifTutorialPage";
+import CreateVideoTutorialPage from "./pages/createTutorial/CreateVideoTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -71,16 +72,20 @@ const router = createBrowserRouter([
     element: <Child />,
     children: [
       {
-        path: "/tutorials/create",
-        element: <CreateTutorialPage />,
-      },
-      {
         path: "/tutorials/createName",
         element: <CreateNameTutorialPage />,
       },
       {
         path: "/tutorials/createObjectif",
-        element: <CreateObjectifTutorial />,
+        element: <CreateObjectifTutorialPage />,
+      },
+      {
+        path: "/tutorials/createVideo",
+        element: <CreateVideoTutorialPage />,
+      },
+      {
+        path: "/tutorials/create",
+        element: <CreateTutorialPage />,
       },
     ],
   },
