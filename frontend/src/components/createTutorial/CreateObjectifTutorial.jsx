@@ -41,7 +41,7 @@ function CreateObjectifTutorial() {
     const newValuesTutorial = {
       objectifTutorial,
       explicationTutorial,
-      file: selectedFile,
+      selectedFile,
     };
 
     if (objectifTutorial && explicationTutorial && selectedFile) {

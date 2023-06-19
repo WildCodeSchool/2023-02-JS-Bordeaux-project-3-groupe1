@@ -43,17 +43,24 @@ function TutorialCreater() {
       answer,
     };
 
-    setForms((prevForms) => ({
-      ...prevForms,
-      ...newValuesTutorial,
-    }));
-    sender("tutorials", forms)
-      .then((data) => {
-        console.warn(data);
+    if (question && optionOne && optionTwo && answer) {
+      setForms((prevForms) => ({
+        ...prevForms,
+        ...newValuesTutorial,
+      }));
+      sender("tutorials", {
+        ...forms,
+        ...newValuesTutorial,
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((data) => {
+          console.warn(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.warn("Tous les champs doivent être remplis");
+    }
   };
 
   useEffect(() => {

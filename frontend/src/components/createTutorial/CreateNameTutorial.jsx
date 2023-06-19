@@ -12,13 +12,14 @@ function CreateNameTutorial() {
   const { setForms } = useContext(CreateTutorialContext);
   const [nameTutorial, setNameTutorial] = useState("");
   const [titlePreview, setTitlePreview] = useState("Nom du tutoriel");
-  const [titleFormation, setTitleFormation] = useState("Utiliser ligne bleue");
+  const [titleFormation, setTitleFormation] = useState("Utiliser ligne bleu");
   const [tagTutorial, setTagTutorial] = useState("");
   const [levelTutorial, setLevelTutorial] = useState(1);
   const [starLevelStyle, setStarLevelStyle] = useState(false);
   const [nameFormation, setNameFormation] = useState([]);
   const [valuesTag, setValuesTag] = useState([]);
   const [isValid, setIsValid] = useState(false);
+  const [idFormation, setIdFormation] = useState(false);
 
   setNameMenu("Ajouter un tutoriel");
 
@@ -61,11 +62,12 @@ function CreateNameTutorial() {
   };
 
   const handleSaveName = () => {
+    const parsedLevelTutorial = parseInt(levelTutorial, 10);
     const newValuesTutorial = {
       nameTutorial,
-      titleFormation,
+      idFormation,
       valuesTag,
-      levelTutorial,
+      levelTutorial: parsedLevelTutorial,
     };
 
     setForms((prevForms) => ({
@@ -89,7 +91,7 @@ function CreateNameTutorial() {
       .catch((error) => {
         console.error(error);
       });
-  }, [levelTutorial]);
+  }, []);
 
   useEffect(() => {
     const isValidForm =
@@ -99,6 +101,16 @@ function CreateNameTutorial() {
       levelTutorial !== "";
     setIsValid(isValidForm);
   }, [nameTutorial, titleFormation, valuesTag, levelTutorial]);
+
+  useEffect(() => {
+    const matchedFormation = nameFormation.find(
+      (formation) => formation.iconDescription === titleFormation
+    );
+    if (matchedFormation && matchedFormation.id) {
+      const parsedId = parseInt(matchedFormation.id, 10); // Utilisez parseInt() pour convertir l'ID en nombre entier
+      setIdFormation(parsedId);
+    }
+  }, [nameFormation, titleFormation]);
 
   return (
     <div className="container-createNameTutorial">
