@@ -1,7 +1,7 @@
 /* Website Font Size */
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat");
+@import url("https://fonts.googleapis.com/css2?family=Roboto");
 
 $app-primary-font: "Montserrat", sans-serif;
 $app-secondary-font: "Roboto", sans-serif;
@@ -70,3 +70,7 @@ $app-icon-color: #003da5;
 /* Website Bg-Icons Color */
 
 $app-bg-icon-color: #ffcb03;
+
+/* Website lin Color */
+
+$app-line-color: #ffcb03;
