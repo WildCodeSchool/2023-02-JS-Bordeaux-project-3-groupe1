@@ -60,7 +60,7 @@ function CreateVideoTutorial() {
           <>
             <div className="container-video-preview-title">
               <div className="space" />
-              <p>Explications</p>
+              <h3>Vidéo</h3>
               <img src={validation} alt="validation" />
             </div>
             <div className="container-video-preview-logo">
@@ -69,7 +69,7 @@ function CreateVideoTutorial() {
           </>
         )}
       </div>
-      <Link to="/tutorials/create">
+      <Link to="/tutorials/createQuizz">
         <button type="button" onClick={handleSaveName} disabled={!isValid}>
           Valider
         </button>

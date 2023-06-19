@@ -10,7 +10,8 @@ function CreateObjectifTutorial() {
   const { setForms } = useContext(CreateTutorialContext);
   const [objectifTutorial, setObjectifTutorial] = useState("");
   const [explicationTutorial, setExplicationTutorial] = useState("");
-  const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   setNameMenu("Ajouter un tutoriel");
 
@@ -22,14 +23,28 @@ function CreateObjectifTutorial() {
     setExplicationTutorial(e.target.value);
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreviewUrl(null);
+    }
+  };
+
   const handleSaveObjectif = () => {
     const newValuesTutorial = {
       objectifTutorial,
       explicationTutorial,
-      file,
+      file: selectedFile,
     };
 
-    if (objectifTutorial && explicationTutorial && file) {
+    if (objectifTutorial && explicationTutorial && selectedFile) {
       setForms((prevForms) => ({
         ...prevForms,
         ...newValuesTutorial,
@@ -77,14 +92,17 @@ function CreateObjectifTutorial() {
             name="file"
             id="fileInput"
             style={{ display: "none" }}
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={handleFileChange}
           />
         </div>
         <div className="container-explications-preview">
           <div className="container-explications-preview-title">
             <div className="space" />
-            <p>Explications</p>
+            <h3>Explications</h3>
             <img src={validation} alt="validation" />
+          </div>
+          <div className="container-explications-preview-img">
+            {previewUrl && <img src={previewUrl} alt="Preview" />}
           </div>
           <p>{explicationTutorial}</p>
         </div>
@@ -93,7 +111,7 @@ function CreateObjectifTutorial() {
         <button
           type="button"
           onClick={handleSaveObjectif}
-          disabled={!objectifTutorial || !explicationTutorial || !file}
+          disabled={!objectifTutorial || !explicationTutorial || !selectedFile}
         >
           Suivant
         </button>

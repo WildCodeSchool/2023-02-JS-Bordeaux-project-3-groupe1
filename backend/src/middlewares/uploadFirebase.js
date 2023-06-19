@@ -24,8 +24,6 @@ const uploadFirebase = async (req, res, next) => {
     } else {
       res.status(500);
     }
-  } else {
-    next();
   }
 };
 

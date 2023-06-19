@@ -1,12 +1,11 @@
 @import "../../assets/styles/variables.scss";
 
-.container-createVideoTutorial {
+.container-createQuizzTutorial {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: calc(100vh - 126px);
   width: 100vw;
-  padding: 4%;
 
   input {
     width: 80%;
@@ -19,22 +18,17 @@
     color: $app-secondary-fonts-color;
   }
 
-  .container-createVideoTutorial-preview {
-    width: 100%;
-    height: 20rem;
+  .container-quizz-preview {
+    background-color: $app-secondary-fonts-color-2;
+    width: 90%;
+    min-height: 8rem;
+    margin: 4%;
     border-radius: 0.3rem;
-    background-color: #0038a9;
-    opacity: 67%;
+    padding: 2%;
 
-    iframe {
-      height: 20rem;
-      width: 100%;
-    }
-
-    .container-video-preview-title {
+    .container-quizz-preview-title {
       display: flex;
       width: 100%;
-      height: 15%;
       justify-content: space-between;
       padding: 2%;
 
@@ -44,7 +38,7 @@
       }
 
       h3 {
-        color: $app-secondary-fonts-color-5;
+        color: $app-primary-fonts-color;
       }
 
       img {
@@ -53,17 +47,38 @@
       }
     }
 
-    .container-video-preview-logo {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      height: 85%;
-      width: 100%;
+    h4 {
       padding: 2%;
+    }
 
-      img {
-        width: 60px;
-        height: 60px;
+    p {
+      padding: 2%;
+      color: $app-secondary-fonts-color;
+    }
+
+    .container-quizz-preview-answer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      button {
+        cursor: pointer;
+        width: 80%;
+        height: 2.4rem;
+        border-radius: 0.3rem;
+        background-color: #fff;
+        border: 2px solid $app-input-primary-color;
+        margin: 4%;
+        padding-left: 4%;
+        font-size: 1.2rem;
+        color: $app-secondary-fonts-color;
+      }
+
+      button:active {
+        background-color: $app-primary-fonts-color;
+        opacity: 0.5;
+        color: $app-secondary-fonts-color-5;
       }
     }
   }

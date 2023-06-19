@@ -1,10 +1,9 @@
-import React from "react";
-import TutorialCreater from "../../components/createTutorial/TutorialCreater";
+import CreateQuizzTutorial from "../../components/createTutorial/CreateQuizzTutorial";
 
 function CreateTutorialPage() {
   return (
     <div>
-      <TutorialCreater />
+      <CreateQuizzTutorial />
     </div>
   );
 }
