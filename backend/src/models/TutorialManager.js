@@ -22,28 +22,27 @@ const getByIdTutorial = async (id) => {
   }
 };
 
-const createTutorialWithImage = async (tutorial, newFileName) => {
+const createTutorialWithImage = async (tutorial, newFilename) => {
   try {
-    const { question, firstProposal, secondProposal, response } = tutorial;
-    const quizzQuery = `INSERT INTO quizz (question, firstProposal, secondProposal, response) VALUES (?, ?, ?, ?)`;
-
-    const valuesQuizz = [question, firstProposal, secondProposal, response];
-
-    const quizzResult = await database.query(quizzQuery, valuesQuizz);
-    const quizzId = quizzResult.insertId;
-
     const {
+      question,
+      firstProposal,
+      secondProposal,
+      response,
       formationId,
       level,
       name,
       urlVideo,
-      pictureTuto,
       objectif,
       explication,
-      pictureExplication,
     } = tutorial;
 
-    const tutorialQuery = `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication, pictureExplication) 
+    const quizzQuery = `INSERT INTO quizz (question, firstProposal, secondProposal, response) VALUES (?, ?, ?, ?)`;
+    const valuesQuizz = [question, firstProposal, secondProposal, response];
+    const quizzResult = await database.query(quizzQuery, valuesQuizz);
+    const quizzId = quizzResult.insertId;
+
+    const tutorialQuery = `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const valuesTutorial = [
@@ -52,14 +51,13 @@ const createTutorialWithImage = async (tutorial, newFileName) => {
       level,
       name,
       urlVideo,
-      pictureTuto,
+      newFilename,
       objectif,
       explication,
-      pictureExplication,
     ];
 
     const tutorialResult = await database.query(tutorialQuery, valuesTutorial);
-    const tutorialId = tutorialResult.insertId;
+    const tutorialId = tutorialResult[0].insertId;
 
     return {
       quizzId,
@@ -72,10 +70,9 @@ const createTutorialWithImage = async (tutorial, newFileName) => {
       level,
       name,
       urlVideo,
-      newFileName,
+      newFilename,
       objectif,
       explication,
-      pictureExplication,
     };
   } catch (error) {
     throw new Error("Error creating tutorial");
