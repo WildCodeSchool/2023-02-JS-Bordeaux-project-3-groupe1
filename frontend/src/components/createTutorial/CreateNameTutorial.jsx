@@ -126,7 +126,6 @@ function CreateNameTutorial() {
         </button>
       </div>
       <ul>
-        Liste des tags :
         {valuesTag.map((value) => (
           <button
             type="button"
