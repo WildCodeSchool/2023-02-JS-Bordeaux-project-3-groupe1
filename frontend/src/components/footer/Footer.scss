@@ -20,6 +20,9 @@
       height: 45px;
     }
   }
+  @include tablet {
+    font-size: 20px;
+  }
 }
 .legalNotice {
   color: white;

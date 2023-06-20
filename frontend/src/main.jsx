@@ -12,6 +12,9 @@ import LevelUser from "./pages/levelUser/LevelUser";
 import Footer from "./components/footer/Footer";
 import LegalNotice from "./pages/legalNotice/LegalNotice";
 import AboutUs from "./pages/aboutUs/AboutUs";
+import CreateTutorial from "./pages/createTutorial/CreateTutorial";
+import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,18 @@ const router = createBrowserRouter([
       {
         path: "/aboutUs",
         element: <AboutUs />,
+      },
+      {
+        path: "/create",
+        element: <CreateTutorial />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

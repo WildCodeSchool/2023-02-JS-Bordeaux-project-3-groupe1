@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import visible from "../../assets/visible.png";
 import invisible from "../../assets/invisible.png";
 
-function Register() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -35,14 +35,14 @@ function Register() {
   };
 
   return (
-    <div className="container">
-      <div className="secondeContainer">
+    <div className="login-container">
+      <div className="login-secondeContainer">
         {" "}
         <form onSubmit={handleSubmit}>
-          <h2>S'incrire</h2>
+          <h2>Se connecter</h2>
           <label>
             <p>Mail</p>
-            <div className="dv-input">
+            <div className="login-dv-input">
               <input
                 id="email"
                 name="email"
@@ -57,7 +57,7 @@ function Register() {
           <br />
           <label>
             <p>Mot de passe</p>
-            <div className="dv-input">
+            <div className="login-dv-input">
               <input
                 id="password"
                 name="password"
@@ -69,7 +69,7 @@ function Register() {
               <button
                 type="button"
                 onClick={handleVisible}
-                className="btn-visibleImg"
+                className="login-btn-visibleImg"
               >
                 {!showPassword ? (
                   <img src={visible} alt="visible" className="visibleImg" />
@@ -79,42 +79,23 @@ function Register() {
               </button>
             </div>
           </label>
+          <a href="/" className="new-password-link">
+            MOT DE PASSE OUBLIÉ ?
+          </a>
           <br />
-          <label>
-            <p>Confirmez votre mot de passe</p>
-
-            <div className="dv-input">
-              <input
-                name="confirmPassword"
-                placeholder="*********"
-                type={showPassword ? "text" : "password"}
-                value={confirmPassword}
-                onChange={handleInputChange}
-              />{" "}
-              <button
-                type="button"
-                onClick={handleVisible}
-                className="btn-visibleImg"
-              >
-                {!showPassword ? (
-                  <img src={visible} alt="visible" className="visibleImg" />
-                ) : (
-                  <img src={invisible} alt="visible" className="visibleImg" />
-                )}
-              </button>
-            </div>
-          </label>
           <br />
-          <button className="btn" type="submit" onClick={handleSubmit}>
+          <button className="login-btn" type="submit" onClick={handleSubmit}>
             Inscription
           </button>
 
-          <p className="register-sentence">Vous avez déjà un compte?</p>
-          <a href="/">Se connecter</a>
+          <p className="sentence">Vous avez déjà un compte?</p>
+          <a href="/" className="connection-link">
+            Connexion
+          </a>
         </form>
       </div>
     </div>
   );
 }
 
-export default Register;
+export default Login;
