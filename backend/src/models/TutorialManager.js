@@ -22,19 +22,21 @@ const getByIdTutorial = async (id) => {
   }
 };
 
-const createTutorialWithImage = async (tutorial, newFilename) => {
+const createTutorialWithImage = async (tutorial) => {
   try {
     const {
       question,
       firstProposal,
       secondProposal,
       response,
-      formationId,
-      level,
       name,
-      urlVideo,
+      formationId,
+      valuesTag,
+      level,
       objectif,
       explication,
+      urlVideo,
+      newFilename,
     } = tutorial;
 
     const quizzQuery = `INSERT INTO quizz (question, firstProposal, secondProposal, response) VALUES (?, ?, ?, ?)`;
@@ -42,7 +44,12 @@ const createTutorialWithImage = async (tutorial, newFilename) => {
     const quizzResult = await database.query(quizzQuery, valuesQuizz);
     const quizzId = quizzResult.insertId;
 
-    const tutorialQuery = `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication) 
+    const tagQuery = `INSERT INTO tags (name) VALUES (?)`;
+    const valuesTags = [valuesTag];
+    const tagResult = await database.query(tagQuery, valuesTags);
+    const tagId = tagResult.insertId;
+
+    const tutorialQuery = `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication, pictureExplication) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const valuesTutorial = [
@@ -54,10 +61,15 @@ const createTutorialWithImage = async (tutorial, newFilename) => {
       newFilename,
       objectif,
       explication,
+      "aa",
     ];
 
     const tutorialResult = await database.query(tutorialQuery, valuesTutorial);
     const tutorialId = tutorialResult[0].insertId;
+
+    const tutorialsTagsQuery = `INSERT INTO tutorialsTags (tutorial_id, tag_id) VALUES (?)`;
+    const valuesTutorialsTags = [tagId, tutorialId];
+    await database.query(tutorialsTagsQuery, valuesTutorialsTags);
 
     return {
       quizzId,
