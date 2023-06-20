@@ -29,10 +29,9 @@ const getOne = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { tutorial, newFilename } = req.body;
+    const tutorial = req.body;
     const tutorialCreated = await TutorialManager.createTutorialWithImage(
-      tutorial,
-      newFilename
+      tutorial
     );
 
     if (tutorialCreated) {

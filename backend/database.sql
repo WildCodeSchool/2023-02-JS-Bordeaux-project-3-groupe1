@@ -49,8 +49,7 @@ CREATE TABLE `tutorials` (
   `urlVideo` varchar(255),
   `pictureTuto` varchar(255),
   `objectif` text NOT NULL,
-  `explication` text NOT NULL,
-  `pictureExplication` varchar(255) NOT NULL
+  `explication` text NOT NULL
 );
 
 CREATE TABLE `steps` (
