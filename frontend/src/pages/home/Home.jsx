@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ImageAccueil from "../../assets/pictures/femmebureau.svg";
-import Support from "../../assets/pictures/Rectangle_welcome_120.svg";
+import Support from "../../assets/pictures/Rectangle_bleu.png";
 import Presenter from "../../assets/pictures/presentatrice.png";
 import "../../assets/styles/variables.scss";
 
@@ -36,9 +36,9 @@ function Home() {
         <div className="bloc_presenter">
           <h2 className="text_presenter">
             Suivre notre tutoriel de prise en main de notre plateforme
-            <a href="../platformTutorial" className="word_ici">
+            <Link to="../platformTutorial" className="word_ici">
               ici
-            </a>
+            </Link>
           </h2>
         </div>
       </div>
