@@ -19,7 +19,7 @@ import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPag
 import CreateObjectifTutorialPage from "./pages/createTutorial/CreateObjectifTutorialPage";
 import CreateVideoTutorialPage from "./pages/createTutorial/CreateVideoTutorialPage";
 import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
-import UpdataNameTutorialPage from "./pages/createTutorial/UpdataNameTutorialPage";
+import UpdataNameTutorialPage from "./pages/updateTutorial/UpdataNameTutorialPage";
 
 const router = createBrowserRouter([
   {

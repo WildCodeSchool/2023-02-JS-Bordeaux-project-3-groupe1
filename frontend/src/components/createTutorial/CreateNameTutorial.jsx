@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import starGrey from "../../assets/starGrey.png";
 import starBlue from "../../assets/starBlue.png";
 import student from "../../assets/student.png";
 import { fetcher } from "../../services/tutorialService";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 
-function CreateNameTutorial() {
+function CreateNameTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
   const [nameTutorial, setNameTutorial] = useState("");
   const [titlePreview, setTitlePreview] = useState("Nom du tutoriel");
@@ -18,10 +19,18 @@ function CreateNameTutorial() {
   const [valuesTag, setValuesTag] = useState([]);
   const [isValid, setIsValid] = useState(false);
   const [idFormation, setIdFormation] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [updatedTags, setUpdatedTags] = useState([]);
+
+  const { nameTuto, tagTuto, tutorialtags } = props;
 
   const handleAddValue = () => {
     if (tagTutorial !== "") {
-      setValuesTag([...valuesTag, tagTutorial]);
+      if (isUpdate) {
+        setUpdatedTags([...updatedTags, tagTutorial]);
+      } else {
+        setValuesTag([...valuesTag, tagTutorial]);
+      }
       setTagTutorial("");
     }
   };
@@ -73,10 +82,17 @@ function CreateNameTutorial() {
   };
 
   const handleRemoveValue = (value) => {
-    setValuesTag((prevValues) => {
-      const updatedValues = prevValues.filter((val) => val !== value);
-      return updatedValues;
-    });
+    if (isUpdate) {
+      setUpdatedTags((prevTags) => {
+        const updateTags = prevTags.filter((tag) => tag !== value);
+        return updateTags;
+      });
+    } else {
+      setValuesTag((prevValues) => {
+        const updatedValues = prevValues.filter((val) => val !== value);
+        return updatedValues;
+      });
+    }
   };
 
   useEffect(() => {
@@ -103,10 +119,20 @@ function CreateNameTutorial() {
       (formation) => formation.iconDescription === titleFormation
     );
     if (matchedFormation && matchedFormation.id) {
-      const parsedId = parseInt(matchedFormation.id, 10); // Utilisez parseInt() pour convertir l'ID en nombre entier
+      const parsedId = parseInt(matchedFormation.id, 10);
       setIdFormation(parsedId);
     }
   }, [nameFormation, titleFormation]);
+
+  useEffect(() => {
+    if (tutorialtags) {
+      setIsUpdate(true);
+      const nameTagsArray = tutorialtags.map((value) => value.nameTag);
+      setUpdatedTags(nameTagsArray);
+    } else {
+      setIsUpdate(false);
+    }
+  }, [tutorialtags]);
 
   return (
     <div className="container-createNameTutorial">
@@ -116,7 +142,7 @@ function CreateNameTutorial() {
         id="nameTutorial"
         onChange={handleInputChange}
         value={nameTutorial}
-        placeholder="test"
+        placeholder={nameTuto}
         required
       />
       <div className="container-input-tag">
@@ -126,7 +152,7 @@ function CreateNameTutorial() {
           id="tagTutorial"
           onChange={handleInputChange}
           value={tagTutorial}
-          placeholder="test"
+          placeholder={tagTuto}
           required
         />
         <button type="button" onClick={handleAddValue}>
@@ -134,15 +160,25 @@ function CreateNameTutorial() {
         </button>
       </div>
       <ul>
-        {valuesTag.map((value) => (
-          <button
-            type="button"
-            key={value}
-            onClick={() => handleRemoveValue(value)}
-          >
-            {value}
-          </button>
-        ))}
+        {isUpdate
+          ? updatedTags?.map((tagName) => (
+              <button
+                type="button"
+                key={tagName}
+                onClick={() => handleRemoveValue(tagName)}
+              >
+                {tagName}
+              </button>
+            ))
+          : valuesTag.map((value) => (
+              <button
+                type="button"
+                key={value}
+                onClick={() => handleRemoveValue(value)}
+              >
+                {value}
+              </button>
+            ))}
       </ul>
       <div className="choose-lvl-tutorial">
         <p>Choisir le niveau</p>
@@ -186,5 +222,26 @@ function CreateNameTutorial() {
     </div>
   );
 }
+
+CreateNameTutorial.propTypes = {
+  nameTuto: PropTypes.string.isRequired,
+  tagTuto: PropTypes.string.isRequired,
+  tutorialtags: PropTypes.arrayOf(
+    PropTypes.shape({
+      fqfqf: PropTypes.string,
+      formation_id: PropTypes.number,
+      id: PropTypes.number,
+      level: PropTypes.number,
+      name: PropTypes.string,
+      nameTag: PropTypes.string,
+      objectif: PropTypes.string,
+      pictureTuto: PropTypes.string,
+      quizz_id: PropTypes.number,
+      tag_id: PropTypes.number,
+      tutorial_id: PropTypes.number,
+      urlVideo: PropTypes.string,
+    })
+  ).isRequired,
+};
 
 export default CreateNameTutorial;

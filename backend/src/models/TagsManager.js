@@ -3,7 +3,7 @@ const database = require("../../database");
 const CreateTagTutorial = async (tutorial) => {
   const { valuesTag } = tutorial;
 
-  const tagQuery = `INSERT INTO tags (name) VALUES (?)`;
+  const tagQuery = `INSERT INTO tags (nameTag) VALUES (?)`;
 
   const valuesTags = [valuesTag];
 
