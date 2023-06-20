@@ -1,24 +1,20 @@
 @import "../../assets/mixins/mixins.scss";
 
 .mainHome {
-  height: 100vh;
-}
-
-main {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 50.4px);
 
   .header {
     position: relative;
     display: flex;
-    margin-top: 7rem;
+    margin-top: 6rem;
     width: 100%;
-    @include tablet {
+    @include desktop {
+      margin-top: 4rem;
     }
 
     .objectif {
@@ -30,10 +26,16 @@ main {
       margin: 2rem;
 
       @include tablet {
-        padding-left: 5rem;
+        padding-left: 0rem;
+        font-size: 2rem;
+        width: 100%;
+        margin-top: 2rem;
       }
+
       @include desktop {
-        font-size: $app-heading-one-desktop;
+        font-size: 2.3rem;
+        margin-top: 5rem;
+        margin-left: -10rem;
       }
     }
 
@@ -47,13 +49,15 @@ main {
       height: 7rem;
       margin-top: 0.5rem;
       @include tablet {
-        width: 14rem;
-        margin-top: 2.5rem;
+        width: 22rem;
+        margin: 4rem 0 0 -1rem;
+        height: 6rem;
       }
       @include desktop {
-        width: 30rem;
-        height: 20rem;
+        width: 465px;
+        height: 107px;
         margin-top: 5rem;
+        margin-left: -3rem;
       }
     }
 
@@ -64,15 +68,15 @@ main {
       z-index: 1;
 
       @include tablet {
-        width: 235px;
-        height: 135px;
-        margin-top: -1rem;
+        width: 250px;
+        height: 130px;
+        margin-top: 1rem;
       }
 
       @include desktop {
-        width: 441px;
-        height: 300px;
-        margin-top: 0rem;
+        width: 282px;
+        height: 131px;
+        margin-top: 2rem;
       }
     }
   }
@@ -82,30 +86,30 @@ main {
     font-size: $app-text-size;
     width: 20rem;
     margin-left: 1.5rem;
-    margin-top: 5rem;
+    margin-top: 3rem;
     font-family: $app-secondary-font;
 
     @include tablet {
-      margin-left: 6.5rem;
-      font-size: $app-heading-three-tablet;
-      width: 34rem;
-      margin-top: 9rem;
+      font-size: 1.4rem;
+      width: 36rem;
+      margin-top: 0rem;
     }
 
     @include desktop {
-      margin-left: 45.5rem;
-      font-size: 2rem;
-      width: 34rem;
-      margin-top: -8rem;
+      font-size: 1.5rem;
+      width: 45rem;
+      margin-top: 2rem;
     }
   }
 
   .button_debuter_formation {
     display: flex;
     justify-content: center;
-    margin-top: 6rem;
+    margin-top: 4rem;
     @include tablet {
-      margin-top: 1rem;
+      margin-top: 0rem;
+    }
+    @include desktop {
     }
   }
 
@@ -123,13 +127,14 @@ main {
     font-weight: bold;
 
     @include tablet {
-      padding: 0 40px;
-      font-size: 1.5rem;
-      margin-top: 5rem;
+      padding: 0 20px;
+      font-size: 1.2rem;
+      margin-top: 2rem;
     }
 
     @include desktop {
-      margin-left: 35rem;
+      margin-left: 0rem;
+      margin-top: 2rem;
     }
   }
 
@@ -140,6 +145,10 @@ main {
     @include tablet {
       margin-top: -3.5rem;
     }
+    @include desktop {
+      margin-top: 0;
+      z-index: 0;
+    }
   }
 
   .presenter_img {
@@ -147,15 +156,17 @@ main {
     width: 135px;
 
     @include tablet {
-      height: 150px;
-      width: 150px;
-      margin-top: 11%;
+      height: 147px;
+      width: 134px;
+      margin-top: 12%;
+      margin-left: -3rem;
     }
 
     @include desktop {
-      height: 290px;
-      width: 315px;
-      margin-top: 77px;
+      height: 118px;
+      width: 107px;
+      margin-top: 29px;
+      margin-left: -12rem;
     }
   }
 
@@ -166,20 +177,25 @@ main {
 
     @include tablet {
       margin-top: 4.5rem;
-      font-size: $app-heading-three-tablet;
+      font-size: 1.3rem;
       width: 30rem;
     }
 
     @include desktop {
-      font-size: 2.5rem;
-      width: 60rem;
-      margin-top: 10rem;
+      font-size: 1.4rem;
+      width: 100%;
+      margin-top: 2.5rem;
     }
   }
 
   .bloc_presenter {
     display: flex;
     margin-top: 1%;
+    @include tablet {
+      margin-top: 4%;
+    }
+    @include desktop {
+    }
   }
 
   .word_ici {

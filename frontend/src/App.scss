@@ -17,9 +17,12 @@
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
 }
