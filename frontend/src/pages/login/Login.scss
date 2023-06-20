@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 50.4px);
   background-color: $app-supporting-color;
   .login-secondeContainer {
     display: flex;
@@ -41,7 +41,7 @@
           font-size: $app-heading-two-tablet;
         }
         @include desktop {
-          font-size: $app-heading-two-desktop;
+          font-size: $app-heading-one-desktop;
         }
       }
       .login-btn {

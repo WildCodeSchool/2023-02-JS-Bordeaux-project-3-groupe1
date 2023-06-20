@@ -16,6 +16,11 @@
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
+@import "../src/components/createTutorial/CreateNameTutorial.scss";
+@import "../src/components/menuTop/MenuTop.scss";
+@import "../src/components/createTutorial/CreateObjectifTutorial.scss";
+@import "../src/components/createTutorial/CreateVideoTutorial.scss";
+@import "../src/components/createTutorial/CreateQuizzTutorial.scss";
 
 * {
   margin: 0;
@@ -26,3 +31,27 @@
 a {
   text-decoration: none;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $app-primary-font;
+}
+
+p,
+input,
+label,
+textarea,
+select,
+button,
+ul,
+li {
+  font-family: $app-secondary-font;
+  font-weight: 600;
+}
+
+li {
+  list-style: none;
+}
+
