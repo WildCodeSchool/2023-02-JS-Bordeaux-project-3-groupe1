@@ -1,5 +1,7 @@
 const database = require("../../database");
 const QuizzManager = require("./QuizzManager");
+const TagsManager = require("./TagsManager");
+const TutorialsTagsManager = require("./TutorialsTagsManager");
 
 const getAllTutorials = async () => {
   try {
@@ -25,13 +27,8 @@ const getByIdTutorial = async (id) => {
 const createTutorialWithImage = async (tutorial) => {
   try {
     const {
-      question,
-      firstProposal,
-      secondProposal,
-      response,
       name,
       formationId,
-      valuesTag,
       level,
       objectif,
       explication,
@@ -39,45 +36,37 @@ const createTutorialWithImage = async (tutorial) => {
       newFilename,
     } = tutorial;
 
-    const quizzQuery = `INSERT INTO quizz (question, firstProposal, secondProposal, response) VALUES (?, ?, ?, ?)`;
-    const valuesQuizz = [question, firstProposal, secondProposal, response];
-    const quizzResult = await database.query(quizzQuery, valuesQuizz);
-    const quizzId = quizzResult.insertId;
+    // insert on quizz table values of the quizz
+    const quizzTutorialResult = await QuizzManager.CreateQuizzTutorial(
+      tutorial
+    );
+    const quizzlId = quizzTutorialResult.id;
 
-    const tagQuery = `INSERT INTO tags (name) VALUES (?)`;
-    const valuesTags = [valuesTag];
-    const tagResult = await database.query(tagQuery, valuesTags);
-    const tagId = tagResult.insertId;
-
-    const tutorialQuery = `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication, pictureExplication) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const tutorialQuery = `INSERT INTO tutorials (formation_id, quizz_id, level, name, urlVideo, pictureTuto, objectif, explication) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const valuesTutorial = [
-      formationId,
-      quizzId,
-      level,
+      parseInt(formationId, 10),
+      quizzlId,
+      parseInt(level, 10),
       name,
       urlVideo,
       newFilename,
       objectif,
       explication,
-      "aa",
     ];
 
     const tutorialResult = await database.query(tutorialQuery, valuesTutorial);
     const tutorialId = tutorialResult[0].insertId;
 
-    const tutorialsTagsQuery = `INSERT INTO tutorialsTags (tutorial_id, tag_id) VALUES (?)`;
-    const valuesTutorialsTags = [tagId, tutorialId];
-    await database.query(tutorialsTagsQuery, valuesTutorialsTags);
+    const tagTutorialResult = await TagsManager.CreateTagTutorial(tutorial);
+    const tagId = tagTutorialResult.id;
+
+    await TutorialsTagsManager.CreateTutorialsTags(tutorialId, tagId);
 
     return {
-      quizzId,
+      quizzlId,
       tutorialId,
-      question,
-      firstProposal,
-      secondProposal,
-      response,
       formationId,
       level,
       name,
@@ -87,7 +76,7 @@ const createTutorialWithImage = async (tutorial) => {
       explication,
     };
   } catch (error) {
-    throw new Error("Error creating tutorial");
+    throw new Error("Error creating tutorial with image", error);
   }
 };
 

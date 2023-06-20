@@ -12,6 +12,28 @@ const getByIdQuizz = async (id) => {
   }
 };
 
+const CreateQuizzTutorial = async (tutorial) => {
+  const { question, firstProposal, secondProposal, response } = tutorial;
+
+  const quizzQuery = `INSERT INTO quizz (question, firstProposal, secondProposal, response) VALUES (?, ?, ?, ?)`;
+
+  const valuesQuizz = [question, firstProposal, secondProposal, response];
+
+  try {
+    const quizzResult = await database.query(quizzQuery, valuesQuizz);
+    return {
+      id: quizzResult[0].insertId,
+      question,
+      firstProposal,
+      secondProposal,
+      response,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error retrieving quizz");
+  }
+};
+
 const deleteQuizzByFormationId = async (id) => {
   const quizzQuery = "DELETE quizz.id FROM quizz WHERE id = ?";
   try {
@@ -26,5 +48,6 @@ const deleteQuizzByFormationId = async (id) => {
 };
 module.exports = {
   getByIdQuizz,
+  CreateQuizzTutorial,
   deleteQuizzByFormationId,
 };
