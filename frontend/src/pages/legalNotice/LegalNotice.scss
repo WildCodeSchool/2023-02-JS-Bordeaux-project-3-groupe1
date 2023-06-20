@@ -1,0 +1,51 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  background-color: #003da5;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  height: 30px;
+  align-items: center;
+  color: white;
+  padding: 5px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.content {
+  margin-top: 5px;
+}
+
+.updated {
+  font-style: italic;
+  color: #888888;
+}
+
+.note {
+  font-size: 14px;
+  color: #888888;
+}
+
+.content {
+  border: 5px solid #ffcb03;
+  white-space: pre-line;
+  padding: 5px;
+}
