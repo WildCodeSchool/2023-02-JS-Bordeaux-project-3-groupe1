@@ -5,10 +5,8 @@ import starBlue from "../../assets/starBlue.png";
 import student from "../../assets/student.png";
 import { fetcher } from "../../services/tutorialService";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
-import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function CreateNameTutorial() {
-  const { setNameMenu } = useContext(NameMenuTopContext);
   const { setForms } = useContext(CreateTutorialContext);
   const [nameTutorial, setNameTutorial] = useState("");
   const [titlePreview, setTitlePreview] = useState("Nom du tutoriel");
@@ -20,8 +18,6 @@ function CreateNameTutorial() {
   const [valuesTag, setValuesTag] = useState([]);
   const [isValid, setIsValid] = useState(false);
   const [idFormation, setIdFormation] = useState(false);
-
-  setNameMenu("Ajouter un tutoriel");
 
   const handleAddValue = () => {
     if (tagTutorial !== "") {
@@ -120,7 +116,7 @@ function CreateNameTutorial() {
         id="nameTutorial"
         onChange={handleInputChange}
         value={nameTutorial}
-        placeholder="Insérer le nom du tutoriel"
+        placeholder="test"
         required
       />
       <div className="container-input-tag">
@@ -130,7 +126,7 @@ function CreateNameTutorial() {
           id="tagTutorial"
           onChange={handleInputChange}
           value={tagTutorial}
-          placeholder="Insérer les tags"
+          placeholder="test"
           required
         />
         <button type="button" onClick={handleAddValue}>
