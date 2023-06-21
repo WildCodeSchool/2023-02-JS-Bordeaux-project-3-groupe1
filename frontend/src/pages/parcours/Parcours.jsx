@@ -137,38 +137,3 @@ function Parcours() {
   );
 }
 export default Parcours;
-
-// const sortMyRewardBySteps = (
-//   <>
-//     <h2 className="titleSortReward titleSortRewardNoBegin">{category}</h2>
-//     <div className="iconSortReward iconSortRewardNoBegin">
-//       {tutorialByIcon.length > 0 ? (
-//         tutorialByIcon.map((icon, index) => {
-//           const progress = steps[index].total;
-//           useEffect(()=> {
-
-//             if (progress === 0) {
-//               setCategory("NonDebute");
-//             } else if (progress === 100) {
-//               setCategory("Termines");
-//             } else {
-//               setCategory("EnCours");
-//             }
-//           }, [category])
-
-//           return (
-//             <SortMyReward
-//               iconFormation={icon.iconURL}
-//               nameTutorial={icon.name}
-//               index={index}
-//               progress={progress}
-//               key={index}
-//             />
-//           );
-//         })
-//       ) : (
-//         <p>En cours de chargement...</p>
-//       )}
-//     </div>
-//   </>
-// );
