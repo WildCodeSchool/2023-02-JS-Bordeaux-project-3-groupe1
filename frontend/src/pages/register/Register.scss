@@ -1,13 +1,10 @@
-@import "../../assets/mixins/mixins.scss";
-@import "../../assets/styles/variables.scss";
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 50.4px);
   background-color: $app-supporting-color;
   .secondeContainer {
     display: flex;
@@ -37,7 +34,7 @@
           font-size: $app-heading-two-tablet;
         }
         @include desktop {
-          font-size: $app-heading-two-desktop;
+          font-size: $app-heading-one-desktop;
         }
       }
       .btn {
@@ -63,17 +60,17 @@
       .btn:hover {
         box-shadow: 0px 0.2px 4px 1px lightgrey;
       }
-      .sentence {
+      .register-sentence {
         color: $app-corporate-color;
         margin: 0.5rem 0 0 0;
         font-weight: bold;
-        font-size: 95%;
+        font-size: $app-text-size;
       }
       a {
         color: $app-corporate-color-2;
         text-decoration: none;
         font-weight: bold;
-        font-size: 95%;
+        font-size: $app-text-size;
         cursor: pointer;
       }
       label {
@@ -110,29 +107,17 @@
           border: none;
           background-color: inherit;
           margin: 0 6% 0 0;
-          @include tablet {
-          }
-          @include desktop {
-          }
+
           .visibleImg {
             width: 6.5vw;
             height: 4vh;
             margin: 0 3% 0 0;
-
-            @include tablet {
-            }
-            @include desktop {
-            }
           }
         }
         p {
           color: $app-corporate-color;
-          font-size: 95%;
           @include tablet {
-            font-size: $app-text-size;
-          }
-          @include desktop {
-            width: 70%;
+            font-size: $app-text-size-xl;
           }
         }
 

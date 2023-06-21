@@ -81,7 +81,7 @@ function Register() {
           </label>
           <br />
           <label>
-            <p>Confirmez votre mot de passe</p>
+            <p>Confirmer votre mot de passe</p>
 
             <div className="dv-input">
               <input
@@ -109,7 +109,7 @@ function Register() {
             Inscription
           </button>
 
-          <p className="sentence">Vous avez déjà un compte?</p>
+          <p className="register-sentence">Vous avez déjà un compte?</p>
           <a href="/">Se connecter</a>
         </form>
       </div>

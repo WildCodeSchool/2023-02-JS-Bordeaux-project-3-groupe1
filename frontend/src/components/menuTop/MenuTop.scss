@@ -1,0 +1,21 @@
+@import "../../assets/styles/variables.scss";
+
+.container-menuTitle {
+  width: 100vw;
+  height: 75px;
+  background-color: $app-menuTop-color;
+  display: flex;
+  align-items: center;
+  padding: auto;
+  padding: 4%;
+  color: $app-secondary-fonts-color-5;
+
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  h2 {
+    margin: 0 0 0 10%;
+  }
+}
