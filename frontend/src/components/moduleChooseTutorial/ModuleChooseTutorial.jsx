@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import arrow from "../../assets/pictures/arrowTutorial.svg";
 import cap from "../../assets/pictures/cap.svg";
 import blueStars from "../../assets/pictures/blueStars.svg";
 import emptyStars from "../../assets/pictures/emptyStars.svg";
 
-function ModuleChooseTutorial({ isOpen, index, handleArrowClick }) {
+function ModuleChooseTutorial({ item }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleArrowClick = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <section className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}>
       <div className="tutorialStarsAndCap">
@@ -13,11 +17,11 @@ function ModuleChooseTutorial({ isOpen, index, handleArrowClick }) {
         <img className="tutorialStars" src={emptyStars} alt="#" />
         <img className="tutorialCap" src={cap} alt="cap" />
       </div>
-      <p className="tutorialTitle">Arrêter démarrer le téléphone</p>
+      <p className="tutorialTitle">{item.name}</p>
       <button
         type="button"
         className="arrowButton"
-        onClick={() => handleArrowClick(index)}
+        onClick={() => handleArrowClick()}
       >
         <img
           className={isOpen ? "tutorialArrowUp" : "tutorialArrowDown"}
@@ -36,8 +40,6 @@ function ModuleChooseTutorial({ isOpen, index, handleArrowClick }) {
   );
 }
 ModuleChooseTutorial.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired,
-  handleArrowClick: PropTypes.func.isRequired,
+  item: PropTypes.string.isRequired,
 };
 export default ModuleChooseTutorial;
