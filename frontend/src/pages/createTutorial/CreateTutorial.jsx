@@ -1,25 +1,38 @@
 import { useContext, useState } from "react";
-import CreateNameTutorial from "../../components/createTutorial/CreateNameTutorial";
-import CreateObjectifTutorial from "../../components/createTutorial/CreateObjectifTutorial";
-import CreateVideoTutorial from "../../components/createTutorial/CreateVideoTutorial";
-import CreateQuizzTutorial from "../../components/createTutorial/CreateQuizzTutorial";
+import CreateNameTutorial from "../../components/tutorialComponent/createTutorial/CreateNameTutorial";
+import CreateObjectifTutorial from "../../components/tutorialComponent/createTutorial/CreateObjectifTutorial";
+import CreateVideoTutorial from "../../components/tutorialComponent/createTutorial/CreateVideoTutorial";
+import CreateQuizzTutorial from "../../components/tutorialComponent/createTutorial/CreateQuizzTutorial";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
-function CreateTutorialPage() {
+function CreateNameTutorialPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
-  const [nameTuto] = useState("Insérer le nom du tutoriel");
-  const [tagTuto] = useState("Insérer les tags");
+  const [nameTutoPlaceholder] = useState("Insérer le nom du tutoriel");
+  const [tagTutoPlaceholder] = useState("Insérer les tags");
+  const [countStepTutorial, setCountStepTutorial] = useState(1);
 
   setNameMenu("Ajouter un tutoriel");
 
   return (
     <div>
-      <CreateNameTutorial nameTuto={nameTuto} tagTuto={tagTuto} />
-      <CreateObjectifTutorial />
-      <CreateVideoTutorial />
-      <CreateQuizzTutorial />
+      {countStepTutorial === 1 && (
+        <CreateNameTutorial
+          nameTutoPlaceholder={nameTutoPlaceholder}
+          tagTutoPlaceholder={tagTutoPlaceholder}
+          setCountStepTutorial={setCountStepTutorial}
+        />
+      )}
+      {countStepTutorial === 2 && (
+        <CreateObjectifTutorial setCountStepTutorial={setCountStepTutorial} />
+      )}
+      {countStepTutorial === 3 && (
+        <CreateVideoTutorial setCountStepTutorial={setCountStepTutorial} />
+      )}
+      {countStepTutorial === 4 && (
+        <CreateQuizzTutorial setCountStepTutorial={setCountStepTutorial} />
+      )}
     </div>
   );
 }
 
-export default CreateTutorialPage;
+export default CreateNameTutorialPage;

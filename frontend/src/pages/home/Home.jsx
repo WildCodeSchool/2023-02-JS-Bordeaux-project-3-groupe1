@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import ImageAccueil from "../../assets/pictures/femmebureau.svg";
-import Support from "../../assets/pictures/Rectangle_bleu.png";
 import Presenter from "../../assets/pictures/presentatrice.png";
 import "../../assets/styles/variables.scss";
 
@@ -10,11 +9,7 @@ function Home() {
       <div className="header">
         <div className="bloc_women">
           <img className="desk_women" src={ImageAccueil} alt="femme_bureau" />
-          <img
-            className="decorative_rectangle"
-            src={Support}
-            alt="rectangle_décoratif"
-          />
+          <div className="decorative_rectangle"> </div>
         </div>
         <h1 className="objectif">Rendre visible les invisibles du numérique</h1>
       </div>

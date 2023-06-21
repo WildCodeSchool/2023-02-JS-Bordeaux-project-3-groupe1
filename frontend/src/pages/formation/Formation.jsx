@@ -22,12 +22,13 @@ function Formation() {
   useEffect(() => {
     getIconAndDescription();
   }, []);
+
   return (
     <div className="formation">
       {isDesktop ? (
         <>
-          {icons.map((item) => (
-            <ModuleChooseFormation item={item} />
+          {icons.map((item, index) => (
+            <ModuleChooseFormation item={item} index={index} />
           ))}
           <img
             className="pictureManComputer"
@@ -37,8 +38,8 @@ function Formation() {
         </>
       ) : (
         <>
-          {icons.map((item) => (
-            <ModuleChooseFormation item={item} />
+          {icons.map((item, index) => (
+            <ModuleChooseFormation item={item} index={index} />
           ))}
         </>
       )}

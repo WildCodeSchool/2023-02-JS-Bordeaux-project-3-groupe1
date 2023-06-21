@@ -26,7 +26,6 @@ CREATE TABLE `levelFormations` (
 
 CREATE TABLE `formations` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
   `iconURL` varchar(500) NOT NULL,
   `iconDescription` varchar(200),
   `fl_status` boolean NOT NULL,
@@ -79,7 +78,7 @@ CREATE TABLE `tutorialsTags` (
 
 CREATE TABLE `tags` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `nameTag` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL
 );
 
 CREATE TABLE `usersPins` (
@@ -88,17 +87,26 @@ CREATE TABLE `usersPins` (
 );
 
 -- --                  firebase storage
+
 INSERT INTO
   `tutorials` (formation_id, level, quizz_id, name)
 VALUES
   (2, 1, 1, 'Arrêter/démarrer le téléphone'),
-  (2, 1, 2, 'Utilser un QR code'),
+  (2, 1, 2, 'Utiliser un QR code'),
   (2, 1, 3, 'Manipuler un écran tactile'),
   (2, 1, 4, 'Téléphoner'),
   (2, 1, 5, 'Différence: SMS, mail, message'),
   (2, 1, 6, 'Envoyer et recevoir un SMS'),
   (2, 1, 7, 'Gestion des contacts'),
-  (2, 1, 8, ' Lexicologie Android');
+  (2, 1, 8, 'Lexicologie Android'),
+  (6, 1, 1, 'Faire une photo ou une vidéo'),
+  (6, 1, 2, 'Partager une photo ou une vidéo'),
+  (6, 1, 3, 'Écouter de la musique'),
+  (6, 1, 4, 'Regarder des vidéos'),
+  (6, 1, 5, 'Jouer'),
+  (6, 1, 6, 'Facebook'),
+  (6, 1, 7, 'Instagram'),
+  (6, 1, 8, 'Tiktok');
 
 INSERT INTO
   formations (iconURL, iconDescription)
@@ -207,3 +215,45 @@ ADD
 --   formations
 -- ADD
 --   CONSTRAINT fk_formations_levelFormation FOREIGN KEY (levelFormation_id) REFERENCES levelFormations(id);
+
+--                  firebase storage
+
+INSERT INTO usersTutorials (user_id, tutorial_id, step_id
+)
+VALUES 
+(1,1,1),
+(2,2,2),
+(3,3,3),
+(4,4,4),
+(5,5,5),
+(6,6,6),
+(7,7,7),
+(8,8,8),
+(9,9,9),
+(10,10,10),
+(11,11,11),
+(12,12,12),
+(13,13,13),
+(14,14,14),
+(15,15,15),
+(16,16,16);
+
+INSERT INTO steps (stepOne, stepTwo, stepThree)
+VALUES
+(1, 0, 1),
+(0, 0, 0),
+(1, 1, 1),
+(0, 1, 1),
+(0, 0, 1),
+(0, 0, 1),
+(1, 0, 0),
+(1, 0, 0),
+(1, 0, 0),
+(1, 0, 1),
+(1, 0, 1),
+(1, 1, 0),
+(1, 1, 0),
+(1, 1, 0),
+(1, 1, 0),
+(1, 0, 1);
+
