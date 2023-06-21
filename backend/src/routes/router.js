@@ -12,5 +12,4 @@ router.use("/tutorials", tutorialRouter);
 router.use("/formations", formationRouter);
 router.use("/tutorialsTags", tutorialTagRouter);
 
-
 module.exports = router;
