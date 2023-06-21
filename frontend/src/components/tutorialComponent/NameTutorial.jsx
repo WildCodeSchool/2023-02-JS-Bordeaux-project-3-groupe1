@@ -7,22 +7,35 @@ import student from "../../assets/student.png";
 import { fetcher } from "../../services/tutorialService";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 
-function CreateNameTutorial(props) {
+function NameTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
   const [nameTutorial, setNameTutorial] = useState("");
-  const [titlePreview, setTitlePreview] = useState("Nom du tutoriel");
-  const [titleFormation, setTitleFormation] = useState("Utiliser ligne bleu");
+  const [titleFormation, setTitleFormation] = useState("");
   const [tagTutorial, setTagTutorial] = useState("");
   const [levelTutorial, setLevelTutorial] = useState(1);
   const [starLevelStyle, setStarLevelStyle] = useState(false);
   const [nameFormation, setNameFormation] = useState([]);
   const [valuesTag, setValuesTag] = useState([]);
-  const [isValid, setIsValid] = useState(false);
-  const [idFormation, setIdFormation] = useState(false);
+  const [idFormation, setIdFormation] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
+  const [updatedNameFormation, setUpdatedNameFormation] = useState(null);
 
-  const { nameTuto, tagTuto, tutorialtags } = props;
+  const {
+    nameTutoPlaceholder,
+    tagTutoPlaceholder,
+    level,
+    tutorialWithtags,
+    updateNameFormation,
+  } = props;
+
+  useEffect(() => {
+    if (tutorialWithtags) {
+      setNameTutorial(tutorialWithtags.name);
+    } else {
+      setTitleFormation(titleFormation);
+    }
+  }, [nameTutoPlaceholder, tagTutoPlaceholder]);
 
   const handleAddValue = () => {
     if (tagTutorial !== "") {
@@ -54,7 +67,6 @@ function CreateNameTutorial(props) {
     switch (name) {
       case "nameTutorial":
         setNameTutorial(value);
-        setTitlePreview(value);
         break;
       case "tagTutorial":
         setTagTutorial(value);
@@ -72,6 +84,7 @@ function CreateNameTutorial(props) {
       nameTutorial,
       idFormation,
       valuesTag,
+      updatedTags,
       levelTutorial: parsedLevelTutorial,
     };
 
@@ -81,7 +94,7 @@ function CreateNameTutorial(props) {
     }));
   };
 
-  const handleRemoveValue = (value) => {
+  const handleRemoveTagValue = (value) => {
     if (isUpdate) {
       setUpdatedTags((prevTags) => {
         const updateTags = prevTags.filter((tag) => tag !== value);
@@ -106,33 +119,39 @@ function CreateNameTutorial(props) {
   }, []);
 
   useEffect(() => {
-    const isValidForm =
-      nameTutorial.trim() !== "" &&
-      titleFormation.trim() !== "" &&
-      valuesTag.length > 0 &&
-      levelTutorial !== "";
-    setIsValid(isValidForm);
-  }, [nameTutorial, titleFormation, valuesTag, levelTutorial]);
-
-  useEffect(() => {
     const matchedFormation = nameFormation.find(
       (formation) => formation.iconDescription === titleFormation
     );
-    if (matchedFormation && matchedFormation.id) {
-      const parsedId = parseInt(matchedFormation.id, 10);
-      setIdFormation(parsedId);
+    if (matchedFormation) {
+      setIdFormation(parseInt(matchedFormation.id, 10));
     }
   }, [nameFormation, titleFormation]);
 
   useEffect(() => {
-    if (tutorialtags) {
+    const matchedFormation = nameFormation.find(
+      (formation) => formation.id === updateNameFormation
+    );
+    if (matchedFormation) {
+      setUpdatedNameFormation(matchedFormation.iconDescription);
+    }
+  }, [updateNameFormation, nameFormation]);
+
+  useEffect(() => {
+    if (tutorialWithtags) {
       setIsUpdate(true);
-      const nameTagsArray = tutorialtags.map((value) => value.nameTag);
-      setUpdatedTags(nameTagsArray);
+      const nameTagsArray = tutorialWithtags.map((value) => value.nameTag);
+      const newArrayNameTags = nameTagsArray
+        .toString()
+        .split(",")
+        .map((value) => value.trim());
+      setUpdatedTags(newArrayNameTags);
+      if (level === 2) {
+        setStarLevelStyle(true);
+      }
     } else {
       setIsUpdate(false);
     }
-  }, [tutorialtags]);
+  }, [tutorialWithtags, level]);
 
   return (
     <div className="container-createNameTutorial">
@@ -142,7 +161,7 @@ function CreateNameTutorial(props) {
         id="nameTutorial"
         onChange={handleInputChange}
         value={nameTutorial}
-        placeholder={nameTuto}
+        placeholder={nameTutoPlaceholder}
         required
       />
       <div className="container-input-tag">
@@ -152,7 +171,7 @@ function CreateNameTutorial(props) {
           id="tagTutorial"
           onChange={handleInputChange}
           value={tagTutorial}
-          placeholder={tagTuto}
+          placeholder={tagTutoPlaceholder}
           required
         />
         <button type="button" onClick={handleAddValue}>
@@ -165,7 +184,7 @@ function CreateNameTutorial(props) {
               <button
                 type="button"
                 key={tagName}
-                onClick={() => handleRemoveValue(tagName)}
+                onClick={() => handleRemoveTagValue(tagName)}
               >
                 {tagName}
               </button>
@@ -174,7 +193,7 @@ function CreateNameTutorial(props) {
               <button
                 type="button"
                 key={value}
-                onClick={() => handleRemoveValue(value)}
+                onClick={() => handleRemoveTagValue(value)}
               >
                 {value}
               </button>
@@ -198,11 +217,21 @@ function CreateNameTutorial(props) {
         </div>
       </div>
       <select value={titleFormation} onChange={handleSelectChange}>
-        {nameFormation.map((option) => (
-          <option key={option.id} value={option.value}>
-            {option.iconDescription}
+        {updatedNameFormation && (
+          <option
+            key={updatedNameFormation.id}
+            value={updatedNameFormation.value}
+          >
+            {updatedNameFormation}
           </option>
-        ))}
+        )}
+        {nameFormation
+          .filter((option) => option.id !== updatedNameFormation?.id)
+          .map((option) => (
+            <option key={option.id} value={option.value}>
+              {option.iconDescription}
+            </option>
+          ))}
       </select>
       <div className="container-preview-tutorial">
         <div className="icon-preview-tutorial">
@@ -212,10 +241,10 @@ function CreateNameTutorial(props) {
           </div>
           <img src={student} alt="student" />
         </div>
-        <h3>{titlePreview}</h3>
+        <h3>{nameTutorial}</h3>
       </div>
       <Link to="/tutorials/createObjectif">
-        <button type="button" onClick={handleSaveName} disabled={!isValid}>
+        <button type="button" onClick={handleSaveName}>
           Valider
         </button>
       </Link>
@@ -223,10 +252,12 @@ function CreateNameTutorial(props) {
   );
 }
 
-CreateNameTutorial.propTypes = {
-  nameTuto: PropTypes.string.isRequired,
-  tagTuto: PropTypes.string.isRequired,
-  tutorialtags: PropTypes.arrayOf(
+NameTutorial.propTypes = {
+  nameTutoPlaceholder: PropTypes.string.isRequired,
+  tagTutoPlaceholder: PropTypes.string.isRequired,
+  updateNameFormation: PropTypes.number.isRequired,
+  level: PropTypes.number.isRequired,
+  tutorialWithtags: PropTypes.arrayOf(
     PropTypes.shape({
       fqfqf: PropTypes.string,
       formation_id: PropTypes.number,
@@ -244,4 +275,4 @@ CreateNameTutorial.propTypes = {
   ).isRequired,
 };
 
-export default CreateNameTutorial;
+export default NameTutorial;

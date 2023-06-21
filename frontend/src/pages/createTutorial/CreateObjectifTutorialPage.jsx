@@ -1,4 +1,4 @@
-import CreateObjectifTutorial from "../../components/createTutorial/CreateObjectifTutorial";
+import CreateObjectifTutorial from "../../components/tutorialComponent/createTutorial/CreateObjectifTutorial";
 
 function CreateObjectifTutorialPage() {
   return (
