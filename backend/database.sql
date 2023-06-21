@@ -79,7 +79,7 @@ CREATE TABLE `tutorialsTags` (
 
 CREATE TABLE `tags` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `nameTag` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL
 );
 
 CREATE TABLE `usersPins` (

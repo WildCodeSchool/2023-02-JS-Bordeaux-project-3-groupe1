@@ -19,7 +19,7 @@ import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPag
 import CreateObjectifTutorialPage from "./pages/createTutorial/CreateObjectifTutorialPage";
 import CreateVideoTutorialPage from "./pages/createTutorial/CreateVideoTutorialPage";
 import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
-import UpdataNameTutorialPage from "./pages/updateTutorial/UpdataNameTutorialPage";
+import UpdateNameTutorialPage from "./pages/updateTutorial/UpdateNameTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -89,8 +89,8 @@ const router = createBrowserRouter([
         element: <CreateTutorialPage />,
       },
       {
-        path: "/tutorials/updateName",
-        element: <UpdataNameTutorialPage />,
+        path: "/tutorials/updateName/:tutorialId",
+        element: <UpdateNameTutorialPage />,
       },
     ],
   },

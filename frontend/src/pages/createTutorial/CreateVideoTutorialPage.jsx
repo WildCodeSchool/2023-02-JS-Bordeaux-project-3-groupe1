@@ -1,9 +1,9 @@
-import CreateVideoTutorial from "../../components/createTutorial/CreateVideoTutorial";
+import VideoTutorial from "../../components/tutorialComponent/VideoTutorial";
 
 function CreateVideoTutorialPage() {
   return (
     <div>
-      <CreateVideoTutorial />
+      <VideoTutorial />
     </div>
   );
 }

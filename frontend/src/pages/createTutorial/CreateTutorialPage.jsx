@@ -1,9 +1,9 @@
-import CreateQuizzTutorial from "../../components/createTutorial/CreateQuizzTutorial";
+import QuizzTutorial from "../../components/tutorialComponent/QuizzTutorial";
 
 function CreateTutorialPage() {
   return (
     <div>
-      <CreateQuizzTutorial />
+      <QuizzTutorial />
     </div>
   );
 }

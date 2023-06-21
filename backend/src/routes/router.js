@@ -8,6 +8,6 @@ const tutorialTagRouter = require("./tutorialTagRouter");
 
 router.use("/tutorials", tutorialRouter);
 router.use("/formations", formationRouter);
-router.use("/tutorialsTags", tutorialTagRouter);
+router.use("/tutorialWithTags", tutorialTagRouter);
 
 module.exports = router;

@@ -5,7 +5,7 @@ import pouce from "../../assets/pouce.png";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import validation from "../../assets/validation.png";
 
-function CreateObjectifTutorial() {
+function ObjectifTutorial() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { setForms } = useContext(CreateTutorialContext);
   const [objectifTutorial, setObjectifTutorial] = useState("");
@@ -120,4 +120,4 @@ function CreateObjectifTutorial() {
   );
 }
 
-export default CreateObjectifTutorial;
+export default ObjectifTutorial;

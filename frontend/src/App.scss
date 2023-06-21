@@ -16,11 +16,11 @@
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
-@import "../src/components/createTutorial/CreateNameTutorial.scss";
 @import "../src/components/menuTop/MenuTop.scss";
-@import "../src/components/createTutorial/CreateObjectifTutorial.scss";
-@import "../src/components/createTutorial/CreateVideoTutorial.scss";
-@import "../src/components/createTutorial/CreateQuizzTutorial.scss";
+@import "../src/components/tutorialComponent/NameTutorial.scss";
+@import "../src/components/tutorialComponent/ObjectifTutorial.scss";
+@import "../src/components/tutorialComponent/VideoTutorial.scss";
+@import "../src/components/tutorialComponent/QuizzTutorial.scss";
 
 * {
   margin: 0;
