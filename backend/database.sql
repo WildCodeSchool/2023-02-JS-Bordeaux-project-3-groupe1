@@ -48,8 +48,7 @@ CREATE TABLE `tutorials` (
   `urlVideo` varchar(255),
   `pictureTuto` varchar(255),
   `objectif` text NOT NULL,
-  `explication` text NOT NULL,
-  `pictureExplication` varchar(255) NOT NULL
+  `explication` text NOT NULL
 );
 
 CREATE TABLE `steps` (
@@ -79,7 +78,7 @@ CREATE TABLE `tutorialsTags` (
 
 CREATE TABLE `tags` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL
+  `nameTag` varchar(255) NOT NULL
 );
 
 CREATE TABLE `usersPins` (
@@ -207,7 +206,9 @@ ADD
 --   formations
 -- ADD
 --   CONSTRAINT fk_formations_levelFormation FOREIGN KEY (levelFormation_id) REFERENCES levelFormations(id);
+
 --                  firebase storage
+
 INSERT INTO usersTutorials (user_id, tutorial_id, step_id
 )
 VALUES 
@@ -230,19 +231,20 @@ VALUES
 
 INSERT INTO steps (stepOne, stepTwo, stepThree)
 VALUES
-(true, false, true)
-(0, 0, 0)
-(1, 1, 1)
-(0, 1, 1)
-(0, 0, 1)
-(0, 0, 1)
-(1, 0, 0)
-(1, 0, 0)
-(1, 0, 0)
-(1, 0, 1)
-(1, 0, 1)
-(1, 1, 0)
-(1, 1, 0)
-(1, 1, 0)
-(1, 1, 0)
+(1, 0, 1),
+(0, 0, 0),
+(1, 1, 1),
+(0, 1, 1),
+(0, 0, 1),
+(0, 0, 1),
+(1, 0, 0),
+(1, 0, 0),
+(1, 0, 0),
+(1, 0, 1),
+(1, 0, 1),
+(1, 1, 0),
+(1, 1, 0),
+(1, 1, 0),
+(1, 1, 0),
 (1, 0, 1);
+

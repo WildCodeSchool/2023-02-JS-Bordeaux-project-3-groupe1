@@ -12,10 +12,15 @@ import LevelUser from "./pages/levelUser/LevelUser";
 import Footer from "./components/footer/Footer";
 import LegalNotice from "./pages/legalNotice/LegalNotice";
 import AboutUs from "./pages/aboutUs/AboutUs";
-import CreateTutorial from "./pages/createTutorial/CreateTutorial";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Parcours from "./pages/parcours/Parcours";
+import Child from "./routes/Child";
+import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPage";
+import CreateObjectifTutorialPage from "./pages/createTutorial/CreateObjectifTutorialPage";
+import CreateVideoTutorialPage from "./pages/createTutorial/CreateVideoTutorialPage";
+import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
+import UpdataNameTutorialPage from "./pages/updateTutorial/UpdataNameTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -55,10 +60,6 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/create",
-        element: <CreateTutorial />,
-      },
-      {
         path: "/register",
         element: <Register />,
       },
@@ -69,6 +70,32 @@ const router = createBrowserRouter([
       {
         path: "/formations/parcours",
         element: <Parcours />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <Child />,
+    children: [
+      {
+        path: "/tutorials/createName",
+        element: <CreateNameTutorialPage />,
+      },
+      {
+        path: "/tutorials/createObjectif",
+        element: <CreateObjectifTutorialPage />,
+      },
+      {
+        path: "/tutorials/createVideo",
+        element: <CreateVideoTutorialPage />,
+      },
+      {
+        path: "/tutorials/createQuizz",
+        element: <CreateTutorialPage />,
+      },
+      {
+        path: "/tutorials/updateName",
+        element: <UpdataNameTutorialPage />,
       },
     ],
   },

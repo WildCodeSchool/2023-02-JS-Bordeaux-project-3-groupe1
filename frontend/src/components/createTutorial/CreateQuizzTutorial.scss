@@ -1,0 +1,106 @@
+@import "../../assets/styles/variables.scss";
+
+.container-createQuizzTutorial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 126px);
+  width: 100vw;
+
+  input {
+    width: 80%;
+    height: 2.4rem;
+    border-radius: 0.3rem;
+    border: 2px solid $app-input-primary-color;
+    margin: 4%;
+    padding-left: 4%;
+    font-size: 1.2rem;
+    color: $app-secondary-fonts-color;
+  }
+
+  .container-quizz-preview {
+    background-color: $app-secondary-fonts-color-2;
+    width: 90%;
+    min-height: 8rem;
+    margin: 4%;
+    border-radius: 0.3rem;
+    padding: 2%;
+
+    .container-quizz-preview-title {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: 2%;
+
+      .space {
+        height: 20px;
+        width: 20px;
+      }
+
+      h3 {
+        color: $app-primary-fonts-color;
+      }
+
+      img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    h4 {
+      padding: 2%;
+    }
+
+    p {
+      padding: 2%;
+      color: $app-secondary-fonts-color;
+    }
+
+    .container-quizz-preview-answer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      button {
+        cursor: pointer;
+        width: 80%;
+        height: 2.4rem;
+        border-radius: 0.3rem;
+        background-color: #fff;
+        border: 2px solid $app-input-primary-color;
+        margin: 4%;
+        padding-left: 4%;
+        font-size: 1.2rem;
+        color: $app-secondary-fonts-color;
+      }
+
+      button:active {
+        background-color: $app-primary-fonts-color;
+        opacity: 0.5;
+        color: $app-secondary-fonts-color-5;
+      }
+    }
+  }
+
+  a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4%;
+
+    button {
+      border: none;
+      background-color: $app-button-primary-color;
+      color: $app-secondary-fonts-color-5;
+      height: 2rem;
+      border-radius: 0.3rem;
+      width: 30%;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+    }
+  }
+}

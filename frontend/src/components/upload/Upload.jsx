@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { postUpload } from "../../services/uploadService";
+import { sender } from "../../services/tutorialService";
 
 function Upload() {
   const [file, setFile] = useState(null);
@@ -7,7 +7,7 @@ function Upload() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    postUpload(file)
+    sender("tutorials", file)
       .then((data) => {
         console.info(data);
       })
@@ -18,7 +18,6 @@ function Upload() {
 
   return (
     <div>
-      <h1>Upload</h1>
       <form method="POST" encType="multipart/form-data" onSubmit={handleSubmit}>
         <input
           type="file"
@@ -26,7 +25,6 @@ function Upload() {
           id=""
           onChange={(e) => setFile(e.target.files[0])}
         />
-        <button type="submit">SEND</button>
       </form>
     </div>
   );
