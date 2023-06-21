@@ -8,7 +8,6 @@ function Parcours() {
   const [NonDebute, EnCours, Termines] = buttonSortText;
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
-  const [changeTitleTutorial, setChangeTitleTutorial] = useState("");
 
   const getIconURL = async () => {
     try {
@@ -41,8 +40,6 @@ function Parcours() {
       (item.stepThree ? 34 : 0),
   }));
 
-  // console.info( steps)
-
   const tutorialByIconMap = tutorialByIcon.map((item) => item.iconURL);
   const iconOpacityLow = (icon) => {
     return tutorialByIconMap.includes(icon.iconURL)
@@ -54,7 +51,7 @@ function Parcours() {
     <main className="parcours">
       <h2 className="titleIconSort">Mes récompenses</h2>
       <figure className="containerRewardIcons">
-        {iconURL.slice(0, 4).map((icon, index) => (
+        {iconURL.slice(0, 4).map((icon) => (
           <MyReward icon={icon} iconOpacityLow={iconOpacityLow(icon)} />
         ))}
         <p className="switchIcon">...voir plus</p>
@@ -79,7 +76,7 @@ function Parcours() {
                     nameTutorial={icon.name}
                     index={index}
                     progress={steps[index].total}
-                    key={index}
+                    key={icon.name}
                   />
                 );
               }
@@ -92,7 +89,7 @@ function Parcours() {
 
         <h2 className="titleSortReward titleSortRewardMiddle">{EnCours}</h2>
         <div className="iconSortReward iconSortRewardMiddle">
-        {tutorialByIcon.length > 0 ? (
+          {tutorialByIcon.length > 0 ? (
             tutorialByIcon.map((icon, index) => {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
@@ -101,7 +98,7 @@ function Parcours() {
                     nameTutorial={icon.name}
                     index={index}
                     progress={steps[index].total}
-                    key={index}
+                    key={icon.name}
                   />
                 );
               }
@@ -113,7 +110,7 @@ function Parcours() {
         </div>
         <h2 className="titleSortReward titleSortRewardFinish">{Termines}</h2>
         <div className="iconSortReward iconSortRewardFinish">
-        {tutorialByIcon.length > 0 ? (
+          {tutorialByIcon.length > 0 ? (
             tutorialByIcon.map((icon, index) => {
               if (steps[index].total === 100) {
                 return (
@@ -122,7 +119,7 @@ function Parcours() {
                     nameTutorial={icon.name}
                     index={index}
                     progress={steps[index].total}
-                    key={index}
+                    key={icon.name}
                   />
                 );
               }
