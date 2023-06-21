@@ -5,16 +5,16 @@ import { fetcher } from "../../services/tutorialService";
 
 function UpdataNameTutorialPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
-  const [nameTutoUpdate] = useState("Modifier le nom du tutoriel");
-  const [tagTutoUpdate] = useState("Modifier les tags");
-  const [tuto, setTuto] = useState([]);
+  const [nameTuto] = useState("Modifier le nom du tutoriel");
+  const [tagTuto] = useState("Modifier les tags");
+  const [tutorialtags, setTutorialtags] = useState([]);
 
   setNameMenu("Modifier un tutoriel");
 
   useEffect(() => {
     fetcher("tutorialsTags")
       .then((data) => {
-        setTuto(data);
+        setTutorialtags(data);
       })
       .catch((error) => {
         console.error(error);
@@ -23,10 +23,10 @@ function UpdataNameTutorialPage() {
 
   return (
     <div>
-      <p>{tuto}</p>
       <CreateNameTutorial
-        nameTutoUpdate={nameTutoUpdate}
-        tagTutoUpdate={tagTutoUpdate}
+        nameTuto={nameTuto}
+        tagTuto={tagTuto}
+        tutorialtags={tutorialtags}
       />
     </div>
   );
