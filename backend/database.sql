@@ -88,17 +88,26 @@ CREATE TABLE `usersPins` (
 );
 
 -- --                  firebase storage
+
 INSERT INTO
   `tutorials` (formation_id, level, quizz_id, name)
 VALUES
   (2, 1, 1, 'Arrêter/démarrer le téléphone'),
-  (2, 1, 2, 'Utilser un QR code'),
+  (2, 1, 2, 'Utiliser un QR code'),
   (2, 1, 3, 'Manipuler un écran tactile'),
   (2, 1, 4, 'Téléphoner'),
   (2, 1, 5, 'Différence: SMS, mail, message'),
   (2, 1, 6, 'Envoyer et recevoir un SMS'),
   (2, 1, 7, 'Gestion des contacts'),
-  (2, 1, 8, ' Lexicologie Android');
+  (2, 1, 8, 'Lexicologie Android'),
+  (6, 1, 1, 'Faire une photo ou une vidéo'),
+  (6, 1, 2, 'Partager une photo ou une vidéo'),
+  (6, 1, 3, 'Écouter de la musique'),
+  (6, 1, 4, 'Regarder des vidéos'),
+  (6, 1, 5, 'Jouer'),
+  (6, 1, 6, 'Facebook'),
+  (6, 1, 7, 'Instagram'),
+  (6, 1, 8, 'Tiktok');
 
 INSERT INTO
   formations (iconURL, iconDescription)
