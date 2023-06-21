@@ -13,7 +13,6 @@ router.use("/tutorials", tutorialRouter);
 router.use("/formations", formationRouter);
 router.use("/tutorialWithTags", tutorialTagRouter);
 router.use("/tutorialsTags", tutorialTagRouter);
-router.use("/tutorials", tutorialSelectFormation);
 
 
 module.exports = router;
