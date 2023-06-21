@@ -26,7 +26,6 @@ CREATE TABLE `levelFormations` (
 
 CREATE TABLE `formations` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
   `iconURL` varchar(500) NOT NULL,
   `iconDescription` varchar(200),
   `fl_status` boolean NOT NULL,
@@ -216,3 +215,45 @@ ADD
 --   formations
 -- ADD
 --   CONSTRAINT fk_formations_levelFormation FOREIGN KEY (levelFormation_id) REFERENCES levelFormations(id);
+
+--                  firebase storage
+
+INSERT INTO usersTutorials (user_id, tutorial_id, step_id
+)
+VALUES 
+(1,1,1),
+(2,2,2),
+(3,3,3),
+(4,4,4),
+(5,5,5),
+(6,6,6),
+(7,7,7),
+(8,8,8),
+(9,9,9),
+(10,10,10),
+(11,11,11),
+(12,12,12),
+(13,13,13),
+(14,14,14),
+(15,15,15),
+(16,16,16);
+
+INSERT INTO steps (stepOne, stepTwo, stepThree)
+VALUES
+(1, 0, 1),
+(0, 0, 0),
+(1, 1, 1),
+(0, 1, 1),
+(0, 0, 1),
+(0, 0, 1),
+(1, 0, 0),
+(1, 0, 0),
+(1, 0, 0),
+(1, 0, 1),
+(1, 0, 1),
+(1, 1, 0),
+(1, 1, 0),
+(1, 1, 0),
+(1, 1, 0),
+(1, 0, 1);
+
