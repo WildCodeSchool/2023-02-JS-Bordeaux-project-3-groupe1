@@ -6,7 +6,6 @@ const tutorialByIconRouter = require("./tutorialByIconRouter");
 const tutorialRouter = require("./tutorialRouter");
 const formationRouter = require("./formationRouter");
 const tutorialTagRouter = require("./tutorialTagRouter");
-const tutorialSelectFormation = require("./tutorialSelectByFormationRouter");
 
 router.use("/tutorialbyicon", tutorialByIconRouter);
 router.use("/tutorials", tutorialRouter);
