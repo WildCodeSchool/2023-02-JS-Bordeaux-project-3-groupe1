@@ -11,11 +11,12 @@ import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 function LevelUser() {
   const { isDesktop } = useContext(IsDesktopContext);
   const [isHovered, setIsHovered] = useState(false);
-  const handleMouseEnter = () => {
-    setIsHovered(true);
+  const [isHovered2, setIsHovered2] = useState(false);
+  const handleMouseEnter = (buttonTrue) => {
+    buttonTrue(true);
   };
-  const handleMouseLeave = () => {
-    setIsHovered(false);
+  const handleMouseLeave = (buttonFalse) => {
+    buttonFalse(false);
   };
   return (
     <div className="containerLevelUser">
@@ -34,8 +35,8 @@ function LevelUser() {
           <button
             className="buttonLevel"
             type="button"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => handleMouseEnter(setIsHovered)}
+            onMouseLeave={() => handleMouseLeave(setIsHovered)}
           >
             <div>
               <div className="level">
@@ -54,15 +55,15 @@ function LevelUser() {
           <button
             className="buttonLevel"
             type="button"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => handleMouseEnter(setIsHovered2)}
+            onMouseLeave={() => handleMouseLeave(setIsHovered2)}
           >
             <div>
               <div className="level">
                 <h3 className="word">Intermédiaire</h3>
                 <img
                   className="hatLevel2"
-                  src={isHovered ? hatWhite2 : hat2}
+                  src={isHovered2 ? hatWhite2 : hat2}
                   alt="chapeau_diplome_niveau_intermediaire"
                 />
               </div>
