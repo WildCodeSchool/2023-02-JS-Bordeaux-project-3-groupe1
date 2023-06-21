@@ -23,9 +23,15 @@ function Navbar() {
 
   return (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
-      <img className="logo" src={Logo} alt="logo ligne bleue" />
+      <Link to="/">
+        {" "}
+        <img className="logo" src={Logo} alt="logo ligne bleue" />
+      </Link>
       <div className="container-icons">
-        <img className="points" src={Points} alt="points " />
+        <Link to="/formations/parcours">
+          {" "}
+          <img className="points" src={Points} alt="points " />
+        </Link>
         <input className="search-bar" type="text" />
         <img className="loupe" src={Loupe} alt="loupe recherche" />
 
@@ -35,7 +41,7 @@ function Navbar() {
             type="button"
             onClick={handleLogin}
           >
-            <Link to="/connexion">
+            <Link to="/register">
               {" "}
               <p className="se-connecter" href="/">
                 Connexion
