@@ -1,8 +1,13 @@
 .myRewardIcons {
   margin: 0 0 0 15px;
   width: 45px;
-  
+
   @include tablet {
     width: 60px;
   }
+}
+.myRewardIconsChange {
+  margin: 0 0 0 15px;
+  width: 45px;
+  opacity: 0.2;
 }

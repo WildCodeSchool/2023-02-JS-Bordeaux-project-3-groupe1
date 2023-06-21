@@ -33,9 +33,11 @@
   "devDependencies": {
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
+    "eslint-import-resolver-node": "^0.3.7",
     "husky": "^8.0.3"
   },
   "dependencies": {
-    "argon2": "^0.30.3"
+    "argon2": "^0.30.3",
+    "react-circular-progressbar": "^2.1.0"
   }
 }

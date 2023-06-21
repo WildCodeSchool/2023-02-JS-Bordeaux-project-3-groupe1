@@ -10,13 +10,15 @@
 @import "../src/pages/levelUser/LevelUser.scss";
 @import "../src/pages/login/Login.scss";
 @import "../src/pages/register/Register.scss";
+@import "../src/pages/parcours/Parcours.scss";
 
 /* -----------------------------import components -------------------------------- */
 
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
-
+@import "../src/components/myReward/MyReward.scss";
+@import "../src/components/sortMyReward/SortMyReward.scss";
 
 * {
   margin: 0;

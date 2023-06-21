@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.scss";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { IsDesktopProvider } from "./contexts/IsDesktopContext";
 import Root from "./routes/Root";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
 import PlatformTutorial from "./pages/platformTutorial/PlatformTutorial";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
-import { IsDesktopProvider } from "./contexts/IsDesktopContext";
 import LevelUser from "./pages/levelUser/LevelUser";
 import Footer from "./components/footer/Footer";
 import LegalNotice from "./pages/legalNotice/LegalNotice";
@@ -15,6 +15,7 @@ import AboutUs from "./pages/aboutUs/AboutUs";
 import CreateTutorial from "./pages/createTutorial/CreateTutorial";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Parcours from "./pages/parcours/Parcours";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/formations/parcours",
+        element: <Parcours />,
       },
     ],
   },
