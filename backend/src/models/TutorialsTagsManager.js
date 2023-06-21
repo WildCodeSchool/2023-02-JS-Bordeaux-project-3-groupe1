@@ -16,6 +16,19 @@ const CreateTutorialsTags = async (tutorialId, tagId) => {
     throw new Error("Error retrieving quizz");
   }
 };
+
+const getAllTutorialsTags = async () => {
+  try {
+    const tutorialsTags = await database.query(
+      "SELECT * FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id"
+    );
+    return tutorialsTags[0];
+  } catch (error) {
+    throw new Error("Error retrieving tutorialsTags");
+  }
+};
+
 module.exports = {
   CreateTutorialsTags,
+  getAllTutorialsTags,
 };

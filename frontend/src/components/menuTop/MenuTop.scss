@@ -3,11 +3,10 @@
 .container-menuTitle {
   width: 100vw;
   height: 75px;
+  padding-left: 4%;
   background-color: $app-menuTop-color;
   display: flex;
   align-items: center;
-  padding: auto;
-  padding: 4%;
   color: $app-secondary-fonts-color-5;
 
   img {

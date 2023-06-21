@@ -19,6 +19,7 @@ import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPag
 import CreateObjectifTutorialPage from "./pages/createTutorial/CreateObjectifTutorialPage";
 import CreateVideoTutorialPage from "./pages/createTutorial/CreateVideoTutorialPage";
 import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
+import UpdataNameTutorialPage from "./pages/updateTutorial/UpdataNameTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
       {
         path: "/tutorials/createQuizz",
         element: <CreateTutorialPage />,
+      },
+      {
+        path: "/tutorials/updateName",
+        element: <UpdataNameTutorialPage />,
       },
     ],
   },

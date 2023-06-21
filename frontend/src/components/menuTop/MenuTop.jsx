@@ -14,6 +14,13 @@ function MenuTop() {
       if (!userConfirmed) {
         e.preventDefault();
       }
+    } else if (nameMenu === "Modifier un tutoriel") {
+      const userConfirmed = window.confirm(
+        "Voulez-vous vraiment quitter la modification du tutoriel ?"
+      );
+      if (!userConfirmed) {
+        e.preventDefault();
+      }
     }
   };
 
