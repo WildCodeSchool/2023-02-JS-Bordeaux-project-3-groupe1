@@ -3,18 +3,15 @@ import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import pouce from "../../assets/pouce.png";
-import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import validation from "../../assets/validation.png";
 
-function ObjectifTutorial({ setCountStepTutorial }) {
-  const { setNameMenu } = useContext(NameMenuTopContext);
+function ObjectifTutorial({ setCountStepTutorial, tutorialId }) {
   const { setForms } = useContext(CreateTutorialContext);
   const [objectifTutorial, setObjectifTutorial] = useState("");
   const [explicationTutorial, setExplicationTutorial] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
-
-  setNameMenu("Ajouter un tutoriel");
+  const [isUpdate] = useState(false);
 
   if (typeof setCountStepTutorial === "function") {
     setCountStepTutorial(2);
@@ -56,7 +53,7 @@ function ObjectifTutorial({ setCountStepTutorial }) {
         ...newValuesTutorial,
       }));
     } else {
-      console.warn("Tous les champs doivent être remplis");
+      console.warn("All fields must be filled.");
     }
   };
 
@@ -113,21 +110,26 @@ function ObjectifTutorial({ setCountStepTutorial }) {
           <p>{explicationTutorial}</p>
         </div>
       </div>
-      <Link to="/tutorials/createTutorial">
-        <button
-          type="button"
-          onClick={handleSaveObjectif}
-          disabled={!objectifTutorial || !explicationTutorial || !selectedFile}
-        >
-          Suivant
-        </button>
-      </Link>
+      {isUpdate ? (
+        <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
+          <button type="button" onClick={handleSaveObjectif}>
+            Valider
+          </button>
+        </Link>
+      ) : (
+        <Link to="/tutorials/createTutorial">
+          <button type="button" onClick={handleSaveObjectif}>
+            Valider
+          </button>
+        </Link>
+      )}
     </div>
   );
 }
 
 ObjectifTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
+  tutorialId: PropTypes.number.isRequired,
 };
 
 export default ObjectifTutorial;
