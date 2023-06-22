@@ -4,10 +4,37 @@ import SortMyReward from "../../components/sortMyReward/SortMyReward";
 import { fetcher } from "../../services/api";
 
 function Parcours() {
-  const buttonSortText = ["Non débutés", "En cours", "Terminés", "Tous"];
-  const [NonDebute, EnCours, Termines] = buttonSortText;
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
+  const { setNameMenu } = useContext(NameMenuTopContext);
+  setNameMenu("Mon parcours");
+  const buttonSortTextSections = [
+    {
+      text: "Non débutés",
+      section: 1,
+    },
+    {
+      text: "En cours",
+      section: 2,
+    },
+    {
+      text: "Terminés",
+      section: 3,
+    },
+    {
+      text: "Tous",
+      section: 4,
+    },
+  ];
+
+  const [selectionSection, setSelectionSection] = useState(
+    buttonSortTextSections[3].section
+  );
+  console.info(selectionSection);
+
+  const handleClickSections = (item) => {
+    setSelectionSection(item);
+  };
 
   useEffect(() => {
     fetcher("icons")
@@ -42,28 +69,35 @@ function Parcours() {
       ? "myRewardIcons"
       : "myRewardIconsChange";
   };
-  console.info(tutorialByIcon);
   return (
     <main className="parcours">
       <h2 className="titleIconSort">Mes récompenses</h2>
       <figure className="containerRewardIcons">
-        {iconURL.slice(0, 4).map((icon) => (
+        {iconURL.map((icon) => (
           <MyReward icon={icon} iconOpacityLow={iconOpacityLow(icon)} />
         ))}
-        <p className="switchIcon">...voir plus</p>
       </figure>
-      <h3 className="sortTitleIcon">Voulez-vous trier ? Cliquez içi</h3>
+      <h3 className="sortTitleIcon">Voulez-vous trier ? Cliquez ici</h3>
       <div className="containerButtonSortReward">
-        {buttonSortText.map((text) => (
-          <button className="buttonSortReward" type="button">
-            {text}
+        {buttonSortTextSections.map((text) => (
+          <button
+            className="buttonSortReward"
+            type="button"
+            onClick={() => handleClickSections(text.section)}
+          >
+            {text.text}
           </button>
         ))}
       </div>
       <article className="allRewardSort">
-        <h2 className="titleSortReward titleSortRewardNoBegin">{NonDebute}</h2>
+        {selectionSection === 1 && (
+          <h2 className="titleSortReward titleSortRewardNoBegin">
+            {buttonSortTextSections[0].text}
+          </h2>
+        )}
         <div className="iconSortReward iconSortRewardNoBegin">
-          {tutorialByIcon.length > 0 ? (
+          {tutorialByIcon.length > 0 &&
+            selectionSection === 1 &&
             tutorialByIcon.map((icon, index) => {
               if (steps[index].total === 0) {
                 return (
@@ -73,19 +107,22 @@ function Parcours() {
                     index={index}
                     progress={steps[index].total}
                     key={icon.name}
+                    selectionSection={selectionSection}
+                    sectionNumber={1}
                   />
                 );
               }
               return null;
-            })
-          ) : (
-            <p>en cours de chargement...</p>
-          )}
+            })}
         </div>
-
-        <h2 className="titleSortReward titleSortRewardMiddle">{EnCours}</h2>
+        {selectionSection === 2 && (
+          <h2 className="titleSortReward titleSortRewardMiddle">
+            {buttonSortTextSections[1].text}
+          </h2>
+        )}
         <div className="iconSortReward iconSortRewardMiddle">
-          {tutorialByIcon.length > 0 ? (
+          {tutorialByIcon.length > 0 &&
+            selectionSection === 2 &&
             tutorialByIcon.map((icon, index) => {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
@@ -95,18 +132,22 @@ function Parcours() {
                     index={index}
                     progress={steps[index].total}
                     key={icon.name}
+                    selectionSection={selectionSection}
+                    sectionNumber={2}
                   />
                 );
               }
               return null;
-            })
-          ) : (
-            <p>en cours de chargement...</p>
-          )}
+            })}
         </div>
-        <h2 className="titleSortReward titleSortRewardFinish">{Termines}</h2>
+        {selectionSection === 3 && (
+          <h2 className="titleSortReward titleSortRewardFinish">
+            {buttonSortTextSections[2].text}
+          </h2>
+        )}
         <div className="iconSortReward iconSortRewardFinish">
-          {tutorialByIcon.length > 0 ? (
+          {tutorialByIcon.length > 0 &&
+            selectionSection === 3 &&
             tutorialByIcon.map((icon, index) => {
               if (steps[index].total === 100) {
                 return (
@@ -116,14 +157,33 @@ function Parcours() {
                     index={index}
                     progress={steps[index].total}
                     key={icon.name}
+                    selectionSection={selectionSection}
+                    sectionNumber={3}
                   />
                 );
               }
               return null;
-            })
-          ) : (
-            <p>en cours de chargement...</p>
-          )}
+            })}
+        </div>
+        {selectionSection === 4 && (
+          <h2 className="titleSortReward titleSortRewardAll">
+            {buttonSortTextSections[3].text}
+          </h2>
+        )}
+        <div className="iconSortReward iconSortRewardAll">
+          {tutorialByIcon.length > 0 &&
+            selectionSection === 4 &&
+            tutorialByIcon.map((icon, index) => (
+              <SortMyReward
+                iconFormation={icon.iconURL}
+                nameTutorial={icon.name}
+                index={index}
+                progress={steps[index].total}
+                key={icon.name}
+                selectionSection={selectionSection}
+                sectionNumber={4}
+              />
+            ))}
         </div>
       </article>
     </main>
