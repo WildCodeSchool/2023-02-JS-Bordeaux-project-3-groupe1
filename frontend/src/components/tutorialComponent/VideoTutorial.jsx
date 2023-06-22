@@ -1,16 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import validation from "../../assets/validation.png";
 import youTubeLogo from "../../assets/youTubeLogo.png";
 
-function CreateVideoTutorial() {
+function CreateVideoTutorial({ setCountStepTutorial }) {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { setForms } = useContext(CreateTutorialContext);
   const [videoUrl, setVideoUrl] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [videoId, setVideoId] = useState("");
+
+  if (typeof setCountStepTutorial === "function") {
+    setCountStepTutorial(3);
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +31,7 @@ function CreateVideoTutorial() {
     const newValuesTutorial = {
       videoUrl,
     };
-
+    setCountStepTutorial(4);
     setForms((prevForms) => ({
       ...prevForms,
       ...newValuesTutorial,
@@ -69,7 +74,7 @@ function CreateVideoTutorial() {
           </>
         )}
       </div>
-      <Link to="/tutorials/createQuizz">
+      <Link to="/tutorials/createTutorial">
         <button type="button" onClick={handleSaveName} disabled={!isValid}>
           Valider
         </button>
@@ -77,5 +82,9 @@ function CreateVideoTutorial() {
     </div>
   );
 }
+
+CreateVideoTutorial.propTypes = {
+  setCountStepTutorial: PropTypes.func.isRequired,
+};
 
 export default CreateVideoTutorial;

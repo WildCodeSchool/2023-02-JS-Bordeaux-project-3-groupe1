@@ -43,7 +43,7 @@
       font-size: $app-text-size-xl;
     }
   }
-  
+
   .sortTitleIcon {
     grid-column: 1/-1;
     grid-row: 4;
@@ -76,7 +76,7 @@
       padding: $app-button-padding;
       border-radius: $app-button-border-radius;
       border: $app-button-color;
-      
+
       @include phonelarge {
         padding: $app-button-padding-phone-large;
         font-size: large;
@@ -103,7 +103,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
-      
+
       @include tablet {
         width: 75%;
         column-gap: 40px;

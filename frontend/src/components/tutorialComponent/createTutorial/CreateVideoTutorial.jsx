@@ -1,11 +1,16 @@
+import PropTypes from "prop-types";
 import VideoTutorial from "../VideoTutorial";
 
-function CreateVideoTutorial() {
+function CreateVideoTutorial({ setCountStepTutorial }) {
   return (
     <div>
-      <VideoTutorial />
+      <VideoTutorial setCountStepTutorial={setCountStepTutorial} />
     </div>
   );
 }
+
+CreateVideoTutorial.propTypes = {
+  setCountStepTutorial: PropTypes.func.isRequired,
+};
 
 export default CreateVideoTutorial;

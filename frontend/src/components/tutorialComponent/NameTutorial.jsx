@@ -27,7 +27,12 @@ function NameTutorial(props) {
     level,
     tutorialWithtags,
     updateNameFormation,
+    setCountStepTutorial,
   } = props;
+
+  if (typeof setCountStepTutorial === "function") {
+    setCountStepTutorial(1);
+  }
 
   useEffect(() => {
     if (tutorialWithtags) {
@@ -79,6 +84,7 @@ function NameTutorial(props) {
   };
 
   const handleSaveName = () => {
+    setCountStepTutorial(2);
     const parsedLevelTutorial = parseInt(levelTutorial, 10);
     const newValuesTutorial = {
       nameTutorial,
@@ -243,7 +249,7 @@ function NameTutorial(props) {
         </div>
         <h3>{nameTutorial}</h3>
       </div>
-      <Link to="/tutorials/createObjectif">
+      <Link to="/tutorials/createTutorial">
         <button type="button" onClick={handleSaveName}>
           Valider
         </button>
@@ -253,6 +259,7 @@ function NameTutorial(props) {
 }
 
 NameTutorial.propTypes = {
+  setCountStepTutorial: PropTypes.func.isRequired,
   nameTutoPlaceholder: PropTypes.string.isRequired,
   tagTutoPlaceholder: PropTypes.string.isRequired,
   updateNameFormation: PropTypes.number.isRequired,

@@ -16,11 +16,8 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Parcours from "./pages/parcours/Parcours";
 import Child from "./routes/Child";
-import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPage";
-import CreateObjectifTutorialPage from "./pages/createTutorial/CreateObjectifTutorialPage";
-import CreateVideoTutorialPage from "./pages/createTutorial/CreateVideoTutorialPage";
-import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
-import UpdateNameTutorialPage from "./pages/updateTutorial/UpdateNameTutorialPage";
+import CreateTutorialPage from "./pages/createTutorial/CreateTutorial";
+import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -78,24 +75,12 @@ const router = createBrowserRouter([
     element: <Child />,
     children: [
       {
-        path: "/tutorials/createName",
-        element: <CreateNameTutorialPage />,
-      },
-      {
-        path: "/tutorials/createObjectif",
-        element: <CreateObjectifTutorialPage />,
-      },
-      {
-        path: "/tutorials/createVideo",
-        element: <CreateVideoTutorialPage />,
-      },
-      {
-        path: "/tutorials/createQuizz",
+        path: "/tutorials/createTutorial",
         element: <CreateTutorialPage />,
       },
       {
-        path: "/tutorials/updateName/:tutorialId",
-        element: <UpdateNameTutorialPage />,
+        path: "/tutorials/updateTutorial/:tutorialId",
+        element: <UpdateTutorialPage />,
       },
     ],
   },

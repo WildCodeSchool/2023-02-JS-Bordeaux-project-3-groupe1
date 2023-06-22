@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import UpdateNameTutorial from "../../components/tutorialComponent/updateTutorial/UpdateNameTutorial";
 
-function UpdateNameTutorialPage() {
+function UpdateTutorialPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
 
   setNameMenu("Modifier un tutoriel");
@@ -14,4 +14,4 @@ function UpdateNameTutorialPage() {
   );
 }
 
-export default UpdateNameTutorialPage;
+export default UpdateTutorialPage;
