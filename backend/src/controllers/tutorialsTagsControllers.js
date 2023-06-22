@@ -1,8 +1,9 @@
 const TutorialsTagsManager = require("../models/TutorialsTagsManager");
 
-const getAll = async (req, res) => {
+const getTutorialTag = async (req, res) => {
   try {
-    const tutorialTag = await TutorialsTagsManager.getAllTutorialsTags();
+    const { id } = req.params;
+    const tutorialTag = await TutorialsTagsManager.getTutorialTagsById(id);
     if (tutorialTag.length === 0) {
       res.status(404).send("No tutorials by Tags found");
     } else {
@@ -13,4 +14,4 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { getAll };
+module.exports = { getTutorialTag };

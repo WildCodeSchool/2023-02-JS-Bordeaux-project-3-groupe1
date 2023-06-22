@@ -9,11 +9,14 @@ const tutorialTagRouter = require("./tutorialTagRouter");
 const registerRouter = require("./registerRouter");
 const tutorialSelectFormation = require("./tutorialSelectByFormationRouter");
 
+
 router.use("/tutorialbyicon", tutorialByIconRouter);
 router.use("/tutorials", tutorialRouter);
 router.use("/formations", formationRouter);
+router.use("/tutorialWithTags", tutorialTagRouter);
 router.use("/tutorialsTags", tutorialTagRouter);
 router.use("/register", registerRouter);
 router.use("/tutorials", tutorialSelectFormation);
+
 
 module.exports = router;

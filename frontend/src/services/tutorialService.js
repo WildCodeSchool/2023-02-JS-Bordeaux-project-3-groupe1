@@ -34,3 +34,14 @@ export const fetcher = async (url) => {
     throw new Error("Error while fetching data");
   }
 };
+
+export const fetcherTags = async (url, tutorialId) => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_API}/${url}/${tutorialId}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while fetching data");
+  }
+};
