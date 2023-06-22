@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
 import { fetcher } from "../../services/api";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function Parcours() {
   const [iconURL, setIconURL] = useState([]);
