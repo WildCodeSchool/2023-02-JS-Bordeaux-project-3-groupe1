@@ -15,5 +15,4 @@ router.use("/formations", formationRouter);
 router.use("/tutorialsTags", tutorialTagRouter);
 router.use("/register", registerRouter);
 router.use("/tutorials", tutorialSelectFormation);
-
 module.exports = router;
