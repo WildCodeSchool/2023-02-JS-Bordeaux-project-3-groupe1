@@ -27,6 +27,20 @@ const getOne = async (req, res) => {
   }
 };
 
+const getTutorialTag = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tutorialTag = await TutorialManager.getTutorialTagsById(id);
+    if (tutorialTag.length === 0) {
+      res.status(404).send("No tutorials by Tags found");
+    } else {
+      res.status(200).send(tutorialTag);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 const create = async (req, res) => {
   try {
     const tutorial = req.body;
@@ -77,4 +91,4 @@ const destroy = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getOne, update, create, destroy };
+module.exports = { getAll, getOne, getTutorialTag, update, create, destroy };

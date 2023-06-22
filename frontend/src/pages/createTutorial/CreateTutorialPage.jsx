@@ -5,7 +5,7 @@ import CreateVideoTutorial from "../../components/tutorialComponent/createTutori
 import CreateQuizzTutorial from "../../components/tutorialComponent/createTutorial/CreateQuizzTutorial";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
-function CreateNameTutorialPage() {
+function CreateTutorialPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const [nameTutoPlaceholder] = useState("Insérer le nom du tutoriel");
   const [tagTutoPlaceholder] = useState("Insérer les tags");
@@ -35,4 +35,4 @@ function CreateNameTutorialPage() {
   );
 }
 
-export default CreateNameTutorialPage;
+export default CreateTutorialPage;

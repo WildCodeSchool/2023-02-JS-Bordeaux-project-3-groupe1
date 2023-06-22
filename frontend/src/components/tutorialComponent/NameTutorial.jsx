@@ -159,6 +159,25 @@ function NameTutorial(props) {
     }
   }, [tutorialWithtags, level]);
 
+  const optionsArray = ["banan", "papa", "tata"];
+  const uniqueValues = [...new Set(optionsArray)];
+  const valueUser = "banan";
+  const [selectedValue, setSelectedValue] = useState(valueUser);
+  const filteredValues = uniqueValues.filter(
+    (value) => value !== selectedValue
+  );
+  <select
+    value={selectedValue}
+    onChange={(e) => setSelectedValue(e.target.value)}
+  >
+    <option value="">{selectedValue}</option> {/* Option par défaut */}
+    {filteredValues.map((value) => (
+      <option key={value} value={value}>
+        {value}
+      </option>
+    ))}
+  </select>;
+
   return (
     <div className="container-createNameTutorial">
       <input

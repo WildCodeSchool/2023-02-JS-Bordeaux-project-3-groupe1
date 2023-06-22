@@ -12,7 +12,7 @@ function UpdateNameTutorial() {
   const [updateNameFormation, setUpdateNameFormation] = useState(0);
 
   useEffect(() => {
-    fetcherTags("tutorialWithTags", tutorialId)
+    fetcherTags("tutorials/WithTags", tutorialId)
       .then((data) => {
         setTutorialtags(data);
       })
