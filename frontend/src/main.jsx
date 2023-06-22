@@ -16,7 +16,7 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Parcours from "./pages/parcours/Parcours";
 import Child from "./routes/Child";
-import CreateTutorialPage from "./pages/createTutorial/CreateTutorial";
+import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
 
 const router = createBrowserRouter([
