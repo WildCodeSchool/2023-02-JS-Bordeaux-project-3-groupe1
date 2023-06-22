@@ -4,11 +4,13 @@ const router = express.Router();
 const tutorialControllers = require("../controllers/tutorialControllers");
 const upload = require("../middlewares/multer-config");
 const uploadFirebase = require("../middlewares/uploadFirebase");
-const getFirebase = require("../middlewares/getFirebase");
+const { getFirebase } = require("../middlewares/getFirebase");
+const { getImageById } = require("../middlewares/getFirebase");
+
 const { validateTutorial } = require("../validators/tutorialValidators");
 
 router.get("/", getFirebase, tutorialControllers.getAll);
-router.get("/:id", getFirebase, tutorialControllers.getOne);
+router.get("/:id", getImageById, tutorialControllers.getOne);
 router.get("/WithTags/:id", tutorialControllers.getTutorialTag);
 router.put("/:id", tutorialControllers.update);
 router.post(

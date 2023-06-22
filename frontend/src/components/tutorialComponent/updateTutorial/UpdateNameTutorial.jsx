@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
 import NameTutorial from "../NameTutorial";
 import { fetcherTags } from "../../../services/tutorialService";
 
-function UpdateNameTutorial({ setCountStepTutorial }) {
+function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
   const [nameTutoPlaceholder, setNameTutoPlaceholder] = useState("");
   const [tagTutoPlaceholder] = useState("Ajouter les tags");
   const [tutorialWithtags, setTutorialtags] = useState([]);
-  const { tutorialId } = useParams();
   const [updateNameFormation, setUpdateNameFormation] = useState(0);
-
-  if (typeof setCountStepTutorial === "function") {
-    setCountStepTutorial(1);
-  }
 
   useEffect(() => {
     fetcherTags("tutorials/WithTags", tutorialId)
@@ -41,12 +35,16 @@ function UpdateNameTutorial({ setCountStepTutorial }) {
         tagTutoPlaceholder={tagTutoPlaceholder}
         tutorialWithtags={tutorialWithtags}
         updateNameFormation={updateNameFormation}
+        setCountStepTutorial={setCountStepTutorial}
+        tutorialId={tutorialId}
       />
     </div>
   );
 }
+
 UpdateNameTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
+  tutorialId: PropTypes.number.isRequired,
 };
 
 export default UpdateNameTutorial;

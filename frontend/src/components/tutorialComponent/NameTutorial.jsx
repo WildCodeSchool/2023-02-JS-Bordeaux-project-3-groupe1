@@ -27,6 +27,7 @@ function NameTutorial(props) {
     tagTutoPlaceholder,
     tutorialWithtags,
     setCountStepTutorial,
+    tutorialId,
   } = props;
 
   if (typeof setCountStepTutorial === "function") {
@@ -240,16 +241,25 @@ function NameTutorial(props) {
         </div>
         <h3>{nameTutorial}</h3>
       </div>
-      <Link to="/tutorials/createTutorial">
-        <button type="button" onClick={handleSaveName}>
-          Valider
-        </button>
-      </Link>
+      {isUpdate ? (
+        <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
+          <button type="button" onClick={handleSaveName}>
+            Valider
+          </button>
+        </Link>
+      ) : (
+        <Link to="/tutorials/createTutorial">
+          <button type="button" onClick={handleSaveName}>
+            Valider
+          </button>
+        </Link>
+      )}
     </div>
   );
 }
 
 NameTutorial.propTypes = {
+  tutorialId: PropTypes.number.isRequired,
   nameTutoPlaceholder: PropTypes.string.isRequired,
   setCountStepTutorial: PropTypes.func.isRequired,
   tagTutoPlaceholder: PropTypes.string.isRequired,
