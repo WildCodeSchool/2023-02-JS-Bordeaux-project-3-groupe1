@@ -2,8 +2,9 @@
   height: initial;
   min-height: 600px;
   display: grid;
-  grid-template-columns: repeat(6, 50px);
+  grid-template-columns: repeat(6, 63px);
   grid-template-rows: 40px 60px 10px 60px 80px 20px 1fr;
+  padding-top: 15px;
 
   @include phonelarge {
     row-gap: 10px;
@@ -17,6 +18,7 @@
     grid-column: 1/5;
     grid-row: 1;
     padding-left: 10px;
+    font-size: 1.3rem;
 
     @include tablet {
       padding-left: 50px;
@@ -24,11 +26,10 @@
   }
 
   .containerRewardIcons {
-    grid-column: 1/-1;
-    grid-row: 2;
-    align-self: end;
+    grid-column: 2/7;
+    grid-row: 2/4;
     justify-self: center;
-    display: inline-flex;
+    margin: 0 0 0 -1.5rem;
 
     @include tablet {
       align-self: baseline;
@@ -43,11 +44,13 @@
       font-size: $app-text-size-xl;
     }
   }
-  
+
   .sortTitleIcon {
     grid-column: 1/-1;
     grid-row: 4;
     justify-self: center;
+    font-size: 1rem;
+    margin-top: 8.5rem;
   }
 
   .containerButtonSortReward {
@@ -57,6 +60,8 @@
     grid-row: 5;
     justify-content: center;
     gap: 10px;
+    margin-top: 7.5rem;
+    z-index: 10;
 
     @include phonelarge {
       width: 75%;
@@ -71,11 +76,12 @@
 
     .buttonSortReward {
       background-color: $app-button-primary-color;
-      color: $app-secondary-fonts-color-4;
+      color: $app-secondary-fonts-color-5;
       width: 140px;
       padding: $app-button-padding;
       border-radius: $app-button-border-radius;
       border: $app-button-color;
+      font-weight: initial;
       
       @include phonelarge {
         padding: $app-button-padding-phone-large;
@@ -88,11 +94,20 @@
   .allRewardSort {
     grid-column: 1/-1;
     grid-row: 8;
+    margin-top: 4rem;
 
+    .titleSortRewardMiddle {
+      margin-top: 4rem;
+    }
+
+    .titleSortRewardAll{
+      margin-top: 4rem;
+    }
     .titleSortReward {
       border-bottom: 2px solid $app-bg-icon-color;
       padding: 0 0 10px 10px;
-      margin-top: 30px;
+      font-size: 1.3rem;
+      
 
       @include tablet {
         padding-left: 50px;
@@ -102,7 +117,8 @@
     .iconSortReward {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-evenly;
+      justify-content: space-around;
+      gap: 1rem;
       
       @include tablet {
         width: 75%;
@@ -112,12 +128,4 @@
       }
     }
   }
-}
-
-.titleIconSort,
-.switchIcon,
-.sortTitleIcon,
-.titleSortReward {
-  color: $app-primary-fonts-color;
-  font-family: $app-secondary-font;
 }

@@ -4,25 +4,50 @@ import PropTypes from "prop-types";
 import starGrey from "../../assets/starGrey.png";
 import starBlue from "../../assets/starBlue.png";
 import student from "../../assets/student.png";
-import { fetcher } from "../../services/tutorialService";
+import { fetcher } from "../../services/api";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 
-function CreateNameTutorial(props) {
+function NameTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
   const [nameTutorial, setNameTutorial] = useState("");
-  const [titlePreview, setTitlePreview] = useState("Nom du tutoriel");
-  const [titleFormation, setTitleFormation] = useState("Utiliser ligne bleu");
   const [tagTutorial, setTagTutorial] = useState("");
   const [levelTutorial, setLevelTutorial] = useState(1);
   const [starLevelStyle, setStarLevelStyle] = useState(false);
   const [nameFormation, setNameFormation] = useState([]);
   const [valuesTag, setValuesTag] = useState([]);
-  const [isValid, setIsValid] = useState(false);
-  const [idFormation, setIdFormation] = useState(false);
+  const [idFormation, setIdFormation] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(
+    undefined !== "Utiliser ligne bleu" ? "Utiliser ligne bleu" : ""
+  );
 
-  const { nameTuto, tagTuto, tutorialtags } = props;
+  const {
+    nameTutoPlaceholder,
+    tagTutoPlaceholder,
+    tutorialWithtags,
+    setCountStepTutorial,
+  } = props;
+
+  if (typeof setCountStepTutorial === "function") {
+    setCountStepTutorial(1);
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case "nameTutorial":
+        setNameTutorial(value);
+        break;
+      case "tagTutorial":
+        setTagTutorial(value);
+        break;
+      case "selectedValue":
+        setSelectedValue(value);
+        break;
+      default:
+    }
+  };
 
   const handleAddValue = () => {
     if (tagTutorial !== "") {
@@ -45,43 +70,7 @@ function CreateNameTutorial(props) {
     setStarLevelStyle(!starLevelStyle);
   };
 
-  const handleSelectChange = (e) => {
-    setTitleFormation(e.target.value);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case "nameTutorial":
-        setNameTutorial(value);
-        setTitlePreview(value);
-        break;
-      case "tagTutorial":
-        setTagTutorial(value);
-        break;
-      case "titleFormation":
-        setTitleFormation(value);
-        break;
-      default:
-    }
-  };
-
-  const handleSaveName = () => {
-    const parsedLevelTutorial = parseInt(levelTutorial, 10);
-    const newValuesTutorial = {
-      nameTutorial,
-      idFormation,
-      valuesTag,
-      levelTutorial: parsedLevelTutorial,
-    };
-
-    setForms((prevForms) => ({
-      ...prevForms,
-      ...newValuesTutorial,
-    }));
-  };
-
-  const handleRemoveValue = (value) => {
+  const handleRemoveTagValue = (value) => {
     if (isUpdate) {
       setUpdatedTags((prevTags) => {
         const updateTags = prevTags.filter((tag) => tag !== value);
@@ -105,34 +94,67 @@ function CreateNameTutorial(props) {
       });
   }, []);
 
+  const newArrayNameFormation = nameFormation.map(
+    (item) => item.iconDescription
+  );
+  const uniqueValues = [...new Set(newArrayNameFormation)];
+
+  const filteredValues = uniqueValues.filter(
+    (value) => value !== selectedValue
+  );
+
   useEffect(() => {
-    const isValidForm =
-      nameTutorial.trim() !== "" &&
-      titleFormation.trim() !== "" &&
-      valuesTag.length > 0 &&
-      levelTutorial !== "";
-    setIsValid(isValidForm);
-  }, [nameTutorial, titleFormation, valuesTag, levelTutorial]);
+    if (tutorialWithtags) {
+      const id = tutorialWithtags[0]?.formation_id;
+      const formation = nameFormation.find((item) => item.id === id);
+      setSelectedValue(formation ? formation.iconDescription : null);
+    }
+  }, [nameFormation]);
 
   useEffect(() => {
     const matchedFormation = nameFormation.find(
-      (formation) => formation.iconDescription === titleFormation
+      (formation) => formation.iconDescription === selectedValue
     );
-    if (matchedFormation && matchedFormation.id) {
-      const parsedId = parseInt(matchedFormation.id, 10);
-      setIdFormation(parsedId);
+    if (matchedFormation) {
+      setIdFormation(parseInt(matchedFormation.id, 10));
+      setSelectedValue(selectedValue);
     }
-  }, [nameFormation, titleFormation]);
+  }, [nameFormation, selectedValue]);
 
   useEffect(() => {
-    if (tutorialtags) {
+    if (tutorialWithtags) {
       setIsUpdate(true);
-      const nameTagsArray = tutorialtags.map((value) => value.nameTag);
-      setUpdatedTags(nameTagsArray);
+      const nameTagsArray = tutorialWithtags.map((value) => value.nameTag);
+      const newArrayNameTags = nameTagsArray
+        .toString()
+        .split(",")
+        .map((value) => value.trim());
+      setUpdatedTags(newArrayNameTags);
+      if (tutorialWithtags[0]?.level === 2) {
+        setStarLevelStyle(true);
+      }
+      setNameTutorial(nameTutoPlaceholder);
     } else {
       setIsUpdate(false);
     }
-  }, [tutorialtags]);
+  }, [tutorialWithtags]);
+
+  const handleSaveName = () => {
+    setCountStepTutorial(2);
+    const parsedLevelTutorial = parseInt(levelTutorial, 10);
+    const newValuesTutorial = {
+      nameTutorial,
+      idFormation,
+      valuesTag,
+      updatedTags,
+      levelTutorial: parsedLevelTutorial,
+    };
+
+    setForms((prevForms) => ({
+      ...prevForms,
+      ...newValuesTutorial,
+    }));
+  };
 
   return (
     <div className="container-createNameTutorial">
@@ -142,7 +164,7 @@ function CreateNameTutorial(props) {
         id="nameTutorial"
         onChange={handleInputChange}
         value={nameTutorial}
-        placeholder={nameTuto}
+        placeholder={nameTutoPlaceholder}
         required
       />
       <div className="container-input-tag">
@@ -152,7 +174,7 @@ function CreateNameTutorial(props) {
           id="tagTutorial"
           onChange={handleInputChange}
           value={tagTutorial}
-          placeholder={tagTuto}
+          placeholder={tagTutoPlaceholder}
           required
         />
         <button type="button" onClick={handleAddValue}>
@@ -165,7 +187,7 @@ function CreateNameTutorial(props) {
               <button
                 type="button"
                 key={tagName}
-                onClick={() => handleRemoveValue(tagName)}
+                onClick={() => handleRemoveTagValue(tagName)}
               >
                 {tagName}
               </button>
@@ -174,7 +196,7 @@ function CreateNameTutorial(props) {
               <button
                 type="button"
                 key={value}
-                onClick={() => handleRemoveValue(value)}
+                onClick={() => handleRemoveTagValue(value)}
               >
                 {value}
               </button>
@@ -197,10 +219,14 @@ function CreateNameTutorial(props) {
           )}
         </div>
       </div>
-      <select value={titleFormation} onChange={handleSelectChange}>
-        {nameFormation.map((option) => (
-          <option key={option.id} value={option.value}>
-            {option.iconDescription}
+      <select
+        value={selectedValue}
+        onChange={(e) => setSelectedValue(e.target.value)}
+      >
+        <option value={selectedValue}>{selectedValue}</option>
+        {filteredValues.map((value) => (
+          <option key={value} value={value}>
+            {value}
           </option>
         ))}
       </select>
@@ -212,10 +238,10 @@ function CreateNameTutorial(props) {
           </div>
           <img src={student} alt="student" />
         </div>
-        <h3>{titlePreview}</h3>
+        <h3>{nameTutorial}</h3>
       </div>
-      <Link to="/tutorials/createObjectif">
-        <button type="button" onClick={handleSaveName} disabled={!isValid}>
+      <Link to="/tutorials/createTutorial">
+        <button type="button" onClick={handleSaveName}>
           Valider
         </button>
       </Link>
@@ -223,10 +249,11 @@ function CreateNameTutorial(props) {
   );
 }
 
-CreateNameTutorial.propTypes = {
-  nameTuto: PropTypes.string.isRequired,
-  tagTuto: PropTypes.string.isRequired,
-  tutorialtags: PropTypes.arrayOf(
+NameTutorial.propTypes = {
+  nameTutoPlaceholder: PropTypes.string.isRequired,
+  setCountStepTutorial: PropTypes.func.isRequired,
+  tagTutoPlaceholder: PropTypes.string.isRequired,
+  tutorialWithtags: PropTypes.arrayOf(
     PropTypes.shape({
       fqfqf: PropTypes.string,
       formation_id: PropTypes.number,
@@ -244,4 +271,4 @@ CreateNameTutorial.propTypes = {
   ).isRequired,
 };
 
-export default CreateNameTutorial;
+export default NameTutorial;
