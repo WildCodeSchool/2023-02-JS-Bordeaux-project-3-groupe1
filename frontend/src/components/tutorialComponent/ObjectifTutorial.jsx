@@ -1,17 +1,25 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import pouce from "../../assets/pouce.png";
 import validation from "../../assets/validation.png";
 
-function ObjectifTutorial({ setCountStepTutorial, tutorialId }) {
+function ObjectifTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
   const [objectifTutorial, setObjectifTutorial] = useState("");
   const [explicationTutorial, setExplicationTutorial] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [isUpdate] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  const {
+    setCountStepTutorial,
+    tutorialId,
+    tutorialObjectif,
+    tutorialExplication,
+    tutorialImage,
+  } = props;
 
   if (typeof setCountStepTutorial === "function") {
     setCountStepTutorial(2);
@@ -38,6 +46,23 @@ function ObjectifTutorial({ setCountStepTutorial, tutorialId }) {
       setPreviewUrl(null);
     }
   };
+
+  useEffect(() => {
+    if (
+      tutorialObjectif?.length !== 0 ||
+      tutorialExplication?.length !== 0 ||
+      tutorialImage?.length !== 0
+    ) {
+      setObjectifTutorial(tutorialObjectif);
+      setExplicationTutorial(tutorialExplication);
+      setPreviewUrl(tutorialImage);
+      setIsUpdate(true);
+    } else {
+      setObjectifTutorial(objectifTutorial);
+      setExplicationTutorial(explicationTutorial);
+      setPreviewUrl(previewUrl);
+    }
+  }, [tutorialObjectif, tutorialExplication, tutorialImage]);
 
   const handleSaveObjectif = () => {
     setCountStepTutorial(3);
@@ -130,6 +155,9 @@ function ObjectifTutorial({ setCountStepTutorial, tutorialId }) {
 ObjectifTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
   tutorialId: PropTypes.number.isRequired,
+  tutorialObjectif: PropTypes.string.isRequired,
+  tutorialExplication: PropTypes.string.isRequired,
+  tutorialImage: PropTypes.string.isRequired,
 };
 
 export default ObjectifTutorial;
