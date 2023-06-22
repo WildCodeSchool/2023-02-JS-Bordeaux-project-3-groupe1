@@ -1,17 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CreateNameTutorial from "../../components/tutorialComponent/createTutorial/CreateNameTutorial";
 import CreateObjectifTutorial from "../../components/tutorialComponent/createTutorial/CreateObjectifTutorial";
 import CreateVideoTutorial from "../../components/tutorialComponent/createTutorial/CreateVideoTutorial";
 import CreateQuizzTutorial from "../../components/tutorialComponent/createTutorial/CreateQuizzTutorial";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
-function CreateNameTutorialPage() {
+function CreateTutorialPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const [nameTutoPlaceholder] = useState("Insérer le nom du tutoriel");
   const [tagTutoPlaceholder] = useState("Insérer les tags");
   const [countStepTutorial, setCountStepTutorial] = useState(1);
 
-  setNameMenu("Ajouter un tutoriel");
+  useEffect(() => {
+    setNameMenu("Ajouter un tutoriel");
+  }, []);
 
   return (
     <div>
@@ -35,4 +37,4 @@ function CreateNameTutorialPage() {
   );
 }
 
-export default CreateNameTutorialPage;
+export default CreateTutorialPage;

@@ -9,6 +9,7 @@ const { validateTutorial } = require("../validators/tutorialValidators");
 
 router.get("/", getFirebase, tutorialControllers.getAll);
 router.get("/:id", getFirebase, tutorialControllers.getOne);
+router.get("/WithTags/:id", tutorialControllers.getTutorialTag);
 router.put("/:id", tutorialControllers.update);
 router.post(
   "/",
