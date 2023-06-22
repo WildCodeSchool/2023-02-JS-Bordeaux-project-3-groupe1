@@ -17,10 +17,11 @@ const CreateTutorialsTags = async (tutorialId, tagId) => {
   }
 };
 
-const getAllTutorialsTags = async () => {
+const getTutorialTagsById = async (id) => {
   try {
     const tutorialsTags = await database.query(
-      "SELECT * FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id"
+      "SELECT tutorials.*, tags.id, tags.name AS nameTag FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id WHERE tags.id = ?",
+      [id]
     );
     return tutorialsTags[0];
   } catch (error) {
@@ -30,5 +31,5 @@ const getAllTutorialsTags = async () => {
 
 module.exports = {
   CreateTutorialsTags,
-  getAllTutorialsTags,
+  getTutorialTagsById,
 };

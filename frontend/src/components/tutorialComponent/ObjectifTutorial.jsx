@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useContext, useState } from "react";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import pouce from "../../assets/pouce.png";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import validation from "../../assets/validation.png";
 
-function CreateObjectifTutorial() {
+function ObjectifTutorial({ setCountStepTutorial }) {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { setForms } = useContext(CreateTutorialContext);
   const [objectifTutorial, setObjectifTutorial] = useState("");
@@ -14,6 +15,10 @@ function CreateObjectifTutorial() {
   const [previewUrl, setPreviewUrl] = useState(null);
 
   setNameMenu("Ajouter un tutoriel");
+
+  if (typeof setCountStepTutorial === "function") {
+    setCountStepTutorial(2);
+  }
 
   const handleObjectifChange = (e) => {
     setObjectifTutorial(e.target.value);
@@ -38,6 +43,7 @@ function CreateObjectifTutorial() {
   };
 
   const handleSaveObjectif = () => {
+    setCountStepTutorial(3);
     const newValuesTutorial = {
       objectifTutorial,
       explicationTutorial,
@@ -107,7 +113,7 @@ function CreateObjectifTutorial() {
           <p>{explicationTutorial}</p>
         </div>
       </div>
-      <Link to="/tutorials/createVideo">
+      <Link to="/tutorials/createTutorial">
         <button
           type="button"
           onClick={handleSaveObjectif}
@@ -120,4 +126,8 @@ function CreateObjectifTutorial() {
   );
 }
 
-export default CreateObjectifTutorial;
+ObjectifTutorial.propTypes = {
+  setCountStepTutorial: PropTypes.func.isRequired,
+};
+
+export default ObjectifTutorial;
