@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import api from "../../services/api";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
+import { fetcher } from "../../services/api";
 
 function Parcours() {
   const buttonSortText = ["Non débutés", "En cours", "Terminés", "Tous"];
@@ -9,27 +9,23 @@ function Parcours() {
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
 
-  const getIconURL = async () => {
-    try {
-      const response = await api.get("/icons");
-      setIconURL(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const getNameTutorialByIcon = async () => {
-    try {
-      const response = await api.get("/tutorialbyicon");
-      setTutorialByIcon(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    getIconURL();
-    getNameTutorialByIcon();
+    fetcher("icons")
+      .then((data) => {
+        setIconURL(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    fetcher("tutorialbyicon")
+      .then((data) => {
+        setTutorialByIcon(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
+
   const steps = tutorialByIcon.map((item) => ({
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,

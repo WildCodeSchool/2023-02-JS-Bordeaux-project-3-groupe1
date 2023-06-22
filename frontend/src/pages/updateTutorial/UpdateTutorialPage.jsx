@@ -1,15 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import UpdateNameTutorial from "../../components/tutorialComponent/updateTutorial/UpdateNameTutorial";
 
 function UpdateTutorialPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
+  const [countStepTutorial, setCountStepTutorial] = useState(1);
 
-  setNameMenu("Modifier un tutoriel");
+  useEffect(() => {
+    setNameMenu("Modifier un tutoriel");
+  }, []);
 
   return (
     <div>
-      <UpdateNameTutorial />
+      {countStepTutorial && (
+        <UpdateNameTutorial setCountStepTutorial={setCountStepTutorial} />
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetcher } from "../../services/tutorialService";
+import { fetcher } from "../../services/api";
 
 function ViewUpload() {
   const [fileNames, setFileNames] = useState([]);

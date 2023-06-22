@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CreateNameTutorial from "../../components/tutorialComponent/createTutorial/CreateNameTutorial";
 import CreateObjectifTutorial from "../../components/tutorialComponent/createTutorial/CreateObjectifTutorial";
 import CreateVideoTutorial from "../../components/tutorialComponent/createTutorial/CreateVideoTutorial";
@@ -11,7 +11,9 @@ function CreateTutorialPage() {
   const [tagTutoPlaceholder] = useState("Insérer les tags");
   const [countStepTutorial, setCountStepTutorial] = useState(1);
 
-  setNameMenu("Ajouter un tutoriel");
+  useEffect(() => {
+    setNameMenu("Ajouter un tutoriel");
+  }, []);
 
   return (
     <div>
