@@ -6,7 +6,11 @@ function ModuleChooseFormation({ item, index }) {
   return (
     <Link to={`/formations/tutorials/${index}`}>
       <div className="moduleChooseFormation">
-        <img className="iconFormationChoose" src={item.iconURL} alt="" />
+        <img
+          className="iconFormationChoose"
+          src={item.iconURL}
+          alt={item.iconDescription}
+        />
         <h3 className="textFormationChoose">{item.iconDescription}</h3>
       </div>
     </Link>

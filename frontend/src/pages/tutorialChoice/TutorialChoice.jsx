@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { fetcher } from "../../services/api";
 import ModuleChooseTutorial from "../../components/moduleChooseTutorial/ModuleChooseTutorial";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import manDesk from "../../assets/pictures/manDesk.svg";
@@ -10,21 +10,32 @@ function TutorialChoice() {
   const tutorialsIdPlusOne = parseInt(id, 10) + 1;
   const { isDesktop } = useContext(IsDesktopContext);
   const [dataTutorial, setDataTutorial] = useState([]);
+  const [steps, setSetps] = useState([]);
 
-  const getDataTutorial = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/tutorials/${tutorialsIdPlusOne}`
-      );
-      setDataTutorial(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   useEffect(() => {
-    getDataTutorial();
+    fetcher(`tutorialbyicon/${tutorialsIdPlusOne}`)
+      .then((data) => {
+        setDataTutorial(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    fetcher("tutorialbyicon")
+      .then((data) => {
+        setSetps(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
+  const stepsMap = steps.map((item) => ({
+    stepOne: item.stepOne,
+    stepTwo: item.stepTwo,
+    stepThree: item.stepThree,
+    total: item.stepOne + item.stepTwo + item.stepThree,
+  }));
+  console.info(stepsMap);
   return (
     <main className="tutorialChoice">
       {isDesktop ? (
@@ -32,11 +43,11 @@ function TutorialChoice() {
           <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
           <div className="moduleChooseTutorialDesktop">
             {dataTutorial.length > 0 ? (
-              dataTutorial[0].map((item, index) => (
+              dataTutorial.map((item, index) => (
                 <ModuleChooseTutorial
                   key={item.name}
                   item={item}
-                  index={index}
+                  steps={stepsMap[index]}
                 />
               ))
             ) : (
@@ -47,8 +58,13 @@ function TutorialChoice() {
       ) : (
         <div>
           {dataTutorial.length > 0 ? (
-            dataTutorial[0].map((item, index) => (
-              <ModuleChooseTutorial key={item.name} item={item} index={index} />
+            dataTutorial.map((item, index) => (
+              <ModuleChooseTutorial
+                key={item.name}
+                item={item}
+                steps={stepsMap}
+                index={index}
+              />
             ))
           ) : (
             <p>Chargement de la page ...</p>
