@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import validation from "../../assets/validation.png";
 import { sender } from "../../services/tutorialService";
 
-function TutorialCreater() {
+function TutorialCreater({ setCountStepTutorial }) {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { forms, setForms } = useContext(CreateTutorialContext);
   const [question, setQuestion] = useState("");
@@ -15,6 +16,10 @@ function TutorialCreater() {
   const [isValid, setIsValid] = useState(false);
 
   setNameMenu("Ajouter un tutoriel");
+
+  if (typeof setCountStepTutorial === "function") {
+    setCountStepTutorial(4);
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -126,5 +131,9 @@ function TutorialCreater() {
     </div>
   );
 }
+
+TutorialCreater.propTypes = {
+  setCountStepTutorial: PropTypes.func.isRequired,
+};
 
 export default TutorialCreater;
