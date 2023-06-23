@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import validation from "../../assets/validation.png";
 import youTubeLogo from "../../assets/youTubeLogo.png";
 
-function VideoTutorial({ setCountStepTutorial, tutorialId }) {
+function VideoTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
   const [videoUrl, setVideoUrl] = useState("");
-  const [isUpdate] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const { setCountStepTutorial, tutorialId, tutorialUrlVideo } = props;
 
   if (typeof setCountStepTutorial === "function") {
     setCountStepTutorial(3);
@@ -24,6 +25,15 @@ function VideoTutorial({ setCountStepTutorial, tutorialId }) {
       setVideoId(video);
     }
   };
+
+  useEffect(() => {
+    if (tutorialUrlVideo?.length !== 0 && tutorialId) {
+      setVideoUrl(tutorialUrlVideo);
+      setIsUpdate(true);
+    } else {
+      setIsUpdate(false);
+    }
+  }, [tutorialUrlVideo, tutorialId]);
 
   const handleSaveName = () => {
     const newValuesTutorial = {
@@ -85,6 +95,7 @@ function VideoTutorial({ setCountStepTutorial, tutorialId }) {
 VideoTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
   tutorialId: PropTypes.number.isRequired,
+  tutorialUrlVideo: PropTypes.string.isRequired,
 };
 
 export default VideoTutorial;

@@ -49,8 +49,9 @@ function ObjectifTutorial(props) {
 
   useEffect(() => {
     if (
-      tutorialObjectif?.length !== 0 ||
-      tutorialExplication?.length !== 0 ||
+      tutorialId &&
+      tutorialObjectif?.length !== 0 &&
+      tutorialExplication?.length !== 0 &&
       tutorialImage?.length !== 0
     ) {
       setObjectifTutorial(tutorialObjectif);
@@ -61,8 +62,9 @@ function ObjectifTutorial(props) {
       setObjectifTutorial(objectifTutorial);
       setExplicationTutorial(explicationTutorial);
       setPreviewUrl(previewUrl);
+      setIsUpdate(false);
     }
-  }, [tutorialObjectif, tutorialExplication, tutorialImage]);
+  }, [tutorialObjectif, tutorialExplication, tutorialImage, tutorialId]);
 
   const handleSaveObjectif = () => {
     setCountStepTutorial(3);
