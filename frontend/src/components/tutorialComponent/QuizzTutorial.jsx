@@ -75,6 +75,7 @@ function QuizzTutorial({ setCountStepTutorial }) {
 
   return (
     <div className="container-createQuizzTutorial">
+      <label htmlFor="question">Question :</label>
       <input
         name="question"
         id="question"
@@ -82,20 +83,7 @@ function QuizzTutorial({ setCountStepTutorial }) {
         value={question}
         placeholder="Ajouter une question"
       />
-      <input
-        name="optionOne"
-        id="optionOne"
-        onChange={handleInputChange}
-        value={optionOne}
-        placeholder="Ajouter une option de réponse"
-      />
-      <input
-        name="optionTwo"
-        id="optionTwo"
-        onChange={handleInputChange}
-        value={optionTwo}
-        placeholder="Ajouter une option de réponse"
-      />
+      <label htmlFor="answer">La réponse :</label>
       <input
         name="answer"
         id="answer"
@@ -103,7 +91,22 @@ function QuizzTutorial({ setCountStepTutorial }) {
         value={answer}
         placeholder="Ajouter la réponse "
       />
-
+      <label htmlFor="optionOne">Première option :</label>
+      <input
+        name="optionOne"
+        id="optionOne"
+        onChange={handleInputChange}
+        value={optionOne}
+        placeholder="Ajouter une option de réponse"
+      />
+      <label htmlFor="optionTwo">Deuxième option :</label>
+      <input
+        name="optionTwo"
+        id="optionTwo"
+        onChange={handleInputChange}
+        value={optionTwo}
+        placeholder="Ajouter une option de réponse"
+      />
       <div className="container-quizz-preview">
         <div className="container-quizz-preview-title">
           <div className="space" />
@@ -127,6 +130,8 @@ function QuizzTutorial({ setCountStepTutorial }) {
     </div>
   );
 }
+
+/* label + couleur */
 
 QuizzTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,

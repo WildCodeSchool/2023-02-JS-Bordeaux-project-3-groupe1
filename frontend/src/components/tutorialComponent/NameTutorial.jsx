@@ -159,6 +159,7 @@ function NameTutorial(props) {
 
   return (
     <div className="container-createNameTutorial">
+      <label htmlFor="nameTutorial">Nom du tutorial :</label>
       <input
         type="text"
         name="nameTutorial"
@@ -168,6 +169,8 @@ function NameTutorial(props) {
         placeholder={nameTutoPlaceholder}
         required
       />
+      <label htmlFor="tagTutorial">{tagTutoPlaceholder}</label>
+
       <div className="container-input-tag">
         <input
           type="text"
@@ -220,6 +223,7 @@ function NameTutorial(props) {
           )}
         </div>
       </div>
+      <p>Choisissez votre formation :</p>
       <select
         value={selectedValue}
         onChange={(e) => setSelectedValue(e.target.value)}

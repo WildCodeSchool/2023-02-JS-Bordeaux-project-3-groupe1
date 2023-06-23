@@ -26,15 +26,23 @@ function ObjectifTutorial(props) {
   }
 
   const handleObjectifChange = (e) => {
-    setObjectifTutorial(e.target.value);
+    const inputTextObjectif = e.target.value;
+    if (inputTextObjectif.length <= 140) {
+      setObjectifTutorial(inputTextObjectif);
+    }
   };
 
   const handleExplicationChange = (e) => {
     setExplicationTutorial(e.target.value);
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
+  const adjustTextareaHeight = (e) => {
+    e.target.style.height = "auto";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
     if (file) {
       setSelectedFile(file);
       const reader = new FileReader();
@@ -49,8 +57,9 @@ function ObjectifTutorial(props) {
 
   useEffect(() => {
     if (
-      tutorialObjectif?.length !== 0 ||
-      tutorialExplication?.length !== 0 ||
+      tutorialId &&
+      tutorialObjectif?.length !== 0 &&
+      tutorialExplication?.length !== 0 &&
       tutorialImage?.length !== 0
     ) {
       setObjectifTutorial(tutorialObjectif);
@@ -61,8 +70,9 @@ function ObjectifTutorial(props) {
       setObjectifTutorial(objectifTutorial);
       setExplicationTutorial(explicationTutorial);
       setPreviewUrl(previewUrl);
+      setIsUpdate(false);
     }
-  }, [tutorialObjectif, tutorialExplication, tutorialImage]);
+  }, [tutorialObjectif, tutorialExplication, tutorialImage, tutorialId]);
 
   const handleSaveObjectif = () => {
     setCountStepTutorial(3);
@@ -92,24 +102,19 @@ function ObjectifTutorial(props) {
           </div>
         </div>
         <div className="container-objectifText">
+          <label htmlFor="objectifTutorial">Ajoutez votre objectif ici :</label>
           <textarea
             name="objectifTutorial"
             id="objectifTutorial"
             onChange={handleObjectifChange}
             value={objectifTutorial}
+            maxLength={140}
             placeholder="Ajoutez votre objectif ici"
           />
         </div>
       </div>
       <div className="container-explications">
         <div className="line" />
-        <input
-          name="explicationTutorial"
-          id="explicationTutorial"
-          onChange={handleExplicationChange}
-          value={explicationTutorial}
-          placeholder="Insérer les explications"
-        />
         <div className="container-explications-upload">
           <p>Insérer votre image</p>
           <label htmlFor="fileInput" className="custom-file-input">
@@ -131,8 +136,20 @@ function ObjectifTutorial(props) {
           </div>
           <div className="container-explications-preview-img">
             {previewUrl && <img src={previewUrl} alt="Preview" />}
+            <label htmlFor="explicationTutorial">
+              Insérer les explications :
+            </label>
+            <textarea
+              name="explicationTutorial"
+              id="explicationTutorial"
+              onChange={() => {
+                handleExplicationChange();
+                adjustTextareaHeight();
+              }}
+              value={explicationTutorial}
+              placeholder="Insérer les explications"
+            />
           </div>
-          <p>{explicationTutorial}</p>
         </div>
       </div>
       {isUpdate ? (
