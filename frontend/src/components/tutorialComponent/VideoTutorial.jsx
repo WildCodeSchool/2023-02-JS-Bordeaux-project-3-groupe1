@@ -1,16 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import validation from "../../assets/validation.png";
 import youTubeLogo from "../../assets/youTubeLogo.png";
 
-function CreateVideoTutorial({ setCountStepTutorial }) {
-  const { setNameMenu } = useContext(NameMenuTopContext);
+function VideoTutorial({ setCountStepTutorial, tutorialId }) {
   const { setForms } = useContext(CreateTutorialContext);
   const [videoUrl, setVideoUrl] = useState("");
-  const [isValid, setIsValid] = useState(false);
+  const [isUpdate] = useState(false);
   const [videoId, setVideoId] = useState("");
 
   if (typeof setCountStepTutorial === "function") {
@@ -37,13 +35,6 @@ function CreateVideoTutorial({ setCountStepTutorial }) {
       ...newValuesTutorial,
     }));
   };
-
-  setNameMenu("Ajouter un tutoriel");
-
-  useEffect(() => {
-    const isValidForm = videoUrl.trim() !== "";
-    setIsValid(isValidForm);
-  }, [videoUrl]);
 
   return (
     <div className="container-createVideoTutorial">
@@ -74,17 +65,26 @@ function CreateVideoTutorial({ setCountStepTutorial }) {
           </>
         )}
       </div>
-      <Link to="/tutorials/createTutorial">
-        <button type="button" onClick={handleSaveName} disabled={!isValid}>
-          Valider
-        </button>
-      </Link>
+      {isUpdate ? (
+        <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
+          <button type="button" onClick={handleSaveName}>
+            Valider
+          </button>
+        </Link>
+      ) : (
+        <Link to="/tutorials/createTutorial">
+          <button type="button" onClick={handleSaveName}>
+            Valider
+          </button>
+        </Link>
+      )}
     </div>
   );
 }
 
-CreateVideoTutorial.propTypes = {
+VideoTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
+  tutorialId: PropTypes.number.isRequired,
 };
 
-export default CreateVideoTutorial;
+export default VideoTutorial;
