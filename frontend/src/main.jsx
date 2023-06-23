@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <Formation />,
       },
       {
-        path: "/formations/tutorials",
+        path: "/formations/tutorials/:id",
         element: <TutorialChoice />,
       },
       {
