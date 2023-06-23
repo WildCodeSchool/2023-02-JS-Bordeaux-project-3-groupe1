@@ -27,8 +27,11 @@ function VideoTutorial(props) {
   };
 
   useEffect(() => {
-    if (tutorialUrlVideo?.length !== 0 && tutorialId) {
+    if (tutorialUrlVideo && tutorialUrlVideo.length !== 0 && tutorialId) {
+      const urlParams = new URLSearchParams(tutorialUrlVideo.split("?")[1]);
+      const video = urlParams.get("v") || "";
       setVideoUrl(tutorialUrlVideo);
+      setVideoId(video);
       setIsUpdate(true);
     } else {
       setIsUpdate(false);
@@ -48,6 +51,8 @@ function VideoTutorial(props) {
 
   return (
     <div className="container-createVideoTutorial">
+      <label htmlFor="videoUrl">Insérer l’url de votre vidéo :</label>
+
       <input
         type="text"
         name="videoUrl"
