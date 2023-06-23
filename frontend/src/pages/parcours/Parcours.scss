@@ -82,7 +82,6 @@
       border-radius: $app-button-border-radius;
       border: $app-button-color;
       font-weight: initial;
-
       @include phonelarge {
         padding: $app-button-padding-phone-large;
         font-size: large;
