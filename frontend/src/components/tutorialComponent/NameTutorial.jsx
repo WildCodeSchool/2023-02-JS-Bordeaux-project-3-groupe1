@@ -4,13 +4,12 @@ import PropTypes from "prop-types";
 import starGrey from "../../assets/starGrey.png";
 import starBlue from "../../assets/starBlue.png";
 import student from "../../assets/student.png";
-import { fetcher } from "../../services/tutorialService";
+import { fetcher } from "../../services/api";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 
 function NameTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
   const [nameTutorial, setNameTutorial] = useState("");
-  const [titleFormation, setTitleFormation] = useState("");
   const [tagTutorial, setTagTutorial] = useState("");
   const [levelTutorial, setLevelTutorial] = useState(1);
   const [starLevelStyle, setStarLevelStyle] = useState(false);
@@ -19,28 +18,37 @@ function NameTutorial(props) {
   const [idFormation, setIdFormation] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
-  const [updatedNameFormation, setUpdatedNameFormation] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(
+    undefined !== "Utiliser ligne bleu" ? "Utiliser ligne bleu" : ""
+  );
 
   const {
     nameTutoPlaceholder,
     tagTutoPlaceholder,
-    level,
     tutorialWithtags,
-    updateNameFormation,
     setCountStepTutorial,
+    tutorialId,
   } = props;
 
   if (typeof setCountStepTutorial === "function") {
     setCountStepTutorial(1);
   }
 
-  useEffect(() => {
-    if (tutorialWithtags) {
-      setNameTutorial(tutorialWithtags.name);
-    } else {
-      setTitleFormation(titleFormation);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case "nameTutorial":
+        setNameTutorial(value);
+        break;
+      case "tagTutorial":
+        setTagTutorial(value);
+        break;
+      case "selectedValue":
+        setSelectedValue(value);
+        break;
+      default:
     }
-  }, [nameTutoPlaceholder, tagTutoPlaceholder]);
+  };
 
   const handleAddValue = () => {
     if (tagTutorial !== "") {
@@ -61,43 +69,6 @@ function NameTutorial(props) {
   const handleClickLevel2 = () => {
     setLevelTutorial(starLevelStyle === true ? 1 : 2);
     setStarLevelStyle(!starLevelStyle);
-  };
-
-  const handleSelectChange = (e) => {
-    setTitleFormation(e.target.value);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case "nameTutorial":
-        setNameTutorial(value);
-        break;
-      case "tagTutorial":
-        setTagTutorial(value);
-        break;
-      case "titleFormation":
-        setTitleFormation(value);
-        break;
-      default:
-    }
-  };
-
-  const handleSaveName = () => {
-    setCountStepTutorial(2);
-    const parsedLevelTutorial = parseInt(levelTutorial, 10);
-    const newValuesTutorial = {
-      nameTutorial,
-      idFormation,
-      valuesTag,
-      updatedTags,
-      levelTutorial: parsedLevelTutorial,
-    };
-
-    setForms((prevForms) => ({
-      ...prevForms,
-      ...newValuesTutorial,
-    }));
   };
 
   const handleRemoveTagValue = (value) => {
@@ -124,23 +95,32 @@ function NameTutorial(props) {
       });
   }, []);
 
+  const newArrayNameFormation = nameFormation.map(
+    (item) => item.iconDescription
+  );
+  const uniqueValues = [...new Set(newArrayNameFormation)];
+
+  const filteredValues = uniqueValues.filter(
+    (value) => value !== selectedValue
+  );
+
   useEffect(() => {
-    const matchedFormation = nameFormation.find(
-      (formation) => formation.iconDescription === titleFormation
-    );
-    if (matchedFormation) {
-      setIdFormation(parseInt(matchedFormation.id, 10));
+    if (tutorialWithtags) {
+      const id = tutorialWithtags[0]?.formation_id;
+      const formation = nameFormation.find((item) => item.id === id);
+      setSelectedValue(formation ? formation.iconDescription : null);
     }
-  }, [nameFormation, titleFormation]);
+  }, [nameFormation]);
 
   useEffect(() => {
     const matchedFormation = nameFormation.find(
-      (formation) => formation.id === updateNameFormation
+      (formation) => formation.iconDescription === selectedValue
     );
     if (matchedFormation) {
-      setUpdatedNameFormation(matchedFormation.iconDescription);
+      setIdFormation(parseInt(matchedFormation.id, 10));
+      setSelectedValue(selectedValue);
     }
-  }, [updateNameFormation, nameFormation]);
+  }, [nameFormation, selectedValue]);
 
   useEffect(() => {
     if (tutorialWithtags) {
@@ -151,13 +131,31 @@ function NameTutorial(props) {
         .split(",")
         .map((value) => value.trim());
       setUpdatedTags(newArrayNameTags);
-      if (level === 2) {
+      if (tutorialWithtags[0]?.level === 2) {
         setStarLevelStyle(true);
       }
+      setNameTutorial(nameTutoPlaceholder);
     } else {
       setIsUpdate(false);
     }
-  }, [tutorialWithtags, level]);
+  }, [tutorialWithtags]);
+
+  const handleSaveName = () => {
+    setCountStepTutorial(2);
+    const parsedLevelTutorial = parseInt(levelTutorial, 10);
+    const newValuesTutorial = {
+      nameTutorial,
+      idFormation,
+      valuesTag,
+      updatedTags,
+      levelTutorial: parsedLevelTutorial,
+    };
+
+    setForms((prevForms) => ({
+      ...prevForms,
+      ...newValuesTutorial,
+    }));
+  };
 
   return (
     <div className="container-createNameTutorial">
@@ -222,22 +220,16 @@ function NameTutorial(props) {
           )}
         </div>
       </div>
-      <select value={titleFormation} onChange={handleSelectChange}>
-        {updatedNameFormation && (
-          <option
-            key={updatedNameFormation.id}
-            value={updatedNameFormation.value}
-          >
-            {updatedNameFormation}
+      <select
+        value={selectedValue}
+        onChange={(e) => setSelectedValue(e.target.value)}
+      >
+        <option value={selectedValue}>{selectedValue}</option>
+        {filteredValues.map((value) => (
+          <option key={value} value={value}>
+            {value}
           </option>
-        )}
-        {nameFormation
-          .filter((option) => option.id !== updatedNameFormation?.id)
-          .map((option) => (
-            <option key={option.id} value={option.value}>
-              {option.iconDescription}
-            </option>
-          ))}
+        ))}
       </select>
       <div className="container-preview-tutorial">
         <div className="icon-preview-tutorial">
@@ -249,21 +241,28 @@ function NameTutorial(props) {
         </div>
         <h3>{nameTutorial}</h3>
       </div>
-      <Link to="/tutorials/createTutorial">
-        <button type="button" onClick={handleSaveName}>
-          Valider
-        </button>
-      </Link>
+      {isUpdate ? (
+        <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
+          <button type="button" onClick={handleSaveName}>
+            Valider
+          </button>
+        </Link>
+      ) : (
+        <Link to="/tutorials/createTutorial">
+          <button type="button" onClick={handleSaveName}>
+            Valider
+          </button>
+        </Link>
+      )}
     </div>
   );
 }
 
 NameTutorial.propTypes = {
-  setCountStepTutorial: PropTypes.func.isRequired,
+  tutorialId: PropTypes.number.isRequired,
   nameTutoPlaceholder: PropTypes.string.isRequired,
+  setCountStepTutorial: PropTypes.func.isRequired,
   tagTutoPlaceholder: PropTypes.string.isRequired,
-  updateNameFormation: PropTypes.number.isRequired,
-  level: PropTypes.number.isRequired,
   tutorialWithtags: PropTypes.arrayOf(
     PropTypes.shape({
       fqfqf: PropTypes.string,

@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import NameTutorial from "../NameTutorial";
 import { fetcherTags } from "../../../services/tutorialService";
 
-function UpdateNameTutorial() {
+function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
   const [nameTutoPlaceholder, setNameTutoPlaceholder] = useState("");
   const [tagTutoPlaceholder] = useState("Ajouter les tags");
-  const [level, setLevel] = useState(0);
   const [tutorialWithtags, setTutorialtags] = useState([]);
-  const { tutorialId } = useParams();
   const [updateNameFormation, setUpdateNameFormation] = useState(0);
 
   useEffect(() => {
-    fetcherTags("tutorialWithTags", tutorialId)
+    fetcherTags("tutorials/WithTags", tutorialId)
       .then((data) => {
         setTutorialtags(data);
       })
@@ -24,7 +22,6 @@ function UpdateNameTutorial() {
   useEffect(() => {
     if (tutorialWithtags?.length !== 0) {
       setNameTutoPlaceholder(tutorialWithtags[0]?.name);
-      setLevel(tutorialWithtags[0]?.level);
       setUpdateNameFormation(tutorialWithtags[0]?.formation_id);
     } else {
       setNameTutoPlaceholder("Modifier le nom du tutoriel");
@@ -36,12 +33,18 @@ function UpdateNameTutorial() {
       <NameTutorial
         nameTutoPlaceholder={nameTutoPlaceholder}
         tagTutoPlaceholder={tagTutoPlaceholder}
-        level={level}
         tutorialWithtags={tutorialWithtags}
         updateNameFormation={updateNameFormation}
+        setCountStepTutorial={setCountStepTutorial}
+        tutorialId={tutorialId}
       />
     </div>
   );
 }
+
+UpdateNameTutorial.propTypes = {
+  setCountStepTutorial: PropTypes.func.isRequired,
+  tutorialId: PropTypes.number.isRequired,
+};
 
 export default UpdateNameTutorial;

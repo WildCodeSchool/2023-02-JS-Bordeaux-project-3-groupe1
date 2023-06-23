@@ -35,7 +35,9 @@
         overflow-wrap: break-word;
       }
       @include desktop {
-        font-size: $app-heading-one-desktop;
+        font-size: 2.5rem;
+        margin-top: 5rem;
+        width: 50%;
       }
     }
 
@@ -58,21 +60,13 @@
       @include tablet {
         height: 5rem;
         width: 65%;
+        @include desktop {
+          width: 30rem;
+          height: 6rem;
+          margin-top: 6rem;
+        }
       }
     }
-    //   width: 8rem;
-    //   height: 7rem;
-    //   margin-top: 0.5rem;
-    //   @include tablet {
-    //     width: 14rem;
-    //     margin-top: 2.5rem;
-    //   }
-    //   @include desktop {
-    //     width: 30rem;
-    //     height: 20rem;
-    //     margin-top: 5rem;
-    //   }
-    // }
 
     .desk_women {
       position: absolute;
@@ -87,9 +81,9 @@
       }
 
       @include desktop {
-        width: 441px;
-        height: 300px;
-        margin-top: 0rem;
+        width: 450px;
+        height: 175px;
+        margin-top: 2rem;
       }
     }
   }
@@ -110,10 +104,10 @@
     }
 
     @include desktop {
-      margin-left: 45.5rem;
+      margin-left: 2.5rem;
       font-size: 2rem;
-      width: 34rem;
-      margin-top: -8rem;
+      width: 77rem;
+      margin-top: 4rem;
     }
   }
 
@@ -123,6 +117,11 @@
     margin-top: 3rem;
     @include tablet {
       margin-top: -3rem;
+    }
+    @include desktop {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
     }
   }
 
@@ -170,8 +169,8 @@
     }
 
     @include desktop {
-      height: 290px;
-      width: 315px;
+      height: 232px;
+      width: 256px;
       margin-top: 77px;
     }
   }
@@ -186,11 +185,10 @@
       font-size: $app-heading-three-tablet;
       width: 30rem;
     }
-
     @include desktop {
-      font-size: 2.5rem;
+      font-size: 2rem;
       width: 60rem;
-      margin-top: 10rem;
+      margin-top: 6rem;
     }
   }
 

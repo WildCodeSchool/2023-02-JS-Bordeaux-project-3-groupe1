@@ -1,7 +1,6 @@
 const database = require("../../database");
 const QuizzManager = require("./QuizzManager");
 const TagsManager = require("./TagsManager");
-const TutorialsTagsManager = require("./TutorialsTagsManager");
 
 const getAllTutorials = async () => {
   try {
@@ -21,6 +20,35 @@ const getByIdTutorial = async (id) => {
     return tutorial[0];
   } catch (error) {
     throw new Error("Error retrieving tutorial");
+  }
+};
+
+const getTutorialTagsById = async (id) => {
+  try {
+    const tutorialsTags = await database.query(
+      "SELECT tutorials.*, tags.id, tags.name AS nameTag FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id WHERE tutorials.id = ?",
+      [id]
+    );
+    return tutorialsTags[0];
+  } catch (error) {
+    throw new Error("Error retrieving tutorialsTags");
+  }
+};
+
+const CreateTutorialsTags = async (tutorialId, tagId) => {
+  const tutorialsTagsQuery = `INSERT INTO tutorialsTags (tutorial_id, tag_id) VALUES (?, ?)`;
+
+  const valuesTutorialsTags = [tutorialId, tagId];
+
+  try {
+    await database.query(tutorialsTagsQuery, valuesTutorialsTags);
+    return {
+      tutorialId,
+      tagId,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error retrieving quizz");
   }
 };
 
@@ -62,7 +90,7 @@ const createTutorialWithImage = async (tutorial) => {
     const tagTutorialResult = await TagsManager.CreateTagTutorial(tutorial);
     const tagId = tagTutorialResult.id;
 
-    await TutorialsTagsManager.CreateTutorialsTags(tutorialId, tagId);
+    await CreateTutorialsTags(tutorialId, tagId);
 
     return {
       quizzlId,
@@ -137,6 +165,7 @@ const deleteTutorialAndQuizz = async (id) => {
 module.exports = {
   getAllTutorials,
   getByIdTutorial,
+  getTutorialTagsById,
   createTutorialWithImage,
   updateTutorial,
   deleteTutorialAndQuizz,
