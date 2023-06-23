@@ -27,15 +27,13 @@ function Parcours() {
       section: 4,
     },
   ];
-
   const [selectionSection, setSelectionSection] = useState(
     buttonSortTextSections[3].section
   );
-
+  console.info(selectionSection);
   const handleClickSections = (item) => {
     setSelectionSection(item);
   };
-  
   useEffect(() => {
     fetcher("formations")
       .then((data) => {
@@ -52,7 +50,6 @@ function Parcours() {
         console.error(error);
       });
   }, []);
-
   const steps = tutorialByIcon.map((item) => ({
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,
@@ -62,7 +59,6 @@ function Parcours() {
       (item.stepTwo ? 33 : 0) +
       (item.stepThree ? 34 : 0),
   }));
-
   const tutorialByIconMap = tutorialByIcon.map((item) => item.iconURL);
   const iconOpacityLow = (icon) => {
     return tutorialByIconMap.includes(icon.iconURL)
