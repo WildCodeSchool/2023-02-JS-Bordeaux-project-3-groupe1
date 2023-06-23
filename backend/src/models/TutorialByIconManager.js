@@ -13,6 +13,23 @@ const getTutorialByIconFormation = async () => {
   }
 };
 
+/* ---------- Get tutorial by id click  ----------- */
+
+const findTurorialByHerID = async (id) => {
+  try {
+    const rows = await database.query(
+      `SELECT tutorials.name
+      FROM tutorials
+      WHERE tutorials.formation_id = ?`,
+      [id]
+    );
+    return rows[0];
+  } catch (error) {
+    throw new Error("Error get formation", error);
+  }
+};
+
 module.exports = {
   getTutorialByIconFormation,
+  findTurorialByHerID,
 };

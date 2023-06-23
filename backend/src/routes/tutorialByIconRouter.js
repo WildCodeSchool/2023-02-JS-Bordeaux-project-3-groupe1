@@ -8,4 +8,6 @@ router.get(
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormations
 );
 
+router.get("/:id", tutorialByIconControllers.getTutorialByHerIdClick);
+
 module.exports = router;

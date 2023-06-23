@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import arrow from "../../assets/pictures/arrowTutorial.svg";
-import cap from "../../assets/pictures/cap.svg";
-import blueStars from "../../assets/pictures/blueStars.svg";
-import emptyStars from "../../assets/pictures/emptyStars.svg";
+import capGreyOneStartBlue from "../../assets/pictures/capGreyOneStartBlue.svg";
+import capBlueOneStartBlue from "../../assets/pictures/capBlueOneStartBlue.svg";
+import chek from "../../assets/pictures/chek.svg";
 
-function ModuleChooseTutorial({ item }) {
+function ModuleChooseTutorial({ item, steps, index }) {
   const [isOpen, setIsOpen] = useState(false);
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <section className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}>
-      <div className="tutorialStarsAndCap">
-        <img className="tutorialStars" src={blueStars} alt="#" />
-        <img className="tutorialStars" src={emptyStars} alt="#" />
-        <img className="tutorialCap" src={cap} alt="cap" />
-      </div>
+      {steps.length > 0 && (
+        <div className="tutorialStarsAndCap">
+          {steps[index].total === 3 ? (
+            <img className="tutorialCap" src={capBlueOneStartBlue} alt="cap" />
+          ) : (
+            <img className="tutorialCap" src={capGreyOneStartBlue} alt="cap" />
+          )}
+        </div>
+      )}
       <p className="tutorialTitle">{item.name}</p>
       <button
         type="button"
@@ -32,14 +37,28 @@ function ModuleChooseTutorial({ item }) {
       <ul
         className={isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"}
       >
-        <li>Explication</li>
-        <li>Vidéo</li>
-        <li>Quizz</li>
+        <li>
+          Explication
+          {steps.length > 0 &&
+            (steps[index].stepOne ? <img src={chek} alt="chek" /> : null)}
+        </li>
+        <li>
+          Vidéo
+          {steps.length > 0 &&
+            (steps[index].stepTwo ? <img src={chek} alt="chek" /> : null)}
+        </li>
+        <li>
+          Quizz
+          {steps.length > 0 &&
+            (steps[index].stepThree ? <img src={chek} alt="chek" /> : null)}
+        </li>
       </ul>
     </section>
   );
 }
 ModuleChooseTutorial.propTypes = {
   item: PropTypes.string.isRequired,
+  steps: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
 };
 export default ModuleChooseTutorial;

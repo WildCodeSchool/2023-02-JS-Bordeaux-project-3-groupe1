@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
+import { fetcher } from "../../services/api";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
-import { fetcher } from "../../services/api";
-import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function Parcours() {
   const [iconURL, setIconURL] = useState([]);
@@ -27,18 +27,15 @@ function Parcours() {
       section: 4,
     },
   ];
-
   const [selectionSection, setSelectionSection] = useState(
     buttonSortTextSections[3].section
   );
   console.info(selectionSection);
-
   const handleClickSections = (item) => {
     setSelectionSection(item);
   };
-
   useEffect(() => {
-    fetcher("icons")
+    fetcher("formations")
       .then((data) => {
         setIconURL(data);
       })
@@ -53,7 +50,6 @@ function Parcours() {
         console.error(error);
       });
   }, []);
-
   const steps = tutorialByIcon.map((item) => ({
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,
@@ -63,7 +59,6 @@ function Parcours() {
       (item.stepTwo ? 33 : 0) +
       (item.stepThree ? 34 : 0),
   }));
-
   const tutorialByIconMap = tutorialByIcon.map((item) => item.iconURL);
   const iconOpacityLow = (icon) => {
     return tutorialByIconMap.includes(icon.iconURL)
