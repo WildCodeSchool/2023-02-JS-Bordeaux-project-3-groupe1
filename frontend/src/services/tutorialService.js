@@ -26,10 +26,21 @@ export const sender = async (url, forms) => {
   }
 };
 
-export const fetcherTags = async (url, tutorialId) => {
+export const fetcherTags = async (url, id) => {
   try {
     const response = await axios.get(
-      `${import.meta.env.VITE_BASE_API}/${url}/${tutorialId}`
+      `${import.meta.env.VITE_BASE_API}/${url}/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while fetching data");
+  }
+};
+
+export const fetcherTutorialById = async (url, id) => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_API}/${url}/${id}`
     );
     return response.data;
   } catch (error) {

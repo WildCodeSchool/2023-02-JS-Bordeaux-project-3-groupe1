@@ -64,10 +64,6 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
-      {
-        path: "/formations/parcours",
-        element: <Parcours />,
-      },
     ],
   },
   {
@@ -81,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "/tutorials/updateTutorial/:tutorialId",
         element: <UpdateTutorialPage />,
+      },
+      {
+        path: "/formations/parcours",
+        element: <Parcours />,
       },
     ],
   },

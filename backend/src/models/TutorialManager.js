@@ -26,7 +26,7 @@ const getByIdTutorial = async (id) => {
 const getTutorialTagsById = async (id) => {
   try {
     const tutorialsTags = await database.query(
-      "SELECT tutorials.*, tags.id, tags.name AS nameTag FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id WHERE tags.id = ?",
+      "SELECT tutorials.*, tags.id, tags.name AS nameTag FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id WHERE tutorials.id = ?",
       [id]
     );
     return tutorialsTags[0];
