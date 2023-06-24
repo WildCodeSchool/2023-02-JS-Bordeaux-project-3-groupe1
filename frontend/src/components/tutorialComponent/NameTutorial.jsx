@@ -18,6 +18,7 @@ function NameTutorial(props) {
   const [idFormation, setIdFormation] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
+  const [isValid, setIsValid] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     undefined !== "Utiliser ligne bleu" ? "Utiliser ligne bleu" : ""
   );
@@ -157,6 +158,13 @@ function NameTutorial(props) {
     }));
   };
 
+  useEffect(() => {
+    const isValidForm =
+      nameTutorial !== "" &&
+      (isUpdate ? updatedTags.length > 0 : valuesTag.length > 0);
+    setIsValid(isValidForm);
+  }, [nameTutorial, valuesTag, updatedTags, isUpdate]);
+
   return (
     <div className="container-createNameTutorial">
       <label htmlFor="nameTutorial">Nom du tutorial :</label>
@@ -186,6 +194,8 @@ function NameTutorial(props) {
         </button>
       </div>
       <ul>
+        {" "}
+        Liste des tags :
         {isUpdate
           ? updatedTags?.map((tagName) => (
               <button
@@ -253,7 +263,7 @@ function NameTutorial(props) {
         </Link>
       ) : (
         <Link to="/tutorials/createTutorial">
-          <button type="button" onClick={handleSaveName}>
+          <button type="button" onClick={handleSaveName} disabled={!isValid}>
             Valider
           </button>
         </Link>

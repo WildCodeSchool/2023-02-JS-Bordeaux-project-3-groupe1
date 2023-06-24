@@ -1,6 +1,8 @@
 import axios from "axios";
 
-export const sender = async (url, forms) => {
+export const sender = async (url, id, forms) => {
+  console.log(forms);
+  console.log(id);
   try {
     const formData = new FormData();
     formData.append("question", forms.question);
@@ -9,12 +11,26 @@ export const sender = async (url, forms) => {
     formData.append("response", forms.answer);
     formData.append("name", forms.nameTutorial);
     formData.append("formationId", forms.idFormation);
-    formData.append("valuesTag", forms.valuesTag);
+
+    if (forms.valuesTag) {
+      formData.append("valuesTag", forms.valuesTag);
+    } else if (forms.updatedTags) {
+      formData.append("updatedTags", forms.updatedTags);
+    }
+
     formData.append("level", forms.levelTutorial);
     formData.append("objectif", forms.objectifTutorial);
     formData.append("explication", forms.explicationTutorial);
     formData.append("urlVideo", forms.videoUrl);
     formData.append("file", forms.selectedFile);
+
+    if (id) {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_API}/${url}/${id}`,
+        formData
+      );
+      return response.data;
+    }
 
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_API}/${url}`,

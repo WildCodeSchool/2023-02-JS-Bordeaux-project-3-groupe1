@@ -12,7 +12,13 @@ const { validateTutorial } = require("../validators/tutorialValidators");
 router.get("/", getFirebase, tutorialControllers.getAll);
 router.get("/:id", getImageById, tutorialControllers.getOne);
 router.get("/WithTags/:id", tutorialControllers.getTutorialTag);
-router.put("/:id", tutorialControllers.update);
+router.put(
+  "/:id",
+  upload,
+  uploadFirebase,
+  validateTutorial,
+  tutorialControllers.update
+);
 router.post(
   "/",
   upload,

@@ -18,7 +18,7 @@ function UpdateQuizzTutorial({ setCountStepTutorial, tutorialId }) {
 
   useEffect(() => {
     if (tutorial?.length !== 0) {
-      console.warn("teste");
+      setTutorial(tutorial);
     }
   }, [tutorial]);
 
@@ -27,6 +27,7 @@ function UpdateQuizzTutorial({ setCountStepTutorial, tutorialId }) {
       <QuizzTutorial
         setCountStepTutorial={setCountStepTutorial}
         tutorialId={tutorialId}
+        tutorial={tutorial}
       />
     </div>
   );

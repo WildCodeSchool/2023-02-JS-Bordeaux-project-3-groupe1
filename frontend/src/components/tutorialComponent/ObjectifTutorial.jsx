@@ -12,6 +12,7 @@ function ObjectifTutorial(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const {
     setCountStepTutorial,
@@ -65,12 +66,8 @@ function ObjectifTutorial(props) {
       setObjectifTutorial(tutorialObjectif);
       setExplicationTutorial(tutorialExplication);
       setPreviewUrl(tutorialImage);
+      setSelectedFile(tutorialImage);
       setIsUpdate(true);
-    } else {
-      setObjectifTutorial(objectifTutorial);
-      setExplicationTutorial(explicationTutorial);
-      setPreviewUrl(previewUrl);
-      setIsUpdate(false);
     }
   }, [tutorialObjectif, tutorialExplication, tutorialImage, tutorialId]);
 
@@ -92,6 +89,12 @@ function ObjectifTutorial(props) {
     }
   };
 
+  useEffect(() => {
+    const isValidForm =
+      objectifTutorial !== "" && explicationTutorial !== "" && selectedFile;
+    setIsValid(isValidForm);
+  }, [objectifTutorial, explicationTutorial, selectedFile]);
+
   return (
     <div className="container-createObjectifTutorial">
       <div className="container-objectif">
@@ -102,7 +105,11 @@ function ObjectifTutorial(props) {
           </div>
         </div>
         <div className="container-objectifText">
-          <label htmlFor="objectifTutorial">Ajoutez votre objectif ici :</label>
+          {isUpdate && (
+            <label htmlFor="objectifTutorial">
+              Ajoutez votre objectif ici :
+            </label>
+          )}
           <textarea
             name="objectifTutorial"
             id="objectifTutorial"
@@ -116,7 +123,7 @@ function ObjectifTutorial(props) {
       <div className="container-explications">
         <div className="line" />
         <div className="container-explications-upload">
-          <p>Insérer votre image</p>
+          <p>Insérer l'image ici :</p>
           <label htmlFor="fileInput" className="custom-file-input">
             Insérer
           </label>
@@ -142,9 +149,9 @@ function ObjectifTutorial(props) {
             <textarea
               name="explicationTutorial"
               id="explicationTutorial"
-              onChange={() => {
-                handleExplicationChange();
-                adjustTextareaHeight();
+              onChange={(e) => {
+                handleExplicationChange(e);
+                adjustTextareaHeight(e);
               }}
               value={explicationTutorial}
               placeholder="Insérer les explications"
@@ -160,7 +167,11 @@ function ObjectifTutorial(props) {
         </Link>
       ) : (
         <Link to="/tutorials/createTutorial">
-          <button type="button" onClick={handleSaveObjectif}>
+          <button
+            type="button"
+            onClick={handleSaveObjectif}
+            disabled={!isValid}
+          >
             Valider
           </button>
         </Link>

@@ -53,12 +53,12 @@
       background-color: $app-secondary-fonts-color-2;
 
       label {
-        color: $app-secondary-fonts-color;
+        padding: 4%;
       }
 
       textarea {
         width: 90%;
-        height: 5rem;
+        min-height: 7rem;
         border: none;
         background-color: transparent;
         white-space: normal;
@@ -100,8 +100,6 @@
 
       p {
         width: 70%;
-        padding-left: 4%;
-        color: $app-secondary-fonts-color;
       }
 
       label {
@@ -158,6 +156,7 @@
         }
 
         label {
+          padding-top: 4%;
           width: 90%;
         }
 
@@ -181,7 +180,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 4%;
+    margin-bottom: 4%;
 
     button {
       border: none;

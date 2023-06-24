@@ -5,13 +5,15 @@ import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import validation from "../../assets/validation.png";
 import { sender } from "../../services/tutorialService";
 
-function QuizzTutorial({ setCountStepTutorial }) {
+function QuizzTutorial(props) {
   const { forms, setForms } = useContext(CreateTutorialContext);
   const [question, setQuestion] = useState("");
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
   const [answer, setAnswer] = useState("");
   const [isValid, setIsValid] = useState(false);
+
+  const { setCountStepTutorial, tutorialId, tutorial } = props;
 
   if (typeof setCountStepTutorial === "function") {
     setCountStepTutorial(4);
@@ -36,6 +38,15 @@ function QuizzTutorial({ setCountStepTutorial }) {
     }
   };
 
+  useEffect(() => {
+    if (tutorial && tutorial.length !== 0 && tutorialId) {
+      setQuestion(tutorial[0].question);
+      setOptionOne(tutorial[0].firstProposal);
+      setOptionTwo(tutorial[0].secondProposal);
+      setAnswer(tutorial[0].response);
+    }
+  }, [tutorial, tutorialId]);
+
   const handleSaveTutorial = () => {
     const newValuesTutorial = {
       question,
@@ -49,7 +60,8 @@ function QuizzTutorial({ setCountStepTutorial }) {
         ...prevForms,
         ...newValuesTutorial,
       }));
-      sender("tutorials", {
+
+      sender("tutorials", tutorialId, {
         ...forms,
         ...newValuesTutorial,
       })
@@ -66,10 +78,7 @@ function QuizzTutorial({ setCountStepTutorial }) {
 
   useEffect(() => {
     const isValidForm =
-      question.trim() !== "" &&
-      optionOne.trim() !== "" &&
-      optionOne.trim() !== "" &&
-      answer.trim() !== "";
+      question !== "" && optionOne !== "" && optionTwo !== "" && answer !== "";
     setIsValid(isValidForm);
   }, [question, optionOne, optionTwo, answer, forms]);
 
@@ -97,7 +106,7 @@ function QuizzTutorial({ setCountStepTutorial }) {
         id="optionOne"
         onChange={handleInputChange}
         value={optionOne}
-        placeholder="Ajouter une option de réponse"
+        placeholder="Ajouter une option"
       />
       <label htmlFor="optionTwo">Deuxième option :</label>
       <input
@@ -105,7 +114,7 @@ function QuizzTutorial({ setCountStepTutorial }) {
         id="optionTwo"
         onChange={handleInputChange}
         value={optionTwo}
-        placeholder="Ajouter une option de réponse"
+        placeholder="Ajouter une option"
       />
       <div className="container-quizz-preview">
         <div className="container-quizz-preview-title">
@@ -131,10 +140,10 @@ function QuizzTutorial({ setCountStepTutorial }) {
   );
 }
 
-/* label + couleur */
-
 QuizzTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
+  tutorialId: PropTypes.number.isRequired,
+  tutorial: PropTypes.string.isRequired,
 };
 
 export default QuizzTutorial;
