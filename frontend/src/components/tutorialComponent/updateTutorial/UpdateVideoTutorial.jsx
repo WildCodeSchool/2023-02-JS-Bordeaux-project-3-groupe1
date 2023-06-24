@@ -19,7 +19,7 @@ function UpdateVideoTutorial({ setCountStepTutorial, tutorialId }) {
 
   useEffect(() => {
     if (tutorial?.length !== 0) {
-      setTutorialUrlVideo(tutorial[0].urlVideo);
+      setTutorialUrlVideo(tutorial.urlVideo);
     }
   }, [tutorial]);
 

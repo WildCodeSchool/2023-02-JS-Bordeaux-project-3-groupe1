@@ -10,6 +10,7 @@ function ObjectifTutorial(props) {
   const [objectifTutorial, setObjectifTutorial] = useState("");
   const [explicationTutorial, setExplicationTutorial] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFileUrl, setSelectedFileUrl] = useState("");
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
   const [isValid, setIsValid] = useState(false);
@@ -66,7 +67,7 @@ function ObjectifTutorial(props) {
       setObjectifTutorial(tutorialObjectif);
       setExplicationTutorial(tutorialExplication);
       setPreviewUrl(tutorialImage);
-      setSelectedFile(tutorialImage);
+      setSelectedFileUrl(tutorialImage);
       setIsUpdate(true);
     }
   }, [tutorialObjectif, tutorialExplication, tutorialImage, tutorialId]);
@@ -77,9 +78,13 @@ function ObjectifTutorial(props) {
       objectifTutorial,
       explicationTutorial,
       selectedFile,
+      selectedFileUrl,
     };
 
-    if (objectifTutorial && explicationTutorial && selectedFile) {
+    if (
+      (objectifTutorial && explicationTutorial && selectedFile) ||
+      selectedFileUrl
+    ) {
       setForms((prevForms) => ({
         ...prevForms,
         ...newValuesTutorial,

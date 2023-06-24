@@ -34,6 +34,35 @@ const CreateQuizzTutorial = async (tutorial) => {
   }
 };
 
+const UpdateQuizzTutorial = async (tutorial) => {
+  const { question, firstProposal, secondProposal, response, quizzId } =
+    tutorial;
+
+  const updateQuery = `UPDATE quizz SET question = ?, firstProposal = ?, secondProposal = ?, response = ? WHERE id = ?`;
+
+  const valuesUpdate = [
+    question,
+    firstProposal,
+    secondProposal,
+    response,
+    quizzId,
+  ];
+
+  try {
+    await database.query(updateQuery, valuesUpdate);
+    return {
+      quizzId,
+      question,
+      firstProposal,
+      secondProposal,
+      response,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error updating quizz");
+  }
+};
+
 const deleteQuizzByFormationId = async (id) => {
   const quizzQuery = "DELETE quizz.id FROM quizz WHERE id = ?";
   try {
@@ -49,5 +78,6 @@ const deleteQuizzByFormationId = async (id) => {
 module.exports = {
   getByIdQuizz,
   CreateQuizzTutorial,
+  UpdateQuizzTutorial,
   deleteQuizzByFormationId,
 };

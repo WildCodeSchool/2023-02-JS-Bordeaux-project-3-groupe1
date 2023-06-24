@@ -29,6 +29,7 @@ function NameTutorial(props) {
     tutorialWithtags,
     setCountStepTutorial,
     tutorialId,
+    tagId,
   } = props;
 
   if (typeof setCountStepTutorial === "function") {
@@ -150,6 +151,7 @@ function NameTutorial(props) {
       valuesTag,
       updatedTags,
       levelTutorial: parsedLevelTutorial,
+      tagId,
     };
 
     setForms((prevForms) => ({
@@ -273,10 +275,11 @@ function NameTutorial(props) {
 }
 
 NameTutorial.propTypes = {
-  tutorialId: PropTypes.number.isRequired,
+  tutorialId: PropTypes.string.isRequired,
   nameTutoPlaceholder: PropTypes.string.isRequired,
   setCountStepTutorial: PropTypes.func.isRequired,
   tagTutoPlaceholder: PropTypes.string.isRequired,
+  tagId: PropTypes.number.isRequired,
   tutorialWithtags: PropTypes.arrayOf(
     PropTypes.shape({
       fqfqf: PropTypes.string,

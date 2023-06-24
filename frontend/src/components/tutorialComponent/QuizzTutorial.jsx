@@ -11,6 +11,8 @@ function QuizzTutorial(props) {
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
   const [answer, setAnswer] = useState("");
+  const [quizzId, setQuizzId] = useState(false);
+
   const [isValid, setIsValid] = useState(false);
 
   const { setCountStepTutorial, tutorialId, tutorial } = props;
@@ -40,10 +42,11 @@ function QuizzTutorial(props) {
 
   useEffect(() => {
     if (tutorial && tutorial.length !== 0 && tutorialId) {
-      setQuestion(tutorial[0].question);
-      setOptionOne(tutorial[0].firstProposal);
-      setOptionTwo(tutorial[0].secondProposal);
-      setAnswer(tutorial[0].response);
+      setQuestion(tutorial.question);
+      setOptionOne(tutorial.firstProposal);
+      setOptionTwo(tutorial.secondProposal);
+      setAnswer(tutorial.response);
+      setQuizzId(tutorial.quizz_id);
     }
   }, [tutorial, tutorialId]);
 
@@ -53,6 +56,8 @@ function QuizzTutorial(props) {
       optionOne,
       optionTwo,
       answer,
+      quizzId,
+      tutorialId,
     };
 
     if (question && optionOne && optionTwo && answer) {

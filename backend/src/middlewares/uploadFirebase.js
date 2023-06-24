@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const { ref, uploadBytes } = require("firebase/storage");
+const { ref, uploadBytes, getDownloadURL } = require("firebase/storage");
 const storage = require("../../firebase");
 
 const uploadFirebase = async (req, res, next) => {
@@ -14,17 +14,23 @@ const uploadFirebase = async (req, res, next) => {
     const fileRef = ref(storage, filePath);
     const buffer = fs.readFileSync(file.path);
 
-    const response = await uploadBytes(fileRef, buffer, {
-      contentType: "image/png",
-    });
+    try {
+      const response = await uploadBytes(fileRef, buffer, {
+        contentType: "image/png",
+      });
 
-    if (response) {
-      req.body.newFilename = newFileName;
+      const downloadURL = await getDownloadURL(response.ref);
+      req.body.newFilename = downloadURL;
       next();
-    } else {
-      res.status(500);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      res.status(500).send("Error uploading file.");
     }
+  } else {
+    next();
   }
 };
+
+module.exports = uploadFirebase;
 
 module.exports = uploadFirebase;

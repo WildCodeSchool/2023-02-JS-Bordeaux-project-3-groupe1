@@ -18,6 +18,27 @@ const CreateTagTutorial = async (tutorial) => {
     throw new Error("Error retrieving quizz");
   }
 };
+
+const UpdateTagTutorial = async (tutorial) => {
+  const { valuesTag, tagId } = tutorial;
+
+  const tagQuery = `UPDATE tags SET name = ? WHERE id = ?`;
+
+  const valuesTags = [valuesTag, tagId];
+
+  try {
+    await database.query(tagQuery, valuesTags);
+    return {
+      tagId,
+      valuesTag,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error retrieving quizz");
+  }
+};
+
 module.exports = {
   CreateTagTutorial,
+  UpdateTagTutorial,
 };
