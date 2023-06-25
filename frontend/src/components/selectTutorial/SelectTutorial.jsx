@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { deleteTutorial } from "../../services/tutorialService";
+import student from "../../assets/student.png";
+import starGrey from "../../assets/starGrey.png";
 
 function SelectTutorial(props) {
   const { dataTutorial } = props;
@@ -27,20 +29,31 @@ function SelectTutorial(props) {
     setTutorialList(dataTutorial);
   }, [dataTutorial]);
 
-  console.warn(dataTutorial);
-
   return (
     <div className="container-selectTutorial">
-      <ul>
+      <ul className="container-selectTutorial-preview">
         {tutorialList.map((item) => (
           <li key={item.id}>
-            {item.name}
-            <Link to={`/tutorials/updateTutorial/${item.id}`}>
-              <button type="button">Update</button>
-            </Link>
-            <button type="button" onClick={handleDeleteTutorial(item.id)}>
-              Delete
-            </button>
+            <div className="container-icon">
+              <div className="icon-preview-tutorial">
+                <div className="icon-preview-tutorial-star">
+                  <img src={starGrey} alt="starGrey" />
+                  <img src={starGrey} alt="starGrey" />
+                </div>
+                <img src={student} alt="student" />
+              </div>
+            </div>{" "}
+            <div className="container-selectTutorial-tutorialName">
+              {item.name}
+            </div>
+            <div className="container-selectTutorial-buttons">
+              <Link to={`/tutorials/updateTutorial/${item.id}`}>
+                <button type="button">Update</button>
+              </Link>
+              <button type="button" onClick={handleDeleteTutorial(item.id)}>
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
