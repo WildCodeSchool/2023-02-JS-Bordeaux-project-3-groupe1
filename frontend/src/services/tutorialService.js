@@ -34,14 +34,12 @@ export const sender = async (url, id, forms) => {
     }
 
     if (tutorialId !== 0 && forms.updatedTags && forms.updatedTags.length > 0) {
-      console.log("update", forms);
       const response = await axios.put(
         `${import.meta.env.VITE_BASE_API}/${url}/${tutorialId}`,
         formData
       );
       return response.data;
     }
-    console.log("create ", forms);
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_API}/${url}`,
       formData
@@ -71,5 +69,16 @@ export const fetcherTutorialById = async (url, id) => {
     return response.data;
   } catch (error) {
     throw new Error("Error while fetching data");
+  }
+};
+
+export const deleteTutorial = async (url, id) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BASE_API}/${url}/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while sending the data");
   }
 };

@@ -10,6 +10,17 @@ const getAllTutorials = async () => {
     throw new Error("Error retrieving tutorials");
   }
 };
+const getAllTutorialsByFormation = async (id) => {
+  try {
+    const tutorialsByFormation = await database.query(
+      "SELECT *, tutorials.id FROM tutorials join formations on formations.id = tutorials.formation_id where formations.id = ?",
+      [id]
+    );
+    return tutorialsByFormation[0];
+  } catch (error) {
+    throw new Error("Error retrieving tutorials by formation");
+  }
+};
 
 const getByIdTutorial = async (id) => {
   try {
@@ -169,25 +180,40 @@ const updateTutorial = async (id, tutorial) => {
   }
 };
 
-const deleteTutorialAndQuizz = async (id) => {
-  await QuizzManager.deleteQuizzByFormationId(id);
-  const quizzQuery = "DELETE FROM tutorials WHERE id = ?";
+const deleteTutorialAndQuizzAndTags = async (id) => {
   try {
-    const response = await database.query(quizzQuery, [id]);
+    const tutorial = await getByIdTutorial(id);
+
+    await QuizzManager.deleteQuizzByTutorialId(tutorial[0].quizz_id);
+
+    const tutorialstagsQuery =
+      "SELECT * FROM tutorialstags WHERE tutorial_id = ?";
+
+    const [response] = await database.query(tutorialstagsQuery, [
+      tutorial[0].id,
+    ]);
     if (response.affectedRows === 0) {
       throw new Error(`Tutorial with ID ${id} not found`);
     }
-    return response;
+
+    await TagsManager.deleteTagsByTutorialId(response[0].tag_id);
+    // const tutorialstags = await TagsManager.deleteTutorialsTagsById(tutorial[0].id);
+
+    const tutorialQuery = "DELETE tutorials.* FROM tutorials WHERE id = ?";
+    const tutorialResult = await database.query(tutorialQuery, [id]);
+
+    return tutorialResult;
   } catch (error) {
-    throw new Error("Error deleting tutorial");
+    throw new Error("Error delete tutorial");
   }
 };
 
 module.exports = {
   getAllTutorials,
+  getAllTutorialsByFormation,
   getByIdTutorial,
   getTutorialTagsById,
   createTutorialWithImage,
   updateTutorial,
-  deleteTutorialAndQuizz,
+  deleteTutorialAndQuizzAndTags,
 };

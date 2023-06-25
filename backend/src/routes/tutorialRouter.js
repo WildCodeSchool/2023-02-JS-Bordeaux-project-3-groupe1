@@ -7,6 +7,7 @@ const uploadFirebase = require("../middlewares/uploadFirebase");
 const { validateTutorial } = require("../validators/tutorialValidators");
 
 router.get("/", tutorialControllers.getAll);
+router.get("/formation/:id", tutorialControllers.getAllByFormation);
 router.get("/:id", tutorialControllers.getOne);
 router.get("/WithTags/:id", tutorialControllers.getTutorialTag);
 router.put(
