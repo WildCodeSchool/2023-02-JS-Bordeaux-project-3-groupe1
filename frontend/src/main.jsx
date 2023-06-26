@@ -18,6 +18,7 @@ import Parcours from "./pages/parcours/Parcours";
 import Child from "./routes/Child";
 import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
+import SelectTutorialPage from "./pages/selectTutorial/SelectTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "/tutorials/updateTutorial/:tutorialId",
         element: <UpdateTutorialPage />,
+      },
+      {
+        path: "/formations/:formationId",
+        element: <SelectTutorialPage />,
       },
       {
         path: "/formations/parcours",

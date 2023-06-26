@@ -63,8 +63,8 @@ const UpdateQuizzTutorial = async (tutorial) => {
   }
 };
 
-const deleteQuizzByFormationId = async (id) => {
-  const quizzQuery = "DELETE quizz.id FROM quizz WHERE id = ?";
+const deleteQuizzByTutorialId = async (id) => {
+  const quizzQuery = "DELETE quizz.* FROM quizz WHERE id = ?";
   try {
     const response = await database.query(quizzQuery, [id]);
     if (response.affectedRows === 0) {
@@ -75,9 +75,10 @@ const deleteQuizzByFormationId = async (id) => {
     throw new Error("Error deleting quizz");
   }
 };
+
 module.exports = {
   getByIdQuizz,
   CreateQuizzTutorial,
   UpdateQuizzTutorial,
-  deleteQuizzByFormationId,
+  deleteQuizzByTutorialId,
 };
