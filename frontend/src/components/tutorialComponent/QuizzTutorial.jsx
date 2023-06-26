@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
@@ -12,7 +13,6 @@ function QuizzTutorial(props) {
   const [optionTwo, setOptionTwo] = useState("");
   const [answer, setAnswer] = useState("");
   const [quizzId, setQuizzId] = useState(false);
-
   const [isValid, setIsValid] = useState(false);
 
   const { setCountStepTutorial, tutorialId, tutorial } = props;
@@ -65,6 +65,12 @@ function QuizzTutorial(props) {
         ...prevForms,
         ...newValuesTutorial,
       }));
+
+      if (tutorialId) {
+        toast.success("Le tutoriel a été mis à jour");
+      } else {
+        toast.success("Le tutoriel a été créé");
+      }
 
       sender("tutorials", tutorialId, {
         ...forms,
@@ -136,7 +142,7 @@ function QuizzTutorial(props) {
           <button type="button">{answer}</button>
         </div>
       </div>
-      <Link to="/">
+      <Link to={`/formations/${forms.idFormation}`}>
         <button type="button" onClick={handleSaveTutorial} disabled={!isValid}>
           Valider le tutorial
         </button>

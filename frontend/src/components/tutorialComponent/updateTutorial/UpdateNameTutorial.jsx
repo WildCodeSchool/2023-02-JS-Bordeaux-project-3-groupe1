@@ -47,7 +47,7 @@ function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
 
 UpdateNameTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
-  tutorialId: PropTypes.number.isRequired,
+  tutorialId: PropTypes.string.isRequired,
 };
 
 export default UpdateNameTutorial;

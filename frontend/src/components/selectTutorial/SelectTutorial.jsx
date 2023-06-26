@@ -1,33 +1,63 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { deleteTutorial } from "../../services/tutorialService";
 import student from "../../assets/student.png";
 import starGrey from "../../assets/starGrey.png";
+import ConfirmChoiceDelete from "../modal/ConfirmChoiseDelete";
 
 function SelectTutorial(props) {
   const { dataTutorial } = props;
   const [tutorialList, setTutorialList] = useState(dataTutorial);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTutorialId, setSelectedTutorialId] = useState(null);
+  const modalRef = useRef(null);
 
-  const handleDeleteTutorial = (tutorialId) => () => {
-    console.warn("Delete tutorial with ID:", tutorialId);
+  const handleOpenModal = (tutorialId) => {
+    setSelectedTutorialId(tutorialId);
+    setIsModalOpen(true);
+  };
 
-    deleteTutorial("tutorials", tutorialId)
-      .then((data) => {
-        console.warn(data);
-        const updatedList = tutorialList.filter(
-          (tutorial) => tutorial.id !== tutorialId
-        );
-        setTutorialList(updatedList);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handleCloseModal = () => {
+    setSelectedTutorialId(null);
+    setIsModalOpen(false);
+  };
+
+  const handleClickOutsideModal = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleDeleteTutorial = () => {
+    if (selectedTutorialId) {
+      deleteTutorial("tutorials", selectedTutorialId)
+        .then((data) => {
+          console.warn(data);
+          const updatedList = tutorialList.filter(
+            (tutorial) => tutorial.id !== selectedTutorialId
+          );
+          setTutorialList(updatedList);
+          setIsModalOpen(false);
+          toast.success("Le tutoriel a bien été supprimé");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   useEffect(() => {
     setTutorialList(dataTutorial);
   }, [dataTutorial]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideModal);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideModal);
+    };
+  }, []);
 
   return (
     <div className="container-selectTutorial">
@@ -62,13 +92,20 @@ function SelectTutorial(props) {
               <Link to={`/tutorials/updateTutorial/${item.id}`}>
                 <button type="button">Update</button>
               </Link>
-              <button type="button" onClick={handleDeleteTutorial(item.id)}>
+              <button type="button" onClick={() => handleOpenModal(item.id)}>
                 Delete
               </button>
             </div>
           </li>
         ))}
       </ul>
+      {isModalOpen && (
+        <ConfirmChoiceDelete
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onConfirm={handleDeleteTutorial}
+        />
+      )}
     </div>
   );
 }

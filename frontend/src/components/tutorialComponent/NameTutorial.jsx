@@ -237,10 +237,10 @@ function NameTutorial(props) {
       </div>
       <p>Choisissez votre formation :</p>
       <select
-        value={selectedValue}
+        value={selectedValue ?? undefined}
         onChange={(e) => setSelectedValue(e.target.value)}
       >
-        <option value={selectedValue}>{selectedValue}</option>
+        <option value={selectedValue ?? undefined}>{selectedValue}</option>
         {filteredValues.map((value) => (
           <option key={value} value={value}>
             {value}

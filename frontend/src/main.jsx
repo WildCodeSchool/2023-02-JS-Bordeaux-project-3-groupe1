@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
@@ -94,6 +96,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <IsDesktopProvider>
       <RouterProvider router={router} />
+      <ToastContainer />
     </IsDesktopProvider>
   </React.StrictMode>
 );
