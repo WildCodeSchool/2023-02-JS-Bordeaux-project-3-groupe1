@@ -5,13 +5,17 @@ import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import validation from "../../assets/validation.png";
 import { sender } from "../../services/tutorialService";
 
-function QuizzTutorial({ setCountStepTutorial }) {
+function QuizzTutorial(props) {
   const { forms, setForms } = useContext(CreateTutorialContext);
   const [question, setQuestion] = useState("");
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
   const [answer, setAnswer] = useState("");
+  const [quizzId, setQuizzId] = useState(false);
+
   const [isValid, setIsValid] = useState(false);
+
+  const { setCountStepTutorial, tutorialId, tutorial } = props;
 
   if (typeof setCountStepTutorial === "function") {
     setCountStepTutorial(4);
@@ -36,12 +40,24 @@ function QuizzTutorial({ setCountStepTutorial }) {
     }
   };
 
+  useEffect(() => {
+    if (tutorial && tutorial.length !== 0 && tutorialId) {
+      setQuestion(tutorial.question);
+      setOptionOne(tutorial.firstProposal);
+      setOptionTwo(tutorial.secondProposal);
+      setAnswer(tutorial.response);
+      setQuizzId(tutorial.quizz_id);
+    }
+  }, [tutorial, tutorialId]);
+
   const handleSaveTutorial = () => {
     const newValuesTutorial = {
       question,
       optionOne,
       optionTwo,
       answer,
+      quizzId,
+      tutorialId,
     };
 
     if (question && optionOne && optionTwo && answer) {
@@ -49,7 +65,8 @@ function QuizzTutorial({ setCountStepTutorial }) {
         ...prevForms,
         ...newValuesTutorial,
       }));
-      sender("tutorials", {
+
+      sender("tutorials", tutorialId, {
         ...forms,
         ...newValuesTutorial,
       })
@@ -66,15 +83,13 @@ function QuizzTutorial({ setCountStepTutorial }) {
 
   useEffect(() => {
     const isValidForm =
-      question.trim() !== "" &&
-      optionOne.trim() !== "" &&
-      optionOne.trim() !== "" &&
-      answer.trim() !== "";
+      question !== "" && optionOne !== "" && optionTwo !== "" && answer !== "";
     setIsValid(isValidForm);
   }, [question, optionOne, optionTwo, answer, forms]);
 
   return (
     <div className="container-createQuizzTutorial">
+      <label htmlFor="question">Question :</label>
       <input
         name="question"
         id="question"
@@ -82,20 +97,7 @@ function QuizzTutorial({ setCountStepTutorial }) {
         value={question}
         placeholder="Ajouter une question"
       />
-      <input
-        name="optionOne"
-        id="optionOne"
-        onChange={handleInputChange}
-        value={optionOne}
-        placeholder="Ajouter une option de réponse"
-      />
-      <input
-        name="optionTwo"
-        id="optionTwo"
-        onChange={handleInputChange}
-        value={optionTwo}
-        placeholder="Ajouter une option de réponse"
-      />
+      <label htmlFor="answer">La réponse :</label>
       <input
         name="answer"
         id="answer"
@@ -103,7 +105,22 @@ function QuizzTutorial({ setCountStepTutorial }) {
         value={answer}
         placeholder="Ajouter la réponse "
       />
-
+      <label htmlFor="optionOne">Première option :</label>
+      <input
+        name="optionOne"
+        id="optionOne"
+        onChange={handleInputChange}
+        value={optionOne}
+        placeholder="Ajouter une option"
+      />
+      <label htmlFor="optionTwo">Deuxième option :</label>
+      <input
+        name="optionTwo"
+        id="optionTwo"
+        onChange={handleInputChange}
+        value={optionTwo}
+        placeholder="Ajouter une option"
+      />
       <div className="container-quizz-preview">
         <div className="container-quizz-preview-title">
           <div className="space" />
@@ -130,6 +147,8 @@ function QuizzTutorial({ setCountStepTutorial }) {
 
 QuizzTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
+  tutorialId: PropTypes.number.isRequired,
+  tutorial: PropTypes.string.isRequired,
 };
 
 export default QuizzTutorial;

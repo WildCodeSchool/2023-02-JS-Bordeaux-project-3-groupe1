@@ -30,6 +30,8 @@ CREATE TABLE `formations` (
   `iconURL` varchar(500) NOT NULL,
   `fl_status` boolean NOT NULL,
   `levelFormation_id` integer NOT NULL
+  `name` varchar(200),
+  `fl_status` boolean NOT NULL
 );
 
 CREATE TABLE `usersTutorials` (
@@ -247,6 +249,50 @@ VALUES
   (6, 1, 6, 'Facebook'),
   (6, 1, 7, 'Instagram'),
   (6, 1, 8, 'Tiktok');
+ALTER TABLE
+  usersPins
+ADD
+  CONSTRAINT fk_usersPins_users FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE
+  usersTutorials
+ADD
+  CONSTRAINT fk_usersTutorials_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
+
+ALTER TABLE
+  usersTutorials
+ADD
+  CONSTRAINT fk_usersTutorials_steps FOREIGN KEY (step_id) REFERENCES steps(id);
+
+ALTER TABLE
+  tutorialsTags
+ADD
+  CONSTRAINT fk_tutorialsTags_tags FOREIGN KEY (tag_id) REFERENCES tags(id);
+
+ALTER TABLE
+  tutorialsTags
+ADD
+  CONSTRAINT fk_tutorialsTags_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
+
+ALTER TABLE
+  tutorials
+ADD
+  CONSTRAINT fk_tutorials_formations FOREIGN KEY (formation_id) REFERENCES formations(id);
+
+ALTER TABLE `lignebleue`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tags`;
+ALTER TABLE `lignebleue`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tutorials`;
+ALTER TABLE `lignebleue`.`tutorialstags` ADD CONSTRAINT `fk_tutorialsTags_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE;
+-- ALTER TABLE
+--   tutorials
+-- ADD
+--   CONSTRAINT fk_tutorials_quizz FOREIGN KEY (quizz_id) REFERENCES quizz(id);
+
+--   ALTER TABLE
+--   formations
+-- ADD
+--   CONSTRAINT fk_formations_levelFormation FOREIGN KEY (levelFormation_id) REFERENCES levelFormations(id);
+
+--                  firebase storage
 
 INSERT INTO usersTutorials ( tutorial_id )
 VALUES 
