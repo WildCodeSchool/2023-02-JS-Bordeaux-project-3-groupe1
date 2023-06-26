@@ -37,20 +37,26 @@ function ModuleChooseTutorial({ item, steps, index }) {
       <ul
         className={isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"}
       >
-        <li>
+        <li className="StepTutorial">
           Explication
           {steps.length > 0 &&
-            (steps[index].stepOne ? <img src={chek} alt="chek" /> : null)}
+            (steps[index].stepOne ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null)}
         </li>
-        <li>
+        <li className="StepTutorial">
           Vidéo
           {steps.length > 0 &&
-            (steps[index].stepTwo ? <img src={chek} alt="chek" /> : null)}
+            (steps[index].stepTwo ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null)}
         </li>
-        <li>
+        <li className="StepTutorial">
           Quizz
           {steps.length > 0 &&
-            (steps[index].stepThree ? <img src={chek} alt="chek" /> : null)}
+            (steps[index].stepThree ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null)}
         </li>
       </ul>
     </section>
