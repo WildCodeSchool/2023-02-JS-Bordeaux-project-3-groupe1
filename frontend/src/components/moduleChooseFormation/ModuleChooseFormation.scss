@@ -1,10 +1,15 @@
 .moduleChooseFormation {
-  background-color: $app-bg;
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 150px;
-  height: 145px;
+  height: 120px;
+  background-color: $app-secondary-fonts-color-2;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  color: black;
+  padding-top: 0.5rem;
+
   @include tablet {
     width: 300px;
   }
