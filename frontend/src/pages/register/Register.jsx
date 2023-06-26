@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import visible from "../../assets/visible.png";
 import invisible from "../../assets/invisible.png";
 
@@ -7,31 +9,25 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
   const handleVisible = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case "email":
-        setEmail(value);
-        break;
-      case "password":
-        setPassword(value);
-        break;
-      case "confirmPassword":
-        setConfirmPassword(value);
-        break;
-      default:
-    }
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
-    localStorage.setItem("confirmPassword", confirmPassword);
+    const body = { email, password };
+    if (password === confirmPassword) {
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+      try {
+        await axios.post(`${import.meta.env.VITE_BASE_API}/register`, body);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.error("use the same password");
+    }
   };
 
   return (
@@ -49,8 +45,9 @@ function Register() {
                 className="input-one"
                 placeholder="pierre.lafond@gmail.com"
                 type="text"
+                required
                 value={email}
-                onChange={handleInputChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </label>
@@ -64,7 +61,8 @@ function Register() {
                 placeholder="*********"
                 type={showPassword ? "text" : "password"}
                 value={password}
-                onChange={handleInputChange}
+                required
+                onChange={(e) => setPassword(e.target.value)}
               />{" "}
               <button
                 type="button"
@@ -89,7 +87,7 @@ function Register() {
                 placeholder="*********"
                 type={showPassword ? "text" : "password"}
                 value={confirmPassword}
-                onChange={handleInputChange}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />{" "}
               <button
                 type="button"
@@ -110,7 +108,7 @@ function Register() {
           </button>
 
           <p className="register-sentence">Vous avez déjà un compte?</p>
-          <a href="/">Se connecter</a>
+          <Link to="/login">Se connecter</Link>
         </form>
       </div>
     </div>
