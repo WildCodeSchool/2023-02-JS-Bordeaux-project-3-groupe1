@@ -26,7 +26,7 @@ function Register() {
         console.error(error);
       }
     } else {
-      window.alert("use the same password");
+      console.error("use the same password");
     }
   };
 
