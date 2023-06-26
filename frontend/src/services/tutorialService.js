@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const sender = async (url, forms) => {
+export const sender = async (url, id, forms) => {
+  const tutorialId = parseInt(id, 10);
   try {
     const formData = new FormData();
     formData.append("question", forms.question);
@@ -9,13 +10,38 @@ export const sender = async (url, forms) => {
     formData.append("response", forms.answer);
     formData.append("name", forms.nameTutorial);
     formData.append("formationId", forms.idFormation);
-    formData.append("valuesTag", forms.valuesTag);
+
+    if (forms.updatedTags.length > 0) {
+      formData.append("valuesTag", forms.updatedTags);
+    } else {
+      formData.append("valuesTag", forms.valuesTag);
+    }
+
     formData.append("level", forms.levelTutorial);
     formData.append("objectif", forms.objectifTutorial);
     formData.append("explication", forms.explicationTutorial);
     formData.append("urlVideo", forms.videoUrl);
-    formData.append("file", forms.selectedFile);
+    formData.append("quizzId", forms.quizzId);
+    formData.append("tutorialId", forms.tutorialId);
+    formData.append("tagId", forms.tagId);
 
+    if (forms.selectedFile) {
+      formData.append("file", forms.selectedFile);
+    }
+
+    if (forms.selectedFileUrl.length > 0) {
+      formData.append("newFilename", forms.selectedFileUrl);
+    }
+
+    if (tutorialId !== 0 && forms.updatedTags && forms.updatedTags.length > 0) {
+      console.log("update", forms);
+      const response = await axios.put(
+        `${import.meta.env.VITE_BASE_API}/${url}/${tutorialId}`,
+        formData
+      );
+      return response.data;
+    }
+    console.log("create ", forms);
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_API}/${url}`,
       formData

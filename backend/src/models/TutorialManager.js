@@ -26,7 +26,7 @@ const getByIdTutorial = async (id) => {
 const getTutorialTagsById = async (id) => {
   try {
     const tutorialsTags = await database.query(
-      "SELECT tutorials.*, tags.id, tags.name AS nameTag FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id WHERE tutorials.id = ?",
+      "SELECT tutorials.*, tags.id AS tagID, tags.name AS nameTag FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id WHERE tutorials.id = ?",
       [id]
     );
     return tutorialsTags[0];
@@ -110,41 +110,62 @@ const createTutorialWithImage = async (tutorial) => {
 
 const updateTutorial = async (id, tutorial) => {
   try {
-    const quizzKeys = Object.keys(tutorial.quizz);
-    const quizzValues = Object.values(tutorial.quizz);
+    const {
+      question,
+      firstProposal,
+      secondProposal,
+      response,
+      name,
+      formationId,
+      valuesTag,
+      level,
+      objectif,
+      explication,
+      urlVideo,
+      newFilename,
+      quizzId,
+      tutorialId,
+    } = tutorial;
 
-    let quizzQuery = "UPDATE quizz SET ";
-    const quizzUpdateClauses = quizzKeys.map((key) => `${key} = ?`);
-    quizzQuery += quizzUpdateClauses.join(", ");
-    quizzQuery += " WHERE id = ?";
+    // update on quizz table values of the quizz
+    await QuizzManager.UpdateQuizzTutorial(tutorial);
 
-    quizzValues.push(id);
+    const tutorialQuery = `UPDATE tutorials SET formation_id = ?, quizz_id = ?, level = ?, name = ?, urlVideo = ?, pictureTuto = ?, objectif = ?, explication = ? WHERE id = ?`;
 
-    await database.query(quizzQuery, quizzValues);
+    const valuesTutorial = [
+      formationId,
+      quizzId,
+      level,
+      name,
+      urlVideo,
+      newFilename,
+      objectif,
+      explication,
+      tutorialId,
+    ];
 
-    const tutorialKeys = Object.keys(tutorial);
-    const tutorialValues = Object.values(tutorial);
+    await database.query(tutorialQuery, valuesTutorial);
 
-    let tutorialQuery = "UPDATE tutorials SET ";
-    const tutorialUpdateClauses = tutorialKeys
-      .filter((key) => key !== "quizz")
-      .map((key) => `${key} = ?`);
-    tutorialQuery += tutorialUpdateClauses.join(", ");
-    tutorialQuery += " WHERE id = ?";
-
-    tutorialValues.push(id);
-
-    await database.query(tutorialQuery, tutorialValues);
-
-    const updatedQuizz = await QuizzManager.getByIdQuizz(id);
-    const updatedTutorial = await getByIdTutorial(id);
+    await TagsManager.UpdateTagTutorial(tutorial);
 
     return {
-      updatedQuizz: updatedQuizz[0],
-      updatedTutorial: updatedTutorial[0],
+      question,
+      firstProposal,
+      secondProposal,
+      response,
+      name,
+      formationId,
+      valuesTag,
+      level,
+      objectif,
+      explication,
+      urlVideo,
+      newFilename,
+      quizzId,
+      tutorialId,
     };
   } catch (error) {
-    throw new Error("Error updating tutorial");
+    throw new Error("Error updating tutorial with image", error);
   }
 };
 

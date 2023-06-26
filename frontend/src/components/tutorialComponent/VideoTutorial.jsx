@@ -10,6 +10,8 @@ function VideoTutorial(props) {
   const [videoUrl, setVideoUrl] = useState("");
   const [isUpdate, setIsUpdate] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
   const { setCountStepTutorial, tutorialId, tutorialUrlVideo } = props;
 
   if (typeof setCountStepTutorial === "function") {
@@ -39,15 +41,21 @@ function VideoTutorial(props) {
   }, [tutorialUrlVideo, tutorialId]);
 
   const handleSaveName = () => {
+    setCountStepTutorial(4);
     const newValuesTutorial = {
       videoUrl,
     };
-    setCountStepTutorial(4);
+
     setForms((prevForms) => ({
       ...prevForms,
       ...newValuesTutorial,
     }));
   };
+
+  useEffect(() => {
+    const isValidForm = videoUrl !== "";
+    setIsValid(isValidForm);
+  }, [videoUrl]);
 
   return (
     <div className="container-createVideoTutorial">
@@ -88,7 +96,7 @@ function VideoTutorial(props) {
         </Link>
       ) : (
         <Link to="/tutorials/createTutorial">
-          <button type="button" onClick={handleSaveName}>
+          <button type="button" onClick={handleSaveName} disabled={!isValid}>
             Valider
           </button>
         </Link>

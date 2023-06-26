@@ -63,6 +63,7 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const tutorial = req.body;
+
   const { id } = req.params;
 
   try {

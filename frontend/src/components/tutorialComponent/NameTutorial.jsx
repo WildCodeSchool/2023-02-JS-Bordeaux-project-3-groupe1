@@ -18,6 +18,7 @@ function NameTutorial(props) {
   const [idFormation, setIdFormation] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
+  const [isValid, setIsValid] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     undefined !== "Utiliser ligne bleu" ? "Utiliser ligne bleu" : ""
   );
@@ -28,6 +29,7 @@ function NameTutorial(props) {
     tutorialWithtags,
     setCountStepTutorial,
     tutorialId,
+    tagId,
   } = props;
 
   if (typeof setCountStepTutorial === "function") {
@@ -149,6 +151,7 @@ function NameTutorial(props) {
       valuesTag,
       updatedTags,
       levelTutorial: parsedLevelTutorial,
+      tagId,
     };
 
     setForms((prevForms) => ({
@@ -156,6 +159,13 @@ function NameTutorial(props) {
       ...newValuesTutorial,
     }));
   };
+
+  useEffect(() => {
+    const isValidForm =
+      nameTutorial !== "" &&
+      (isUpdate ? updatedTags.length > 0 : valuesTag.length > 0);
+    setIsValid(isValidForm);
+  }, [nameTutorial, valuesTag, updatedTags, isUpdate]);
 
   return (
     <div className="container-createNameTutorial">
@@ -186,6 +196,8 @@ function NameTutorial(props) {
         </button>
       </div>
       <ul>
+        {" "}
+        Liste des tags :
         {isUpdate
           ? updatedTags?.map((tagName) => (
               <button
@@ -253,7 +265,7 @@ function NameTutorial(props) {
         </Link>
       ) : (
         <Link to="/tutorials/createTutorial">
-          <button type="button" onClick={handleSaveName}>
+          <button type="button" onClick={handleSaveName} disabled={!isValid}>
             Valider
           </button>
         </Link>
@@ -263,10 +275,11 @@ function NameTutorial(props) {
 }
 
 NameTutorial.propTypes = {
-  tutorialId: PropTypes.number.isRequired,
+  tutorialId: PropTypes.string.isRequired,
   nameTutoPlaceholder: PropTypes.string.isRequired,
   setCountStepTutorial: PropTypes.func.isRequired,
   tagTutoPlaceholder: PropTypes.string.isRequired,
+  tagId: PropTypes.number.isRequired,
   tutorialWithtags: PropTypes.arrayOf(
     PropTypes.shape({
       fqfqf: PropTypes.string,
