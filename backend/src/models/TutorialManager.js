@@ -119,7 +119,7 @@ const createTutorialWithImage = async (tutorial) => {
   }
 };
 
-const updateTutorial = async (id, tutorial) => {
+const updateTutorial = async (tutorial) => {
   try {
     const {
       question,
@@ -186,18 +186,18 @@ const deleteTutorialAndQuizzAndTags = async (id) => {
 
     await QuizzManager.deleteQuizzByTutorialId(tutorial[0].quizz_id);
 
-    const tutorialstagsQuery =
+    const tutorialtagsQuery =
       "SELECT * FROM tutorialstags WHERE tutorial_id = ?";
 
-    const [response] = await database.query(tutorialstagsQuery, [
+    const [response] = await database.query(tutorialtagsQuery, [
       tutorial[0].id,
     ]);
+
     if (response.affectedRows === 0) {
       throw new Error(`Tutorial with ID ${id} not found`);
     }
 
     await TagsManager.deleteTagsByTutorialId(response[0].tag_id);
-    // const tutorialstags = await TagsManager.deleteTutorialsTagsById(tutorial[0].id);
 
     const tutorialQuery = "DELETE tutorials.* FROM tutorials WHERE id = ?";
     const tutorialResult = await database.query(tutorialQuery, [id]);

@@ -78,11 +78,8 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const tutorial = req.body;
-
-  const { id } = req.params;
-
   try {
-    const tutorialUpdated = await TutorialManager.updateTutorial(id, tutorial);
+    const tutorialUpdated = await TutorialManager.updateTutorial(tutorial);
     if (!tutorialUpdated.updatedTutorial) {
       res.status(404).send("Tutorial not updated");
     } else {

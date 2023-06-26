@@ -34,15 +34,27 @@ function SelectTutorial(props) {
       <ul className="container-selectTutorial-preview">
         {tutorialList.map((item) => (
           <li key={item.id}>
-            <div className="container-icon">
-              <div className="icon-preview-tutorial">
-                <div className="icon-preview-tutorial-star">
-                  <img src={starGrey} alt="starGrey" />
-                  <img src={starGrey} alt="starGrey" />
+            {item?.level === 1 ? (
+              <div className="container-icon">
+                <div className="icon-preview-tutorial">
+                  <div className="icon-preview-tutorial-star">
+                    <img src={starGrey} alt="starGrey" />
+                  </div>
+                  <img src={student} alt="student" />
                 </div>
-                <img src={student} alt="student" />
               </div>
-            </div>{" "}
+            ) : (
+              <div className="container-icon">
+                <div className="icon-preview-tutorial">
+                  <div className="icon-preview-tutorial-star">
+                    <img src={starGrey} alt="starGrey" />
+                    <img src={starGrey} alt="starGrey" />
+                  </div>
+                  <img src={student} alt="student" />
+                </div>
+              </div>
+            )}
+
             <div className="container-selectTutorial-tutorialName">
               {item.name}
             </div>

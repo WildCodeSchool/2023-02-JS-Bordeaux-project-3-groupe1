@@ -28,8 +28,7 @@ CREATE TABLE `formations` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `iconURL` varchar(500) NOT NULL,
   `iconDescription` varchar(200),
-  `fl_status` boolean NOT NULL,
-  `levelFormation_id` integer NOT NULL
+  `fl_status` boolean NOT NULL
 );
 
 CREATE TABLE `usersTutorials` (
@@ -206,6 +205,9 @@ ALTER TABLE
 ADD
   CONSTRAINT fk_tutorials_formations FOREIGN KEY (formation_id) REFERENCES formations(id);
 
+ALTER TABLE `lignebleue`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tags`;
+ALTER TABLE `lignebleue`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tutorials`;
+ALTER TABLE `lignebleue`.`tutorialstags` ADD CONSTRAINT `fk_tutorialsTags_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE;
 -- ALTER TABLE
 --   tutorials
 -- ADD

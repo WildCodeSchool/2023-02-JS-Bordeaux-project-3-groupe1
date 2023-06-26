@@ -51,23 +51,8 @@ const deleteTagsByTutorialId = async (id) => {
   }
 };
 
-const deleteTutorialsTagsById = async (id) => {
-  const tutorialTagQuery =
-    "DELETE tutorialstags.* FROM tutorialstags WHERE tutorial_id = ?";
-  try {
-    const response = await database.query(tutorialTagQuery, [id]);
-    if (response.affectedRows === 0) {
-      throw new Error(`Tags with ID ${id} not found`);
-    }
-    return response;
-  } catch (error) {
-    throw new Error("Error deleting tags");
-  }
-};
-
 module.exports = {
   CreateTagTutorial,
   UpdateTagTutorial,
   deleteTagsByTutorialId,
-  deleteTutorialsTagsById,
 };
