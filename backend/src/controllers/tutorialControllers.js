@@ -80,7 +80,7 @@ const update = async (req, res) => {
   const tutorial = req.body;
   try {
     const tutorialUpdated = await TutorialManager.updateTutorial(tutorial);
-    if (!tutorialUpdated.updatedTutorial) {
+    if (!tutorialUpdated) {
       res.status(404).send("Tutorial not updated");
     } else {
       res.sendStatus(204);

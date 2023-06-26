@@ -14,7 +14,7 @@ router.put(
   "/:id",
   upload,
   uploadFirebase,
-
+  validateTutorial,
   tutorialControllers.update
 );
 router.post(
