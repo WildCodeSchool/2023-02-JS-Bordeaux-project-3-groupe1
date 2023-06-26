@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { deleteTutorial } from "../../services/tutorialService";
 import student from "../../assets/student.png";
 import starGrey from "../../assets/starGrey.png";
-import ConfirmChoiceDelete from "../modal/ConfirmChoiseDelete";
+import ConfirmChoiceDelete from "../modal/ConfirmChoiceDelete";
 
 function SelectTutorial(props) {
   const { dataTutorial } = props;
@@ -22,12 +22,6 @@ function SelectTutorial(props) {
   const handleCloseModal = () => {
     setSelectedTutorialId(null);
     setIsModalOpen(false);
-  };
-
-  const handleClickOutsideModal = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      setIsModalOpen(false);
-    }
   };
 
   const handleDeleteTutorial = () => {
@@ -53,9 +47,15 @@ function SelectTutorial(props) {
   }, [dataTutorial]);
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutsideModal);
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutsideModal);
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
 
@@ -84,7 +84,6 @@ function SelectTutorial(props) {
                 </div>
               </div>
             )}
-
             <div className="container-selectTutorial-tutorialName">
               {item.name}
             </div>
@@ -100,11 +99,13 @@ function SelectTutorial(props) {
         ))}
       </ul>
       {isModalOpen && (
-        <ConfirmChoiceDelete
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          onConfirm={handleDeleteTutorial}
-        />
+        <div ref={modalRef}>
+          <ConfirmChoiceDelete
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            onConfirm={handleDeleteTutorial}
+          />
+        </div>
       )}
     </div>
   );

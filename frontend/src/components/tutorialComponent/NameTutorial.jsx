@@ -247,16 +247,28 @@ function NameTutorial(props) {
           </option>
         ))}
       </select>
-      <div className="container-preview-tutorial">
-        <div className="icon-preview-tutorial">
-          <div className="icon-preview-tutorial-star">
-            <img src={starGrey} alt="starGrey" />
-            <img src={starGrey} alt="starGrey" />
+      {levelTutorial === 1 ? (
+        <div className="container-preview-tutorial">
+          <div className="icon-preview-tutorial">
+            <div className="icon-preview-tutorial-star">
+              <img src={starGrey} alt="starGrey" />
+            </div>
+            <img src={student} alt="student" />
           </div>
-          <img src={student} alt="student" />
+          <h3>{nameTutorial}</h3>
         </div>
-        <h3>{nameTutorial}</h3>
-      </div>
+      ) : (
+        <div className="container-preview-tutorial">
+          <div className="icon-preview-tutorial">
+            <div className="icon-preview-tutorial-star">
+              <img src={starGrey} alt="starGrey" />
+              <img src={starGrey} alt="starGrey" />
+            </div>
+            <img src={student} alt="student" />
+          </div>
+          <h3>{nameTutorial}</h3>
+        </div>
+      )}
       {isUpdate ? (
         <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
           <button type="button" onClick={handleSaveName}>

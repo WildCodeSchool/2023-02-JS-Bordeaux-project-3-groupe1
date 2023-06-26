@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function ConfirmChoiseDelete({ isOpen, onClose, onConfirm }) {
+function ConfirmChoiceDelete({ isOpen, onClose, onConfirm }) {
   const handleConfirmDelete = () => {
     onConfirm();
     onClose();
@@ -22,10 +22,10 @@ function ConfirmChoiseDelete({ isOpen, onClose, onConfirm }) {
   );
 }
 
-ConfirmChoiseDelete.propTypes = {
+ConfirmChoiceDelete.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
 };
 
-export default ConfirmChoiseDelete;
+export default ConfirmChoiceDelete;

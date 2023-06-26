@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import backCross from "../../assets/backCross.png";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
@@ -8,6 +8,7 @@ function MenuTop() {
   const { nameMenu } = useContext(NameMenuTopContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectMenu, setSelectMenu] = useState(false);
+  const modalRef = useRef(null);
 
   useEffect(() => {
     if (
@@ -19,6 +20,19 @@ function MenuTop() {
       setSelectMenu(false);
     }
   }, [nameMenu]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -50,11 +64,13 @@ function MenuTop() {
         <h2>{nameMenu}</h2>
       </div>
       {isModalOpen && selectMenu && (
-        <ConfirmBack
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          onConfirm={handleClickLink}
-        />
+        <div ref={modalRef}>
+          <ConfirmBack
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            onConfirm={handleClickLink}
+          />
+        </div>
       )}
     </>
   );

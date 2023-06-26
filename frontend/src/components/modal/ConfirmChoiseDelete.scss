@@ -1,14 +1,18 @@
 .modal-content-delete {
-  margin: 4%;
   padding: 2%;
   height: 6.5rem;
+  width: 80%;
   border-radius: 0.3rem;
-  background-color: $app-secondary-fonts-color-2;
+  background-color: $app-supporting-color;
   z-index: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .modal-actions-delete {
     padding: 4%;
