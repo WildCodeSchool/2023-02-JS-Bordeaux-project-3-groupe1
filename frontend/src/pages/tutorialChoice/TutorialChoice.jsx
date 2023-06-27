@@ -10,7 +10,6 @@ function TutorialChoice() {
   const tutorialsIdPlusOne = parseInt(id, 10) + 1;
   const { isDesktop } = useContext(IsDesktopContext);
   const [dataTutorial, setDataTutorial] = useState([]);
-  const [steps, setSetps] = useState([]);
 
   useEffect(() => {
     fetcher(`tutorialbyicon/${tutorialsIdPlusOne}`)
@@ -20,22 +19,14 @@ function TutorialChoice() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher("tutorialbyicon")
-      .then((data) => {
-        setSetps(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   }, []);
-
-  const stepsMap = steps.map((item) => ({
+  const stepsMap = dataTutorial.map((item) => ({
+    ...item,
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,
     stepThree: item.stepThree,
     total: item.stepOne + item.stepTwo + item.stepThree,
   }));
-  console.info(stepsMap);
   return (
     <main className="tutorialChoice">
       {isDesktop ? (
@@ -45,9 +36,10 @@ function TutorialChoice() {
             {dataTutorial.length > 0 ? (
               dataTutorial.map((item, index) => (
                 <ModuleChooseTutorial
-                  key={item.name}
+                  key={item.id}
                   item={item}
-                  steps={stepsMap[index]}
+                  steps={stepsMap}
+                  index={index}
                 />
               ))
             ) : (
@@ -60,7 +52,7 @@ function TutorialChoice() {
           {dataTutorial.length > 0 ? (
             dataTutorial.map((item, index) => (
               <ModuleChooseTutorial
-                key={item.name}
+                key={item.id}
                 item={item}
                 steps={stepsMap}
                 index={index}

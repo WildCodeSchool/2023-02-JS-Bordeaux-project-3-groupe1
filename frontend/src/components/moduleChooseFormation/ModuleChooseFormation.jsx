@@ -9,9 +9,9 @@ function ModuleChooseFormation({ item, index }) {
         <img
           className="iconFormationChoose"
           src={item.iconURL}
-          alt={item.iconDescription}
+          alt={item.name}
         />
-        <h3 className="textFormationChoose">{item.iconDescription}</h3>
+        <h3 className="textFormationChoose">{item.name}</h3>
       </div>
     </Link>
   );
@@ -21,14 +21,14 @@ ModuleChooseFormation.propTypes = {
   index: PropTypes.number.isRequired,
   item: PropTypes.shape({
     iconURL: PropTypes.string.isRequired,
-    iconDescription: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }),
 };
 
 ModuleChooseFormation.defaultProps = {
   item: {
     iconURL: "http://google.com",
-    iconDescription: "texte de l'icone",
+    name: "texte de l'icone",
   },
 };
 export default ModuleChooseFormation;
