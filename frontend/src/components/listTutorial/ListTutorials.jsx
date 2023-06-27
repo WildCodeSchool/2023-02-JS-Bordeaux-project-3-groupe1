@@ -5,6 +5,7 @@ import starGrey from "../../assets/starGrey.png";
 
 function ListTutorials() {
   const [tutorials, setTutorials] = useState([]);
+  const [tagsList, setTagsList] = useState([]);
 
   useEffect(() => {
     fetcher("tutorials")
@@ -15,6 +16,19 @@ function ListTutorials() {
         console.error(error);
       });
   }, []);
+
+  useEffect(() => {
+    const newTagsList = tutorials.map((item) => {
+      const tagsArray = item.nameTag.split(",").map((value) => value.trim());
+      return {
+        tutorialId: item.id,
+        tags: tagsArray,
+      };
+    });
+    setTagsList(newTagsList);
+  }, [tutorials]);
+
+  console.warn(tagsList);
 
   return (
     <div className="container-listTutorials">
