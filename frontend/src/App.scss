@@ -1,6 +1,5 @@
 @import "../src/assets/styles/variables.scss";
 @import "../src/assets/mixins/mixins.scss";
-@import "../src/components/navbar/NavBar.scss";
 
 /* ----------------------------- import Pages -------------------------------- */
 
@@ -13,6 +12,7 @@
 @import "../src/pages/parcours/Parcours.scss";
 
 /* ----------------------------- import components -------------------------------- */
+@import "../src/components/navbar/NavBar.scss";
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
