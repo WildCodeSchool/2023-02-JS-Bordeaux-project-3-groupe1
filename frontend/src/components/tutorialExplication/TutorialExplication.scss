@@ -1,0 +1,144 @@
+.container-ObjectifTutorial {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 126px);
+  width: 100vw;
+
+  .container-Objectif {
+    padding: 4% 0;
+    display: flex;
+  }
+  .container-Objectif-Title {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 45px;
+  }
+  .container-quizz-preview-title,
+  .container-video-preview-title {
+    display: none;
+  }
+  .container-button {
+    text-align: center;
+    button {
+      border: none;
+      background-color: $app-button-primary-color;
+      color: $app-secondary-fonts-color-5;
+      height: 2rem;
+      border-radius: 0.3rem;
+      width: 30%;
+    }
+    a {
+      width: 100%;
+      text-align: center;
+      margin: 10px;
+    }
+
+    .precedent {
+      background-color: $app-button-secondary-color;
+      color: $app-primary-fonts-color;
+    }
+    button:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  .pouce {
+    padding-right: 10%;
+    height: 100px;
+    width: 130px;
+  }
+  .container-Title-Tuto {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background-color: $app-corporate-color;
+    height: 2.5rem;
+    width: 100%;
+    padding-right: 10%;
+
+    .objectif {
+      color: $app-secondary-fonts-color-5;
+    }
+  }
+  .container-ObjectifText {
+    width: 45%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7rem;
+    border-radius: 5%;
+
+    p {
+      color: $app-primary-fonts-color;
+      text-align: center;
+      font-size: $app-text-size;
+    }
+  }
+}
+
+.container-Explications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 4%;
+
+  .line-yellow {
+    margin-bottom: 4%;
+    width: 100%;
+    border-top: 2px solid $app-line-color;
+    margin-top: -30px;
+  }
+  .container-Explications-preview {
+    width: 100%;
+    min-height: 12rem;
+    margin: 4%;
+    border-radius: 0.3rem;
+    flex-wrap: nowrap;
+    background-color: $app-secondary-fonts-color-2;
+
+    .container-Explications-preview-title {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: 2%;
+
+      .Space {
+        height: 20px;
+        width: 20px;
+      }
+
+      p {
+        color: $app-primary-fonts-color;
+      }
+
+      img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+
+    p:last-child {
+      padding: 4%;
+      word-wrap: break-word;
+    }
+  }
+  @include tablet {
+    .line-yellow {
+      margin-top: -83px;
+    }
+    .container-Explications-preview {
+      margin: 0;
+      min-height: 11rem;
+      width: 60%;
+    }
+    .suivant {
+      width: 20%;
+    }
+  }}
