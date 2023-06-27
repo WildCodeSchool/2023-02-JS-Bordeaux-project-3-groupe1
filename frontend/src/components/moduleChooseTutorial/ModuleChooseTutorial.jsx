@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import arrow from "../../assets/pictures/arrowTutorial.svg";
-import cap from "../../assets/pictures/cap.svg";
-import blueStars from "../../assets/pictures/blueStars.svg";
-import emptyStars from "../../assets/pictures/emptyStars.svg";
+import capGreyOneStartBlue from "../../assets/pictures/capGreyOneStartBlue.svg";
+import capBlueOneStartBlue from "../../assets/pictures/capBlueOneStartBlue.svg";
+import chek from "../../assets/pictures/chek.svg";
 
-function ModuleChooseTutorial({ isOpen, index, handleArrowClick }) {
+function ModuleChooseTutorial({ item, steps, index }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleArrowClick = () => {
+    setIsOpen(!isOpen);
+  };
+  console.info(steps);
   return (
     <section className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}>
-      <div className="tutorialStarsAndCap">
-        <img className="tutorialStars" src={blueStars} alt="#" />
-        <img className="tutorialStars" src={emptyStars} alt="#" />
-        <img className="tutorialCap" src={cap} alt="cap" />
-      </div>
-      <p className="tutorialTitle">Arrêter démarrer le téléphone</p>
+      {steps.length > 0 && (
+        <div className="tutorialStarsAndCap">
+          {steps[index].total === 3 ? (
+            <img className="tutorialCap" src={capBlueOneStartBlue} alt="cap" />
+          ) : (
+            <img className="tutorialCap" src={capGreyOneStartBlue} alt="cap" />
+          )}
+        </div>
+      )}
+      <p className="tutorialTitle">{item.name}</p>
       <button
         type="button"
         className="arrowButton"
-        onClick={() => handleArrowClick(index)}
+        onClick={() => handleArrowClick()}
       >
         <img
           className={isOpen ? "tutorialArrowUp" : "tutorialArrowDown"}
@@ -28,16 +37,34 @@ function ModuleChooseTutorial({ isOpen, index, handleArrowClick }) {
       <ul
         className={isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"}
       >
-        <li>Explication</li>
-        <li>Vidéo</li>
-        <li>Quizz</li>
+        <li className="StepTutorial">
+          Explication
+          {steps.length > 0 &&
+            (steps[index].stepOne ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null)}
+        </li>
+        <li className="StepTutorial">
+          Vidéo
+          {steps.length > 0 &&
+            (steps[index].stepTwo ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null)}
+        </li>
+        <li className="StepTutorial">
+          Quizz
+          {steps.length > 0 &&
+            (steps[index].stepThree ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null)}
+        </li>
       </ul>
     </section>
   );
 }
 ModuleChooseTutorial.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
+  item: PropTypes.string.isRequired,
+  steps: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
-  handleArrowClick: PropTypes.func.isRequired,
 };
 export default ModuleChooseTutorial;

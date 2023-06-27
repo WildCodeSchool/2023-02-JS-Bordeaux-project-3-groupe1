@@ -1,0 +1,30 @@
+.sortMyReward {
+  margin: 10px;
+  width: 100px;
+  &:nth-child(2) {
+    margin-top: 1.8rem;
+  }
+
+  .titleSortMyReward {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    margin-left: -2rem;
+    width: 169px;
+  }
+}
+
+.CircularProgressbar-path {
+  stroke: $app-corporate-color;
+}
+.CircularProgressbar-trail {
+  stroke: $app-secondary-fonts-color-2;
+}
+
+.iconFormationReward {
+  position: absolute;
+  width: 70px;
+  transform: translate(-50%, 50%);
+  left: 50%;
+  bottom: 55%;
+}

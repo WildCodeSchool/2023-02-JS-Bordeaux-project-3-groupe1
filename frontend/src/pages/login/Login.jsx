@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import visible from "../../assets/visible.png";
 import invisible from "../../assets/invisible.png";
 
@@ -88,10 +89,10 @@ function Login() {
             Inscription
           </button>
 
-          <p className="sentence">Vous avez déjà un compte?</p>
-          <a href="/" className="connection-link">
-            Connexion
-          </a>
+          <p className="sentence">Pas de compte?</p>
+          <Link to="/register" className="connection-link">
+            Créer un compte
+          </Link>
         </form>
       </div>
     </div>

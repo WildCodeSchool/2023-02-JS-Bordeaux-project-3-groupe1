@@ -1,4 +1,5 @@
 @import "../../assets/styles/variables.scss";
+@import "../../assets/mixins/mixins.scss";
 
 .footer-section {
   background-color: $app-corporate-color;
@@ -9,13 +10,25 @@
   font-size: 13px;
   font-family: $app-secondary-font;
   width: 100%;
-  height: 50px;
-  .legalNotice {
-    color: white;
-    text-decoration: none;
+  height: 45px;
+  @include phonelarge {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: space-evenly;
+    @include tablet {
+      height: 45px;
+    }
   }
-  .aboutUs {
-    color: white;
-    text-decoration: none;
+  @include tablet {
+    font-size: 20px;
   }
+}
+.legalNotice {
+  color: white;
+  text-decoration: none;
+}
+.aboutUs {
+  color: white;
+  text-decoration: none;
 }

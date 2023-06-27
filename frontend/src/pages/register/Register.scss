@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: calc(100vh - 50.4px);
+  height: calc(100vh - 45.4px);
   background-color: $app-supporting-color;
   .secondeContainer {
     display: flex;
@@ -64,13 +64,11 @@
         color: $app-corporate-color;
         margin: 0.5rem 0 0 0;
         font-weight: bold;
-        font-size: $app-text-size;
       }
       a {
         color: $app-corporate-color-2;
         text-decoration: none;
         font-weight: bold;
-        font-size: $app-text-size;
         cursor: pointer;
       }
       label {

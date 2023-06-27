@@ -1,47 +1,68 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { fetcher } from "../../services/api";
 import ModuleChooseTutorial from "../../components/moduleChooseTutorial/ModuleChooseTutorial";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import manDesk from "../../assets/pictures/manDesk.svg";
 
 function TutorialChoice() {
+  const { id } = useParams();
+  const tutorialsIdPlusOne = parseInt(id, 10) + 1;
   const { isDesktop } = useContext(IsDesktopContext);
-  const [tutorialSections, setTutorialSections] = useState(
-    [...Array(12)].map(() => false)
-  );
+  const [dataTutorial, setDataTutorial] = useState([]);
 
-  const handleArrowClick = (index) => {
-    setTutorialSections((prevSections) => {
-      const newSections = [...prevSections];
-      newSections[index] = !newSections[index];
-      return newSections;
-    });
-  };
-
+  useEffect(() => {
+    fetcher(`tutorialbyicon/${tutorialsIdPlusOne}`)
+      .then((data) => {
+        console.info(data);
+        setDataTutorial(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  const stepsMap = dataTutorial.map((item) => ({
+    ...item,
+    stepOne: item.stepOne,
+    stepTwo: item.stepTwo,
+    stepThree: item.stepThree,
+    total: item.stepOne + item.stepTwo + item.stepThree,
+  }));
   return (
     <main className="tutorialChoice">
       {isDesktop ? (
         <>
           <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
           <div className="moduleChooseTutorialDesktop">
-            {tutorialSections.map((isOpen, index) => (
-              <ModuleChooseTutorial
-                isOpen={isOpen}
-                index={index}
-                handleArrowClick={handleArrowClick}
-              />
-            ))}
+            {dataTutorial.length > 0 ? (
+              dataTutorial.map((item, index) => (
+                <ModuleChooseTutorial
+                  key={item.id}
+                  item={item}
+                  steps={stepsMap}
+                  index={index}
+                />
+              ))
+            ) : (
+              <p>Chargement de la page ...</p>
+            )}
           </div>
         </>
       ) : (
-        <>
-          {tutorialSections.map((isOpen, index) => (
-            <ModuleChooseTutorial
-              isOpen={isOpen}
-              index={index}
-              handleArrowClick={handleArrowClick}
-            />
-          ))}
-        </>
+        <div>
+          {dataTutorial.length > 0 ? (
+            dataTutorial.map((item, index) => (
+              <ModuleChooseTutorial
+                key={item.id}
+                item={item}
+                steps={stepsMap}
+                index={index}
+              />
+            ))
+          ) : (
+            <p>Chargement de la page ...</p>
+          )}
+        </div>
       )}
     </main>
   );

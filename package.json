@@ -16,6 +16,8 @@
   "scripts": {
     "postinstall": "cross-env-shell \"husky install && cd ./frontend && $npm_package_config_cli install && cd ../backend && $npm_package_config_cli install\"",
     "migrate": "cd ./backend && node migrate.js",
+    "datavalues": "cd ./backend && node datavalues.js",
+    "foreignkey": "cd ./backend && node foreignkey.js",
     "dev": "cross-env-shell 'concurrently -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"$npm_package_config_cli:dev-*\"'",
     "dev-front": "cross-env-shell \"cd ./frontend && $npm_package_config_cli run dev\"",
     "dev-back": "cross-env-shell \"cd ./backend && $npm_package_config_cli run dev\"",
@@ -33,10 +35,14 @@
   "devDependencies": {
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
+    "eslint-import-resolver-node": "^0.3.7",
     "husky": "^8.0.3"
   },
   "dependencies": {
     "argon2": "^0.30.3",
-    "react-modal": "^3.16.1"
+    "jsonwebtoken": "^9.0.0",
+    "react-circular-progressbar": "^2.1.0",
+    "react-modal": "^3.16.1",
+    "react-toastify": "^9.1.3"
   }
 }

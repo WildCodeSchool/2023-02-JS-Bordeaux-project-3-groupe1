@@ -1,24 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { IsDesktopProvider } from "./contexts/IsDesktopContext";
 import Root from "./routes/Root";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
 import PlatformTutorial from "./pages/platformTutorial/PlatformTutorial";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
-import { IsDesktopProvider } from "./contexts/IsDesktopContext";
 import LevelUser from "./pages/levelUser/LevelUser";
 import Footer from "./components/footer/Footer";
 import LegalNotice from "./pages/legalNotice/LegalNotice";
 import AboutUs from "./pages/aboutUs/AboutUs";
-import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Parcours from "./pages/parcours/Parcours";
 import Child from "./routes/Child";
-import CreateNameTutorialPage from "./pages/createTutorial/CreateNameTutorialPage";
-import CreateObjectifTutorialPage from "./pages/createTutorial/CreateObjectifTutorialPage";
-import CreateVideoTutorialPage from "./pages/createTutorial/CreateVideoTutorialPage";
+import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
+import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
+import SelectTutorialPage from "./pages/selectTutorial/SelectTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
         element: <Formation />,
       },
       {
-        path: "/formations/tutorials",
+        path: "/formations/tutorials/:id",
         element: <TutorialChoice />,
       },
       {
@@ -72,20 +74,20 @@ const router = createBrowserRouter([
     element: <Child />,
     children: [
       {
-        path: "/tutorials/createName",
-        element: <CreateNameTutorialPage />,
-      },
-      {
-        path: "/tutorials/createObjectif",
-        element: <CreateObjectifTutorialPage />,
-      },
-      {
-        path: "/tutorials/createVideo",
-        element: <CreateVideoTutorialPage />,
-      },
-      {
-        path: "/tutorials/create",
+        path: "/tutorials/createTutorial",
         element: <CreateTutorialPage />,
+      },
+      {
+        path: "/tutorials/updateTutorial/:tutorialId",
+        element: <UpdateTutorialPage />,
+      },
+      {
+        path: "/formations/:formationId",
+        element: <SelectTutorialPage />,
+      },
+      {
+        path: "/formations/parcours",
+        element: <Parcours />,
       },
     ],
   },
@@ -94,6 +96,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <IsDesktopProvider>
       <RouterProvider router={router} />
+      <ToastContainer />
     </IsDesktopProvider>
   </React.StrictMode>
 );

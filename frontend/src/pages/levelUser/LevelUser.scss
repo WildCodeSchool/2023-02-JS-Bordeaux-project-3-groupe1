@@ -1,89 +1,114 @@
 .containerLevelUser {
-  margin: 0 10%;
+  margin: 0 2rem;
   height: 100vh;
+  height: calc(100vh - 50.4px);
+
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 75px;
+  }
+  .pictureLevel {
+    width: 250px;
+    height: 200px;
+  }
 
   .levelUser {
-    font-size: $app-heading-three;
+    font-size: 1.2rem;
     font-family: $app-primary-font;
     color: $app-corporate-color;
     width: 100%;
-    display: flex;
     text-align: center;
+    padding-top: 7rem;
+    @include tablet {
+      font-size: 1.5rem;
+    }
+
+    @include desktop {
+      padding: 1rem;
+    }
   }
 
   .containerButtonLevel {
     display: flex;
     flex-direction: column;
-    margin-top: 25%;
+    margin-top: 1rem;
+    @include tablet {
+      margin-top: 1rem;
+      padding: 3rem;
+    }
+    @include desktop {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0;
+      gap: 2rem;
+      width: 100%;
+    }
 
-    .buttonLevelBeginner {
+    a {
+      width: 100%;
+    }
+
+    .buttonLevel {
+      width: 100%;
+      margin: 1rem 0;
+      padding: 1rem;
       border: 0;
-      line-height: 1.5;
-      padding: 0 20px;
-      margin-bottom: 3rem;
+      line-height: 2;
       text-align: center;
       color: $app-supporting-color;
       border-radius: 10px;
-      background-color: $app-corporate-color;
+      background-color: $app-secondary-fonts-color-2;
       box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
         inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-
-      .wordBeginner {
-        text-align: start;
-        font-family: $app-secondary-font;
+      font-size: 1.4rem;
+      @include tablet {
+      }
+      @include desktop {
+        &:hover {
+          background-color: $app-corporate-color;
+          .word,
+          .sentence {
+            color: $app-secondary-fonts-color-50;
+          }
+        }
       }
 
-      .sentenceBeginner {
+      .word {
         text-align: start;
         font-family: $app-secondary-font;
-        font-size: $app-text-size;
+        color: $app-corporate-color;
       }
-      .levelBeginner {
+
+      .sentence {
+        text-align: start;
+        font-family: $app-secondary-font;
+        font-size: 1rem;
+        color: $app-supporting-color-2;
+        @include desktop {
+          font-size: 1rem;
+        }
+      }
+
+      .level {
         display: flex;
         position: relative;
       }
 
       .hatLevel {
         position: absolute;
-        right: 3%;
+        right: 0;
+        top: -5px;
         height: 50px;
-        top: 11px;
       }
-    }
-
-    .buttonLevelIntermediate {
-      border: 0;
-      line-height: 1.5;
-      padding: 0 20px;
-      text-align: center;
-      color: $app-supporting-color;
-      border-radius: 10px;
-      background-color: $app-bg;
-      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-
-      .wordIntermediate {
-        text-align: start;
-        font-family: $app-secondary-font;
-        color: $app-corporate-color;
-      }
-
-      .levelIntermediate {
-        position: relative;
-        display: flex;
-      }
-
       .hatLevel2 {
         position: absolute;
-        right: 3%;
+        right: 0;
+        top: -5px;
         height: 50px;
-        top: 11px;
-      }
-      .sentenceIntermediate {
-        text-align: start;
-        font-family: $app-secondary-font;
-        font-size: $app-text-size;
-        color: $app-supporting-color-2;
       }
     }
   }
