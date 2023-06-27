@@ -21,6 +21,7 @@ import Child from "./routes/Child";
 import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
 import SelectTutorialPage from "./pages/selectTutorial/SelectTutorialPage";
+import SearchPage from "./pages/search/SearchPage";
 import Profile from "./pages/profile/Profile";
 
 const router = createBrowserRouter([
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/formations/parcours",
         element: <Parcours />,
+      },
+      {
+        path: "/search",
+        element: <SearchPage />,
       },
     ],
   },
