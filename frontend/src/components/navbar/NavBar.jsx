@@ -10,6 +10,7 @@ function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
   const handleShowLinks = () => {
     setShowLinks(!showLinks);
+    console.info("menuBuger showLink");
   };
 
   const user = {
@@ -66,11 +67,13 @@ function Navbar() {
       </div>
       <ul className="navbar_links">
         {(!isLoggedIn || user.role === "user") && (
-          <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Choisir une formation
-            </a>
-          </li>
+          <Link
+            className="navbar_link"
+            onClick={() => handleShowLinks()}
+            to="/formations"
+          >
+            <li className="navbar_item">Choisir une formation</li>
+          </Link>
         )}
         {isLoggedIn && user.role === "admin" && (
           <li className="navbar_item">
@@ -111,11 +114,9 @@ function Navbar() {
         </li>
 
         {isLoggedIn && user.role !== "admin" && (
-          <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Mon parcours
-            </a>
-          </li>
+          <Link className="navbar_link" to="/formations/parcours">
+            <li className="navbar_item">Mon parcours</li>
+          </Link>
         )}
         {isLoggedIn && (
           <li className="navbar_item">
