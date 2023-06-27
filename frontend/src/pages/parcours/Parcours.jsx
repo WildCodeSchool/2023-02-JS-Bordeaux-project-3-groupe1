@@ -30,7 +30,6 @@ function Parcours() {
   const [selectionSection, setSelectionSection] = useState(
     buttonSortTextSections[3].section
   );
-  console.info(selectionSection);
   const handleClickSections = (item) => {
     setSelectionSection(item);
   };
@@ -42,7 +41,7 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher("tutorialbyicon")
+    fetcher(`tutorialbyicon`)
       .then((data) => {
         setTutorialByIcon(data);
       })
@@ -50,6 +49,7 @@ function Parcours() {
         console.error(error);
       });
   }, []);
+
   const steps = tutorialByIcon.map((item) => ({
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,
@@ -102,7 +102,7 @@ function Parcours() {
                     nameTutorial={icon.name}
                     index={index}
                     progress={steps[index].total}
-                    key={icon.name}
+                    key={icon.id}
                     selectionSection={selectionSection}
                     sectionNumber={1}
                   />
@@ -127,7 +127,7 @@ function Parcours() {
                     nameTutorial={icon.name}
                     index={index}
                     progress={steps[index].total}
-                    key={icon.name}
+                    key={icon.id}
                     selectionSection={selectionSection}
                     sectionNumber={2}
                   />
@@ -152,7 +152,7 @@ function Parcours() {
                     nameTutorial={icon.name}
                     index={index}
                     progress={steps[index].total}
-                    key={icon.name}
+                    key={icon.id}
                     selectionSection={selectionSection}
                     sectionNumber={3}
                   />
@@ -175,7 +175,7 @@ function Parcours() {
                 nameTutorial={icon.name}
                 index={index}
                 progress={steps[index].total}
-                key={icon.name}
+                key={icon.id}
                 selectionSection={selectionSection}
                 sectionNumber={4}
               />
