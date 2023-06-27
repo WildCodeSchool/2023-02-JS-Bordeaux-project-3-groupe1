@@ -8,6 +8,7 @@ function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
   const [tagTutoPlaceholder] = useState("Ajouter les tags");
   const [tutorialWithtags, setTutorialtags] = useState([]);
   const [updateNameFormation, setUpdateNameFormation] = useState(0);
+  const [tagId, setTagId] = useState(0);
 
   useEffect(() => {
     fetcherTags("tutorials/WithTags", tutorialId)
@@ -23,6 +24,7 @@ function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
     if (tutorialWithtags?.length !== 0) {
       setNameTutoPlaceholder(tutorialWithtags[0]?.name);
       setUpdateNameFormation(tutorialWithtags[0]?.formation_id);
+      setTagId(tutorialWithtags[0]?.tagID);
     } else {
       setNameTutoPlaceholder("Modifier le nom du tutoriel");
     }
@@ -37,6 +39,7 @@ function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
         updateNameFormation={updateNameFormation}
         setCountStepTutorial={setCountStepTutorial}
         tutorialId={tutorialId}
+        tagId={tagId}
       />
     </div>
   );
@@ -44,7 +47,7 @@ function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
 
 UpdateNameTutorial.propTypes = {
   setCountStepTutorial: PropTypes.func.isRequired,
-  tutorialId: PropTypes.number.isRequired,
+  tutorialId: PropTypes.string.isRequired,
 };
 
 export default UpdateNameTutorial;

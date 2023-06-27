@@ -13,6 +13,21 @@ const getAll = async (req, res) => {
   }
 };
 
+const getAllByFormation = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const tutorialsByFormation =
+      await TutorialManager.getAllTutorialsByFormation(id);
+    if (tutorialsByFormation.length === 0) {
+      res.status(404).send("No tutorials found");
+    } else {
+      res.status(200).send(tutorialsByFormation);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 const getOne = async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,11 +78,9 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   const tutorial = req.body;
-  const { id } = req.params;
-
   try {
-    const tutorialUpdated = await TutorialManager.updateTutorial(id, tutorial);
-    if (!tutorialUpdated.updatedTutorial) {
+    const tutorialUpdated = await TutorialManager.updateTutorial(tutorial);
+    if (!tutorialUpdated) {
       res.status(404).send("Tutorial not updated");
     } else {
       res.sendStatus(204);
@@ -80,7 +93,9 @@ const update = async (req, res) => {
 const destroy = async (req, res) => {
   try {
     const { id } = req.params;
-    const tutorialDeleted = await TutorialManager.deleteTutorialAndQuizz(id);
+    const tutorialDeleted = await TutorialManager.deleteTutorialAndQuizzAndTags(
+      id
+    );
     if (tutorialDeleted.affectedRows === 0) {
       res.status(404).send("Tutorial not deleted");
     } else {
@@ -91,4 +106,12 @@ const destroy = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getOne, getTutorialTag, update, create, destroy };
+module.exports = {
+  getAll,
+  getAllByFormation,
+  getOne,
+  getTutorialTag,
+  update,
+  create,
+  destroy,
+};

@@ -21,9 +21,9 @@ function UpdateObjectifTutorial({ setCountStepTutorial, tutorialId }) {
 
   useEffect(() => {
     if (tutorial?.length !== 0) {
-      setTutorialObjectif(tutorial[0].objectif);
-      setTutorialExplication(tutorial[0].explication);
-      setTutorialImage(tutorial.url);
+      setTutorialObjectif(tutorial.objectif);
+      setTutorialExplication(tutorial.explication);
+      setTutorialImage(tutorial.pictureTuto);
     }
   }, [tutorial]);
 

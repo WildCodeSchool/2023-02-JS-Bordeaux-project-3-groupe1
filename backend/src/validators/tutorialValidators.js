@@ -12,7 +12,16 @@ const validateTutorial = [
   body("response").notEmpty().isLength({ max: 5000 }).isString(),
   body("secondProposal").notEmpty().isLength({ max: 5000 }).isString(),
   body("urlVideo").notEmpty().isLength({ max: 5000 }).isString(),
-  body("valuesTag").notEmpty().isLength({ max: 255 }).isString(),
+
+  body("valuesTag").custom((value, { req }) => {
+    if (value) {
+      return true;
+    }
+    if (req.body.updatedTags) {
+      return true;
+    }
+    throw new Error("valuesTag or updatedTags is required");
+  }),
 
   (req, res, next) => {
     const errors = validationResult(req);

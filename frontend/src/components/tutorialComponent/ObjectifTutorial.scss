@@ -1,5 +1,3 @@
-@import "../../assets/styles/variables.scss";
-
 .container-createObjectifTutorial {
   display: flex;
   flex-direction: column;
@@ -9,10 +7,6 @@
   .container-objectif {
     padding: 4% 0;
     display: flex;
-
-    textarea {
-      resize: none;
-    }
 
     .container-objectif-title {
       height: 100%;
@@ -49,18 +43,25 @@
       width: 45%;
       margin: auto;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 7rem;
+      height: 9rem;
       border-radius: 5%;
       background-color: $app-secondary-fonts-color-2;
+
+      label {
+        padding: 4%;
+      }
+
       textarea {
         width: 90%;
-        height: 5rem;
+        min-height: 7rem;
         border: none;
         background-color: transparent;
         white-space: normal;
         color: $app-secondary-fonts-color;
+        resize: none;
       }
     }
   }
@@ -97,8 +98,6 @@
 
       p {
         width: 70%;
-        padding-left: 4%;
-        color: $app-secondary-fonts-color;
       }
 
       label {
@@ -120,6 +119,7 @@
       min-height: 8rem;
       margin: 4%;
       border-radius: 0.3rem;
+      resize: vertical;
 
       .container-explications-preview-title {
         display: flex;
@@ -145,17 +145,30 @@
       .container-explications-preview-img {
         width: 100%;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
 
         img {
           height: 100px;
           width: 100px;
         }
-      }
 
-      p:last-child {
-        padding: 4%;
-        word-wrap: break-word;
+        label {
+          padding-top: 4%;
+          width: 90%;
+        }
+
+        textarea {
+          margin: 4%;
+          width: 90%;
+          min-height: 5rem;
+          height: "auto";
+          border: none;
+          background-color: transparent;
+          white-space: normal;
+          resize: none;
+          overflow: hidden;
+        }
       }
     }
   }
@@ -165,7 +178,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 4%;
+    margin-bottom: 4%;
 
     button {
       border: none;

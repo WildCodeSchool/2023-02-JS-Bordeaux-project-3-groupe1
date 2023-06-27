@@ -9,9 +9,24 @@
   align-items: center;
   color: $app-secondary-fonts-color-5;
 
-  img {
-    width: 1.5rem;
-    height: 1.5rem;
+  button {
+    background-color: transparent;
+    border: none;
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  a {
+    background-color: transparent;
+    border: none;
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
   h2 {

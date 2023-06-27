@@ -26,10 +26,12 @@ CREATE TABLE `levelFormations` (
 
 CREATE TABLE `formations` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `name` varchar(200), -- iconDescription
   `iconURL` varchar(500) NOT NULL,
-  `iconDescription` varchar(200),
   `fl_status` boolean NOT NULL,
   `levelFormation_id` integer NOT NULL
+  `name` varchar(200),
+  `fl_status` boolean NOT NULL
 );
 
 CREATE TABLE `usersTutorials` (
@@ -53,6 +55,7 @@ CREATE TABLE `tutorials` (
 
 CREATE TABLE `steps` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `step_user_id` integer NOT NULL,
   `stepOne` boolean,
   `stepTwo` boolean,
   `stepThree` boolean
@@ -88,28 +91,94 @@ CREATE TABLE `usersPins` (
 
 -- --                  firebase storage
 
-INSERT INTO
-  `tutorials` (formation_id, level, quizz_id, name)
+
+ALTER TABLE
+  usersTutorials
+ADD
+  CONSTRAINT fk_usersTutorials_users FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE;
+
+ALTER TABLE
+usersTutorials
+ADD
+  CONSTRAINT kf_usersTutorials_users FOREIGN KEY (step_id) REFERENCES users(id) ON UPDATE CASCADE;
+
+ALTER TABLE
+steps
+ADD
+  CONSTRAINT fk_steps_usersTutorials FOREIGN KEY (step_user_id) REFERENCES usersTutorials(step_id) ON UPDATE CASCADE;
+
+ALTER TABLE
+  users
+ADD
+  CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id);
+
+-- 
+ALTER TABLE
+  usersPins
+ADD
+  CONSTRAINT fk_usersPins_pins FOREIGN KEY (pin_id) REFERENCES pins(id);
+
+ALTER TABLE
+  usersPins
+ADD
+  CONSTRAINT fk_usersPins_users FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE
+  usersTutorials
+ADD
+  CONSTRAINT fk_usersTutorials_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
+
+-- ALTER TABLE
+--   usersTutorials
+-- ADD
+--   CONSTRAINT fk_usersTutorials_steps FOREIGN KEY (step_id) REFERENCES steps(id);
+
+ALTER TABLE
+  tutorialsTags
+ADD
+  CONSTRAINT fk_tutorialsTags_tags FOREIGN KEY (tag_id) REFERENCES tags(id);
+
+ALTER TABLE
+  tutorialsTags
+ADD
+  CONSTRAINT fk_tutorialsTags_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
+
+ALTER TABLE
+  tutorials
+ADD
+  CONSTRAINT fk_tutorials_formations FOREIGN KEY (formation_id) REFERENCES formations(id);
+
+-- ALTER TABLE
+--   tutorials
+-- ADD
+--   CONSTRAINT fk_tutorials_quizz FOREIGN KEY (quizz_id) REFERENCES quizz(id);
+
+--   ALTER TABLE
+--   formations
+-- ADD
+--   CONSTRAINT fk_formations_levelFormation FOREIGN KEY (levelFormation_id) REFERENCES levelFormations(id);
+
+
+-- UPDATE table_enfant
+-- SET colonne_enfant = (SELECT colonne_parente FROM table_parente WHERE table_parente.id = table_enfant.id)
+
+
+INSERT INTO 
+    roles (name)
 VALUES
-  (2, 1, 1, 'Arrêter/démarrer le téléphone'),
-  (2, 1, 2, 'Utiliser un QR code'),
-  (2, 1, 3, 'Manipuler un écran tactile'),
-  (2, 1, 4, 'Téléphoner'),
-  (2, 1, 5, 'Différence: SMS, mail, message'),
-  (2, 1, 6, 'Envoyer et recevoir un SMS'),
-  (2, 1, 7, 'Gestion des contacts'),
-  (2, 1, 8, 'Lexicologie Android'),
-  (6, 1, 1, 'Faire une photo ou une vidéo'),
-  (6, 1, 2, 'Partager une photo ou une vidéo'),
-  (6, 1, 3, 'Écouter de la musique'),
-  (6, 1, 4, 'Regarder des vidéos'),
-  (6, 1, 5, 'Jouer'),
-  (6, 1, 6, 'Facebook'),
-  (6, 1, 7, 'Instagram'),
-  (6, 1, 8, 'Tiktok');
+('testnumberone'),
+('testnumberTwo'),
+('testnumberThree');
+
+INSERT INTO 
+    users(role_id, level, email)
+VALUES 
+(1, 1, 'gabyOne@gmail.com'),
+(1, 1, 'laetiTwo@gmail.com'),
+(1, 1, 'eleaThree@gmail.com');
 
 INSERT INTO
-  formations (iconURL, iconDescription)
+  formations (iconURL, name)
 VALUES
   (
     'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fgridicons_phone.svg?alt=media&token=b85fa5ee-a833-4ce1-8b28-2a1c8aa14f99&_gl=1*1mp7uoc*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxODc1OS4wLjAuMA..',
@@ -129,7 +198,7 @@ VALUES
   ),
   (
     'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fmaterial-symbols_security.svg?alt=media&token=c35b77b1-1c0f-4433-a76e-9e28211fc7fe&_gl=1*tv4z9o*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxOTA2MS4wLjAuMA..',
-    'Utiliser mon telephone en sécurité'
+    'Utiliser mon téléphone en sécurité'
   ),
   (
     'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fic_round-music-note.svg?alt=media&token=6b8b6256-dc56-4e96-8441-50baef9ad6a5&_gl=1*ayfkjy*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxOTA4OS4wLjAuMA..',
@@ -160,22 +229,26 @@ VALUES
     'Tous les tutos'
   );
 
-ALTER TABLE
-  usersTutorials
-ADD
-  CONSTRAINT fk_usersTutorials_users FOREIGN KEY (user_id) REFERENCES users(id);
 
-ALTER TABLE
-  users
-ADD
-  CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id);
-
--- 
-ALTER TABLE
-  usersPins
-ADD
-  CONSTRAINT fk_usersPins_pins FOREIGN KEY (pin_id) REFERENCES pins(id);
-
+INSERT INTO
+  `tutorials` (formation_id, level, quizz_id, name)
+VALUES
+  (2, 1, 1, 'Arrêter/démarrer le téléphone'),
+  (2, 1, 2, 'Utiliser un QR code'),
+  (2, 1, 3, 'Manipuler un écran tactile'),
+  (2, 1, 4, 'Téléphoner'),
+  (2, 1, 5, 'Différence: SMS, mail, message'),
+  (2, 1, 6, 'Envoyer et recevoir un SMS'),
+  (2, 1, 7, 'Gestion des contacts'),
+  (2, 1, 8, 'Lexicologie Android'),
+  (6, 1, 1, 'Faire une photo ou une vidéo'),
+  (6, 1, 2, 'Partager une photo ou une vidéo'),
+  (6, 1, 3, 'Écouter de la musique'),
+  (6, 1, 4, 'Regarder des vidéos'),
+  (6, 1, 5, 'Jouer'),
+  (6, 1, 6, 'Facebook'),
+  (6, 1, 7, 'Instagram'),
+  (6, 1, 8, 'Tiktok');
 ALTER TABLE
   usersPins
 ADD
@@ -206,6 +279,9 @@ ALTER TABLE
 ADD
   CONSTRAINT fk_tutorials_formations FOREIGN KEY (formation_id) REFERENCES formations(id);
 
+ALTER TABLE `lignebleue`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tags`;
+ALTER TABLE `lignebleue`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tutorials`;
+ALTER TABLE `lignebleue`.`tutorialstags` ADD CONSTRAINT `fk_tutorialsTags_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE;
 -- ALTER TABLE
 --   tutorials
 -- ADD
@@ -218,25 +294,24 @@ ADD
 
 --                  firebase storage
 
-INSERT INTO usersTutorials (user_id, tutorial_id, step_id
-)
+INSERT INTO usersTutorials ( tutorial_id )
 VALUES 
-(1,1,1),
-(2,2,2),
-(3,3,3),
-(4,4,4),
-(5,5,5),
-(6,6,6),
-(7,7,7),
-(8,8,8),
-(9,9,9),
-(10,10,10),
-(11,11,11),
-(12,12,12),
-(13,13,13),
-(14,14,14),
-(15,15,15),
-(16,16,16);
+(2),
+(2),
+(2),
+(2),
+(2),
+(2),
+(2),
+(2),
+(2),
+(6),
+(6),
+(6),
+(6),
+(6),
+(6),
+(6);
 
 INSERT INTO steps (stepOne, stepTwo, stepThree)
 VALUES

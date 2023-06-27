@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
@@ -18,6 +20,7 @@ import Parcours from "./pages/parcours/Parcours";
 import Child from "./routes/Child";
 import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
+import SelectTutorialPage from "./pages/selectTutorial/SelectTutorialPage";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +36,7 @@ const router = createBrowserRouter([
         element: <Formation />,
       },
       {
-        path: "/formations/tutorials",
+        path: "/formations/tutorials/:id",
         element: <TutorialChoice />,
       },
       {
@@ -79,6 +82,10 @@ const router = createBrowserRouter([
         element: <UpdateTutorialPage />,
       },
       {
+        path: "/formations/:formationId",
+        element: <SelectTutorialPage />,
+      },
+      {
         path: "/formations/parcours",
         element: <Parcours />,
       },
@@ -89,6 +96,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <IsDesktopProvider>
       <RouterProvider router={router} />
+      <ToastContainer />
     </IsDesktopProvider>
   </React.StrictMode>
 );

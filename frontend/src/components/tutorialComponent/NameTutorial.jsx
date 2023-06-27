@@ -18,6 +18,7 @@ function NameTutorial(props) {
   const [idFormation, setIdFormation] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
+  const [isValid, setIsValid] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     undefined !== "Utiliser ligne bleu" ? "Utiliser ligne bleu" : ""
   );
@@ -28,6 +29,7 @@ function NameTutorial(props) {
     tutorialWithtags,
     setCountStepTutorial,
     tutorialId,
+    tagId,
   } = props;
 
   if (typeof setCountStepTutorial === "function") {
@@ -149,6 +151,7 @@ function NameTutorial(props) {
       valuesTag,
       updatedTags,
       levelTutorial: parsedLevelTutorial,
+      tagId,
     };
 
     setForms((prevForms) => ({
@@ -157,8 +160,16 @@ function NameTutorial(props) {
     }));
   };
 
+  useEffect(() => {
+    const isValidForm =
+      nameTutorial !== "" &&
+      (isUpdate ? updatedTags.length > 0 : valuesTag.length > 0);
+    setIsValid(isValidForm);
+  }, [nameTutorial, valuesTag, updatedTags, isUpdate]);
+
   return (
     <div className="container-createNameTutorial">
+      <label htmlFor="nameTutorial">Nom du tutorial :</label>
       <input
         type="text"
         name="nameTutorial"
@@ -168,6 +179,8 @@ function NameTutorial(props) {
         placeholder={nameTutoPlaceholder}
         required
       />
+      <label htmlFor="tagTutorial">{tagTutoPlaceholder}</label>
+
       <div className="container-input-tag">
         <input
           type="text"
@@ -183,6 +196,8 @@ function NameTutorial(props) {
         </button>
       </div>
       <ul>
+        {" "}
+        Liste des tags :
         {isUpdate
           ? updatedTags?.map((tagName) => (
               <button
@@ -220,27 +235,40 @@ function NameTutorial(props) {
           )}
         </div>
       </div>
+      <p>Choisissez votre formation :</p>
       <select
-        value={selectedValue}
+        value={selectedValue ?? undefined}
         onChange={(e) => setSelectedValue(e.target.value)}
       >
-        <option value={selectedValue}>{selectedValue}</option>
+        <option value={selectedValue ?? undefined}>{selectedValue}</option>
         {filteredValues.map((value) => (
           <option key={value} value={value}>
             {value}
           </option>
         ))}
       </select>
-      <div className="container-preview-tutorial">
-        <div className="icon-preview-tutorial">
-          <div className="icon-preview-tutorial-star">
-            <img src={starGrey} alt="starGrey" />
-            <img src={starGrey} alt="starGrey" />
+      {levelTutorial === 1 ? (
+        <div className="container-preview-tutorial">
+          <div className="icon-preview-tutorial">
+            <div className="icon-preview-tutorial-star">
+              <img src={starGrey} alt="starGrey" />
+            </div>
+            <img src={student} alt="student" />
           </div>
-          <img src={student} alt="student" />
+          <h3>{nameTutorial}</h3>
         </div>
-        <h3>{nameTutorial}</h3>
-      </div>
+      ) : (
+        <div className="container-preview-tutorial">
+          <div className="icon-preview-tutorial">
+            <div className="icon-preview-tutorial-star">
+              <img src={starGrey} alt="starGrey" />
+              <img src={starGrey} alt="starGrey" />
+            </div>
+            <img src={student} alt="student" />
+          </div>
+          <h3>{nameTutorial}</h3>
+        </div>
+      )}
       {isUpdate ? (
         <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
           <button type="button" onClick={handleSaveName}>
@@ -249,7 +277,7 @@ function NameTutorial(props) {
         </Link>
       ) : (
         <Link to="/tutorials/createTutorial">
-          <button type="button" onClick={handleSaveName}>
+          <button type="button" onClick={handleSaveName} disabled={!isValid}>
             Valider
           </button>
         </Link>
@@ -259,10 +287,11 @@ function NameTutorial(props) {
 }
 
 NameTutorial.propTypes = {
-  tutorialId: PropTypes.number.isRequired,
+  tutorialId: PropTypes.string.isRequired,
   nameTutoPlaceholder: PropTypes.string.isRequired,
   setCountStepTutorial: PropTypes.func.isRequired,
   tagTutoPlaceholder: PropTypes.string.isRequired,
+  tagId: PropTypes.number.isRequired,
   tutorialWithtags: PropTypes.arrayOf(
     PropTypes.shape({
       fqfqf: PropTypes.string,
