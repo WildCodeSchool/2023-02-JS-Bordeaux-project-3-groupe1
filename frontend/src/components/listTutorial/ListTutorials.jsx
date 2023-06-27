@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { fetcher } from "../../services/api";
 import student from "../../assets/student.png";
 import starGrey from "../../assets/starGrey.png";
 
-function ListTutorials() {
+function ListTutorials({ search }) {
   const [tutorials, setTutorials] = useState([]);
 
   useEffect(() => {
@@ -16,10 +17,17 @@ function ListTutorials() {
       });
   }, []);
 
+  const filteredTutorials = tutorials.filter((item) => {
+    const tagsArray = item.nameTag.split(",").map((value) => value.trim());
+    return tagsArray.some((tag) =>
+      tag.toLowerCase().includes(search.toLowerCase())
+    );
+  });
+
   return (
     <div className="container-listTutorials">
       <ul className="container-listTutorials-preview">
-        {tutorials.map((item) => (
+        {filteredTutorials.map((item) => (
           <li key={item.id}>
             {item?.level === 1 ? (
               <div className="container-icon">
@@ -50,5 +58,9 @@ function ListTutorials() {
     </div>
   );
 }
+
+ListTutorials.propTypes = {
+  search: PropTypes.string.isRequired,
+};
 
 export default ListTutorials;
