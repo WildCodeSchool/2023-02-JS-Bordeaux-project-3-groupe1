@@ -25,7 +25,7 @@ const getAllTutorialsByFormation = async (id) => {
 const getByIdTutorial = async (id) => {
   try {
     const tutorial = await database.query(
-      "SELECT tutorials.*, quizz.* FROM tutorials LEFT JOIN quizz ON tutorials.quizz_id = quizz.id WHERE tutorials.id = ?",
+      "SELECT tutorials.*, tutorials.id AS tutoID, quizz.* FROM tutorials LEFT JOIN quizz ON tutorials.quizz_id = quizz.id WHERE tutorials.id = ?",
       [id]
     );
     return tutorial[0];

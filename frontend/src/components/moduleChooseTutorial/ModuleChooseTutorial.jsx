@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import arrow from "../../assets/pictures/arrowTutorial.svg";
 import capGreyOneStartBlue from "../../assets/pictures/capGreyOneStartBlue.svg";
@@ -10,7 +11,6 @@ function ModuleChooseTutorial({ item, steps, index }) {
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
   };
-  console.info(steps);
   return (
     <section className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}>
       {steps.length > 0 && (
@@ -37,13 +37,15 @@ function ModuleChooseTutorial({ item, steps, index }) {
       <ul
         className={isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"}
       >
-        <li className="StepTutorial">
-          Explication
-          {steps.length > 0 &&
-            (steps[index].stepOne ? (
-              <img className="checkStepTutorial" src={chek} alt="chek" />
-            ) : null)}
-        </li>
+        <Link to={`/formations/tutorials/explication/${item.tutoID}`}>
+          <li className="StepTutorial">
+            Explication
+            {steps.length > 0 &&
+              (steps[index].stepOne ? (
+                <img className="checkStepTutorial" src={chek} alt="chek" />
+              ) : null)}
+          </li>
+        </Link>
         <li className="StepTutorial">
           Vidéo
           {steps.length > 0 &&
