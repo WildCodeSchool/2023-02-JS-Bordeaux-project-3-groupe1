@@ -294,7 +294,6 @@ NameTutorial.propTypes = {
   tagId: PropTypes.number.isRequired,
   tutorialWithtags: PropTypes.arrayOf(
     PropTypes.shape({
-      fqfqf: PropTypes.string,
       formation_id: PropTypes.number,
       id: PropTypes.number,
       level: PropTypes.number,
