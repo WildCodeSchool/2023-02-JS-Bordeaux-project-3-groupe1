@@ -10,7 +10,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
   };
-
+  console.info(steps);
   return (
     <section className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}>
       {steps.length > 0 && (

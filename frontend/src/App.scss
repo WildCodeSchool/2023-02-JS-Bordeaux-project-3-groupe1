@@ -1,8 +1,7 @@
 @import "../src/assets/styles/variables.scss";
 @import "../src/assets/mixins/mixins.scss";
-@import "../src/components/navbar/NavBar.scss";
 
-/* ----------------------------- import Pages -------------------------------- */
+/* -----------------------------import Pages -------------------------------- */
 
 @import "../src/pages/formation/Formation.scss";
 @import "../src/pages/tutorialChoice/TutorialChoice.scss";
@@ -11,15 +10,20 @@
 @import "../src/pages/login/Login.scss";
 @import "../src/pages/register/Register.scss";
 @import "../src/pages/parcours/Parcours.scss";
-@import "../src/pages/profile/Profile.scss";
 
-/* ----------------------------- import components -------------------------------- */
+/* -----------------------------import components -------------------------------- */
+
+@import "../src/components/navbar/NavBar.scss";
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
+@import "../src/components/createTutorial/CreateNameTutorial.scss";
+@import "../src/components/menuTop/MenuTop.scss";
+@import "../src/components/createTutorial/CreateObjectifTutorial.scss";
+@import "../src/components/createTutorial/CreateVideoTutorial.scss";
+@import "../src/components/tutorialExplication/TutorialExplication.scss";
 @import "../src/components/myReward/MyReward.scss";
 @import "../src/components/sortMyReward/SortMyReward.scss";
-@import "../src/components/menuTop/MenuTop.scss";
 @import "../src/components/tutorialComponent/NameTutorial.scss";
 @import "../src/components/tutorialComponent/ObjectifTutorial.scss";
 @import "../src/components/tutorialComponent/VideoTutorial.scss";
@@ -52,9 +56,9 @@ textarea,
 select,
 button,
 ul,
-li,
-a {
+li {
   font-family: $app-secondary-font;
+  font-weight: 600;
 }
 
 li {
