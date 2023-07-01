@@ -1,4 +1,3 @@
-
 @import "../src/assets/styles/variables.scss";
 @import "../src/assets/mixins/mixins.scss";
 
@@ -10,6 +9,7 @@
 @import "../src/pages/levelUser/LevelUser.scss";
 @import "../src/pages/login/Login.scss";
 @import "../src/pages/register/Register.scss";
+@import "../src/pages/parcours/Parcours.scss";
 
 /* -----------------------------import components -------------------------------- */
 
@@ -17,11 +17,17 @@
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
 @import "../src/components/moduleChooseTutorial/ModuleChooseTutorial.scss";
 @import "../src/components/footer/Footer.scss";
-@import "../src/components/createTutorial/CreateNameTutorial.scss";
 @import "../src/components/menuTop/MenuTop.scss";
-@import "../src/components/createTutorial/CreateObjectifTutorial.scss";
-@import "../src/components/createTutorial/CreateVideoTutorial.scss";
 @import "../src/components/tutorialExplication/TutorialExplication.scss";
+@import "../src/components/myReward/MyReward.scss";
+@import "../src/components/sortMyReward/SortMyReward.scss";
+@import "../src/components/tutorialComponent/NameTutorial.scss";
+@import "../src/components/tutorialComponent/ObjectifTutorial.scss";
+@import "../src/components/tutorialComponent/VideoTutorial.scss";
+@import "../src/components/tutorialComponent/QuizzTutorial.scss";
+@import "../src/components/selectTutorial/SelectTutorial.scss";
+@import "../src/components/modal/ConfirmBack.scss";
+@import "../src/components/modal/ConfirmChoiseDelete.scss";
 
 * {
   margin: 0;
@@ -56,3 +62,6 @@ li {
   list-style: none;
 }
 
+// .titleNameMenu { à modifier je laisse commenté pour l'instant
+//   color: yellow;
+// }
