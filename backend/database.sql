@@ -26,7 +26,7 @@ CREATE TABLE `levelFormations` (
 
 CREATE TABLE `formations` (
   `id` integer PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(200), -- iconDescription
+  `name` varchar(200),
   `iconURL` varchar(500) NOT NULL,
   `fl_status` boolean NOT NULL,
   `levelFormation_id` integer NOT NULL

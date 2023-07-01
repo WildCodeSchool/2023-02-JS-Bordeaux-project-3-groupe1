@@ -4,7 +4,9 @@ const TagsManager = require("./TagsManager");
 
 const getAllTutorials = async () => {
   try {
-    const tutorials = await database.query("SELECT * FROM tutorials");
+    const tutorials = await database.query(
+      "SELECT tutorials.*, tags.id AS tagID, tags.name AS nameTag FROM tutorials INNER JOIN tutorialsTags ON tutorials.id = tutorialsTags.tutorial_id INNER JOIN tags ON tutorialsTags.tag_id = tags.id"
+    );
     return tutorials[0];
   } catch (error) {
     throw new Error("Error retrieving tutorials");

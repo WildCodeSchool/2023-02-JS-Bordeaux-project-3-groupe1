@@ -24,6 +24,8 @@ import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
 import SelectTutorialPage from "./pages/selectTutorial/SelectTutorialPage";
 import TutorialExplication from "./components/tutorialExplication/TutorialExplication";
+import SearchPage from "./pages/search/SearchPage";
+import Profile from "./pages/profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +72,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
     ],
   },
   {
@@ -103,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "/formations/tutorials/quizz/:id",
         element: <TutorialExplication />,
+      },
+      {
+        path: "/search",
+        element: <SearchPage />,
       },
     ],
   },

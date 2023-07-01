@@ -11,7 +11,7 @@
 @import "../src/pages/register/Register.scss";
 @import "../src/pages/parcours/Parcours.scss";
 
-/* -----------------------------import components -------------------------------- */
+/* ----------------------------- import components -------------------------------- */
 
 @import "../src/components/navbar/NavBar.scss";
 @import "../src/components/moduleChooseFormation/ModuleChooseFormation.scss";
@@ -28,6 +28,8 @@
 @import "../src/components/selectTutorial/SelectTutorial.scss";
 @import "../src/components/modal/ConfirmBack.scss";
 @import "../src/components/modal/ConfirmChoiseDelete.scss";
+@import "../src/components/search/SearchTutorial.scss";
+@import "../src/components/listTutorial/ListTutorial.scss";
 
 * {
   margin: 0;
@@ -53,9 +55,9 @@ textarea,
 select,
 button,
 ul,
-li {
+li,
+a {
   font-family: $app-secondary-font;
-  font-weight: 600;
 }
 
 li {
@@ -65,3 +67,4 @@ li {
 // .titleNameMenu { à modifier je laisse commenté pour l'instant
 //   color: yellow;
 // }
+
