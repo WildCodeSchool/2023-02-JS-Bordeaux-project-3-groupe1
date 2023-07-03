@@ -7,7 +7,7 @@ const database = require("../../database");
 const getTutorialByIconFormation = async () => {
   try {
     const rows = await database.query(
-      "SELECT users.id AS usersID, users.email AS mail, userstutorials.user_id AS TutoUserID, steps.id AS stepsID, tutorials.id AS tutoID, tutorials.name, userstutorials.tutorial_id As tutoTutoID, userstutorials.step_id AS tutoStepID, steps.stepOne, steps.stepTwo, steps.stepThree, formations.iconURL, tutorials.name FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN steps ON steps.id = userstutorials.step_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN formations ON tutorials.formation_id = formations.id WHERE users.id = 1;"
+      "SELECT users.id AS usersID, users.email AS mail, userstutorials.user_id AS TutoUserID, steps.id AS stepsID, tutorials.id AS tutoID, tutorials.name, userstutorials.tutorial_id AS tutoTutoID, steps.id AS tutoStepID, steps.stepOne, steps.stepTwo, steps.stepThree, formations.iconURL, tutorials.name FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN formations ON tutorials.formation_id = formations.id JOIN tutorialsSteps ON tutorialsSteps.tutorial_id = tutorials.id JOIN steps ON steps.id = tutorialsSteps.step_id WHERE users.id = 2;"
     );
     return rows[0];
   } catch (error) {
@@ -23,7 +23,8 @@ const findTurorialByHerID = async (id) => {
       `SELECT tutorials.name, steps.*, users.email
       FROM tutorials
       JOIN userstutorials ON tutorials.id = userstutorials.tutorial_id
-      JOIN steps ON steps.id = userstutorials.step_id
+      JOIN tutorials ON tutorials.id = id
+      JOIN steps ON steps.id = tutorialsSteps.step_id
       JOIN users ON users.id = userstutorials.user_id
       WHERE tutorials.formation_id = ? AND users.id = 2;`,
       [id]
