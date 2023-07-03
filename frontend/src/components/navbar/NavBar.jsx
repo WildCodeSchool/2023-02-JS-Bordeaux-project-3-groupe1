@@ -106,12 +106,13 @@ function Navbar() {
             </a>
           </li>
         )}
-
-        <li className="navbar_item">
-          <a className="navbar_link" href="/">
-            Rechercher un tutoriel
-          </a>
-        </li>
+        <Link to="/search">
+          <li className="navbar_item">
+            <a className="navbar_link" href="/">
+              Rechercher un tutoriel
+            </a>
+          </li>
+        </Link>
 
         {isLoggedIn && user.role !== "admin" && (
           <Link className="navbar_link" to="/formations/parcours">
@@ -119,11 +120,13 @@ function Navbar() {
           </Link>
         )}
         {isLoggedIn && (
-          <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Mon profil
-            </a>
-          </li>
+          <Link to="/profile" onClick={handleShowLinks}>
+            <li className="navbar_item">
+              <a className="navbar_link" href="/">
+                Mon profil
+              </a>
+            </li>
+          </Link>
         )}
       </ul>
       <button className="navbar_burger" type="button" onClick={handleShowLinks}>

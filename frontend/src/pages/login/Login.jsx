@@ -34,7 +34,6 @@ function Login() {
     localStorage.setItem("password", password);
     localStorage.setItem("confirmPassword", confirmPassword);
   };
-
   return (
     <div className="login-container">
       <div className="login-secondeContainer">
@@ -85,9 +84,15 @@ function Login() {
           </a>
           <br />
           <br />
-          <button className="login-btn" type="submit" onClick={handleSubmit}>
-            Inscription
-          </button>
+          <Link to="/">
+            <button
+              className="login-btn"
+              type="submit"
+              onClick={() => handleSubmit()}
+            >
+              Connexion
+            </button>
+          </Link>
 
           <p className="sentence">Pas de compte?</p>
           <Link to="/register" className="connection-link">

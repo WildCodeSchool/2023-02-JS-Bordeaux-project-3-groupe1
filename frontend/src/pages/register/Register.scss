@@ -38,15 +38,17 @@
         }
       }
       .btn {
-        width: 65%;
-        height: 5.5vh;
-        background-color: $app-button-secondary-color;
-        border-radius: 5px;
-        border: none;
-        color: $app-primary-fonts-color;
-        font-size: 98%;
-        font-weight: bold;
-        cursor: pointer;
+        border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: $app-corporate-color;
+    border-radius: 10px;
+    background-color: $app-corporate-color-2;
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+      inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+    font-weight: bold;
         @include tablet {
           font-size: $app-heading-three;
         }

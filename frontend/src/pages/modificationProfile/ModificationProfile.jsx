@@ -1,4 +1,5 @@
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
+import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 
 function ModificationPage() {
   return (
@@ -105,6 +106,9 @@ function ModificationPage() {
           </div>
         </div>
       </div>
+      <ButtonTutorial nextOrPreview="validateProfile" path="/profile">
+        Valider mon profil
+      </ButtonTutorial>
     </main>
   );
 }
