@@ -3,9 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import visible from "../../assets/visible.png";
-
 import invisible from "../../assets/invisible.png";
-import visible from "../../assets/visible.png";
 
 function Register() {
   const [email, setEmail] = useState("");
