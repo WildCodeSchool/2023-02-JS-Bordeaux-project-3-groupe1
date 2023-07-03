@@ -1,13 +1,16 @@
-const { createUser } = require("../models/registerManager");
+const { createUser, findOne } = require("../models/registerManager");
 const { getAll } = require("../models/registerManager");
 
 const postUsers = async (req, res) => {
   try {
-    const userCreated = await createUser(req.body);
-    if (userCreated.length === 0) {
-      res.status(404).send("Error creating user");
+    const [existingUser] = await findOne(req.body.email);
+    if (!existingUser) {
+      const userCreated = await createUser(req.body);
+      res.status(200).json(userCreated);
     } else {
-      res.status(200).send(userCreated);
+      res.status(404).json({
+        message: "Adresse mail déjà utilisée!",
+      });
     }
   } catch (err) {
     res.status(500).send(err);

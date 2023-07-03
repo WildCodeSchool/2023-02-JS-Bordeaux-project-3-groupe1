@@ -20,7 +20,7 @@ const getTutorialByIconFormation = async () => {
 const findTurorialByHerID = async (id) => {
   try {
     const rows = await database.query(
-      `SELECT tutorials.name, steps.*, users.email
+      `SELECT tutorials.name, tutorials.id AS tutoID, steps.*, users.email
       FROM tutorials
       JOIN userstutorials ON tutorials.id = userstutorials.tutorial_id
       JOIN steps ON steps.id = userstutorials.step_id
@@ -33,7 +33,29 @@ const findTurorialByHerID = async (id) => {
     throw new Error("Error get formation", error);
   }
 };
+const updateStepByIdOfTutorial = async (id, stepOne, stepTwo, stepThree) => {
+  try {
+    const rows = await database.query(
+      `UPDATE steps
+      JOIN userstutorials ON steps.id = userstutorials.step_id
+      JOIN tutorials ON tutorials.id = userstutorials.tutorial_id
+      JOIN users ON users.id = userstutorials.user_id
+      JOIN formations ON tutorials.formation_id = formations.id
+      SET steps.stepOne = ?, steps.stepTwo = ?, steps.stepThree = ?
+      WHERE users.id = 1 AND tutorials.id = ?;`,
+      [stepOne, stepTwo, stepThree, id]
+    );
+
+    return rows[0];
+  } catch (error) {
+    console.error(error);
+    console.info("manager");
+    return null;
+  }
+};
+
 module.exports = {
   getTutorialByIconFormation,
   findTurorialByHerID,
+  updateStepByIdOfTutorial,
 };

@@ -1,6 +1,7 @@
 const database = require("../../database");
 const QuizzManager = require("./QuizzManager");
 const TagsManager = require("./TagsManager");
+const StepManager = require("./StepManager");
 
 const getAllTutorials = async () => {
   try {
@@ -15,7 +16,7 @@ const getAllTutorials = async () => {
 const getAllTutorialsByFormation = async (id) => {
   try {
     const tutorialsByFormation = await database.query(
-      "SELECT *, tutorials.id FROM tutorials join formations on formations.id = tutorials.formation_id where formations.id = ?",
+      "SELECT *, tutorials.name AS nameTutorial, tutorials.id FROM tutorials join formations on formations.id = tutorials.formation_id where formations.id = ?",
       [id]
     );
     return tutorialsByFormation[0];
@@ -65,6 +66,23 @@ const CreateTutorialsTags = async (tutorialId, tagId) => {
   }
 };
 
+const CreateTutorialsSteps = async (tutorialId, stepId) => {
+  const tutorialsStepsQuery = `INSERT INTO tutorialsSteps (tutorial_id, step_id) VALUES (?, ?)`;
+
+  const valuesTutorialsSteps = [tutorialId, stepId];
+
+  try {
+    await database.query(tutorialsStepsQuery, valuesTutorialsSteps);
+    return {
+      tutorialId,
+      stepId,
+    };
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error retrieving steps");
+  }
+};
+
 const createTutorialWithImage = async (tutorial) => {
   try {
     const {
@@ -103,7 +121,12 @@ const createTutorialWithImage = async (tutorial) => {
     const tagTutorialResult = await TagsManager.CreateTagTutorial(tutorial);
     const tagId = tagTutorialResult.id;
 
+    const stepTutorialResult = await StepManager.CreateStepsTutorial(tutorial);
+    const stepId = stepTutorialResult.id;
+
     await CreateTutorialsTags(tutorialId, tagId);
+
+    await CreateTutorialsSteps(tutorialId, stepId);
 
     return {
       quizzlId,
@@ -161,6 +184,8 @@ const updateTutorial = async (tutorial) => {
 
     await TagsManager.UpdateTagTutorial(tutorial);
 
+    await StepManager.UpdateStepsTutorial(tutorial);
+
     return {
       question,
       firstProposal,
@@ -195,11 +220,20 @@ const deleteTutorialAndQuizzAndTags = async (id) => {
       tutorial[0].id,
     ]);
 
-    if (response.affectedRows === 0) {
+    const tutorialStepsQuery =
+      "SELECT * FROM tutorialsSteps WHERE tutorial_id = ?";
+
+    const [responses] = await database.query(tutorialStepsQuery, [
+      tutorial[0].id,
+    ]);
+
+    if (response.affectedRows === 0 && responses.affectedRows === 0) {
       throw new Error(`Tutorial with ID ${id} not found`);
     }
 
     await TagsManager.deleteTagsByTutorialId(response[0].tag_id);
+
+    await StepManager.deleteStepsByTutorialId(responses[0].step_id);
 
     const tutorialQuery = "DELETE tutorials.* FROM tutorials WHERE id = ?";
     const tutorialResult = await database.query(tutorialQuery, [id]);

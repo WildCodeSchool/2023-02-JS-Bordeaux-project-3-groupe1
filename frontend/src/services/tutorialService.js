@@ -24,6 +24,9 @@ export const sender = async (url, id, forms) => {
     formData.append("quizzId", forms.quizzId);
     formData.append("tutorialId", forms.tutorialId);
     formData.append("tagId", forms.tagId);
+    formData.append("stepOne", forms.stepOne);
+    formData.append("stepTwo", forms.stepTwo);
+    formData.append("stepThree", forms.stepThree);
 
     if (forms.selectedFile) {
       formData.append("file", forms.selectedFile);
@@ -73,6 +76,7 @@ export const fetcherTutorialById = async (url, id) => {
 };
 
 export const deleteTutorial = async (url, id) => {
+  console.log(url, id);
   try {
     const response = await axios.delete(
       `${import.meta.env.VITE_BASE_API}/${url}/${id}`

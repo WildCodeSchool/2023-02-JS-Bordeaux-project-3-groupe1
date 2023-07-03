@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import visible from "../../assets/visible.png";
+
 import invisible from "../../assets/invisible.png";
 import visible from "../../assets/visible.png";
 
@@ -9,6 +12,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleVisible = () => {
     setShowPassword(!showPassword);
@@ -18,15 +22,15 @@ function Register() {
     event.preventDefault();
     const body = { email, password };
     if (password === confirmPassword) {
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
       try {
         await axios.post(`${import.meta.env.VITE_BASE_API}/register`, body);
+        toast.success("Utilisateur enregistré 🎉");
+        navigate("/profile");
       } catch (error) {
-        console.error(error);
+        toast.error(error.response.data.message);
       }
     } else {
-      console.error("use the same password");
+      toast.error("Les deux mots de passe doivent être les mêmes 🥺 ");
     }
   };
 

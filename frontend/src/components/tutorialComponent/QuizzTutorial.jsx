@@ -14,6 +14,9 @@ function QuizzTutorial(props) {
   const [answer, setAnswer] = useState("");
   const [quizzId, setQuizzId] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  const [stepOne] = useState(false);
+  const [stepTwo] = useState(false);
+  const [stepThree] = useState(false);
 
   const { setCountStepTutorial, tutorialId, tutorial } = props;
 
@@ -58,6 +61,9 @@ function QuizzTutorial(props) {
       answer,
       quizzId,
       tutorialId,
+      stepOne,
+      stepTwo,
+      stepThree,
     };
 
     if (question && optionOne && optionTwo && answer) {
