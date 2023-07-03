@@ -1,7 +1,7 @@
 @import "../src/assets/styles/variables.scss";
 @import "../src/assets/mixins/mixins.scss";
 
-/* ----------------------------- import Pages -------------------------------- */
+/* -----------------------------import Pages -------------------------------- */
 
 @import "../src/pages/formation/Formation.scss";
 @import "../src/pages/tutorialChoice/TutorialChoice.scss";
@@ -10,6 +10,8 @@
 @import "../src/pages/login/Login.scss";
 @import "../src/pages/register/Register.scss";
 @import "../src/pages/parcours/Parcours.scss";
+@import "../src/pages/profile/Profile.scss";
+@import "../src/pages/modificationProfile/ModificationProfile.scss";
 
 /* ----------------------------- import components -------------------------------- */
 
@@ -29,7 +31,7 @@
 @import "../src/components/modal/ConfirmBack.scss";
 @import "../src/components/modal/ConfirmChoiseDelete.scss";
 @import "../src/components/search/SearchTutorial.scss";
-@import "../src/components/listTutorial//ListTutorial.scss";
+@import "../src/components/listTutorial/ListTutorial.scss";
 
 * {
   margin: 0;
@@ -63,3 +65,8 @@ a {
 li {
   list-style: none;
 }
+
+// .titleNameMenu { à modifier je laisse commenté pour l'instant
+//   color: yellow;
+// }
+

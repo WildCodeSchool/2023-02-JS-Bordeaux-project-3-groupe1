@@ -15,24 +15,19 @@
     align-items: center;
     margin-bottom: 45px;
   }
-  .container-quizz-preview-title,
-  .container-video-preview-title {
-    display: none;
-  }
+
   .container-button {
     text-align: center;
-    button {
-      border: none;
-      background-color: $app-button-primary-color;
-      color: $app-secondary-fonts-color-5;
-      height: 2rem;
-      border-radius: 0.3rem;
-      width: 30%;
-    }
     a {
       width: 100%;
       text-align: center;
       margin: 10px;
+      .suivant {
+        background-color: $app-button-primary-color;
+        color: $app-secondary-fonts-color-5;
+        height: 2rem;
+        border-radius: 0.3rem;
+      }
     }
 
     .precedent {
@@ -142,4 +137,10 @@
       width: 20%;
     }
   }
+}
+
+.suivant,
+.precedent {
+  border: none;
+  padding: 0.3rem 1rem;
 }

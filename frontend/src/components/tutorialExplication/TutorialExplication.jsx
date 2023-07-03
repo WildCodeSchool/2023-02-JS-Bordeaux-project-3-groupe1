@@ -1,71 +1,78 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import pouce from "../../assets/pouce.png";
+import React, { useContext, useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import { fetcher } from "../../services/api";
 import validation from "../../assets/validation.png";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
+import ContainerObjectifTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerObjectifTutorial";
+import ContainerExplicationsTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerExplicationsTutorial";
+import ContainerVideoTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerVideoTutorial";
+import ContainerQuizzTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerQuizzTutorial";
+import ButtonTutorial from "../containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 
 function TutorialExplication() {
-  const [explication, setExplication] = useState("");
-  const [objectif, setObjectif] = useState("");
+  const { setNameMenu } = useContext(NameMenuTopContext);
+  const { id } = useParams();
+  const [dataTutorial, setDataTutorial] = useState([]);
+  const location = useLocation();
 
+  setNameMenu(dataTutorial.name);
   useEffect(() => {
-    axios
-      .get("/votre/api/explication")
-      .then((response) => setExplication(response.data.explication))
-      .catch((error) => console.error(error));
-
-    axios
-      .get("/votre/api/objectif")
-      .then((response) => setObjectif(response.data.objectif))
-      .catch((error) => console.error(error));
+    fetcher(`tutorials/${id}`)
+      .then((data) => {
+        setDataTutorial(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
-
+  console.info(dataTutorial);
   return (
     <div className="container-ObjectifTutorial">
-      <div className="container-Objectif">
-        <div className="container-Objectif-Title">
-          <img className="pouce" src={pouce} alt="" />
-          <div className="container-Title-Tuto">
-            <h3 className="objectif">Objectif</h3>
-          </div>
-        </div>
-        <div className="container-ObjectifText">
-          <p>{objectif}</p>
-        </div>
-      </div>
+      <ContainerObjectifTutorial dataTutorial={dataTutorial} />
       <div className="container-Explications">
         <div className="line-yellow" />
-        <div className="container-Explications-preview">
-          <div className="container-Explications-preview-title">
-            <div className="Space" />
-            <p>Explications</p>
-            <img className="validation" src={validation} alt="validation" />
-          </div>
-          <p className="explication-text">{explication}</p>
-        </div>
-        <div className="container-Video-preview">
-          <div className="container-video-preview-title">
-            <div className="Space" />
-            <p>Video</p>
-            <img className="validation" src={validation} alt="validation" />
-          </div>
-          <p className="explication-text">{explication}</p>
-        </div>
-        <div className="container-Quizz-preview">
-          <div className="container-quizz-preview-title">
-            <div className="Space" />
-            <p>Quizz</p>
-            <img className="validation" src={validation} alt="validation" />
-          </div>
-          <p className="explication-text">{explication}</p>
-        </div>
-      </div>
-      <div className="container-button">
-        <Link to="/">
-          <button className="suivant" type="button">
-            Suivant
-          </button>
-        </Link>
+        {location.pathname === `/formations/tutorials/explication/${id}` && (
+          <>
+            <ContainerExplicationsTutorial
+              dataTutorial={dataTutorial}
+              validation={validation}
+            />
+            <ButtonTutorial
+              path={`/formations/tutorials/video/${id}`}
+              nextOrPreview="suivant"
+            >
+              Suivant
+            </ButtonTutorial>
+          </>
+        )}
+        {location.pathname === `/formations/tutorials/video/${id}` && (
+          <>
+            <ContainerVideoTutorial validation={validation} />
+            <ButtonTutorial
+              path={`/formations/tutorials/explication/${id}`}
+              nextOrPreview="precedent"
+            >
+              Précédent
+            </ButtonTutorial>
+            <ButtonTutorial
+              path={`/formations/tutorials/quizz/${id}`}
+              nextOrPreview="suivant"
+            >
+              Suivant
+            </ButtonTutorial>
+          </>
+        )}
+        {location.pathname === `/formations/tutorials/quizz/${id}` && (
+          <>
+            <ContainerQuizzTutorial validation={validation} />
+            <ButtonTutorial
+              path={`/formations/tutorials/video/${id}`}
+              nextOrPreview="precedent"
+            >
+              Précédent
+            </ButtonTutorial>
+          </>
+        )}
       </div>
     </div>
   );
