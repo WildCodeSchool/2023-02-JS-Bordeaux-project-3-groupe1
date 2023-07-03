@@ -275,6 +275,11 @@ ALTER TABLE
   usersTutorials
 ADD
   CONSTRAINT fk_usersTutorials_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
+  
+  ALTER TABLE
+  usersTutorials
+ADD
+  CONSTRAINT fk_usersTutorials_user FOREIGN KEY (user_id) REFERENCES users(id);
 
 ALTER TABLE `mvc_express`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tags`;
 ALTER TABLE `mvc_express`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tutorials`;
@@ -296,24 +301,10 @@ ALTER TABLE `mvc_express`.`tutorialsSteps` ADD CONSTRAINT `fk_tutorialsSteps_tut
 
 --                  firebase storage
 
-/* INSERT INTO usersTutorials ( tutorial_id )
+/* INSERT INTO usersTutorials ( tutorial_id, user_id, fl_status )
 VALUES 
-(2),
-(2),
-(2),
-(2),
-(2),
-(2),
-(2),
-(2),
-(2),
-(6),
-(6),
-(6),
-(6),
-(6),
-(6),
-(6); */
+(2, 1, 0),
+ */
 
 /* INSERT INTO steps (stepOne, stepTwo, stepThree)
 VALUES
