@@ -1,0 +1,114 @@
+main {
+  height: calc(100vh - 46px);
+  padding-top: 6rem;
+  overflow-x: scroll;
+  .photoLocation {
+    display: flex;
+    background-color: $app-supporting-color;
+    height: 5rem;
+    width: 22%;
+    border-radius: 73px;
+    padding-top: 2rem;
+    margin-left: 39%;
+    position: relative;
+    margin-bottom: 2rem;
+    .camera {
+      position: absolute;
+      height: 1.5rem;
+      top: 0.5rem;
+      width: 1.7rem;
+      right: -0.5rem;
+    }
+  }
+  .firstBlocInput,
+  .secondBlocInput,
+  .thirdBlocInput,
+  .fourthBlocInput {
+    display: flex;
+    flex-direction: column;
+    font-family: $app-primary-font;
+
+    .denomination {
+      color: $app-corporate-color;
+      font-size: 0.9rem;
+      margin-left: 20%;
+    }
+    .inputModificationProfile {
+      width: 60%;
+      border: 2px solid #c6c3c3;
+      height: 5vh;
+      border-radius: 5px;
+      padding: 1%;
+      margin-bottom: 0.9rem;
+      margin-left: 20%;
+    }
+  }
+  .BlocPostalBirthday {
+    display: flex;
+    width: 250px;
+    margin-left: 14%;
+    text-align: center;
+    .fifthBlocInput,
+    .sixthBlocInput {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      color: #003da5;
+      width: 50%;
+      font-size: 0.9rem;
+    }
+    .inputModificationProfileBloc {
+      border: 2px solid #c6c3c3;
+      height: 5vh;
+      border-radius: 5px;
+      padding: 1%;
+      margin-bottom: 0.9rem;
+      text-align: initial;
+      margin-left: 19%;
+    }
+  }
+}
+
+.Gender {
+  color: $app-primary-fonts-color;
+  margin-left: 4.7rem;
+  font-size: 0.9rem;
+}
+
+.inputGenre {
+  display: flex;
+  width: 80%;
+  margin-left: 20%;
+  text-align: center;
+
+  .inputRadioMale {
+    border: 2px solid #c6c3c3;
+    border-radius: 5px;
+    padding: 6px;
+    width: 34%;
+    height: 5vh;
+    margin-right: 8%;
+
+    .MaleGenre {
+      margin-right: 0.2rem;
+    }
+    .nameInputMale {
+      font-size: 0.8rem;
+    }
+  }
+
+  .inputRadioFemale {
+    border: 2px solid #c6c3c3;
+    border-radius: 5px;
+    padding: 6px;
+    width: 34%;
+    height: 5vh;
+
+    .FemaleGenre {
+      margin-right: 0.2rem;
+    }
+    .nameInputFemale {
+      font-size: 0.8rem;
+    }
+  }
+}

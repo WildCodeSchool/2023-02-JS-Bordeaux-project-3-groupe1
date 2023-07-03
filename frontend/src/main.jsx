@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { ToastContainer } from "react-toastify";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -21,8 +23,10 @@ import Child from "./routes/Child";
 import CreateTutorialPage from "./pages/createTutorial/CreateTutorialPage";
 import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
 import SelectTutorialPage from "./pages/selectTutorial/SelectTutorialPage";
+import TutorialExplication from "./components/tutorialExplication/TutorialExplication";
 import SearchPage from "./pages/search/SearchPage";
 import Profile from "./pages/profile/Profile";
+import ModificationProfile from "./pages/modificationProfile/ModificationProfile";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +77,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
+      {
+        path: "/modificationProfile",
+        element: <ModificationProfile />,
+      },
     ],
   },
   {
@@ -94,6 +102,18 @@ const router = createBrowserRouter([
       {
         path: "/formations/parcours",
         element: <Parcours />,
+      },
+      {
+        path: "/formations/tutorials/explication/:id",
+        element: <TutorialExplication />,
+      },
+      {
+        path: "/formations/tutorials/video/:id",
+        element: <TutorialExplication />,
+      },
+      {
+        path: "/formations/tutorials/quizz/:id",
+        element: <TutorialExplication />,
       },
       {
         path: "/search",
