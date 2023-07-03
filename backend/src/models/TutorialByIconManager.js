@@ -4,10 +4,11 @@ const database = require("../../database");
 
 /*  Nous avons joint les tables users, tutorials et steps par la table de jointure usersTutorials pour enregistrer les steps propre aux utilisateurs     */
 
-const getTutorialByIconFormation = async () => {
+const getTutorialByIconFormation = async (id) => {
   try {
     const rows = await database.query(
-      "SELECT users.id AS usersID, users.email AS mail, userstutorials.user_id AS TutoUserID, steps.id AS stepsID, tutorials.id AS tutoID, tutorials.name, userstutorials.tutorial_id AS tutoTutoID, steps.id AS tutoStepID, steps.stepOne, steps.stepTwo, steps.stepThree, formations.iconURL, tutorials.name FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN formations ON tutorials.formation_id = formations.id JOIN tutorialsSteps ON tutorialsSteps.tutorial_id = tutorials.id JOIN steps ON steps.id = tutorialsSteps.step_id WHERE users.id = 2;"
+      "select * from userstutorials left join tutorials on tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id where userstutorials.user_id = 1 and formation_id = ? union all select null,null,null,null,tutorials.*,null,null,null,null from tutorials where formation_id = ? and tutorials.id not in (select userstutorials.tutorial_id from userstutorials where userstutorials.user_id = 1);",
+      [id, id]
     );
     return rows[0];
   } catch (error) {

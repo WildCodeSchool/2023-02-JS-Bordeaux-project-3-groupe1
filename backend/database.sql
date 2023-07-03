@@ -35,6 +35,7 @@ CREATE TABLE `formations` (
 CREATE TABLE `usersTutorials` (
   `user_id` integer NOT NULL,
   `tutorial_id` integer NOT NULL,
+  `step_id` integer NOT NULL,
   `fl_status` boolean NOT NULL
 );
 
@@ -55,11 +56,6 @@ CREATE TABLE `steps` (
   `stepOne` boolean,
   `stepTwo` boolean,
   `stepThree` boolean
-);
-
-CREATE TABLE `tutorialsSteps` (
-  `tutorial_id` integer NOT NULL,
-  `step_id` integer NOT NULL
 );
 
 CREATE TABLE `pins` (
@@ -91,11 +87,6 @@ CREATE TABLE `usersPins` (
 );
 
 ALTER TABLE
-  usersTutorials
-ADD
-  CONSTRAINT fk_usersTutorials_users FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE;
-
-ALTER TABLE
   users
 ADD
   CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id);
@@ -111,11 +102,6 @@ ALTER TABLE
 ADD
   CONSTRAINT fk_usersPins_users FOREIGN KEY (user_id) REFERENCES users(id);
 
--- ALTER TABLE
---   usersTutorials
--- ADD
---   CONSTRAINT fk_usersTutorials_steps FOREIGN KEY (step_id) REFERENCES steps(id);
-
 ALTER TABLE
   tutorialsTags
 ADD
@@ -125,17 +111,6 @@ ALTER TABLE
   tutorialsTags
 ADD
   CONSTRAINT fk_tutorialsTags_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
-
-ALTER TABLE
-  tutorialsSteps
-ADD
-  CONSTRAINT fk_tutorialsSteps_steps FOREIGN KEY (step_id) REFERENCES steps(id);
-
-ALTER TABLE
-  tutorialsSteps
-ADD
-  CONSTRAINT fk_tutorialsSteps_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
-
 
 ALTER TABLE
   tutorials
@@ -279,15 +254,17 @@ ADD
   ALTER TABLE
   usersTutorials
 ADD
-  CONSTRAINT fk_usersTutorials_user FOREIGN KEY (user_id) REFERENCES users(id);
+  CONSTRAINT fk_usersTutorials_users FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE;
+
+  ALTER TABLE
+  usersTutorials
+ADD
+  CONSTRAINT fk_usersTutorials_steps FOREIGN KEY (step_id) REFERENCES steps(id) ON UPDATE CASCADE;
+
 
 ALTER TABLE `mvc_express`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tags`;
 ALTER TABLE `mvc_express`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tutorials`;
 ALTER TABLE `mvc_express`.`tutorialstags` ADD CONSTRAINT `fk_tutorialsTags_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE;
-
-ALTER TABLE `mvc_express`.`tutorialsSteps` DROP FOREIGN KEY `fk_tutorialsSteps_steps`;
-ALTER TABLE `mvc_express`.`tutorialsSteps` DROP FOREIGN KEY `fk_tutorialsSteps_tutorials`;
-ALTER TABLE `mvc_express`.`tutorialsSteps` ADD CONSTRAINT `fk_tutorialsSteps_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE;
 
 -- ALTER TABLE
 --   tutorials
@@ -301,9 +278,9 @@ ALTER TABLE `mvc_express`.`tutorialsSteps` ADD CONSTRAINT `fk_tutorialsSteps_tut
 
 --                  firebase storage
 
-/* INSERT INTO usersTutorials ( tutorial_id, user_id, fl_status )
+/* INSERT INTO usersTutorials ( user_id, tutorial_id, fl_status )
 VALUES 
-(2, 1, 0),
+(1, 1, 0);
  */
 
 /* INSERT INTO steps (stepOne, stepTwo, stepThree)
@@ -325,3 +302,12 @@ VALUES
 (1, 1, 0),
 (1, 0, 1);
  */
+
+
+
+--  select * from mvc_express.userstutorials    
+-- left join mvc_express.tutorials on tutorials.id = userstutorials.tutorial_id JOIN tutorialsSteps ON tutorialsSteps.tutorial_id = tutorials.id JOIN steps ON steps.id = tutorialsSteps.step_id
+-- where userstutorials.user_id = 1 and formation_id = 1
+-- union all
+-- select null,null,null,tutorials.*,null,null,null,null,null,null from tutorials
+-- where formation_id = 1 and tutorials.id not in (select userstutorials.tutorial_id from userstutorials where userstutorials.user_id = 1)
