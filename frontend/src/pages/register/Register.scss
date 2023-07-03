@@ -131,3 +131,15 @@
     }
   }
 }
+.Toastify__toast-container {
+}
+.Toastify__toast--info {
+}
+.Toastify__toast--success {
+  background-color: #a2f9a4;
+  margin-top: 3.8rem;
+}
+.Toastify__toast--error {
+  margin-top: 3.8rem;
+  background-color: #fbcecc;
+}

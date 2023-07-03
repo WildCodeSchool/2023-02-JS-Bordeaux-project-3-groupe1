@@ -27,7 +27,20 @@ const getAll = async () => {
   }
 };
 
+const findOne = async (email) => {
+  const query = "SELECT * FROM users WHERE email = ?";
+
+  try {
+    const [user] = await database.query(query, [email]);
+    console.info(user);
+    return user;
+  } catch (error) {
+    throw new Error("Error finding user");
+  }
+};
+
 module.exports = {
   createUser,
   getAll,
+  findOne,
 };
