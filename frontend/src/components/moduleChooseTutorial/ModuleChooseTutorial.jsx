@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import arrow from "../../assets/pictures/arrowTutorial.svg";
 import capGreyOneStartBlue from "../../assets/pictures/capGreyOneStartBlue.svg";
@@ -37,27 +38,33 @@ function ModuleChooseTutorial({ item, steps, index }) {
       <ul
         className={isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"}
       >
-        <li className="StepTutorial">
-          Explication
-          {steps.length > 0 &&
-            (steps[index].stepOne ? (
-              <img className="checkStepTutorial" src={chek} alt="chek" />
-            ) : null)}
-        </li>
-        <li className="StepTutorial">
-          Vidéo
-          {steps.length > 0 &&
-            (steps[index].stepTwo ? (
-              <img className="checkStepTutorial" src={chek} alt="chek" />
-            ) : null)}
-        </li>
-        <li className="StepTutorial">
-          Quizz
-          {steps.length > 0 &&
-            (steps[index].stepThree ? (
-              <img className="checkStepTutorial" src={chek} alt="chek" />
-            ) : null)}
-        </li>
+        <Link to={`/formations/tutorials/explication/${item.tutoID}`}>
+          <li className="StepTutorial">
+            Explication
+            {steps.length > 0 &&
+              (steps[index].stepOne ? (
+                <img className="checkStepTutorial" src={chek} alt="chek" />
+              ) : null)}
+          </li>
+        </Link>
+        <Link to={`/formations/tutorials/video/${item.tutoID}`}>
+          <li className="StepTutorial">
+            Vidéo
+            {steps.length > 0 &&
+              (steps[index].stepTwo ? (
+                <img className="checkStepTutorial" src={chek} alt="chek" />
+              ) : null)}
+          </li>
+        </Link>
+        <Link to={`/formations/tutorials/quizz/${item.tutoID}`}>
+          <li className="StepTutorial">
+            Quizz
+            {steps.length > 0 &&
+              (steps[index].stepThree ? (
+                <img className="checkStepTutorial" src={chek} alt="chek" />
+              ) : null)}
+          </li>
+        </Link>
       </ul>
     </section>
   );
