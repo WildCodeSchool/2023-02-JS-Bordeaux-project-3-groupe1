@@ -85,7 +85,7 @@ function SelectTutorial(props) {
               </div>
             )}
             <div className="container-selectTutorial-tutorialName">
-              {item.name}
+              {item.nameTutorial}
             </div>
             <div className="container-selectTutorial-buttons">
               <Link to={`/tutorials/updateTutorial/${item.id}`}>
