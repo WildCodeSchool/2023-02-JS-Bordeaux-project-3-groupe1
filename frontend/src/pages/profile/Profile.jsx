@@ -1,5 +1,6 @@
-import Connexion from "../../assets/pictures/photo_profile.png";
+import { Link } from "react-router-dom";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
+import Connexion from "../../assets/pictures/photo_profile.png";
 
 function Profile() {
   return (
@@ -17,12 +18,16 @@ function Profile() {
         <div className="MailProfile">Lafond@gmail.com</div>
       </div>
       <div className="buttons_profile">
-        <button className="button_edit_my_profile" type="button">
-          Modifier mon profil
-        </button>
-        <button className="button_see_my_journey" type="button">
-          Voir mon parcours
-        </button>
+        <Link to="/modificationProfile">
+          <button className="button_edit_my_profile" type="button">
+            Modifier mon profil
+          </button>
+        </Link>
+        <Link to="/formations/parcours">
+          <button className="button_see_my_journey" type="button">
+            Voir mon parcours
+          </button>
+        </Link>
       </div>
     </main>
   );
