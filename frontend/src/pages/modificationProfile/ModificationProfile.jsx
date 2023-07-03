@@ -1,5 +1,5 @@
-import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
+import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 
 function ModificationPage() {
   return (

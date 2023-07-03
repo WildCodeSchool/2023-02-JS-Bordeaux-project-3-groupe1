@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import UserIcon from "../../assets/usericon.png";
 import Loupe from "../../assets/loupe.png";
+import UserIcon from "../../assets/usericon.png";
 import Points from "../../assets/petitspoints.png";
 import AdminIcon from "../../assets/iconadmin.png";
 

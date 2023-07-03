@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Connexion from "../../assets/pictures/photo_profile.png";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
+import Connexion from "../../assets/pictures/photo_profile.png";
 
 function Profile() {
   return (

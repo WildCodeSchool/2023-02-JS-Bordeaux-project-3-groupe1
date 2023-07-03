@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import visible from "../../assets/visible.png";
 import invisible from "../../assets/invisible.png";
+import visible from "../../assets/visible.png";
 
 function Login() {
   const [email, setEmail] = useState("");
