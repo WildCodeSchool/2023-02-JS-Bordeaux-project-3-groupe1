@@ -21,19 +21,11 @@ function Register() {
     const body = { email, password };
     if (password === confirmPassword) {
       try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BASE_API}/register`,
-          body
-        );
-        if (response.data.email) {
-          toast.error("Cet email est déjà utilisé!");
-        } else {
-          await axios.post(`${import.meta.env.VITE_BASE_API}/register`, body);
-          toast.success("Utilisateur enregistré 🎉");
-          navigate("/profile");
-        }
+        await axios.post(`${import.meta.env.VITE_BASE_API}/register`, body);
+        toast.success("Utilisateur enregistré 🎉");
+        navigate("/profile");
       } catch (error) {
-        console.error(error);
+        toast.error(error.response.data.message);
       }
     } else {
       toast.error("Les deux mots de passe doivent être les mêmes 🥺 ");

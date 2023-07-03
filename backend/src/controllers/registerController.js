@@ -6,9 +6,11 @@ const postUsers = async (req, res) => {
     const [existingUser] = await findOne(req.body.email);
     if (!existingUser) {
       const userCreated = await createUser(req.body);
-      res.status(200).send(userCreated);
+      res.status(200).json(userCreated);
     } else {
-      res.status(404).send("User already exists");
+      res.status(404).json({
+        message: "Adresse mail déjà utilisée!",
+      });
     }
   } catch (err) {
     res.status(500).send(err);
