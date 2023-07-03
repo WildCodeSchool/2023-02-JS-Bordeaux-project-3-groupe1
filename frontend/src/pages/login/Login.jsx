@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import visible from "../../assets/visible.png";
 import invisible from "../../assets/invisible.png";
+import visible from "../../assets/visible.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -29,7 +29,6 @@ function Login() {
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
   };
-
   return (
     <div className="login-container">
       <div className="login-secondeContainer">
@@ -80,9 +79,15 @@ function Login() {
           </a>
           <br />
           <br />
-          <button className="login-btn" type="submit" onClick={handleSubmit}>
-            Inscription
-          </button>
+          <Link to="/">
+            <button
+              className="login-btn"
+              type="submit"
+              onClick={() => handleSubmit()}
+            >
+              Connexion
+            </button>
+          </Link>
 
           <p className="sentence">Pas de compte?</p>
           <Link to="/register" className="connection-link">
