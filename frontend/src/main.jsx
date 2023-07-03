@@ -23,6 +23,7 @@ import UpdateTutorialPage from "./pages/updateTutorial/UpdateTutorialPage";
 import SelectTutorialPage from "./pages/selectTutorial/SelectTutorialPage";
 import SearchPage from "./pages/search/SearchPage";
 import Profile from "./pages/profile/Profile";
+import ModificationProfile from "./pages/modificationProfile/ModificationProfile";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/modificationProfile",
+        element: <ModificationProfile />,
       },
     ],
   },
