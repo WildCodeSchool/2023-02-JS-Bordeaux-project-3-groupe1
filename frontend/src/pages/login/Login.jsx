@@ -6,7 +6,6 @@ import invisible from "../../assets/invisible.png";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleVisible = () => {
     setShowPassword(!showPassword);
@@ -21,9 +20,6 @@ function Login() {
       case "password":
         setPassword(value);
         break;
-      case "confirmPassword":
-        setConfirmPassword(value);
-        break;
       default:
     }
   };
@@ -32,7 +28,6 @@ function Login() {
     event.preventDefault();
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
-    localStorage.setItem("confirmPassword", confirmPassword);
   };
 
   return (

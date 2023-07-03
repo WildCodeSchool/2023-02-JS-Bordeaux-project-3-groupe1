@@ -74,7 +74,7 @@ function Register() {
                 {!showPassword ? (
                   <img src={visible} alt="visible" className="visibleImg" />
                 ) : (
-                  <img src={invisible} alt="visible" className="visibleImg" />
+                  <img src={invisible} alt="invisible" className="visibleImg" />
                 )}
               </button>
             </div>
@@ -99,7 +99,7 @@ function Register() {
                 {!showPassword ? (
                   <img src={visible} alt="visible" className="visibleImg" />
                 ) : (
-                  <img src={invisible} alt="visible" className="visibleImg" />
+                  <img src={invisible} alt="invisible" className="visibleImg" />
                 )}
               </button>
             </div>
