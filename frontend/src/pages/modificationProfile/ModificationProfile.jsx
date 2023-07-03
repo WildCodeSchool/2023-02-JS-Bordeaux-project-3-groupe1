@@ -60,14 +60,49 @@ function ModificationPage() {
           />
         </div>
         <div className="sixthBlocInput">
-          <label className="denomination" htmlFor="birthday">
+          <label className="denomination" htmlFor="start">
             Date de naissance
           </label>
           <input
             className="inputModificationProfileBloc"
-            type="number"
-            placeholder="01/01/1900"
+            type="date"
+            id="start"
+            name="trip-start"
+            placeholder="1953-03-26"
+            min="1900-01-01"
+            max="2018-12-31"
           />
+        </div>
+      </div>
+      <div className="sixthBlocInput">
+        <label className="Gender" htmlFor="gender">
+          Genre
+        </label>
+        <div className="inputGenre">
+          <div className="inputRadioMale">
+            <input
+              className="MaleGenre"
+              type="radio"
+              id="male"
+              name="gender"
+              value="masculin"
+            />
+            <label className="nameInputMale" htmlFor="male">
+              Masculin
+            </label>
+          </div>
+          <div className="inputRadioFemale">
+            <input
+              className="FemaleGenre"
+              type="radio"
+              id="female"
+              name="gender"
+              value="feminin"
+            />
+            <label className="nameInputFemale" htmlFor="female">
+              Féminin
+            </label>
+          </div>
         </div>
       </div>
     </main>
