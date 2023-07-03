@@ -28,53 +28,52 @@
     .imgProfile {
       height: 1.5rem;
     }
-}
-.mailProfile {
-  display: flex;
-  align-items: end;
-  justify-content: space-evenly;
-  margin: 2rem 4rem 2rem 3rem;
-  color: $app-primary-fonts-color;
-  font-family: $app-primary-font;
-  .imgMailProfile {
-    height: 1.5rem;
-    margin-left: 1.9rem;
-}
-.MailProfile{
-    margin-left: 1.5rem;
-}
-}
-.buttons_profile{
+  }
+  .mailProfile {
+    display: flex;
+    align-items: end;
+    justify-content: space-evenly;
+    margin: 2rem 4rem 2rem 3rem;
+    color: $app-primary-fonts-color;
+    font-family: $app-primary-font;
+    .imgMailProfile {
+      height: 1.5rem;
+      margin-left: 1.9rem;
+    }
+    .MailProfile {
+      margin-left: 1.5rem;
+    }
+  }
+  .buttons_profile {
     display: flex;
     flex-direction: column;
-    .button_edit_my_profile{
-        width: 60%;
-        border: 0;
-        line-height: 2.5;
-        padding: 0 20px;
-        font-size: 1rem;
-        text-align: center;
-        color: $app-corporate-color;
-        border-radius: 10px;
-        background-color: $app-corporate-color-2;
-        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-          inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-          margin: 2rem 0 0 5rem;
-
+    .button_edit_my_profile {
+      width: 60%;
+      border: 0;
+      line-height: 2.5;
+      padding: 0 20px;
+      font-size: 1rem;
+      text-align: center;
+      color: $app-corporate-color;
+      border-radius: 10px;
+      background-color: $app-corporate-color-2;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+      margin: 2rem 0 0 5rem;
     }
-    .button_see_my_journey{
-        width: 60%;
-        border: 0;
-        line-height: 2.5;
-        padding: 0 20px;
-        font-size: 1rem;
-        text-align: center;
-        color: $app-secondary-fonts-color-50;
-        border-radius: 10px;
-        background-color: $app-corporate-color;
-        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-          inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-          margin: 1rem 0 0 5rem;
+    .button_see_my_journey {
+      width: 60%;
+      border: 0;
+      line-height: 2.5;
+      padding: 0 20px;
+      font-size: 1rem;
+      text-align: center;
+      color: $app-secondary-fonts-color-50;
+      border-radius: 10px;
+      background-color: $app-corporate-color;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+      margin: 1rem 0 0 5rem;
     }
-}
+  }
 }

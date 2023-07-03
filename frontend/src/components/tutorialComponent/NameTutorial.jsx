@@ -19,9 +19,7 @@ function NameTutorial(props) {
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
   const [isValid, setIsValid] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(
-    undefined !== "Utiliser ligne bleu" ? "Utiliser ligne bleu" : ""
-  );
+  const [selectedValue, setSelectedValue] = useState("Utiliser ligne bleu");
 
   const {
     nameTutoPlaceholder,
@@ -97,9 +95,7 @@ function NameTutorial(props) {
       });
   }, []);
 
-  const newArrayNameFormation = nameFormation.map(
-    (item) => item.iconDescription
-  );
+  const newArrayNameFormation = nameFormation.map((item) => item.name);
   const uniqueValues = [...new Set(newArrayNameFormation)];
 
   const filteredValues = uniqueValues.filter(
@@ -110,13 +106,13 @@ function NameTutorial(props) {
     if (tutorialWithtags) {
       const id = tutorialWithtags[0]?.formation_id;
       const formation = nameFormation.find((item) => item.id === id);
-      setSelectedValue(formation ? formation.iconDescription : null);
+      setSelectedValue(formation ? formation.name : null);
     }
   }, [nameFormation]);
 
   useEffect(() => {
     const matchedFormation = nameFormation.find(
-      (formation) => formation.iconDescription === selectedValue
+      (formation) => formation.name === selectedValue
     );
     if (matchedFormation) {
       setIdFormation(parseInt(matchedFormation.id, 10));

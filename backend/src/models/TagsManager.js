@@ -15,7 +15,7 @@ const CreateTagTutorial = async (tutorial) => {
     };
   } catch (error) {
     console.error(error);
-    throw new Error("Error retrieving quizz");
+    throw new Error("Error retrieving tag");
   }
 };
 
@@ -34,7 +34,7 @@ const UpdateTagTutorial = async (tutorial) => {
     };
   } catch (error) {
     console.error(error);
-    throw new Error("Error retrieving quizz");
+    throw new Error("Error retrieving tag");
   }
 };
 
