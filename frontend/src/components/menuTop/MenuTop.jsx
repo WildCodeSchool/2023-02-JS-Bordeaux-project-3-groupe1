@@ -61,7 +61,7 @@ function MenuTop() {
             <img src={backCross} alt="back cross" />
           </Link>
         )}
-        <h2>{nameMenu}</h2>
+        <h3 className="titleMenuTop">{nameMenu}</h3>
       </div>
       {isModalOpen && selectMenu && (
         <div ref={modalRef}>
