@@ -302,12 +302,3 @@ VALUES
 (1, 1, 0),
 (1, 0, 1);
  */
-
-
-
---  select * from mvc_express.userstutorials    
--- left join mvc_express.tutorials on tutorials.id = userstutorials.tutorial_id JOIN tutorialsSteps ON tutorialsSteps.tutorial_id = tutorials.id JOIN steps ON steps.id = tutorialsSteps.step_id
--- where userstutorials.user_id = 1 and formation_id = 1
--- union all
--- select null,null,null,tutorials.*,null,null,null,null,null,null from tutorials
--- where formation_id = 1 and tutorials.id not in (select userstutorials.tutorial_id from userstutorials where userstutorials.user_id = 1)
