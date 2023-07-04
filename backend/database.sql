@@ -249,7 +249,7 @@ VALUES
 ALTER TABLE
   usersTutorials
 ADD
-  CONSTRAINT fk_usersTutorials_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id);
+  CONSTRAINT fk_usersTutorials_tutorials FOREIGN KEY (tutorial_id) REFERENCES tutorials(id) ON DELETE CASCADE;
   
   ALTER TABLE
   usersTutorials
@@ -261,10 +261,13 @@ ADD
 ADD
   CONSTRAINT fk_usersTutorials_steps FOREIGN KEY (step_id) REFERENCES steps(id) ON UPDATE CASCADE;
 
-
 ALTER TABLE `mvc_express`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tags`;
 ALTER TABLE `mvc_express`.`tutorialstags` DROP FOREIGN KEY `fk_tutorialsTags_tutorials`;
 ALTER TABLE `mvc_express`.`tutorialstags` ADD CONSTRAINT `fk_tutorialsTags_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `mvc_express`.`usersTutorials` DROP FOREIGN KEY `fk_usersTutorials_steps`;
+ALTER TABLE `mvc_express`.`usersTutorials` DROP FOREIGN KEY `fk_usersTutorials_tutorials`;
+ALTER TABLE `mvc_express`.`usersTutorials` ADD CONSTRAINT `fk_usersTutorials_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE;
 
 -- ALTER TABLE
 --   tutorials
