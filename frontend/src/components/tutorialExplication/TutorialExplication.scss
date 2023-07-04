@@ -1,7 +1,7 @@
 .container-ObjectifTutorial {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 126px);
+  min-height: calc(100vh - 120px);
   width: 100vw;
 
   .container-Objectif {
@@ -25,14 +25,17 @@
       .suivant {
         background-color: $app-button-primary-color;
         color: $app-secondary-fonts-color-5;
-        height: 2rem;
         border-radius: 0.3rem;
+        margin-top: 2rem;
       }
     }
 
     .precedent {
       background-color: $app-button-secondary-color;
       color: $app-primary-fonts-color;
+      border-radius: 0.3rem;
+      margin-top: 2rem;
+      font-weight: bold;
     }
     button:disabled {
       opacity: 0.5;
@@ -73,6 +76,7 @@
       color: $app-primary-fonts-color;
       text-align: center;
       font-size: $app-text-size;
+      margin-bottom: 2rem;
     }
   }
 }
@@ -90,7 +94,23 @@
     border-top: 2px solid $app-line-color;
     margin-top: -30px;
   }
-  .container-Explications-preview {
+  .containerButtonVideo {
+    display: flex;
+    align-items: flex-end;
+
+    .precedent {
+      border: 0;
+      line-height: 2;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+      font-weight: bold;
+    }
+  }
+  .container-Explications-preview,
+  .container-Video-preview,
+  .container-Quizz-preview {
     width: 100%;
     min-height: 12rem;
     margin: 4%;
@@ -98,7 +118,9 @@
     flex-wrap: nowrap;
     background-color: $app-secondary-fonts-color-2;
 
-    .container-Explications-preview-title {
+    .container-Explications-preview-title,
+    .container-video-preview-title,
+    .container-quizz-preview-title {
       display: flex;
       width: 100%;
       justify-content: space-between;
@@ -130,18 +152,35 @@
     }
     .container-Explications-preview {
       margin: 0;
-      min-height: 11rem;
+      min-height: 13rem;
       width: 60%;
     }
-    .suivant {
-      width: 20%;
-    }
+  }
+  .suivant,
+  .precedent {
+    border: 0;
+    line-height: 2;
+    padding: 0 20px;
+    font-size: 1rem;
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+      inset -2px -2px 3px rgba(0, 0, 0, 0.6);
   }
 }
 
-.suivant,
-.precedent {
-  border: none;
-  padding: 0.3rem 1rem;
+.container-video-preview-logo {
+  margin: 7rem 0 0 17.5rem;
+
+  img {
+    height: 2rem;
+  }
 }
 
+// .LastContainerButtonVideo{
+//   border: 0;
+//       line-height: 2;
+//       text-align: center;
+//       border-radius: 5px;
+//       box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+//         inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+//       font-weight: bold;
+// }
