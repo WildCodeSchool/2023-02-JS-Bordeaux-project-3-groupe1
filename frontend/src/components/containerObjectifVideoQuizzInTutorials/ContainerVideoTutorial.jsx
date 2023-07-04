@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import YouTube from "react-youtube";
 import youTubeLogo from "../../assets/youTubeLogo.png";
 
-function ContainerVideoTutorial({ validation }) {
+function ContainerVideoTutorial({ videoTutorials }) {
+  const videoId = videoTutorials;
   return (
     <div className="container-Video-preview">
       <div className="container-video-preview-title">
         <div className="Space" />
         <p>Video</p>
-        <img className="validation" src={validation} alt="validation" />
+        <YouTube videoId={videoId} />
       </div>
       <div className="container-video-preview-logo">
         <img src={youTubeLogo} alt="youTubeLogo" />
@@ -17,16 +20,10 @@ function ContainerVideoTutorial({ validation }) {
   );
 }
 ContainerVideoTutorial.propTypes = {
-  validation: PropTypes.string,
-  dataTutorial: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }),
+  videoTutorials: PropTypes.string,
 };
 
 ContainerVideoTutorial.defaultProps = {
-  validation: "image",
-  dataTutorial: {
-    explication: "Comprendre",
-  },
+  videoTutorials: "image",
 };
 export default ContainerVideoTutorial;
