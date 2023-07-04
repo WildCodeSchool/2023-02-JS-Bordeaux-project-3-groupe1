@@ -1,32 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import youTubeLogo from "../../assets/youTubeLogo.png";
+import YouTube from "react-youtube";
 
-function ContainerVideoTutorial({ validation }) {
+function ContainerVideoTutorial({ videoTutorials }) {
+  const videoId = videoTutorials;
+  const opts = { height: "190", width: "340" };
   return (
-    <div className="container-Video-preview">
-      <div className="container-video-preview-title">
-        <div className="Space" />
-        <p>Video</p>
-        <img className="validation" src={validation} alt="validation" />
-      </div>
-      <div className="container-video-preview-logo">
-        <img src={youTubeLogo} alt="youTubeLogo" />
+    <div>
+      <p className="pTutoVideo">Vidéo</p>
+      <div className="container-Video-preview">
+        <YouTube className="VideoYouTubeVisuel" videoId={videoId} opts={opts} />
       </div>
     </div>
   );
 }
 ContainerVideoTutorial.propTypes = {
-  validation: PropTypes.string,
-  dataTutorial: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }),
+  videoTutorials: PropTypes.string,
 };
 
 ContainerVideoTutorial.defaultProps = {
-  validation: "image",
-  dataTutorial: {
-    explication: "Comprendre",
-  },
+  videoTutorials: "image",
 };
 export default ContainerVideoTutorial;

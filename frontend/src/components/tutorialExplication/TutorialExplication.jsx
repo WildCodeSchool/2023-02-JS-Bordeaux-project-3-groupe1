@@ -25,7 +25,6 @@ function TutorialExplication() {
         console.error(error);
       });
   }, []);
-
   return (
     <div className="container-ObjectifTutorial">
       <ContainerObjectifTutorial dataTutorial={dataTutorial} />
@@ -47,7 +46,7 @@ function TutorialExplication() {
         )}
         {location.pathname === `/formations/tutorials/video/${id}` && (
           <>
-            <ContainerVideoTutorial validation={validation} />
+            <ContainerVideoTutorial videoTutorials={dataTutorial.urlVideo} />
             <div className="containerButtonVideo">
               <ButtonTutorial
                 path={`/formations/tutorials/explication/${id}`}
