@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
-import validation from "../../assets/validation.png";
-import youTubeLogo from "../../assets/youTubeLogo.png";
+import SaveButton from "./components/SaveButton";
+import InputField from "./components/InputField";
+import IframeVideo from "./components/IframeVideo";
 
 function VideoTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
@@ -40,7 +40,7 @@ function VideoTutorial(props) {
     }
   }, [tutorialUrlVideo, tutorialId]);
 
-  const handleSaveName = () => {
+  const handleSave = () => {
     setCountStepTutorial(4);
     const newValuesTutorial = {
       videoUrl,
@@ -60,47 +60,20 @@ function VideoTutorial(props) {
   return (
     <div className="container-createVideoTutorial">
       <label htmlFor="videoUrl">Insérer l’url de votre vidéo :</label>
-
-      <input
-        type="text"
+      <InputField
         name="videoUrl"
         id="videoUrl"
-        onChange={handleInputChange}
         value={videoUrl}
         placeholder="Insérer l’url de votre vidéo"
+        onChange={handleInputChange}
       />
-      <div className="container-createVideoTutorial-preview">
-        {videoId ? (
-          <iframe
-            src={`https://www.youtube.com/embed/${videoId}`}
-            title="Video Preview"
-          />
-        ) : (
-          <>
-            <div className="container-video-preview-title">
-              <div className="space" />
-              <h3>Vidéo</h3>
-              <img src={validation} alt="validation" />
-            </div>
-            <div className="container-video-preview-logo">
-              <img src={youTubeLogo} alt="youTubeLogo" />
-            </div>
-          </>
-        )}
-      </div>
-      {isUpdate ? (
-        <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
-          <button type="button" onClick={handleSaveName}>
-            Valider
-          </button>
-        </Link>
-      ) : (
-        <Link to="/tutorials/createTutorial">
-          <button type="button" onClick={handleSaveName} disabled={!isValid}>
-            Valider
-          </button>
-        </Link>
-      )}
+      <IframeVideo videoId={videoId} />
+      <SaveButton
+        isUpdate={isUpdate}
+        tutorialId={tutorialId}
+        handleSave={handleSave}
+        isValid={isValid}
+      />
     </div>
   );
 }

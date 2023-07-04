@@ -1,17 +1,42 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import arrow from "../../assets/pictures/arrowTutorial.svg";
 import capGreyOneStartBlue from "../../assets/pictures/capGreyOneStartBlue.svg";
 import capBlueOneStartBlue from "../../assets/pictures/capBlueOneStartBlue.svg";
 import chek from "../../assets/pictures/chek.svg";
+import { sender } from "../../services/api";
 
 function ModuleChooseTutorial({ item, steps, index }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { formationId } = useParams();
+
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
   };
-  console.info(steps);
+
+  const handleClick = () => {
+    if (
+      item.stepOne === null &&
+      item.stepTwo === null &&
+      item.stepThree === null &&
+      item.tutoId
+    ) {
+      sender("steps", formationId, {
+        stepOne: false,
+        stepTwo: false,
+        stepThree: false,
+        tutoId: item.tutoId,
+      })
+        .then((data) => {
+          console.warn(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
   return (
     <section className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}>
       {steps.length > 0 && (
@@ -38,7 +63,10 @@ function ModuleChooseTutorial({ item, steps, index }) {
       <ul
         className={isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"}
       >
-        <Link to={`/formations/tutorials/explication/${item.tutoID}`}>
+        <Link
+          onClick={handleClick}
+          to={`/formations/tutorials/explication/${item.tutoId}`}
+        >
           <li className="StepTutorial">
             Explication
             {steps.length > 0 &&
@@ -47,7 +75,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/video/${item.tutoID}`}>
+        <Link to={`/formations/tutorials/video/${item.tutoId}`}>
           <li className="StepTutorial">
             Vidéo
             {steps.length > 0 &&
@@ -56,7 +84,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/quizz/${item.tutoID}`}>
+        <Link to={`/formations/tutorials/quizz/${item.tutoId}`}>
           <li className="StepTutorial">
             Quizz
             {steps.length > 0 &&

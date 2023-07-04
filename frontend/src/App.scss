@@ -32,6 +32,7 @@
 @import "../src/components/modal/ConfirmChoiseDelete.scss";
 @import "../src/components/search/SearchTutorial.scss";
 @import "../src/components/listTutorial/ListTutorial.scss";
+@import "../src/components/tutorialComponent/components/SaveButton.scss";
 
 * {
   margin: 0;
@@ -69,4 +70,3 @@ li {
 // .titleNameMenu { à modifier je laisse commenté pour l'instant
 //   color: yellow;
 // }
-

@@ -21,6 +21,7 @@ function TutorialChoice() {
         console.error(error);
       });
   }, []);
+
   const stepsMap = dataTutorial.map((item) => ({
     ...item,
     stepOne: item.stepOne,
@@ -28,6 +29,7 @@ function TutorialChoice() {
     stepThree: item.stepThree,
     total: item.stepOne + item.stepTwo + item.stepThree,
   }));
+
   return (
     <main className="tutorialChoice">
       {isDesktop ? (
