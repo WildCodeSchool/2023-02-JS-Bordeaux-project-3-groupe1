@@ -25,7 +25,7 @@ function TutorialExplication() {
         console.error(error);
       });
   }, []);
-  console.info(dataTutorial);
+
   return (
     <div className="container-ObjectifTutorial">
       <ContainerObjectifTutorial dataTutorial={dataTutorial} />

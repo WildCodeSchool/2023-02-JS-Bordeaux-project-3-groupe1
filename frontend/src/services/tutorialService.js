@@ -76,7 +76,6 @@ export const fetcherTutorialById = async (url, id) => {
 };
 
 export const deleteTutorial = async (url, id) => {
-  console.log(url, id);
   try {
     const response = await axios.delete(
       `${import.meta.env.VITE_BASE_API}/${url}/${id}`
