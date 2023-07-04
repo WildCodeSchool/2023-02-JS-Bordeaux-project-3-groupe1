@@ -3,13 +3,12 @@ import PropTypes from "prop-types";
 
 function ContainerQuizzTutorial({ validation }) {
   return (
-    <div className="container-Quizz-preview">
-      <div className="container-quizz-preview-title">
-        <div className="Space" />
-        <p>Quizz</p>
-        <img className="validation" src={validation} alt="validation" />
+    <div>
+      <p>Quizz</p>
+      <div className="container-Quizz-preview">
+        <p className="explication-text">{validation}</p>
       </div>
-      <p className="explication-text">{}</p>
+      <div className="Space" />
     </div>
   );
 }

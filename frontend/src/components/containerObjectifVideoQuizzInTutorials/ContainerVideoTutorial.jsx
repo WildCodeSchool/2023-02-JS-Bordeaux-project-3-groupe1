@@ -1,20 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import YouTube from "react-youtube";
-import youTubeLogo from "../../assets/youTubeLogo.png";
 
 function ContainerVideoTutorial({ videoTutorials }) {
   const videoId = videoTutorials;
+  const opts = { height: "190", width: "340" };
   return (
-    <div className="container-Video-preview">
-      <div className="container-video-preview-title">
-        <div className="Space" />
-        <p>Video</p>
-        <YouTube videoId={videoId} />
-      </div>
-      <div className="container-video-preview-logo">
-        <img src={youTubeLogo} alt="youTubeLogo" />
+    <div>
+      <p className="pTutoVideo">Vidéo</p>
+      <div className="container-Video-preview">
+        <YouTube className="VideoYouTubeVisuel" videoId={videoId} opts={opts} />
       </div>
     </div>
   );
