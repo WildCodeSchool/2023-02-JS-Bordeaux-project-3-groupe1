@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import youTubeLogo from "../../assets/youTubeLogo.png";
 
-function ContainerVideoTutorial({ validation, dataTutorial }) {
+function ContainerVideoTutorial({ validation }) {
   return (
     <div className="container-Video-preview">
       <div className="container-video-preview-title">
@@ -9,9 +10,9 @@ function ContainerVideoTutorial({ validation, dataTutorial }) {
         <p>Video</p>
         <img className="validation" src={validation} alt="validation" />
       </div>
-      <p className="explication-text">
-        {dataTutorial.name}noirzgiefiezqifhvierqhgerhgeruh
-      </p>
+      <div className="container-video-preview-logo">
+        <img src={youTubeLogo} alt="youTubeLogo" />
+      </div>
     </div>
   );
 }
