@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import youTubeLogo from "../../assets/youTubeLogo.png";
 
-function ContainerVideoTutorial({ validation, dataTutorial }) {
+function ContainerVideoTutorial({ validation }) {
   return (
     <div className="container-Video-preview">
       <div className="container-video-preview-title">
