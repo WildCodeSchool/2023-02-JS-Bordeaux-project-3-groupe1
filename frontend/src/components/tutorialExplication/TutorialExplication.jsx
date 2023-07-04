@@ -67,12 +67,18 @@ function TutorialExplication() {
         {location.pathname === `/formations/tutorials/quizz/${id}` && (
           <>
             <ContainerQuizzTutorial validation={validation} />
-            <div className="LastContainerButtonVideo">
+            <div className="containerButtonVideo">
               <ButtonTutorial
                 path={`/formations/tutorials/video/${id}`}
                 nextOrPreview="precedent"
               >
                 Précédent
+              </ButtonTutorial>
+              <ButtonTutorial
+                path={`/formations/tutorials/video/${id}`}
+                nextOrPreview="validateTutorial"
+              >
+                Valider le tutoriel
               </ButtonTutorial>
             </div>
           </>
