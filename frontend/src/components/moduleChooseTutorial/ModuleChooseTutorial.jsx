@@ -16,17 +16,24 @@ function ModuleChooseTutorial({ item, steps, index }) {
   };
 
   const handleClick = () => {
-    sender("steps", formationId, {
-      stepOne: false,
-      stepTwo: false,
-      stepThree: false,
-    })
-      .then((data) => {
-        console.warn(data);
+    if (
+      item.stepOne === null &&
+      item.stepTwo === null &&
+      item.stepThree === null
+    ) {
+      sender("steps", formationId, {
+        stepOne: false,
+        stepTwo: false,
+        stepThree: false,
+        tutoId: item.tutoId,
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((data) => {
+          console.warn(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   return (
@@ -57,7 +64,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
       >
         <Link
           onClick={handleClick}
-          to={`/formations/tutorials/explication/${item.tutoID}`}
+          to={`/formations/tutorials/explication/${item.tutoId}`}
         >
           <li className="StepTutorial">
             Explication
@@ -67,7 +74,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/video/${item.tutoID}`}>
+        <Link to={`/formations/tutorials/video/${item.tutoId}`}>
           <li className="StepTutorial">
             Vidéo
             {steps.length > 0 &&
@@ -76,7 +83,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/quizz/${item.tutoID}`}>
+        <Link to={`/formations/tutorials/quizz/${item.tutoId}`}>
           <li className="StepTutorial">
             Quizz
             {steps.length > 0 &&

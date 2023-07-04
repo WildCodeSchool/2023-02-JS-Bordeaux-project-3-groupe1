@@ -10,14 +10,16 @@ export const fetcher = async (url) => {
   }
 };
 
-export const sender = async (url, id, stepOne, stepTwo, setpThree) => {
+export const sender = async (url, id, stepOne, stepTwo, setpThree, tutoID) => {
   const formationId = parseInt(id, 10);
+  console.log(typeof formationId);
   try {
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_API}/${url}/${formationId}`,
       stepOne,
       stepTwo,
-      setpThree
+      setpThree,
+      tutoID
     );
     return response.data;
   } catch (error) {

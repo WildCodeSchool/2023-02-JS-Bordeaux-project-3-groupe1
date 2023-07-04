@@ -7,7 +7,7 @@ const database = require("../../database");
 const getTutorialByIconFormation = async (id) => {
   try {
     const rows = await database.query(
-      "select * from userstutorials left join tutorials on tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id where userstutorials.user_id = 1 and formation_id = ? union all select null,null,null,null,tutorials.*,null,null,null,null from tutorials where formation_id = ? and tutorials.id not in (select userstutorials.tutorial_id from userstutorials where userstutorials.user_id = 1);",
+      "SELECT userstutorials.*, tutorials.*, tutorials.id AS tutoId, steps.* FROM userstutorials LEFT JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id WHERE userstutorials.user_id = 1 AND tutorials.formation_id = ? UNION ALL SELECT NULL, NULL, NULL, NULL, tutorials.*, tutorials.id AS tutoId, NULL, NULL, NULL, NULL FROM tutorials WHERE tutorials.formation_id = ? AND tutorials.id NOT IN ( SELECT userstutorials.tutorial_id FROM userstutorials WHERE userstutorials.user_id = 1);",
       [id, id]
     );
     return rows[0];

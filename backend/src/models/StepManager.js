@@ -1,19 +1,19 @@
 const database = require("../../database");
 
 const CreateSteps = async (tutorial) => {
-  const { stepOne, stepTwo, stepThree } = tutorial;
+  const { stepOne, stepTwo, stepThree, tutoID } = tutorial;
 
   const stepQuery = `INSERT INTO steps (stepOne, stepTwo, stepThree) VALUES (?, ?, ?)`;
 
-  const valuesSteps = [stepOne ? 0 : 1, stepTwo ? 0 : 1, stepThree ? 0 : 1];
+  const valuesSteps = [stepOne ? 1 : 0, stepTwo ? 1 : 0, stepThree ? 1 : 0];
 
   try {
     const stepResult = await database.query(stepQuery, valuesSteps);
     const stepId = stepResult[0].insertId;
 
-    const userstutorialsQuery = `INSERT INTO usersTutorials (user_id, tutorial_id, step_id, fl_status) VALUES (?,?, ?, ?)`;
+    const userstutorialsQuery = `INSERT INTO usersTutorials (user_id, tutorial_id, step_id, fl_status) VALUES (?, ?, ?, ?)`;
 
-    const valuesUserstutorials = [1, 1, stepId, 0];
+    const valuesUserstutorials = [1, tutoID, stepId, 0];
 
     await database.query(userstutorialsQuery, valuesUserstutorials);
 
