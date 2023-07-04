@@ -150,7 +150,7 @@ INSERT INTO
 VALUES 
 (1, 1, 'gabyOne@gmail.com', "jhoqhdfqbfnqbflkqnblfnblqbfbq"),
 (1, 1, 'laetiTwo@gmail.com', "jhoqhdfqbfnqbflkqnblfnblqbfbq"),
-(1, 1, 'eleaThree@gmail.com', "jhoqhdfqbfnqbflkqnblfnblqbfbq");
+(2, 1, 'eleaThree@gmail.com', "jhoqhdfqbfnqbflkqnblfnblqbfbq");
 
 INSERT INTO
   formations (iconURL, name, fl_status, levelFormation_id)

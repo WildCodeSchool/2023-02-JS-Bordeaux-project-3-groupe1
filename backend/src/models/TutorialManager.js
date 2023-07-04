@@ -201,13 +201,20 @@ const deleteTutorialAndQuizzAndTags = async (id) => {
 
     const [responses] = await database.query(tutorialStepQuery, [id]);
 
-    if (response.affectedRows === 0 && responses.affectedRows === 0) {
+    if (response.affectedRows === 0) {
       throw new Error(`Tutorial with ID ${id} not found`);
     }
 
     await TagsManager.deleteTagsByTutorialId(response[0].tag_id);
 
-    await StepManager.deleteSteps(responses[0].step_id);
+    if (responses.length === 1) {
+      await StepManager.deleteSteps(responses[0].step_id);
+    }
+
+    const tutorialstagsQuery =
+      "DELETE tutorialstags.* FROM tutorialstags WHERE tutorial_id = ?";
+
+    await database.query(tutorialstagsQuery, [id]);
 
     const tutorialQuery = "DELETE tutorials.* FROM tutorials WHERE id = ?";
     const tutorialResult = await database.query(tutorialQuery, [id]);

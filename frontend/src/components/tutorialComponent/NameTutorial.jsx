@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import starGrey from "../../assets/starGrey.png";
-import starBlue from "../../assets/starBlue.png";
-import student from "../../assets/student.png";
 import { fetcher } from "../../services/api";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
+import SaveButton from "./components/SaveButton";
+import InputField from "./components/InputField";
+import TagList from "./components/TagList";
+import LevelSelector from "./components/LevelSelector";
+import FormationSelector from "./components/FormationSelector";
+import PreviewNameTutorial from "./components/PreviewNameTutorial";
 
 function NameTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
@@ -59,16 +61,6 @@ function NameTutorial(props) {
       }
       setTagTutorial("");
     }
-  };
-
-  const handleClickLevel1 = () => {
-    setLevelTutorial(1);
-    setStarLevelStyle(false);
-  };
-
-  const handleClickLevel2 = () => {
-    setLevelTutorial(starLevelStyle === true ? 1 : 2);
-    setStarLevelStyle(!starLevelStyle);
   };
 
   const handleRemoveTagValue = (value) => {
@@ -138,7 +130,7 @@ function NameTutorial(props) {
     }
   }, [tutorialWithtags]);
 
-  const handleSaveName = () => {
+  const handleSave = () => {
     setCountStepTutorial(2);
     const parsedLevelTutorial = parseInt(levelTutorial, 10);
     const newValuesTutorial = {
@@ -166,118 +158,52 @@ function NameTutorial(props) {
   return (
     <div className="container-createNameTutorial">
       <label htmlFor="nameTutorial">Nom du tutorial :</label>
-      <input
-        type="text"
+      <InputField
         name="nameTutorial"
         id="nameTutorial"
-        onChange={handleInputChange}
         value={nameTutorial}
         placeholder={nameTutoPlaceholder}
-        required
+        onChange={handleInputChange}
       />
       <label htmlFor="tagTutorial">{tagTutoPlaceholder}</label>
-
       <div className="container-input-tag">
-        <input
-          type="text"
+        <InputField
           name="tagTutorial"
           id="tagTutorial"
-          onChange={handleInputChange}
           value={tagTutorial}
           placeholder={tagTutoPlaceholder}
-          required
+          onChange={handleInputChange}
         />
         <button type="button" onClick={handleAddValue}>
           Ajouter
         </button>
       </div>
-      <ul>
-        {" "}
-        Liste des tags :
-        {isUpdate
-          ? updatedTags?.map((tagName) => (
-              <button
-                type="button"
-                key={tagName}
-                onClick={() => handleRemoveTagValue(tagName)}
-              >
-                {tagName}
-              </button>
-            ))
-          : valuesTag.map((value) => (
-              <button
-                type="button"
-                key={value}
-                onClick={() => handleRemoveTagValue(value)}
-              >
-                {value}
-              </button>
-            ))}
-      </ul>
-      <div className="choose-lvl-tutorial">
-        <p>Choisir le niveau</p>
-        <div className="choose-lvl-tutorial-button">
-          <button type="button" onClick={handleClickLevel1}>
-            <img src={starBlue} alt="starBlue" />
-          </button>
-          {starLevelStyle ? (
-            <button type="button" onClick={handleClickLevel2}>
-              <img src={starBlue} alt="starBlue" />
-            </button>
-          ) : (
-            <button type="button" onClick={handleClickLevel2}>
-              <img src={starGrey} alt="starGrey" />
-            </button>
-          )}
-        </div>
-      </div>
-      <p>Choisissez votre formation :</p>
-      <select
-        value={selectedValue ?? undefined}
-        onChange={(e) => setSelectedValue(e.target.value)}
-      >
-        <option value={selectedValue ?? undefined}>{selectedValue}</option>
-        {filteredValues.map((value) => (
-          <option key={value} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
-      {levelTutorial === 1 ? (
-        <div className="container-preview-tutorial">
-          <div className="icon-preview-tutorial">
-            <div className="icon-preview-tutorial-star">
-              <img src={starGrey} alt="starGrey" />
-            </div>
-            <img src={student} alt="student" />
-          </div>
-          <h3>{nameTutorial}</h3>
-        </div>
-      ) : (
-        <div className="container-preview-tutorial">
-          <div className="icon-preview-tutorial">
-            <div className="icon-preview-tutorial-star">
-              <img src={starGrey} alt="starGrey" />
-              <img src={starGrey} alt="starGrey" />
-            </div>
-            <img src={student} alt="student" />
-          </div>
-          <h3>{nameTutorial}</h3>
-        </div>
-      )}
-      {isUpdate ? (
-        <Link to={`/tutorials/updateTutorial/${tutorialId}`}>
-          <button type="button" onClick={handleSaveName}>
-            Valider
-          </button>
-        </Link>
-      ) : (
-        <Link to="/tutorials/createTutorial">
-          <button type="button" onClick={handleSaveName} disabled={!isValid}>
-            Valider
-          </button>
-        </Link>
-      )}
+      <TagList
+        isUpdate={isUpdate}
+        updatedTags={updatedTags}
+        handleRemoveTagValue={handleRemoveTagValue}
+        valuesTag={valuesTag}
+      />
+      <LevelSelector
+        setLevelTutorial={setLevelTutorial}
+        setStarLevelStyle={setStarLevelStyle}
+        starLevelStyle={starLevelStyle}
+      />
+      <FormationSelector
+        filteredValues={filteredValues}
+        selectedValue={selectedValue}
+        setSelectedValue={setSelectedValue}
+      />
+      <PreviewNameTutorial
+        levelTutorial={levelTutorial}
+        nameTutorial={nameTutorial}
+      />
+      <SaveButton
+        isUpdate={isUpdate}
+        tutorialId={tutorialId}
+        handleSave={handleSave}
+        isValid={isValid}
+      />
     </div>
   );
 }
