@@ -1,7 +1,7 @@
 const database = require("../../database");
 
 const CreateSteps = async (tutorial) => {
-  const { stepOne, stepTwo, stepThree, tutoID } = tutorial;
+  const { stepOne, stepTwo, stepThree, tutoId } = tutorial;
 
   const stepQuery = `INSERT INTO steps (stepOne, stepTwo, stepThree) VALUES (?, ?, ?)`;
 
@@ -13,7 +13,7 @@ const CreateSteps = async (tutorial) => {
 
     const userstutorialsQuery = `INSERT INTO usersTutorials (user_id, tutorial_id, step_id, fl_status) VALUES (?, ?, ?, ?)`;
 
-    const valuesUserstutorials = [1, tutoID, stepId, 0];
+    const valuesUserstutorials = [2, tutoId, stepId, 0];
 
     await database.query(userstutorialsQuery, valuesUserstutorials);
 

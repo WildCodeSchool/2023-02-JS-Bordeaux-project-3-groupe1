@@ -19,7 +19,8 @@ function ModuleChooseTutorial({ item, steps, index }) {
     if (
       item.stepOne === null &&
       item.stepTwo === null &&
-      item.stepThree === null
+      item.stepThree === null &&
+      item.tutoId
     ) {
       sender("steps", formationId, {
         stepOne: false,

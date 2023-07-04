@@ -1,6 +1,7 @@
 const database = require("../../database");
 const QuizzManager = require("./QuizzManager");
 const TagsManager = require("./TagsManager");
+const StepManager = require("./StepManager");
 
 const getAllTutorials = async () => {
   try {
@@ -195,11 +196,20 @@ const deleteTutorialAndQuizzAndTags = async (id) => {
       tutorial[0].id,
     ]);
 
-    if (response.affectedRows === 0) {
+    const tutorialStepQuery =
+      "SELECT usersTutorials.step_id FROM usersTutorials WHERE tutorial_id = ?";
+
+    const [responses] = await database.query(tutorialStepQuery, [
+      tutorial[0].id,
+    ]);
+
+    if (response.affectedRows === 0 && responses.affectedRows === 0) {
       throw new Error(`Tutorial with ID ${id} not found`);
     }
 
     await TagsManager.deleteTagsByTutorialId(response[0].tag_id);
+
+    await StepManager.deleteSteps(responses[0].step_id);
 
     const tutorialQuery = "DELETE tutorials.* FROM tutorials WHERE id = ?";
     const tutorialResult = await database.query(tutorialQuery, [id]);
