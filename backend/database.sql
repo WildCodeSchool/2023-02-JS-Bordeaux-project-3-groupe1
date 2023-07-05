@@ -148,10 +148,6 @@ INSERT INTO `tutorials` (`id`, `formation_id`, `quizz_id`, `level`, `name`, `url
 (14, 6, 6, 1, 'Facebook', 'vCousHq5Usw', NULL, 'Présentation de Facebook', 'Facebook est un réseau social populaire où les utilisateurs peuvent se connecter avec des amis, partager des contenus tels que des photos et des vidéos, et interagir avec d\'autres utilisateurs via des publications, des commentaires, des messages'),
 (15, 6, 7, 1, 'Instagram', 'hTryfrJuXRw', NULL, 'Présentation de Instagram', 'Instagram est une plateforme de partage de photos et de vidéos où les utilisateurs peuvent capturer, éditer et partager des contenus visuels avec leurs abonnés. Il propose également des fonctionnalités de messagerie et d\'interaction sociale'),
 (16, 6, 8, 1, 'Tiktok', 'b7mlZQ9jAsY', NULL, 'Présentation de TikTok', 'TikTok est une application de médias sociaux axée sur le partage de courtes vidéos. Les utilisateurs peuvent créer, éditer et partager des vidéos de quelques secondes à une minute, accompagnées de musique, de filtres et d\'effets spéciaux'),
-(17, 3, 1, 2, 'dssg', 'fdfdf', 'https://firebasestorage.googleapis.com/v0/b/ligne-bleue-65740.appspot.com/o/images%2F%60-1688544028172.jpg?alt=media&token=46881998-143b-409d-a6f9-7a12da81c65b', 'dfefdf', 'dsfdfd'),
-(18, 9, 2, 2, 'fsdf', 'dfsds', 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/images%2F%60-1688544242486.jpg?alt=media&token=4cb7d5f3-ab53-42f2-83a7-dc53b17d660c', 'dfs', 'sdff'),
-(19, 1, 3, 1, 'ssssss', 'ssss', 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/images%2F%60-1688545250537.jpg?alt=media&token=0f996e25-5d2a-48d9-b3d8-5a78489a1cef', 'ss', 'ssss'),
-(20, 1, 4, 1, 'xxxx', 'xxxxx', 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/images%2F%60-1688545415890.jpg?alt=media&token=cded34bb-1907-408a-a834-543da22a9312', 'xxxx', 'xxx');
 
 CREATE TABLE `tutorialstags` (
   `tutorial_id` int(11) NOT NULL,
