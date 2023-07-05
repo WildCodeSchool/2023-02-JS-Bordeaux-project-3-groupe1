@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
-import { sender, fetcher } from "../../services/userService";
+import { sender, fetcherUSerById } from "../../services/userService";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
@@ -45,7 +45,7 @@ function ModificationPage() {
   };
 
   useEffect(() => {
-    fetcher("users", userId)
+    fetcherUSerById("users", userId)
       .then((data) => {
         setFirstname(data.firstname);
         setLastname(data.lastname);

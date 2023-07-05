@@ -1,10 +1,22 @@
 const database = require("../../database");
 
+const getAllUsers = async () => {
+  try {
+    const users = await database.query(
+      "SELECT id, role_id, level, email, birthdayDate, firstname, lastname, location, gender, city, picture FROM users"
+    );
+    return users[0];
+  } catch (error) {
+    throw new Error("Error retrieving tutorials");
+  }
+};
+
 const getUserById = async (id) => {
   try {
-    const tutorial = await database.query("SELECT * FROM users WHERE id = ?", [
-      id,
-    ]);
+    const tutorial = await database.query(
+      "SELECT id, role_id, level, email, birthdayDate, firstname, lastname, location, gender, city, picture FROM users WHERE id = ?",
+      [id]
+    );
     return tutorial[0];
   } catch (error) {
     throw new Error("Error retrieving user");
@@ -50,6 +62,7 @@ const updateUser = async (user, userId) => {
 };
 
 module.exports = {
+  getAllUsers,
   getUserById,
   updateUser,
 };

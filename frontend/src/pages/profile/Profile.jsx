@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
 import Connexion from "../../assets/pictures/photo_profile.png";
-import { fetcher } from "../../services/userService";
+import { fetcherUSerById } from "../../services/userService";
 
 function Profile() {
   const [user, setUser] = useState({});
@@ -12,7 +12,7 @@ function Profile() {
   const [userFirstname, setUserFirstname] = useState("Pierre");
 
   useEffect(() => {
-    fetcher("users", userId)
+    fetcherUSerById("users", userId)
       .then((data) => {
         setUser(data);
         setUserLastname(user?.lastname);
