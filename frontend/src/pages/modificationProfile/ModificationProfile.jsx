@@ -189,11 +189,12 @@ function ModificationPage() {
             </label>
           </div>
         </div>
-        <button type="button" onClick={handleSave}>
-          Click
-        </button>
       </div>
-      <ButtonTutorial nextOrPreview="validateProfile" path="/profile">
+      <ButtonTutorial
+        handleTrueStep={handleSave}
+        nextOrPreview="validateProfile"
+        path="/profile"
+      >
         Valider mon profil
       </ButtonTutorial>
     </main>
