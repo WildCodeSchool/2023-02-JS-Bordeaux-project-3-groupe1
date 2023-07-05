@@ -1,0 +1,22 @@
+.titlePersonalData {
+  padding-top: 6rem;
+  text-align: center;
+  color: $app-primary-fonts-color;
+  font-size: 1.2rem;
+  font-family: $app-primary-font;
+}
+.subtitlePersonalData, .paragraphTitlePersonalData, .pPersonalData {
+    margin-top: 1rem;
+    color: black;
+    font-family :$app-primary-font;
+    margin-left: 0.8rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.subtitlePersonalData {
+    font-size: 1.2rem;
+}
+ ul li{ 
+    list-style-type: initial;
+ }
