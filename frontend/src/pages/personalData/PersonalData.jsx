@@ -19,15 +19,15 @@ function PersonalData() {
         protection de vos Données Personnelles et a pour objectif de vous
         informer sur :
         <ul>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             Les Données Personnelles que le groupe La Poste collecte et les
             raisons de cette collecte,
           </li>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             {" "}
             La façon dont sont utilisées ces Données Personnelles,
           </li>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             {" "}
             ainsi que vos droits sur vos Données Personnelles.
           </li>
@@ -76,14 +76,14 @@ function PersonalData() {
         Certaines données traitées par La Poste sont collectées de manière
         indirecte à partir des sources suivantes :
         <ul>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             {" "}
             Soit des clients, précisant des informations sur des souscripteurs,
             des bénéficiaires, des ayants-droits, des contacts, des
             destinataires. Ces données sont nécessaires à l’exécution des
             services souscrits,
           </li>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             Soit des tiers, tels que des organismes de prévention de la fraude,
             des fournisseurs de données, des organisations (Organisation
             Mondiale des Douanes, …) et des membres de l’Union Postale
@@ -133,17 +133,17 @@ function PersonalData() {
         Cela inclut le droit de nous demander des informations complémentaires
         sur:
         <ul>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             les catégories de données que nous traitons
           </li>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             les finalités du traitement des données
           </li>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             les destinataires et les catégories de destinataires à qui vos
             données ont été transmises
           </li>
-          <li className="pPersonalData">
+          <li className="linkPersonalData">
             {" "}
             lorsque cela est possible, la durée de conservation de vos données
             ou lorsque ce n’est pas possible les critères pour déterminer cette
