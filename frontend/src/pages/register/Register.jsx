@@ -105,16 +105,9 @@ function Register() {
             </div>
           </label>
           <br />
-          <Link to="/login">
-            <button
-              className="btn"
-              type="submit"
-              onClick={() => handleSubmit()}
-            >
-              Inscription
-            </button>
-          </Link>
-
+          <button className="btn" type="submit" onClick={() => handleSubmit()}>
+            Inscription
+          </button>
           <p className="register-sentence">Vous avez déjà un compte?</p>
           <Link to="/login">Se connecter</Link>
         </form>

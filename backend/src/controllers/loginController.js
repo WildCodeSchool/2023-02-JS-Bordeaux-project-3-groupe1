@@ -1,10 +1,12 @@
-const { findUser } = require("../models/registerManager");
+const { findOne } = require("../models/registerManager");
 
 const verifyUsers = async (req, res) => {
   try {
-    const [existingUser] = await findUser(req.body);
+    console.info(req.body, "oook");
+    const [existingUser] = await findOne(req.body);
+    console.info(existingUser, "yoyoyo");
     if (existingUser) {
-      res.status(200).json(existingUser);
+      res.status(200).send(existingUser);
     } else {
       res.status(404).json("mauvaise adresse mail..");
     }

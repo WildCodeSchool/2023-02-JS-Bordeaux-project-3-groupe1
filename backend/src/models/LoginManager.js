@@ -1,23 +1,19 @@
 const database = require("../../database");
 
-const findUser = async (register) => {
-  const query = "INSERT INTO users ( email, hashedPassword) VALUES (?,?)";
-
-  const { email, hashedPassword } = register;
-
-  const values = [email, hashedPassword];
+const findOne = async (login) => {
+  const query = "SELECT * FROM users WHERE email = ? AND hashedPassword =? ";
+  const { email, hashedPassword } = login;
+  const value = [email, hashedPassword];
+  console.info(value);
   try {
-    const RegisterResult = await database.query(query, values);
-    return {
-      id: RegisterResult.insertId,
-      email,
-      hashedPassword,
-    };
+    const [user] = await database.query(query, value);
+    console.info(user);
+    return user;
   } catch (error) {
-    throw new Error("Error creating your profil");
+    throw new Error("Error finding user");
   }
 };
 
 module.exports = {
-  findUser,
+  findOne,
 };
