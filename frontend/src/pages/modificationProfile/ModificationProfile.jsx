@@ -113,6 +113,9 @@ function ModificationPage() {
   return (
     <main>
       <div className="photoLocation">
+        <label htmlFor="fileInput">
+          <img className="camera" src={AppareilPhoto} alt="appareil" />
+        </label>
         <input
           type="file"
           name="file"
@@ -120,10 +123,11 @@ function ModificationPage() {
           style={{ display: "none" }}
           onChange={handleFile}
         />
-        <label htmlFor="fileInput">
-          <img className="camera" src={AppareilPhoto} alt="appareil" />
-        </label>
-        {previewUrl && <img src={previewUrl} alt="Preview" />}
+        <div className="rapha">
+          {previewUrl && (
+            <img className="imageRapha" src={previewUrl} alt="Preview" />
+          )}
+        </div>
       </div>
       <div className="firstBlocInput">
         <label className="denomination" htmlFor="name-user">

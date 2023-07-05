@@ -47,7 +47,7 @@ function Profile() {
           <div className="NameProfile">M Lafond Pierre</div>
         )}
       </div>
-      <div className="mailProfile">
+      <div className="nameProfile">
         <img className="imgMailProfile" src={mailProfile} alt="icone mail" />
         <div className="MailProfile">{user.email}</div>
       </div>
