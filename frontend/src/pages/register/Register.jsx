@@ -74,7 +74,7 @@ function Register() {
                 {!showPassword ? (
                   <img src={visible} alt="visible" className="visibleImg" />
                 ) : (
-                  <img src={invisible} alt="visible" className="visibleImg" />
+                  <img src={invisible} alt="invisible" className="visibleImg" />
                 )}
               </button>
             </div>
@@ -99,22 +99,15 @@ function Register() {
                 {!showPassword ? (
                   <img src={visible} alt="visible" className="visibleImg" />
                 ) : (
-                  <img src={invisible} alt="visible" className="visibleImg" />
+                  <img src={invisible} alt="invisible" className="visibleImg" />
                 )}
               </button>
             </div>
           </label>
           <br />
-          <Link to="/login">
-            <button
-              className="btn"
-              type="submit"
-              onClick={() => handleSubmit()}
-            >
-              Inscription
-            </button>
-          </Link>
-
+          <button className="btn" type="submit" onClick={() => handleSubmit()}>
+            Inscription
+          </button>
           <p className="register-sentence">Vous avez déjà un compte?</p>
           <Link to="/login">Se connecter</Link>
         </form>
