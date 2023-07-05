@@ -74,7 +74,7 @@ function TutorialExplication() {
                 Précédent
               </ButtonTutorial>
               <ButtonTutorial
-                path={`/formations/tutorials/video/${id}`}
+                path={`/formations/tutorials/${id}`}
                 nextOrPreview="validateTutorial"
               >
                 Valider le tutoriel
