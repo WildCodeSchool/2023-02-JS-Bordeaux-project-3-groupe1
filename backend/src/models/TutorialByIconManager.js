@@ -4,10 +4,11 @@ const database = require("../../database");
 
 /*  Nous avons joint les tables users, tutorials et steps par la table de jointure usersTutorials pour enregistrer les steps propre aux utilisateurs     */
 
-const getTutorialByIconFormation = async () => {
+const getTutorialByIconFormation = async (id) => {
   try {
     const rows = await database.query(
-      "SELECT users.id AS usersID, users.email AS mail, userstutorials.user_id AS TutoUserID, steps.id AS stepsID, tutorials.id AS tutoID, tutorials.name, userstutorials.tutorial_id As tutoTutoID, userstutorials.step_id AS tutoStepID, steps.stepOne, steps.stepTwo, steps.stepThree, formations.iconURL, tutorials.name FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN steps ON steps.id = userstutorials.step_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN formations ON tutorials.formation_id = formations.id WHERE users.id = 1;"
+      "SELECT userstutorials.*, tutorials.*, tutorials.id AS tutoId, steps.* FROM userstutorials LEFT JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id WHERE userstutorials.user_id = 2 AND tutorials.formation_id = ? UNION ALL SELECT NULL, NULL, NULL, NULL, tutorials.*, tutorials.id AS tutoId, NULL, NULL, NULL, NULL FROM tutorials WHERE tutorials.formation_id = ? AND tutorials.id NOT IN ( SELECT userstutorials.tutorial_id FROM userstutorials WHERE userstutorials.user_id = 2);",
+      [id, id]
     );
     return rows[0];
   } catch (error) {
@@ -23,7 +24,8 @@ const findTurorialByHerID = async (id) => {
       `SELECT tutorials.name, tutorials.id AS tutoID, steps.*, users.email
       FROM tutorials
       JOIN userstutorials ON tutorials.id = userstutorials.tutorial_id
-      JOIN steps ON steps.id = userstutorials.step_id
+      JOIN tutorials ON tutorials.id = id
+      JOIN steps ON steps.id = tutorialsSteps.step_id
       JOIN users ON users.id = userstutorials.user_id
       WHERE tutorials.formation_id = ? AND users.id = 2;`,
       [id]

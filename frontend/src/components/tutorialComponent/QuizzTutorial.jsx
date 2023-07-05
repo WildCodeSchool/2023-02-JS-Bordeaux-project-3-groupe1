@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
 import validation from "../../assets/validation.png";
 import { sender } from "../../services/tutorialService";
+import InputField from "./components/InputField";
 
 function QuizzTutorial(props) {
   const { forms, setForms } = useContext(CreateTutorialContext);
@@ -102,36 +103,36 @@ function QuizzTutorial(props) {
   return (
     <div className="container-createQuizzTutorial">
       <label htmlFor="question">Question :</label>
-      <input
+      <InputField
         name="question"
         id="question"
-        onChange={handleInputChange}
         value={question}
         placeholder="Ajouter une question"
+        onChange={handleInputChange}
       />
       <label htmlFor="answer">La réponse :</label>
-      <input
+      <InputField
         name="answer"
         id="answer"
-        onChange={handleInputChange}
         value={answer}
         placeholder="Ajouter la réponse "
+        onChange={handleInputChange}
       />
       <label htmlFor="optionOne">Première option :</label>
-      <input
+      <InputField
         name="optionOne"
         id="optionOne"
-        onChange={handleInputChange}
         value={optionOne}
         placeholder="Ajouter une option"
+        onChange={handleInputChange}
       />
       <label htmlFor="optionTwo">Deuxième option :</label>
-      <input
+      <InputField
         name="optionTwo"
         id="optionTwo"
-        onChange={handleInputChange}
         value={optionTwo}
         placeholder="Ajouter une option"
+        onChange={handleInputChange}
       />
       <div className="container-quizz-preview">
         <div className="container-quizz-preview-title">
