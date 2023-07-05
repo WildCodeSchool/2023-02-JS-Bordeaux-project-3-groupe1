@@ -4,7 +4,7 @@ import NameTutorial from "../NameTutorial";
 import { fetcherTags } from "../../../services/tutorialService";
 
 function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
-  const [nameTutoPlaceholder, setNameTutoPlaceholder] = useState("");
+  const [nameTutoPlaceholder] = useState("Modifier le nom du tutoriel");
   const [tagTutoPlaceholder] = useState("Ajouter les tags");
   const [tutorialWithtags, setTutorialtags] = useState([]);
   const [tagId, setTagId] = useState(0);
@@ -21,7 +21,6 @@ function UpdateNameTutorial({ setCountStepTutorial, tutorialId }) {
 
   useEffect(() => {
     if (tutorialWithtags?.length !== 0) {
-      setNameTutoPlaceholder(tutorialWithtags[0]?.name);
       setTagId(tutorialWithtags[0]?.tagID);
     }
   }, [tutorialWithtags]);

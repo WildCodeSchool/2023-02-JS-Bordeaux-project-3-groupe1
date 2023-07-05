@@ -22,26 +22,26 @@
     margin-top: 2rem;
     font-size: 1rem;
     font-weight: 100;
-    text-align:center;
-}
-
-.section {
-  margin-bottom: 20px;
-}
-.content {
-  margin-top: 5px;
-  margin-bottom: -10px;
-  border: 3px solid #ffcb03;
-  white-space: pre-line;
-  padding: 5px;
-  @include desktop {
-    margin-left: -150px;
-    margin-right: -150px;
-    margin-bottom: -10px;
+    text-align: center;
   }
-}
 
-.label {
-  font-weight: bold;
-}
+  .section {
+    margin-bottom: 20px;
+  }
+  .content {
+    margin-top: 5px;
+    margin-bottom: -10px;
+    border: 3px solid #ffcb03;
+    white-space: pre-line;
+    padding: 5px;
+    @include desktop {
+      margin-left: -150px;
+      margin-right: -150px;
+      margin-bottom: -10px;
+    }
+  }
+
+  .label {
+    font-weight: bold;
+  }
 }
