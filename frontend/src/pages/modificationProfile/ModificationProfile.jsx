@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
-import DragAndDrop from "../../components/dropFile/DragAndDrop ";
 import { sender, fetcher } from "../../services/userService";
 
 function ModificationPage() {
@@ -15,6 +14,7 @@ function ModificationPage() {
   const [birthdayDate, setBirthdayDate] = useState("");
   const [gender, setGender] = useState("Masculin");
   const [userId] = useState(1);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -67,6 +67,21 @@ function ModificationPage() {
       });
   }, []);
 
+  const handleFile = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (file) {
+      setPicture(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreviewUrl(null);
+    }
+  };
+
   const handleSave = () => {
     const valuesUser = {
       lastname,
@@ -94,8 +109,17 @@ function ModificationPage() {
   return (
     <main>
       <div className="photoLocation">
-        <DragAndDrop pictureUrl={pictureUrl} setPicture={setPicture} />
-        <img className="camera" src={AppareilPhoto} alt="appareil" />
+        <input
+          type="file"
+          name="file"
+          id="fileInput"
+          style={{ display: "none" }}
+          onChange={handleFile}
+        />
+        <label htmlFor="fileInput">
+          <img className="camera" src={AppareilPhoto} alt="appareil" />
+        </label>
+        {previewUrl && <img src={previewUrl} alt="Preview" />}
       </div>
       <div className="firstBlocInput">
         <label className="denomination" htmlFor="name-user">

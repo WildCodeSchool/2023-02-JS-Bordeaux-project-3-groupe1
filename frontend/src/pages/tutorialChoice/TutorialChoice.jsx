@@ -14,7 +14,6 @@ function TutorialChoice() {
   useEffect(() => {
     fetcher(`tutorialbyicon/${tutorialsIdPlusOne}`)
       .then((data) => {
-        console.info(data);
         setDataTutorial(data);
       })
       .catch((error) => {
