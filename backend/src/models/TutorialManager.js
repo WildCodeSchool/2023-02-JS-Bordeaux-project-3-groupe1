@@ -13,6 +13,7 @@ const getAllTutorials = async () => {
     throw new Error("Error retrieving tutorials");
   }
 };
+
 const getAllTutorialsByFormation = async (id) => {
   try {
     const tutorialsByFormation = await database.query(
