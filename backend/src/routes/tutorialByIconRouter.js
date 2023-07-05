@@ -9,5 +9,6 @@ router.get(
 );
 
 router.get("/:id", tutorialByIconControllers.getTutorialByHerIdClick);
+router.put("/:id", tutorialByIconControllers.updateStepOnClick);
 
 module.exports = router;

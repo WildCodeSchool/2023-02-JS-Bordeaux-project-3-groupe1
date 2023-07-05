@@ -35,7 +35,7 @@ const findTurorialByHerID = async (id) => {
     throw new Error("Error get formation", error);
   }
 };
-const updateStepByIdOfTutorial = async (id, stepOne, stepTwo, stepThree) => {
+const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
   try {
     const rows = await database.query(
       `UPDATE steps
@@ -43,9 +43,9 @@ const updateStepByIdOfTutorial = async (id, stepOne, stepTwo, stepThree) => {
       JOIN tutorials ON tutorials.id = userstutorials.tutorial_id
       JOIN users ON users.id = userstutorials.user_id
       JOIN formations ON tutorials.formation_id = formations.id
-      SET steps.stepOne = ?, steps.stepTwo = ?, steps.stepThree = ?
-      WHERE users.id = 1 AND tutorials.id = ?;`,
-      [stepOne, stepTwo, stepThree, id]
+      SET ${stepToUpdate} = ?
+      WHERE users.id = 2 AND tutorials.id = ?;`,
+      [updatedValue, id]
     );
 
     return rows[0];
@@ -55,6 +55,77 @@ const updateStepByIdOfTutorial = async (id, stepOne, stepTwo, stepThree) => {
     return null;
   }
 };
+
+// const getStepsByUserIdAndTutorialId = async (id) => {
+//   try {
+//     const rows = await database.query(
+//       `SELECT steps.stepOne, steps.stepTwo, steps.stepThree, users.email
+//       FROM userstutorials
+//       JOIN steps ON steps.id = userstutorials.step_id
+//       JOIN tutorials ON tutorials.id = userstutorials.tutorial_id
+//       JOIN users ON users.id = userstutorials.user_id
+//       JOIN formations ON tutorials.formation_id = formations.id
+//       WHERE users.id = 2 AND tutorials.id = ?;`,
+//       [id]
+//     );
+
+//     return rows[0];
+//   } catch (error) {
+//     console.error(error);
+//     console.info("manager");
+//     return null;
+//   }
+// };
+
+// const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
+//   try {
+//     const currentSteps = await getStepsByUserIdAndTutorialId(id);
+
+//     const currentStepsMap = currentSteps.map((item) => ({
+//       stepOne: item.stepOne,
+//       stepTwo: item.stepTwo,
+//       stepThree: item.stepThree,
+//     }));
+
+//     console.info("currentSteps", currentSteps);
+//     console.info("currentStepsMap", currentStepsMap);
+
+//     // Trouver l'objet d'étapes correspondant à l'étape à mettre à jour
+//     const updatedStepObject = currentStepsMap.find(
+//       (step) => stepToUpdate in step
+//     );
+
+//     if (updatedStepObject) {
+//       // Mettre à jour la valeur de l'étape spécifiée
+//       updatedStepObject[stepToUpdate] = updatedValue;
+
+//       // Effectuer la mise à jour dans la base de données
+//       const rows = await database.query(
+//         `UPDATE steps
+//         JOIN userstutorials ON steps.id = userstutorials.step_id
+//         JOIN tutorials ON tutorials.id = userstutorials.tutorial_id
+//         JOIN users ON users.id = userstutorials.user_id
+//         JOIN formations ON tutorials.formation_id = formations.id
+//         SET steps.stepOne = ?, steps.stepTwo = ?, steps.stepThree = ?
+//         WHERE users.id = 2 AND tutorials.id = ?;`,
+//         [
+//           updatedStepObject.stepOne,
+//           updatedStepObject.stepTwo,
+//           updatedStepObject.stepThree,
+//           id,
+//         ]
+//       );
+
+//       console.info("rows", rows);
+//       console.info("updatedSteps", updatedStepObject);
+//       return rows[0];
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     console.info("manager");
+//     return null;
+//   }
+// };
 
 module.exports = {
   getTutorialByIconFormation,
