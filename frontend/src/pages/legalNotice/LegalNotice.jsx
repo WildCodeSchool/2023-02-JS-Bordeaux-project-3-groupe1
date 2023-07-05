@@ -29,31 +29,26 @@ Si vous avez des questions concernant ces mentions légales, veuillez nous conta
 Dernière mise à jour : [20/06/2023]`;
 
   return (
-    <div className="container">
-      <h1 className="title"> </h1>
+    <div className="containerLegalNotice">
+      <h2 className="subtitleInfoLegalNotice">Informations sur l'entreprise</h2>
+      <div className="content">
+        <p className="label">Nom de l'entreprise :</p>
+        <p>{nomEntreprise}</p>
 
-      <div className="section">
-        <h2 className="subtitle">Informations sur l'entreprise</h2>
-        <div className="content">
-          <p className="label">Nom de l'entreprise :</p>
-          <p>{nomEntreprise}</p>
+        <p className="label">Adresse :</p>
+        <p>{adresse}</p>
 
-          <p className="label">Adresse :</p>
-          <p>{adresse}</p>
+        <p className="label">Email :</p>
+        <p>{email}</p>
 
-          <p className="label">Email :</p>
-          <p>{email}</p>
+        <p className="label">Téléphone :</p>
+        <p>{numeroTelephone}</p>
 
-          <p className="label">Téléphone :</p>
-          <p>{numeroTelephone}</p>
-
-          <p className="label">Numéro SIRET :</p>
-          <p>{numeroSIRET}</p>
-        </div>
+        <p className="label">Numéro SIRET :</p>
+        <p>{numeroSIRET}</p>
       </div>
-
       <div className="section">
-        <h2 className="subtitle">Mentions Légales</h2>
+        <h2 className="subtitleLegalNotice">Mentions Légales</h2>
         <div className="content">
           <p>{mentionsLegales}</p>
         </div>
