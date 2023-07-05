@@ -11,6 +11,9 @@
   font-family: $app-secondary-font;
   width: 100%;
   height: 45px;
+  position:fixed;
+  bottom: 0;
+  
   @include phonelarge {
     width: 100%;
     height: 45px;
