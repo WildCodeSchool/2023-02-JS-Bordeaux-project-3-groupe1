@@ -6,8 +6,8 @@ function Footer() {
       <Link to="/LegalNotice" className="legalNotice">
         Mentions légales
       </Link>
-      <Link to="/AboutUs" className="aboutUs">
-        A propos
+      <Link to="/PersonalData" className="PersonalData">
+        Données personnelles
       </Link>
     </footer>
   );

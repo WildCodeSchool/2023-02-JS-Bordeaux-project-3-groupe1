@@ -15,7 +15,7 @@ import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
 import LevelUser from "./pages/levelUser/LevelUser";
 import Footer from "./components/footer/Footer";
 import LegalNotice from "./pages/legalNotice/LegalNotice";
-import AboutUs from "./pages/aboutUs/AboutUs";
+import PersonalData from "./pages/personalData/PersonalData";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Parcours from "./pages/parcours/Parcours";
@@ -62,8 +62,8 @@ const router = createBrowserRouter([
         element: <LegalNotice />,
       },
       {
-        path: "/aboutUs",
-        element: <AboutUs />,
+        path: "/personalData",
+        element: <PersonalData />,
       },
       {
         path: "/register",
