@@ -6,7 +6,7 @@ function SearchPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
 
   useEffect(() => {
-    setNameMenu("Recherche d'un tutorial");
+    setNameMenu("Recherche d'un tutoriel");
   }, [setNameMenu]);
 
   return (
