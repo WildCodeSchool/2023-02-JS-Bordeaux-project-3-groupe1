@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 import DragAndDrop from "../../components/dropFile/DragAndDrop ";
-import { sender } from "../../services/userService";
+import { sender, fetcher } from "../../services/userService";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
+  const [pictureUrl, setPictureUrl] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ function ModificationPage() {
   const [location, setLocation] = useState("");
   const [birthdayDate, setBirthdayDate] = useState("");
   const [gender, setGender] = useState("Masculin");
+  const [userId] = useState(1);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +44,29 @@ function ModificationPage() {
     }
   };
 
+  useEffect(() => {
+    fetcher("users", userId)
+      .then((data) => {
+        setFirstname(data.firstname);
+        setLastname(data.lastname);
+        setEmail(data.email);
+        setCity(data.city);
+        setLocation(data.location);
+        if (data.birthdayDate) {
+          const originalDate = data.birthdayDate;
+          const formattedDate = new Date(originalDate)
+            .toISOString()
+            .split("T")[0];
+          setBirthdayDate(formattedDate);
+        }
+        setGender(data.gender);
+        setPictureUrl(data.picture);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   const handleSave = () => {
     const valuesUser = {
       lastname,
@@ -52,6 +77,7 @@ function ModificationPage() {
       birthdayDate,
       gender,
       picture,
+      pictureUrl,
     };
 
     sender("users", {
@@ -68,7 +94,7 @@ function ModificationPage() {
   return (
     <main>
       <div className="photoLocation">
-        <DragAndDrop setPicture={setPicture} />
+        <DragAndDrop pictureUrl={pictureUrl} setPicture={setPicture} />
         <img className="camera" src={AppareilPhoto} alt="appareil" />
       </div>
       <div className="firstBlocInput">

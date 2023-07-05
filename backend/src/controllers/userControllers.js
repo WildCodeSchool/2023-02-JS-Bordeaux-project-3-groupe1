@@ -14,27 +14,12 @@ const getOne = async (req, res) => {
   }
 };
 
-const create = async (req, res) => {
-  try {
-    const user = req.body;
-    const response = await UserManager.createUser(user);
-
-    if (response) {
-      res.status(201).json(user);
-    } else {
-      res.status(404);
-    }
-  } catch (error) {
-    console.error("Error creating user or uploading file: ", error);
-    res.status(500).json({ message: "Failed to create user or upload file" });
-  }
-};
-
 const update = async (req, res) => {
+  const { id } = req.params;
   const user = req.body;
   try {
-    const response = await UserManager.updateUser(user);
-    if (!response) {
+    const response = await UserManager.updateUser(user, id);
+    if (response.length === 0) {
       res.status(404).send("User not updated");
     } else {
       res.sendStatus(204);
@@ -47,5 +32,4 @@ const update = async (req, res) => {
 module.exports = {
   getOne,
   update,
-  create,
 };

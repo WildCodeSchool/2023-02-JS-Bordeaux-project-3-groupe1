@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-function DragAndDrop({ setPicture }) {
+function DragAndDrop({ pictureUrl, setPicture }) {
   const [dragging, setDragging] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -35,6 +35,10 @@ function DragAndDrop({ setPicture }) {
     }
   };
 
+  useEffect(() => {
+    setPreviewUrl(pictureUrl);
+  }, [pictureUrl]);
+
   return (
     <div
       className={`drag-and-drop ${dragging ? "dragging" : ""}`}
@@ -52,6 +56,7 @@ function DragAndDrop({ setPicture }) {
 }
 
 DragAndDrop.propTypes = {
+  pictureUrl: PropTypes.string.isRequired,
   setPicture: PropTypes.func.isRequired,
 };
 
