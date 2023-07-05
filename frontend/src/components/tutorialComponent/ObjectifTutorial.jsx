@@ -111,6 +111,7 @@ function ObjectifTutorial(props) {
       <div className="container-explications">
         <div className="line" />
         <ImageUploadSection handleFileChange={handleFileChange} />
+        <h3>Explications</h3>
         <TextSection
           previewUrl={previewUrl}
           handleExplicationChange={handleExplicationChange}

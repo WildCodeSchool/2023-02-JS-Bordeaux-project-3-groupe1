@@ -124,7 +124,7 @@ function NameTutorial(props) {
       if (tutorialWithtags[0]?.level === 2) {
         setStarLevelStyle(true);
       }
-      setNameTutorial(nameTutoPlaceholder);
+      setNameTutorial(tutorialWithtags[0]?.name);
     } else {
       setIsUpdate(false);
     }

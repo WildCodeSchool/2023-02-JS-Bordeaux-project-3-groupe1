@@ -3,9 +3,9 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { CreateTutorialContext } from "../../contexts/CreateTutorialContext";
-import validation from "../../assets/validation.png";
 import { sender } from "../../services/tutorialService";
 import InputField from "./components/InputField";
+import PreviewQuizz from "./components/PreviewQuizz";
 
 function QuizzTutorial(props) {
   const { forms, setForms } = useContext(CreateTutorialContext);
@@ -134,21 +134,13 @@ function QuizzTutorial(props) {
         placeholder="Ajouter une option"
         onChange={handleInputChange}
       />
-      <div className="container-quizz-preview">
-        <div className="container-quizz-preview-title">
-          <div className="space" />
-          <h3>Quizz</h3>
-          <img src={validation} alt="validation" />
-        </div>
-        <h4>Question : {question}</h4>
-        <p>Choisissez une réponse</p>
-
-        <div className="container-quizz-preview-answer">
-          <button type="button">{optionOne}</button>
-          <button type="button">{optionTwo}</button>
-          <button type="button">{answer}</button>
-        </div>
-      </div>
+      <h3>Quizz</h3>
+      <PreviewQuizz
+        question={question}
+        optionOne={optionOne}
+        optionTwo={optionTwo}
+        answer={answer}
+      />
       <Link to={`/formations/${forms.idFormation}`}>
         <button type="button" onClick={handleSaveTutorial} disabled={!isValid}>
           Valider le tutorial

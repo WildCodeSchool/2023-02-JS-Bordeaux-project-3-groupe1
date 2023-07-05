@@ -21,6 +21,10 @@
     color: $app-secondary-fonts-color;
   }
 
+  h3 {
+    color: $app-primary-fonts-color;
+  }
+
   .container-createVideoTutorial-preview {
     width: 100%;
     height: 20rem;
@@ -34,35 +38,13 @@
       width: 100%;
     }
 
-    .container-video-preview-title {
-      display: flex;
-      width: 100%;
-      height: 15%;
-      justify-content: space-between;
-      padding: 2%;
-
-      .space {
-        height: 20px;
-        width: 20px;
-      }
-
-      h3 {
-        color: $app-secondary-fonts-color-5;
-      }
-
-      img {
-        height: 20px;
-        width: 20px;
-      }
-    }
-
     .container-video-preview-logo {
       display: flex;
       justify-content: flex-end;
       align-items: flex-end;
       margin: 0;
       padding: 4%;
-      height: calc(100% - 48px);
+      height: 100%;
 
       img {
         width: 60px;
