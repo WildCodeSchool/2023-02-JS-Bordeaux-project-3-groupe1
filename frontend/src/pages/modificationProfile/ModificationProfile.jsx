@@ -67,6 +67,10 @@ function ModificationPage() {
       });
   }, []);
 
+  useEffect(() => {
+    setPreviewUrl(pictureUrl);
+  }, [pictureUrl]);
+
   const handleFile = (e) => {
     e.preventDefault();
     const file = e.target.files[0];
