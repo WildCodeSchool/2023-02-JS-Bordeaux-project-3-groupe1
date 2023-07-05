@@ -1,53 +1,37 @@
-.container {
-  max-width: 375px;
+.containerLegalNotice {
+  padding-top: 4rem;
+  max-width: 355px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
+
   @include desktop {
     max-width: 927px;
   }
   @include tablet {
     max-width: 768px;
   }
-}
-
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-.subtitle {
-  background-color: #003da5;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  height: 30px;
-  align-items: center;
-  color: white;
-  padding: 5px;
-  margin-left: 0;
-  margin-right: 0;
   @include desktop {
     margin-left: -150px;
     margin-right: -150px;
   }
+  .subtitleInfoLegalNotice,
+  .subtitleLegalNotice {
+    background-color: #003da5;
+    height: 30px;
+    color: white;
+    padding: 4px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    font-weight: 100;
+    text-align:center;
 }
 
 .section {
   margin-bottom: 20px;
 }
-
-.label {
-  font-weight: bold;
-}
-
 .content {
   margin-top: 5px;
-  margin-left: 0;
-  margin-right: 0;
   margin-bottom: -10px;
-  border: 5px solid #ffcb03;
+  border: 3px solid #ffcb03;
   white-space: pre-line;
   padding: 5px;
   @include desktop {
@@ -57,12 +41,7 @@
   }
 }
 
-.updated {
-  font-style: italic;
-  color: #888888;
+.label {
+  font-weight: bold;
 }
-
-.note {
-  font-size: 14px;
-  color: #888888;
 }
