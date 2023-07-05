@@ -25,7 +25,6 @@ function TutorialExplication() {
         console.error(error);
       });
   }, []);
-  console.info(dataTutorial);
   return (
     <div className="container-ObjectifTutorial">
       <ContainerObjectifTutorial dataTutorial={dataTutorial} />
@@ -47,30 +46,40 @@ function TutorialExplication() {
         )}
         {location.pathname === `/formations/tutorials/video/${id}` && (
           <>
-            <ContainerVideoTutorial validation={validation} />
-            <ButtonTutorial
-              path={`/formations/tutorials/explication/${id}`}
-              nextOrPreview="precedent"
-            >
-              Précédent
-            </ButtonTutorial>
-            <ButtonTutorial
-              path={`/formations/tutorials/quizz/${id}`}
-              nextOrPreview="suivant"
-            >
-              Suivant
-            </ButtonTutorial>
+            <ContainerVideoTutorial videoTutorials={dataTutorial.urlVideo} />
+            <div className="containerButtonVideo">
+              <ButtonTutorial
+                path={`/formations/tutorials/explication/${id}`}
+                nextOrPreview="precedent"
+              >
+                Précédent
+              </ButtonTutorial>
+              <ButtonTutorial
+                path={`/formations/tutorials/quizz/${id}`}
+                nextOrPreview="suivant"
+              >
+                Suivant
+              </ButtonTutorial>
+            </div>
           </>
         )}
         {location.pathname === `/formations/tutorials/quizz/${id}` && (
           <>
             <ContainerQuizzTutorial validation={validation} />
-            <ButtonTutorial
-              path={`/formations/tutorials/video/${id}`}
-              nextOrPreview="precedent"
-            >
-              Précédent
-            </ButtonTutorial>
+            <div className="containerButtonVideo">
+              <ButtonTutorial
+                path={`/formations/tutorials/video/${id}`}
+                nextOrPreview="precedent"
+              >
+                Précédent
+              </ButtonTutorial>
+              <ButtonTutorial
+                path={`/formations/tutorials/video/${id}`}
+                nextOrPreview="validateTutorial"
+              >
+                Valider le tutoriel
+              </ButtonTutorial>
+            </div>
           </>
         )}
       </div>

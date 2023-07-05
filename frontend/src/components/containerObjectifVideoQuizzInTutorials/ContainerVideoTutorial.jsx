@@ -1,31 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import YouTube from "react-youtube";
 
-function ContainerVideoTutorial({ validation, dataTutorial }) {
+function ContainerVideoTutorial({ videoTutorials }) {
+  const videoId = videoTutorials;
+  const opts = { height: "190", width: "340" };
   return (
-    <div className="container-Video-preview">
-      <div className="container-video-preview-title">
-        <div className="Space" />
-        <p>Video</p>
-        <img className="validation" src={validation} alt="validation" />
+    <div>
+      <p className="pTutoVideo">Vidéo</p>
+      <div className="container-Video-preview">
+        <YouTube className="VideoYouTubeVisuel" videoId={videoId} opts={opts} />
       </div>
-      <p className="explication-text">
-        {dataTutorial.name}noirzgiefiezqifhvierqhgerhgeruh
-      </p>
     </div>
   );
 }
 ContainerVideoTutorial.propTypes = {
-  validation: PropTypes.string,
-  dataTutorial: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }),
+  videoTutorials: PropTypes.string,
 };
 
 ContainerVideoTutorial.defaultProps = {
-  validation: "image",
-  dataTutorial: {
-    explication: "Comprendre",
-  },
+  videoTutorials: "image",
 };
 export default ContainerVideoTutorial;

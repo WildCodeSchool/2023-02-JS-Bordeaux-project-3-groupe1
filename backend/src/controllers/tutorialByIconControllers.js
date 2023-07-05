@@ -4,8 +4,9 @@ const {
 } = require("../models/TutorialByIconManager");
 
 const getTutorialsByIdWithJoinTableFormations = async (req, res) => {
+  const { id } = req.params;
   try {
-    const results = await getTutorialByIconFormation();
+    const results = await getTutorialByIconFormation(id);
     if (results.length === 0) {
       res.status(404).send("no formations found");
     } else {
