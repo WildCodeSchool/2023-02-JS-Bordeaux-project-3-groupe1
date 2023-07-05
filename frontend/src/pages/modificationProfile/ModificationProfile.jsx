@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 import DragAndDrop from "../../components/dropFile/DragAndDrop ";
-import { sender } from "../../services/userService";
+import { sender, fetcher } from "../../services/userService";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
@@ -13,6 +13,16 @@ function ModificationPage() {
   const [location, setLocation] = useState("");
   const [birthdayDate, setBirthdayDate] = useState("");
   const [gender, setGender] = useState("Masculin");
+  const [userId] = useState(1);
+  const [lastnamePlaceHolder, setLastnamePlaceHolder] = useState("Lafond");
+  const [firstnamePlaceHolder, setFirstnamePlaceHolder] = useState("Pierre");
+  const [emailPlaceHolder, setEmailPlaceHolder] = useState(
+    "pierre.lafond@gmail.com"
+  );
+  const [cityPlaceHolder, setCityPlaceHolder] = useState("Paris");
+  const [locationPlaceHolder, setLocationPlaceHolder] = useState("7500");
+  const [birthdayDatePlaceHolder, setBirthdayDatePlaceHolder] =
+    useState("1953-03-26");
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +51,26 @@ function ModificationPage() {
       default:
     }
   };
+
+  useEffect(() => {
+    fetcher("users", userId)
+      .then((data) => {
+        setLastnamePlaceHolder(data.lastname);
+        setFirstnamePlaceHolder(data.firstname);
+        setEmailPlaceHolder(data.email);
+        setCityPlaceHolder(data.city);
+        setLocationPlaceHolder(data.location);
+        setBirthdayDatePlaceHolder(data.birthdayDate);
+        if (data.gender === "Féminin") {
+          setGender("Féminin");
+        } else {
+          setGender("Masculin");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleSave = () => {
     const valuesUser = {
@@ -78,7 +108,7 @@ function ModificationPage() {
         <input
           className="inputModificationProfile"
           type="text"
-          placeholder="Lafond"
+          placeholder={lastnamePlaceHolder}
           name="lastname"
           value={lastname}
           onChange={onChange}
@@ -91,7 +121,7 @@ function ModificationPage() {
         <input
           className="inputModificationProfile"
           type="text"
-          placeholder="Pierre"
+          placeholder={firstnamePlaceHolder}
           name="firstname"
           value={firstname}
           onChange={onChange}
@@ -105,7 +135,7 @@ function ModificationPage() {
           className="inputModificationProfile"
           id="email"
           type="text"
-          placeholder="pierre.lafond@gmail.com"
+          placeholder={emailPlaceHolder}
           name="email"
           value={email}
           onChange={onChange}
@@ -118,7 +148,7 @@ function ModificationPage() {
         <input
           className="inputModificationProfile"
           type="text"
-          placeholder="Paris"
+          placeholder={cityPlaceHolder}
           name="city"
           value={city}
           onChange={onChange}
@@ -132,7 +162,7 @@ function ModificationPage() {
           <input
             className="inputModificationProfileBloc"
             type="text"
-            placeholder="75000"
+            placeholder={locationPlaceHolder}
             name="location"
             value={location}
             onChange={onChange}
@@ -146,7 +176,7 @@ function ModificationPage() {
             className="inputModificationProfileBloc"
             type="date"
             id="birthdayDate"
-            placeholder="1953-03-26"
+            placeholder={birthdayDatePlaceHolder}
             min="1900-01-01"
             max="2018-12-31"
             name="birthdayDate"
