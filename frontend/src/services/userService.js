@@ -13,7 +13,6 @@ export const fetcher = async (url, userId) => {
 
 export const sender = async (url, valuesUser) => {
   const id = 1;
-  console.log(id, valuesUser);
   try {
     const formData = new FormData();
     formData.append("lastname", valuesUser.lastname);
@@ -24,6 +23,7 @@ export const sender = async (url, valuesUser) => {
     formData.append("birthdayDate", valuesUser.birthdayDate);
     formData.append("gender", valuesUser.gender);
     formData.append("file", valuesUser.picture);
+    formData.append("newFilename", valuesUser.pictureUrl);
 
     const response = await axios.put(
       `${import.meta.env.VITE_BASE_API}/${url}/${id}`,

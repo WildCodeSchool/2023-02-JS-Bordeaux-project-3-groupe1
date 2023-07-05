@@ -6,6 +6,7 @@ import { sender, fetcher } from "../../services/userService";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
+  const [pictureUrl, setPictureUrl] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [email, setEmail] = useState("");
@@ -14,15 +15,6 @@ function ModificationPage() {
   const [birthdayDate, setBirthdayDate] = useState("");
   const [gender, setGender] = useState("Masculin");
   const [userId] = useState(1);
-  const [lastnamePlaceHolder, setLastnamePlaceHolder] = useState("Lafond");
-  const [firstnamePlaceHolder, setFirstnamePlaceHolder] = useState("Pierre");
-  const [emailPlaceHolder, setEmailPlaceHolder] = useState(
-    "pierre.lafond@gmail.com"
-  );
-  const [cityPlaceHolder, setCityPlaceHolder] = useState("Paris");
-  const [locationPlaceHolder, setLocationPlaceHolder] = useState("7500");
-  const [birthdayDatePlaceHolder, setBirthdayDatePlaceHolder] =
-    useState("1953-03-26");
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -55,17 +47,20 @@ function ModificationPage() {
   useEffect(() => {
     fetcher("users", userId)
       .then((data) => {
-        setLastnamePlaceHolder(data.lastname);
-        setFirstnamePlaceHolder(data.firstname);
-        setEmailPlaceHolder(data.email);
-        setCityPlaceHolder(data.city);
-        setLocationPlaceHolder(data.location);
-        setBirthdayDatePlaceHolder(data.birthdayDate);
-        if (data.gender === "Féminin") {
-          setGender("Féminin");
-        } else {
-          setGender("Masculin");
+        setFirstname(data.firstname);
+        setLastname(data.lastname);
+        setEmail(data.email);
+        setCity(data.city);
+        setLocation(data.location);
+        if (data.birthdayDate) {
+          const originalDate = data.birthdayDate;
+          const formattedDate = new Date(originalDate)
+            .toISOString()
+            .split("T")[0];
+          setBirthdayDate(formattedDate);
         }
+        setGender(data.gender);
+        setPictureUrl(data.picture);
       })
       .catch((error) => {
         console.error(error);
@@ -82,6 +77,7 @@ function ModificationPage() {
       birthdayDate,
       gender,
       picture,
+      pictureUrl,
     };
 
     sender("users", {
@@ -98,7 +94,7 @@ function ModificationPage() {
   return (
     <main>
       <div className="photoLocation">
-        <DragAndDrop setPicture={setPicture} />
+        <DragAndDrop pictureUrl={pictureUrl} setPicture={setPicture} />
         <img className="camera" src={AppareilPhoto} alt="appareil" />
       </div>
       <div className="firstBlocInput">
@@ -108,7 +104,7 @@ function ModificationPage() {
         <input
           className="inputModificationProfile"
           type="text"
-          placeholder={lastnamePlaceHolder}
+          placeholder="Lafond"
           name="lastname"
           value={lastname}
           onChange={onChange}
@@ -121,7 +117,7 @@ function ModificationPage() {
         <input
           className="inputModificationProfile"
           type="text"
-          placeholder={firstnamePlaceHolder}
+          placeholder="Pierre"
           name="firstname"
           value={firstname}
           onChange={onChange}
@@ -135,7 +131,7 @@ function ModificationPage() {
           className="inputModificationProfile"
           id="email"
           type="text"
-          placeholder={emailPlaceHolder}
+          placeholder="pierre.lafond@gmail.com"
           name="email"
           value={email}
           onChange={onChange}
@@ -148,7 +144,7 @@ function ModificationPage() {
         <input
           className="inputModificationProfile"
           type="text"
-          placeholder={cityPlaceHolder}
+          placeholder="Paris"
           name="city"
           value={city}
           onChange={onChange}
@@ -162,7 +158,7 @@ function ModificationPage() {
           <input
             className="inputModificationProfileBloc"
             type="text"
-            placeholder={locationPlaceHolder}
+            placeholder="75000"
             name="location"
             value={location}
             onChange={onChange}
@@ -176,7 +172,7 @@ function ModificationPage() {
             className="inputModificationProfileBloc"
             type="date"
             id="birthdayDate"
-            placeholder={birthdayDatePlaceHolder}
+            placeholder="1953-03-26"
             min="1900-01-01"
             max="2018-12-31"
             name="birthdayDate"
