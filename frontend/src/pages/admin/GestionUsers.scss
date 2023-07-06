@@ -1,0 +1,16 @@
+.container-gestion {
+  width: 100vw;
+  height: calc(100vh - 45px);
+  padding-top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .container-gestion-user {
+    padding: 4%;
+    display: flex;
+    li {
+      padding: 4%;
+    }
+  }
+}

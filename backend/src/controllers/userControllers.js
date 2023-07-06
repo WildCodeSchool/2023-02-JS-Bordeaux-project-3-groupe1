@@ -13,6 +13,19 @@ const getTutorialByUserJustOneUser = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const users = await UserManager.getAllUsers();
+    if (users.length === 0) {
+      res.status(404).send("No users found");
+    } else {
+      res.status(200).send(users);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 const getOne = async (req, res) => {
   try {
     const { id } = req.params;
@@ -43,6 +56,7 @@ const update = async (req, res) => {
 };
 
 module.exports = {
+  getAll,
   getOne,
   update,
   create,
