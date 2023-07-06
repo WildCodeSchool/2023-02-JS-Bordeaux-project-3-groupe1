@@ -1,6 +1,5 @@
 const database = require("../../database");
 
-
 const getTutorialByUser = async () => {
   try {
     const rows = await database.query(
