@@ -25,3 +25,7 @@ export const sender = async (url, id, stepOne, stepTwo, stepThree, tutoId) => {
     throw new Error("Error while sending the data");
   }
 };
+
+export const api = axios.create({
+  baseURL: import.meta.env.VITE_BASE_API ?? "http://localhost:5000",
+});

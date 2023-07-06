@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { fetcher } from "../../services/api";
+import { fetcher, api } from "../../services/api";
 import validation from "../../assets/validation.png";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import ContainerObjectifTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerObjectifTutorial";
@@ -15,6 +15,7 @@ function TutorialExplication() {
   const [dataTutorial, setDataTutorial] = useState([]);
   const location = useLocation();
 
+  console.info(dataTutorial);
   setNameMenu(dataTutorial.name);
   useEffect(() => {
     fetcher(`tutorials/${id}`)
@@ -25,6 +26,19 @@ function TutorialExplication() {
         console.error(error);
       });
   }, []);
+  const handleTrueStep = (stepToUpdate, updatedValue) => {
+    api
+      .put(`/tutorialbyicon/${id}`, { stepToUpdate, updatedValue })
+      .then((response) => {
+        console.info(response.data);
+        // Faire quelque chose après la mise à jour réussie
+      })
+      .catch((error) => {
+        console.error(error);
+        // Gérer l'erreur de la requête
+      });
+  };
+
   return (
     <div className="container-ObjectifTutorial">
       <ContainerObjectifTutorial dataTutorial={dataTutorial} />
@@ -39,6 +53,7 @@ function TutorialExplication() {
             <ButtonTutorial
               path={`/formations/tutorials/video/${id}`}
               nextOrPreview="suivant"
+              handleTrueStep={() => handleTrueStep("stepOne", 1)}
             >
               Suivant
             </ButtonTutorial>
@@ -57,6 +72,7 @@ function TutorialExplication() {
               <ButtonTutorial
                 path={`/formations/tutorials/quizz/${id}`}
                 nextOrPreview="suivant"
+                handleTrueStep={() => handleTrueStep("stepTwo", 1)}
               >
                 Suivant
               </ButtonTutorial>
@@ -65,7 +81,10 @@ function TutorialExplication() {
         )}
         {location.pathname === `/formations/tutorials/quizz/${id}` && (
           <>
-            <ContainerQuizzTutorial validation={validation} />
+            <ContainerQuizzTutorial
+              validation={validation}
+              dataTutorial={dataTutorial}
+            />
             <div className="containerButtonVideo">
               <ButtonTutorial
                 path={`/formations/tutorials/video/${id}`}
@@ -76,6 +95,7 @@ function TutorialExplication() {
               <ButtonTutorial
                 path={`/formations/tutorials/${id}`}
                 nextOrPreview="validateTutorial"
+                handleTrueStep={() => handleTrueStep("stepThree", 1)}
               >
                 Valider le tutoriel
               </ButtonTutorial>
