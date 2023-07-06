@@ -1,5 +1,16 @@
 const database = require("../../database");
 
+const getTutorialByUser = async () => {
+  try {
+    const rows = await database.query(
+      `SELECT formations.iconURL, tutorials.name, steps.id AS stepID, steps.stepOne, steps.stepTwo, steps.stepThree, users.email FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id JOIN formations ON formations.id = tutorials.formation_id WHERE users.id = 2`
+    );
+    return rows[0];
+  } catch (error) {
+    throw new Error("Error get tutorials", error);
+  }
+};
+
 const getAllUsers = async () => {
   try {
     const users = await database.query(
@@ -65,4 +76,5 @@ module.exports = {
   getAllUsers,
   getUserById,
   updateUser,
+  getTutorialByUser,
 };

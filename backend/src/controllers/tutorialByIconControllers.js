@@ -2,7 +2,21 @@ const {
   getTutorialByIconFormation,
   findTurorialByHerID,
   updateStepByIdOfTutorial,
+  getTutorialByIconFormationNoId,
 } = require("../models/TutorialByIconManager");
+
+const getTutorialsByIdWithJoinTableFormationsNoId = async (req, res) => {
+  try {
+    const results = await getTutorialByIconFormationNoId();
+    if (results.length === 0) {
+      res.status(404).send("no formations found");
+    } else {
+      res.status(200).json(results);
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 const getTutorialsByIdWithJoinTableFormations = async (req, res) => {
   const { id } = req.params;
@@ -31,6 +45,7 @@ const getTutorialByHerIdClick = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
 const updateStepOnClick = async (req, res) => {
   const { id } = req.params;
   const { stepToUpdate, updatedValue } = req.body;
@@ -56,4 +71,5 @@ module.exports = {
   getTutorialsByIdWithJoinTableFormations,
   getTutorialByHerIdClick,
   updateStepOnClick,
+  getTutorialsByIdWithJoinTableFormationsNoId,
 };
