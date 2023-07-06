@@ -45,6 +45,7 @@ const getTutorialByHerIdClick = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
 const updateStepOnClick = async (req, res) => {
   const { id } = req.params;
   const { stepToUpdate, updatedValue } = req.body;
