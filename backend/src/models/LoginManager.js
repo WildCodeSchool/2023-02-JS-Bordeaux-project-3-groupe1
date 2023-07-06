@@ -1,13 +1,12 @@
 const database = require("../../database");
 
-const findOne = async (login) => {
-  const query = "SELECT * FROM users WHERE email = ? AND hashedPassword =? ";
-  const { email, hashedPassword } = login;
-  const value = [email, hashedPassword];
-  console.info(value);
+const findByEmail = async (login) => {
+  const query = "SELECT * FROM users WHERE email = ? ";
+  // const { email, hashedPassword } = login;
+  // const value = [email, hashedPassword];
+
   try {
-    const [user] = await database.query(query, value);
-    console.info(user);
+    const [user] = await database.query(query, login);
     return user;
   } catch (error) {
     throw new Error("Error finding user");
@@ -15,5 +14,5 @@ const findOne = async (login) => {
 };
 
 module.exports = {
-  findOne,
+  findByEmail,
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import invisible from "../../assets/invisible.png";
 import visible from "../../assets/visible.png";
@@ -11,6 +11,7 @@ function Login() {
   const handleVisible = () => {
     setShowPassword(!showPassword);
   };
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,12 +28,18 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
+    const body = { email, password };
+    console.info(body);
     try {
-      await axios.post(`${import.meta.env.VITE_BASE_API}/login`);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_API}/login`,
+        body
+      );
+      const token = response.data;
+      localStorage.setItem("token", token);
+      navigate("/");
     } catch (error) {
-      console.error(error.response.data.message);
+      console.error(error);
     }
   };
   return (
@@ -80,16 +87,12 @@ function Login() {
               </button>
             </div>
           </label>
-          <a href="/" className="new-password-link">
+          <Link to="/" className="new-password-link">
             MOT DE PASSE OUBLIÉ ?
-          </a>
+          </Link>
           <br />
           <br />
-          <button
-            className="login-btn"
-            type="submit"
-            onClick={() => handleSubmit()}
-          >
+          <button className="login-btn" type="submit" onClick={handleSubmit}>
             Connexion
           </button>
           <p className="sentence">Pas de compte?</p>
