@@ -15,6 +15,7 @@ function TutorialExplication() {
   const [dataTutorial, setDataTutorial] = useState([]);
   const location = useLocation();
 
+  console.info(dataTutorial);
   setNameMenu(dataTutorial.name);
   useEffect(() => {
     fetcher(`tutorials/${id}`)
@@ -80,7 +81,10 @@ function TutorialExplication() {
         )}
         {location.pathname === `/formations/tutorials/quizz/${id}` && (
           <>
-            <ContainerQuizzTutorial validation={validation} />
+            <ContainerQuizzTutorial
+              validation={validation}
+              dataTutorial={dataTutorial}
+            />
             <div className="containerButtonVideo">
               <ButtonTutorial
                 path={`/formations/tutorials/video/${id}`}
