@@ -5,28 +5,28 @@ import Connexion from "../../assets/pictures/photo_profile.png";
 import { fetcherUSerById } from "../../services/userService";
 
 function Profile() {
-  const [user, setUser] = useState({});
   const [userId] = useState(1);
   const [userGender, setUserGender] = useState("M");
-  const [userLastname, setUserLastname] = useState("Lafond");
-  const [userFirstname, setUserFirstname] = useState("Pierre");
+  const [userLastname, setUserLastname] = useState("");
+  const [userFirstname, setUserFirstname] = useState("");
+  const [userMail, setUserMail] = useState("@gmail.com");
+  const [userPicture, setUserPicture] = useState("");
 
   useEffect(() => {
     fetcherUSerById("users", userId)
       .then((data) => {
-        setUser(data);
-        setUserLastname(user?.lastname);
-        setUserFirstname(user?.firstname);
-        if (user.gender === "Masculin") {
-          setUserGender("M");
-        } else if (user.gender === "Féminin") {
-          setUserGender("Mme");
+        if (data) {
+          setUserGender(data.gender === "Masculin" ? "M" : "Mme");
+          setUserLastname(data.lastname || "Lafond");
+          setUserFirstname(data.firstname || "Pierre");
+          setUserMail(data.email || "lafondpierre@gmail.com");
+          setUserPicture(data.picture);
         }
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [userLastname, userFirstname]);
+  }, [userId]);
 
   return (
     <main className="mainProfile">
@@ -34,22 +34,17 @@ function Profile() {
         <h2>Mon profil</h2>
       </div>
       <div className="photoProfile">
-        {user?.picture && <img src={user.picture} alt="" />}
+        {userPicture && <img src={userPicture} alt="" />}
       </div>
       <div className="nameProfile">
         <img className="imgProfile" src={Connexion} alt="icone profile" />
-        {user ? (
-          <div className="NameProfile">
-            {" "}
-            {userGender} {userLastname} {userFirstname}
-          </div>
-        ) : (
-          <div className="NameProfile">M Lafond Pierre</div>
-        )}
+        <div className="NameProfile">
+          {userGender} {userLastname} {userFirstname}
+        </div>
       </div>
       <div className="nameProfile">
         <img className="imgMailProfile" src={mailProfile} alt="icone mail" />
-        <div className="MailProfile">{user.email}</div>
+        <div className="MailProfile">{userMail}</div>
       </div>
       <div className="buttons_profile">
         <Link to="/modificationProfile">

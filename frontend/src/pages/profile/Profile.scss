@@ -31,13 +31,13 @@
     margin: 3rem 4rem 0 3rem;
     color: $app-primary-fonts-color;
     font-family: $app-primary-font;
-    
-    .imgProfile, .imgMailProfile {
+
+    .imgProfile,
+    .imgMailProfile {
       height: 1.5rem;
     }
   }
 
-    
   .buttons_profile {
     display: flex;
     flex-direction: column;

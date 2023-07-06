@@ -21,7 +21,7 @@ function SelectTutorialPage() {
       .catch((error) => {
         console.error(error);
       });
-  }, [formationId]);
+  }, [formationId, dataTutorial]);
 
   return <SelectTutorial dataTutorial={dataTutorial} />;
 }
