@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function ContainerQuizzTutorial({ validation, dataTutorial }) {
-  console.log(dataTutorial);
   return (
     <>
       <div>
