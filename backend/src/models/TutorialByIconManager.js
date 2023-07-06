@@ -38,7 +38,7 @@ const findTurorialByHerID = async (id) => {
     throw new Error("Error get formation", error);
   }
 };
-const updateStepByIdOfTutorial = async (id, stepOne, stepTwo, stepThree) => {
+const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
   try {
     const rows = await database.query(
       `UPDATE steps
@@ -46,9 +46,9 @@ const updateStepByIdOfTutorial = async (id, stepOne, stepTwo, stepThree) => {
       JOIN tutorials ON tutorials.id = userstutorials.tutorial_id
       JOIN users ON users.id = userstutorials.user_id
       JOIN formations ON tutorials.formation_id = formations.id
-      SET steps.stepOne = ?, steps.stepTwo = ?, steps.stepThree = ?
-      WHERE users.id = 1 AND tutorials.id = ?;`,
-      [stepOne, stepTwo, stepThree, id]
+      SET ${stepToUpdate} = ?
+      WHERE users.id = 2 AND tutorials.id = ?;`,
+      [updatedValue, id]
     );
 
     return rows[0];
