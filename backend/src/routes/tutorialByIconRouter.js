@@ -4,6 +4,10 @@ const router = express.Router();
 const tutorialByIconControllers = require("../controllers/tutorialByIconControllers");
 
 router.get(
+  "/",
+  tutorialByIconControllers.getTutorialsByIdWithJoinTableFormationsNoId
+);
+router.get(
   "/:id",
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormations
 );

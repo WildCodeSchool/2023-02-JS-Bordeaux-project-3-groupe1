@@ -6,6 +6,7 @@ const upload = require("../middlewares/multer-config");
 const uploadFirebase = require("../middlewares/uploadFirebase");
 const { userValidator } = require("../validators/userValidator");
 
+router.get("/", userControllers.getTutorialByUserJustOneUser);
 router.get("/:id", userControllers.getOne);
 router.put(
   "/:id",

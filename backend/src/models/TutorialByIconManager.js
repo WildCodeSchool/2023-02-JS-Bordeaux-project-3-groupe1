@@ -3,6 +3,16 @@ const database = require("../../database");
 /* ---------- Get Table tutorial join table formation  ----------- */
 
 /*  Nous avons joint les tables users, tutorials et steps par la table de jointure usersTutorials pour enregistrer les steps propre aux utilisateurs     */
+const getTutorialByIconFormationNoId = async () => {
+  try {
+    const rows = await database.query(
+      `SELECT formations.iconURL, tutorials.name, steps.id AS stepID, steps.stepOne, steps.stepTwo, steps.stepThree, users.email FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id JOIN formations ON formations.id = tutorials.formation_id WHERE users.id = 2 AND ( SELECT COUNT(*) FROM tutorials AS t JOIN userstutorials AS ut ON t.id = ut.tutorial_id WHERE ut.user_id = 2 AND t.formation_id = formations.id AND steps.stepOne = 1 AND steps.stepTwo = 1 AND steps.stepThree = 1 ) = ( SELECT COUNT(*) FROM tutorials AS t JOIN userstutorials AS ut ON t.id = ut.tutorial_id WHERE ut.user_id = 2 AND t.formation_id = formations.id );`
+    );
+    return rows[0];
+  } catch (error) {
+    throw new Error("Error get formation", error);
+  }
+};
 
 const getTutorialByIconFormation = async (id) => {
   try {
@@ -128,6 +138,7 @@ const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
 // };
 
 module.exports = {
+  getTutorialByIconFormationNoId,
   getTutorialByIconFormation,
   findTurorialByHerID,
   updateStepByIdOfTutorial,
