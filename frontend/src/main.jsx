@@ -27,6 +27,8 @@ import TutorialExplication from "./components/tutorialExplication/TutorialExplic
 import SearchPage from "./pages/search/SearchPage";
 import Profile from "./pages/profile/Profile";
 import ModificationProfile from "./pages/modificationProfile/ModificationProfile";
+import GestionUsers from "./pages/admin/GestionUsers";
+import UserInfo from "./pages/admin/UserInfo";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
       {
         path: "/modificationProfile",
         element: <ModificationProfile />,
+      },
+      {
+        path: "/admin/gestion",
+        element: <GestionUsers />,
+      },
+      {
+        path: "/admin/user/:userId",
+        element: <UserInfo />,
       },
     ],
   },

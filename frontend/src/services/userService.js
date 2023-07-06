@@ -1,6 +1,15 @@
 import axios from "axios";
 
-export const fetcher = async (url, userId) => {
+export const fetcherAllUsers = async (url) => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_BASE_API}/${url}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while fetching data");
+  }
+};
+
+export const fetcherUSerById = async (url, userId) => {
   try {
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_API}/${url}/${userId}`
@@ -11,7 +20,7 @@ export const fetcher = async (url, userId) => {
   }
 };
 
-export const sender = async (url, valuesUser) => {
+export const sender = async (url, valuesUser, active) => {
   const id = 1;
   try {
     const formData = new FormData();
@@ -24,6 +33,7 @@ export const sender = async (url, valuesUser) => {
     formData.append("gender", valuesUser.gender);
     formData.append("file", valuesUser.picture);
     formData.append("newFilename", valuesUser.pictureUrl);
+    formData.append("active", active);
 
     const response = await axios.put(
       `${import.meta.env.VITE_BASE_API}/${url}/${id}`,
