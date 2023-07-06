@@ -55,9 +55,24 @@ const update = async (req, res) => {
   }
 };
 
+const destroy = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userDeleted = await UserManager.deleteUser(id);
+    if (userDeleted.affectedRows === 0) {
+      res.status(404).send("User not deleted");
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   getAll,
   getOne,
   update,
   getTutorialByUserJustOneUser,
+  destroy,
 };

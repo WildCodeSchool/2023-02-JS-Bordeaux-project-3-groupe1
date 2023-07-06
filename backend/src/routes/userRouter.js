@@ -17,4 +17,6 @@ router.put(
   userControllers.update
 );
 
+router.delete("/:id", userControllers.destroy);
+
 module.exports = router;

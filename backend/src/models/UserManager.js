@@ -72,9 +72,23 @@ const updateUser = async (user, userId) => {
   }
 };
 
+const deleteUser = async (id) => {
+  const userQuery = "DELETE users.* FROM users WHERE id = ?";
+  try {
+    const response = await database.query(userQuery, [id]);
+    if (response.affectedRows === 0) {
+      throw new Error(`User with ID ${id} not found`);
+    }
+    return response;
+  } catch (error) {
+    throw new Error("Error deleting user");
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   updateUser,
   getTutorialByUser,
+  deleteUser,
 };

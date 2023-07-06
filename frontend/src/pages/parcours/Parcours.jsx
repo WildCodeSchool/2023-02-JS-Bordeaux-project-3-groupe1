@@ -10,6 +10,7 @@ function Parcours() {
   const [tutorialByUser, setTutorialByUser] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
   setNameMenu("Mon parcours");
+
   const buttonSortTextSections = [
     {
       text: "Non débutés",
@@ -49,7 +50,7 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher(`usersparcours`)
+    fetcher(`users/usersparcours`)
       .then((data) => {
         setTutorialByUser(data);
       })
