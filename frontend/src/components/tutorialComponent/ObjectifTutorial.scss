@@ -113,10 +113,6 @@
       }
     }
 
-    h3 {
-      color: $app-primary-fonts-color;
-    }
-
     .container-explications-preview {
       background-color: $app-secondary-fonts-color-2;
       width: 100%;
@@ -125,11 +121,33 @@
       border-radius: 0.3rem;
       resize: vertical;
 
+      .container-explications-preview-title {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 2%;
+
+        .space {
+          height: 20px;
+          width: 20px;
+        }
+
+        h3 {
+          color: $app-primary-fonts-color;
+        }
+
+        img {
+          height: 20px;
+          width: 20px;
+        }
+      }
+
       .container-explications-preview-img {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-top: 4%;
 
         img {
           height: 100px;

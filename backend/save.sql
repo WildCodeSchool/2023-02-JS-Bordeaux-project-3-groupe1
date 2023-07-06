@@ -10,8 +10,7 @@ CREATE TABLE `users` (
   `location` integer,
   `gender` varchar(255),
   `city` varchar(255),
-  `picture` varchar(255),
-   `active` boolean
+  `picture` varchar(255)
 );
 
 CREATE TABLE `roles` (
