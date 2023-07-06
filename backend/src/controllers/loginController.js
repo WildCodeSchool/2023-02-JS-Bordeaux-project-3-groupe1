@@ -1,14 +1,10 @@
-const { findOne } = require("../models/registerManager");
+const { findByEmail } = require("../models/LoginManager");
 
 const verifyUsers = async (req, res) => {
   try {
-    console.info(req.body, "oook");
-    const [existingUser] = await findOne(req.body);
-    console.info(existingUser, "yoyoyo");
-    if (existingUser) {
-      res.status(200).send(existingUser);
-    } else {
-      res.status(404).json("mauvaise adresse mail..");
+    const [existingUser] = await findByEmail(req.body.email);
+    if (!existingUser) {
+      res.status(403).json({ message: "Email ou mot de passe incorrect ⛔" });
     }
   } catch (err) {
     res.status(500).send(err);
