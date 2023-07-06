@@ -49,7 +49,7 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher(`users`)
+    fetcher(`usersparcours`)
       .then((data) => {
         setTutorialByUser(data);
       })
