@@ -67,6 +67,7 @@ function VideoTutorial(props) {
         placeholder="Insérer l’url de votre vidéo"
         onChange={handleInputChange}
       />
+      <h3>Vidéo</h3>
       <IframeVideo videoId={videoId} />
       <SaveButton
         isUpdate={isUpdate}

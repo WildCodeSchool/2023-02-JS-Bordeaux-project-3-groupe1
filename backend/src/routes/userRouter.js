@@ -15,6 +15,5 @@ router.put(
   userValidator,
   userControllers.update
 );
-router.post("/", upload, uploadFirebase, userValidator, userControllers.create);
 
 module.exports = router;

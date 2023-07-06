@@ -1,21 +1,55 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
 import Connexion from "../../assets/pictures/photo_profile.png";
+import { fetcher } from "../../services/userService";
 
 function Profile() {
+  const [user, setUser] = useState({});
+  const [userId] = useState(1);
+  const [userGender, setUserGender] = useState("M");
+  const [userLastname, setUserLastname] = useState("Lafond");
+  const [userFirstname, setUserFirstname] = useState("Pierre");
+
+  useEffect(() => {
+    fetcher("users", userId)
+      .then((data) => {
+        setUser(data);
+        setUserLastname(user?.lastname);
+        setUserFirstname(user?.firstname);
+        if (user.gender === "Masculin") {
+          setUserGender("M");
+        } else if (user.gender === "Féminin") {
+          setUserGender("Mme");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [userLastname, userFirstname]);
+
   return (
     <main className="mainProfile">
       <div className="titleProfile">
         <h2>Mon profil</h2>
       </div>
-      <div className="photoProfile" />
+      <div className="photoProfile">
+        {user?.picture && <img src={user.picture} alt="" />}
+      </div>
       <div className="nameProfile">
         <img className="imgProfile" src={Connexion} alt="icone profile" />
-        <div className="NameProfile">M Lafond Pierre</div>
+        {user ? (
+          <div className="NameProfile">
+            {" "}
+            {userGender} {userLastname} {userFirstname}
+          </div>
+        ) : (
+          <div className="NameProfile">M Lafond Pierre</div>
+        )}
       </div>
-      <div className="mailProfile">
+      <div className="nameProfile">
         <img className="imgMailProfile" src={mailProfile} alt="icone mail" />
-        <div className="MailProfile">Lafond@gmail.com</div>
+        <div className="MailProfile">{user.email}</div>
       </div>
       <div className="buttons_profile">
         <Link to="/modificationProfile">

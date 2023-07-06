@@ -20,13 +20,13 @@ function ModuleChooseTutorial({ item, steps, index }) {
       item.stepOne === null &&
       item.stepTwo === null &&
       item.stepThree === null &&
-      item.tutoId
+      item.id
     ) {
       sender("steps", formationId, {
         stepOne: false,
         stepTwo: false,
         stepThree: false,
-        tutoId: item.tutoId,
+        tutoId: item.id,
       })
         .then((data) => {
           console.warn(data);
@@ -65,7 +65,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
       >
         <Link
           onClick={handleClick}
-          to={`/formations/tutorials/explication/${item.tutoId}`}
+          to={`/formations/tutorials/explication/${item.id}`}
         >
           <li className="StepTutorial">
             Explication
@@ -75,7 +75,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/video/${item.tutoId}`}>
+        <Link to={`/formations/tutorials/video/${item.id}`}>
           <li className="StepTutorial">
             Vidéo
             {steps.length > 0 &&
@@ -84,7 +84,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/quizz/${item.tutoId}`}>
+        <Link to={`/formations/tutorials/quizz/${item.id}`}>
           <li className="StepTutorial">
             Quizz
             {steps.length > 0 &&

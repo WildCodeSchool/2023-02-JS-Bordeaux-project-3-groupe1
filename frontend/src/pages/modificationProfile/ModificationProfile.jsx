@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
-import DragAndDrop from "../../components/dropFile/DragAndDrop ";
-import { sender } from "../../services/userService";
+import { sender, fetcher } from "../../services/userService";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
+  const [pictureUrl, setPictureUrl] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +13,8 @@ function ModificationPage() {
   const [location, setLocation] = useState("");
   const [birthdayDate, setBirthdayDate] = useState("");
   const [gender, setGender] = useState("Masculin");
+  const [userId] = useState(1);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +44,48 @@ function ModificationPage() {
     }
   };
 
+  useEffect(() => {
+    fetcher("users", userId)
+      .then((data) => {
+        setFirstname(data.firstname);
+        setLastname(data.lastname);
+        setEmail(data.email);
+        setCity(data.city);
+        setLocation(data.location);
+        if (data.birthdayDate) {
+          const originalDate = data.birthdayDate;
+          const formattedDate = new Date(originalDate)
+            .toISOString()
+            .split("T")[0];
+          setBirthdayDate(formattedDate);
+        }
+        setGender(data.gender);
+        setPictureUrl(data.picture);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    setPreviewUrl(pictureUrl);
+  }, [pictureUrl]);
+
+  const handleFile = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (file) {
+      setPicture(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreviewUrl(null);
+    }
+  };
+
   const handleSave = () => {
     const valuesUser = {
       lastname,
@@ -52,6 +96,7 @@ function ModificationPage() {
       birthdayDate,
       gender,
       picture,
+      pictureUrl,
     };
 
     sender("users", {
@@ -68,8 +113,21 @@ function ModificationPage() {
   return (
     <main>
       <div className="photoLocation">
-        <DragAndDrop setPicture={setPicture} />
-        <img className="camera" src={AppareilPhoto} alt="appareil" />
+        <label htmlFor="fileInput">
+          <img className="camera" src={AppareilPhoto} alt="appareil" />
+        </label>
+        <input
+          type="file"
+          name="file"
+          id="fileInput"
+          style={{ display: "none" }}
+          onChange={handleFile}
+        />
+        <div className="rapha">
+          {previewUrl && (
+            <img className="imageRapha" src={previewUrl} alt="Preview" />
+          )}
+        </div>
       </div>
       <div className="firstBlocInput">
         <label className="denomination" htmlFor="name-user">

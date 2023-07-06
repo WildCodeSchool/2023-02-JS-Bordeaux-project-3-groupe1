@@ -17,8 +17,11 @@ const getTutorialByIconFormationNoId = async () => {
 const getTutorialByIconFormation = async (id) => {
   try {
     const rows = await database.query(
-      "SELECT userstutorials.*, tutorials.*, tutorials.id AS tutoId, steps.* FROM userstutorials LEFT JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id WHERE userstutorials.user_id = 2 AND tutorials.formation_id = ? UNION ALL SELECT NULL, NULL, NULL, NULL, tutorials.*, tutorials.id AS tutoId, NULL, NULL, NULL, NULL FROM tutorials WHERE tutorials.formation_id = ? AND tutorials.id NOT IN ( SELECT userstutorials.tutorial_id FROM userstutorials WHERE userstutorials.user_id = 2);",
-      [id, id]
+      `SELECT * FROM tutorials
+      LEFT JOIN (SELECT * FROM userstutorials WHERE userstutorials.user_id = 2) AS usertuto
+      ON usertuto.tutorial_id = tutorials.id
+      WHERE tutorials.formation_id = ?`,
+      [id]
     );
     return rows[0];
   } catch (error) {
