@@ -59,6 +59,5 @@ module.exports = {
   getAll,
   getOne,
   update,
-  create,
   getTutorialByUserJustOneUser,
 };
