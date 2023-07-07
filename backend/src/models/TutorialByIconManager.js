@@ -4,7 +4,12 @@ const database = require("../../database");
 const getTutorialByIconFormationNoId = async () => {
   try {
     const rows = await database.query(
-      `SELECT formations.iconURL, tutorials.name, steps.id AS stepID, steps.stepOne, steps.stepTwo, steps.stepThree, users.email FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id JOIN formations ON formations.id = tutorials.formation_id WHERE users.id = 2 AND ( SELECT COUNT(*) FROM tutorials AS t JOIN userstutorials AS ut ON t.id = ut.tutorial_id WHERE ut.user_id = 2 AND t.formation_id = formations.id AND steps.stepOne = 1 AND steps.stepTwo = 1 AND steps.stepThree = 1 ) = ( SELECT COUNT(*) FROM tutorials AS t JOIN userstutorials AS ut ON t.id = ut.tutorial_id WHERE ut.user_id = 2 AND t.formation_id = formations.id );`
+      `SELECT formations.iconURL, tutorials.name, steps.id AS stepID, steps.stepOne, steps.stepTwo, steps.stepThree, users.email 
+      FROM userstutorials JOIN users ON users.id = userstutorials.user_id 
+      JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id 
+      JOIN formations ON formations.id = tutorials.formation_id WHERE users.id = 2 AND ( SELECT COUNT(*) FROM tutorials AS t 
+      JOIN userstutorials AS ut ON t.id = ut.tutorial_id 
+      WHERE ut.user_id = 2 AND t.formation_id = formations.id AND steps.stepOne = 1 AND steps.stepTwo = 1 AND steps.stepThree = 1 ) = ( SELECT COUNT(*) FROM tutorials AS t JOIN userstutorials AS ut ON t.id = ut.tutorial_id WHERE ut.user_id = 2 AND t.formation_id = formations.id );`
     );
     return rows[0];
   } catch (error) {
@@ -14,7 +19,12 @@ const getTutorialByIconFormationNoId = async () => {
 const getTutorialByIconFormation = async (id) => {
   try {
     const rows = await database.query(
-      "SELECT userstutorials.*, tutorials.*, tutorials.id AS tutoId, steps.* FROM userstutorials LEFT JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id WHERE userstutorials.user_id = 2 AND tutorials.formation_id = ? UNION ALL SELECT NULL, NULL, NULL, NULL, tutorials.*, tutorials.id AS tutoId, NULL, NULL, NULL, NULL FROM tutorials WHERE tutorials.formation_id = ? AND tutorials.id NOT IN ( SELECT userstutorials.tutorial_id FROM userstutorials WHERE userstutorials.user_id = 2);",
+      `SELECT userstutorials.*, tutorials.*, tutorials.id AS tutoId, steps.* 
+      FROM userstutorials LEFT JOIN tutorials ON tutorials.id = userstutorials.tutorial_id 
+      JOIN steps ON steps.id = userstutorials.step_id WHERE userstutorials.user_id = 2 AND tutorials.formation_id = ? 
+      UNION ALL SELECT NULL, NULL, NULL, NULL, tutorials.*, tutorials.id AS tutoId, NULL, NULL, NULL, NULL FROM tutorials 
+      WHERE tutorials.formation_id = ? AND tutorials.id NOT IN ( SELECT userstutorials.tutorial_id FROM userstutorials 
+      WHERE userstutorials.user_id = 2);`,
       [id, id]
     );
     return rows[0];

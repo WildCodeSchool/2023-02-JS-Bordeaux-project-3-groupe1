@@ -52,6 +52,7 @@ const deleteSteps = async (id) => {
     if (response.affectedRows === 0) {
       throw new Error(`Steps with ID ${id} not found`);
     }
+
     return response;
   } catch (error) {
     throw new Error("Error deleting steps");

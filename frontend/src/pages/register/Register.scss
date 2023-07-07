@@ -134,14 +134,20 @@
   }
 }
 .Toastify__toast-container {
+  margin: 5rem 0 1rem 0;
+
+  @include desktop {
+    width: 40vh;
+    margin: 4.3rem 0 0 0;
+  }
 }
 .Toastify__toast--info {
 }
 .Toastify__toast--success {
   background-color: #a2f9a4;
-  margin-top: 3.8rem;
+  border-radius: 10px;
 }
 .Toastify__toast--error {
-  margin-top: 3.8rem;
   background-color: #fbcecc;
+  border-radius: 10px;
 }

@@ -28,7 +28,7 @@ const getAll = async () => {
 };
 
 const findOne = async (email) => {
-  const query = "SELECT * FROM users WHERE email = ?";
+  const query = "SELECT * FROM users WHERE email = ? ";
 
   try {
     const [user] = await database.query(query, [email]);
