@@ -8,7 +8,7 @@ function Formation() {
   const { isDesktop } = useContext(IsDesktopContext);
 
   const [iconURLAndDescription, setIconURLAndDescription] = useState([]);
-
+  console.info(iconURLAndDescription);
   useEffect(() => {
     fetcher("formations")
       .then((data) => {
@@ -25,7 +25,7 @@ function Formation() {
         <>
           {iconURLAndDescription.length > 0 ? (
             iconURLAndDescription.map((item, index) => (
-              <ModuleChooseFormation item={item} index={index} />
+              <ModuleChooseFormation item={item} index={index} key={item.id} />
             ))
           ) : (
             <p>En cours de chargement</p>
@@ -40,7 +40,7 @@ function Formation() {
         <div className="formation">
           {iconURLAndDescription.length > 0 ? (
             iconURLAndDescription.map((item, index) => (
-              <ModuleChooseFormation item={item} index={index} />
+              <ModuleChooseFormation item={item} index={index} key={item.id} />
             ))
           ) : (
             <p>En cours de chargement</p>

@@ -10,7 +10,7 @@ import { sender } from "../../services/api";
 function ModuleChooseTutorial({ item, steps, index }) {
   const [isOpen, setIsOpen] = useState(false);
   const { formationId } = useParams();
-
+  console.info(item);
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
   };
@@ -65,7 +65,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
       >
         <Link
           onClick={handleClick}
-          to={`/formations/tutorials/explication/${item.id}`}
+          to={`/formations/tutorials/explication/${item.tutoId}`}
         >
           <li className="StepTutorial">
             Explication
@@ -75,7 +75,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/video/${item.id}`}>
+        <Link to={`/formations/tutorials/video/${item.tutoId}`}>
           <li className="StepTutorial">
             Vidéo
             {steps.length > 0 &&
@@ -84,7 +84,7 @@ function ModuleChooseTutorial({ item, steps, index }) {
               ) : null)}
           </li>
         </Link>
-        <Link to={`/formations/tutorials/quizz/${item.id}`}>
+        <Link to={`/formations/tutorials/quizz/${item.tutoId}`}>
           <li className="StepTutorial">
             Quizz
             {steps.length > 0 &&
@@ -98,8 +98,23 @@ function ModuleChooseTutorial({ item, steps, index }) {
   );
 }
 ModuleChooseTutorial.propTypes = {
-  item: PropTypes.string.isRequired,
-  steps: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    stepOne: PropTypes.number.isRequired,
+    stepTwo: PropTypes.number.isRequired,
+    stepThree: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    tutoId: PropTypes.number.isRequired,
+  }).isRequired,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      total: PropTypes.number.isRequired,
+      stepOne: PropTypes.number.isRequired,
+      stepTwo: PropTypes.number.isRequired,
+      stepThree: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   index: PropTypes.number.isRequired,
 };
+
 export default ModuleChooseTutorial;
