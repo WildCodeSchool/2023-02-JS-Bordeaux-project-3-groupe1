@@ -2,7 +2,7 @@ const UserManager = require("../models/UserManager");
 
 const getTutorialByUserJustOneUser = async (req, res) => {
   try {
-    const results = await UserManager.getTutorialByUser();
+    const results = await UserManager.getTutorialByUser(req.params.userId);
     if (results.length === 0) {
       res.status(404).send("no formations found");
     } else {

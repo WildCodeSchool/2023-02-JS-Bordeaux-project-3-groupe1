@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import { fetcher } from "../../services/api";
+import { fetcherUSerById } from "../../services/userService";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
 
@@ -10,6 +11,8 @@ function Parcours() {
   const [tutorialByUser, setTutorialByUser] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
   setNameMenu("Mon parcours");
+
+  const userId = 2;
 
   const buttonSortTextSections = [
     {
@@ -50,7 +53,7 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher(`users/usersparcours`)
+    fetcherUSerById(`users/usersparcours`, userId)
       .then((data) => {
         setTutorialByUser(data);
       })
