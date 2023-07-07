@@ -28,8 +28,6 @@ function ListTutorials({ search }) {
     );
   });
 
-  console.log(filteredTutorials);
-
   const stepsMap = filteredTutorials.map((item) => ({
     ...item,
     stepOne: item.stepOne,
@@ -47,7 +45,7 @@ function ListTutorials({ search }) {
             {filteredTutorials.length > 0 ? (
               filteredTutorials.map((item, index) => (
                 <ModuleChooseTutorial
-                  key={item.id}
+                  key={item.tutoId}
                   item={item}
                   steps={stepsMap}
                   index={index}
@@ -63,7 +61,7 @@ function ListTutorials({ search }) {
           {filteredTutorials.length > 0 ? (
             filteredTutorials.map((item, index) => (
               <ModuleChooseTutorial
-                key={item.id}
+                key={item.tutoId}
                 item={item}
                 steps={stepsMap}
                 index={index}
