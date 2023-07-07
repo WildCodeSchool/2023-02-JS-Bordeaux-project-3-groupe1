@@ -7,12 +7,11 @@ import manDesk from "../../assets/pictures/manDesk.svg";
 
 function TutorialChoice() {
   const { id } = useParams();
-  const tutorialsIdPlusOne = parseInt(id, 10) + 1;
   const { isDesktop } = useContext(IsDesktopContext);
   const [dataTutorial, setDataTutorial] = useState([]);
 
   useEffect(() => {
-    fetcher(`tutorialbyicon/${tutorialsIdPlusOne}`)
+    fetcher(`tutorialbyicon/${id}`)
       .then((data) => {
         setDataTutorial(data);
       })
