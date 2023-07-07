@@ -16,16 +16,17 @@ const getTutorialByIconFormationNoId = async () => {
     throw new Error("Error get formation", error);
   }
 };
-const getTutorialByIconFormation = async (id) => {
+const getTutorialByIconFormation = async (formationId, userId) => {
   try {
     const rows = await database.query(
-      `SELECT userstutorials.*, tutorials.*, tutorials.id AS tutoId, steps.* 
-      FROM userstutorials LEFT JOIN tutorials ON tutorials.id = userstutorials.tutorial_id 
-      JOIN steps ON steps.id = userstutorials.step_id WHERE userstutorials.user_id = 2 AND tutorials.formation_id = ? 
-      UNION ALL SELECT NULL, NULL, NULL, NULL, tutorials.*, tutorials.id AS tutoId, NULL, NULL, NULL, NULL FROM tutorials 
-      WHERE tutorials.formation_id = ? AND tutorials.id NOT IN ( SELECT userstutorials.tutorial_id FROM userstutorials 
-      WHERE userstutorials.user_id = 2);`,
-      [id, id]
+      `SELECT  tutorials.*, tutorials.id AS tutoId, steps.*, tags.name AS tagsName
+      FROM tutorials
+      LEFT JOIN (SELECT * FROM userstutorials WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id 
+      LEFT JOIN steps ON steps.id = user_tuto.step_id
+	    LEFT JOIN tutorialstags ON tutorialstags.tutorial_id = tutorials.id
+      LEFT JOIN tags ON tags.id = tutorialstags.tag_id
+      WHERE tutorials.formation_id = ?`,
+      [userId, formationId]
     );
     return rows[0];
   } catch (error) {
@@ -69,6 +70,7 @@ const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
     return null;
   }
 };
+
 // const getStepsByUserIdAndTutorialId = async (id) => {
 //   try {
 //     const rows = await database.query(

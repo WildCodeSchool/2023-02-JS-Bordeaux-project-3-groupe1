@@ -24,8 +24,8 @@ function Formation() {
       {isDesktop ? (
         <>
           {iconURLAndDescription.length > 0 ? (
-            iconURLAndDescription.map((item, index) => (
-              <ModuleChooseFormation item={item} index={index} />
+            iconURLAndDescription.map((item) => (
+              <ModuleChooseFormation item={item} key={item.id} />
             ))
           ) : (
             <p>En cours de chargement</p>
@@ -39,8 +39,8 @@ function Formation() {
       ) : (
         <div className="formation">
           {iconURLAndDescription.length > 0 ? (
-            iconURLAndDescription.map((item, index) => (
-              <ModuleChooseFormation item={item} index={index} />
+            iconURLAndDescription.map((item) => (
+              <ModuleChooseFormation item={item} key={item.id} />
             ))
           ) : (
             <p>En cours de chargement</p>

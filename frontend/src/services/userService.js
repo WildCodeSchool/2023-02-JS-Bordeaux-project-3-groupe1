@@ -20,6 +20,18 @@ export const fetcherUSerById = async (url, userId) => {
   }
 };
 
+export const fetcherUSerByIdTutorials = async (url, id, userId) => {
+  const formationId = parseInt(id, 10);
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_API}/${url}/${formationId}/${userId}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while fetching data");
+  }
+};
+
 export const sender = async (url, valuesUser, active) => {
   const id = 1;
   try {

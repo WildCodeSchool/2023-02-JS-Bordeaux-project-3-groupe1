@@ -165,7 +165,7 @@ function NameTutorial(props) {
         placeholder={nameTutoPlaceholder}
         onChange={handleInputChange}
       />
-      <label htmlFor="tagTutorial">{tagTutoPlaceholder}</label>
+      <label htmlFor="tagTutorial">{tagTutoPlaceholder} :</label>
       <div className="container-input-tag">
         <InputField
           name="tagTutorial"

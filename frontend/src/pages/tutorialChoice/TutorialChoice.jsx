@@ -1,25 +1,25 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetcher } from "../../services/api";
+import { fetcherUSerByIdTutorials } from "../../services/userService";
 import ModuleChooseTutorial from "../../components/moduleChooseTutorial/ModuleChooseTutorial";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import manDesk from "../../assets/pictures/manDesk.svg";
 
 function TutorialChoice() {
   const { id } = useParams();
-  const tutorialsIdPlusOne = parseInt(id, 10) + 1;
   const { isDesktop } = useContext(IsDesktopContext);
   const [dataTutorial, setDataTutorial] = useState([]);
+  const userId = 2;
 
   useEffect(() => {
-    fetcher(`tutorialbyicon/${tutorialsIdPlusOne}`)
+    fetcherUSerByIdTutorials("tutorialbyicon", id, userId)
       .then((data) => {
         setDataTutorial(data);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [id, userId]);
 
   const stepsMap = dataTutorial.map((item) => ({
     ...item,

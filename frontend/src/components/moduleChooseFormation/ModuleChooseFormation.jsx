@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-function ModuleChooseFormation({ item, index }) {
+function ModuleChooseFormation({ item }) {
   return (
-    <Link to={`/formations/tutorials/${index}`}>
+    <Link to={`/formations/tutorials/${item.id}`}>
       <div className="moduleChooseFormation">
         <img
           className="iconFormationChoose"
@@ -18,8 +18,8 @@ function ModuleChooseFormation({ item, index }) {
 }
 
 ModuleChooseFormation.propTypes = {
-  index: PropTypes.number.isRequired,
   item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     iconURL: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }),

@@ -8,7 +8,7 @@ router.get(
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormationsNoId
 );
 router.get(
-  "/:id",
+  "/:formationId/:userId",
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormations
 );
 

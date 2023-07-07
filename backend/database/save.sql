@@ -11,7 +11,7 @@ CREATE TABLE `formations` (
 --
 
 INSERT INTO `formations` (`id`, `iconURL`, `name`, `fl_status`, `levelFormation_id`) VALUES
-(1, 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fgridicons_phone.svg?alt=media&token=b85fa5ee-a833-4ce1-8b28-2a1c8aa14f99&_gl=1*1mp7uoc*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxODc1OS4wLjAuMA..', 'Utiliser ligne bleu', 0, 0),
+(1, 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fgridicons_phone.svg?alt=media&token=b85fa5ee-a833-4ce1-8b28-2a1c8aa14f99&_gl=1*1mp7uoc*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxODc1OS4wLjAuMA..', 'Utiliser ligne bleue', 0, 0),
 (2, 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fmdi_cellphone.svg?alt=media&token=7701c1ce-f719-4cfe-91ae-4c865862d718&_gl=1*ntspgp*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxODg3NS4wLjAuMA..', 'Utiliser mon téléphone', 0, 0),
 (3, 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fic_round-mail.svg?alt=media&token=58a57754-e76a-491d-93bb-2ae032a123d5&_gl=1*1f21nxw*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxODkwNi4wLjAuMA..', 'Mes mails', 0, 0),
 (4, 'https://firebasestorage.googleapis.com/v0/b/fir-c9cc8.appspot.com/o/icone%2Fpepicons-pencil_internet.svg?alt=media&token=6fe88df0-16f9-4d1f-9f33-b9d485d18dd3&_gl=1*1gcvyue*_ga*MTc3ODE1NDMzNy4xNjg2MTIxOTA3*_ga_CW55HF8NVT*MTY4NjIxNjM5Mi43LjEuMTY4NjIxODk5MS4wLjAuMA..', 'Aller sur internet', 0, 0),
@@ -131,8 +131,8 @@ CREATE TABLE `tutorialstags` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `hashedPassword` varchar(255) NOT NULL,
   `birthdayDate` date DEFAULT NULL,

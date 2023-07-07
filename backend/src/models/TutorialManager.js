@@ -14,6 +14,23 @@ const getAllTutorials = async () => {
   }
 };
 
+const getAllTutorialsByUserId = async (userId) => {
+  try {
+    const tutorials = await database.query(
+      `SELECT  tutorials.*, tutorials.id AS tutoId, steps.*, tags.name AS tagsName
+      FROM tutorials
+      LEFT JOIN (SELECT * FROM userstutorials WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id 
+      LEFT JOIN steps ON steps.id = user_tuto.step_id
+	    LEFT JOIN tutorialstags ON tutorialstags.tutorial_id = tutorials.id
+      LEFT JOIN tags ON tags.id = tutorialstags.tag_id`,
+      [userId]
+    );
+    return tutorials[0];
+  } catch (error) {
+    throw new Error("Error retrieving tutorials");
+  }
+};
+
 const getAllTutorialsByFormation = async (id) => {
   try {
     const tutorialsByFormation = await database.query(
@@ -230,6 +247,7 @@ const deleteTutorialAndQuizzAndTags = async (id) => {
 
 module.exports = {
   getAllTutorials,
+  getAllTutorialsByUserId,
   getAllTutorialsByFormation,
   getByIdTutorial,
   getTutorialTagsById,
