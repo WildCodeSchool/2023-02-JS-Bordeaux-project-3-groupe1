@@ -7,7 +7,7 @@ const {
 
 const getTutorialsByIdWithJoinTableFormationsNoId = async (req, res) => {
   try {
-    const results = await getTutorialByIconFormationNoId();
+    const results = await getTutorialByIconFormationNoId(req.params.userId);
     if (results.length === 0) {
       res.status(404).send("no formations found");
     } else {

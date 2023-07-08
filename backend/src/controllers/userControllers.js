@@ -41,10 +41,9 @@ const getOne = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const { id } = req.params;
   const user = req.body;
   try {
-    const response = await UserManager.updateUser(user, id);
+    const response = await UserManager.updateUser(user, req.params.userId);
     if (response.length === 0) {
       res.status(404).send("User not updated");
     } else {

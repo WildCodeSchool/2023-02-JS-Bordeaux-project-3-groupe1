@@ -17,9 +17,9 @@ function ModuleChooseTutorial({ item, steps, index }) {
 
   const handleClick = () => {
     if (
-      item.stepOne === null &&
-      item.stepTwo === null &&
-      item.stepThree === null &&
+      item.stepOne === 0 &&
+      item.stepTwo === 0 &&
+      item.stepThree === 0 &&
       item.tutoId
     ) {
       sender("steps", formationId, {

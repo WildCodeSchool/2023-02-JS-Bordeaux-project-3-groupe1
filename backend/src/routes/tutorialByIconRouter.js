@@ -4,7 +4,7 @@ const router = express.Router();
 const tutorialByIconControllers = require("../controllers/tutorialByIconControllers");
 
 router.get(
-  "/",
+  "/:userId",
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormationsNoId
 );
 router.get(

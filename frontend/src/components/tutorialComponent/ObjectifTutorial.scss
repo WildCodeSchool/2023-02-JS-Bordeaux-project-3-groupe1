@@ -102,6 +102,7 @@
 
       p {
         width: 75%;
+        color: $app-secondary-fonts-color-60;
       }
 
       label {
@@ -169,6 +170,7 @@
           white-space: normal;
           resize: none;
           overflow: hidden;
+          color: $app-secondary-fonts-color;
         }
       }
     }

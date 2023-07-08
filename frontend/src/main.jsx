@@ -29,6 +29,9 @@ import Profile from "./pages/profile/Profile";
 import ModificationProfile from "./pages/modificationProfile/ModificationProfile";
 import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
+import { decodeTokenAndExtractRole } from "./services/authService";
+
+const { userRole } = decodeTokenAndExtractRole();
 
 const router = createBrowserRouter([
   {
@@ -37,59 +40,59 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: userRole && <Home />,
       },
       {
         path: "/formations",
-        element: <Formation />,
+        element: userRole && <Formation />,
       },
       {
         path: "/formations/tutorials/:id",
-        element: <TutorialChoice />,
+        element: userRole && <TutorialChoice />,
       },
       {
         path: "/platformTutorial",
-        element: <PlatformTutorial />,
+        element: userRole && <PlatformTutorial />,
       },
       {
         path: "/levelUser",
-        element: <LevelUser />,
+        element: userRole && <LevelUser />,
       },
       {
         path: "/footer",
-        element: <Footer />,
+        element: userRole && <Footer />,
       },
       {
         path: "/legalNotice",
-        element: <LegalNotice />,
+        element: userRole && <LegalNotice />,
       },
       {
         path: "/personalData",
-        element: <PersonalData />,
+        element: userRole && <PersonalData />,
       },
       {
         path: "/register",
-        element: <Register />,
+        element: userRole && <Register />,
       },
       {
         path: "/login",
-        element: <Login />,
+        element: userRole && <Login />,
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: userRole && <Profile />,
       },
       {
         path: "/modificationProfile",
-        element: <ModificationProfile />,
+        element: userRole && <ModificationProfile />,
       },
       {
         path: "/admin/gestion",
-        element: <GestionUsers />,
+        element: userRole && <GestionUsers />,
       },
       {
         path: "/admin/user/:userId",
-        element: <UserInfo />,
+        element: userRole && <UserInfo />,
       },
     ],
   },
@@ -99,35 +102,35 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/tutorials/createTutorial",
-        element: <CreateTutorialPage />,
+        element: userRole && <CreateTutorialPage />,
       },
       {
         path: "/tutorials/updateTutorial/:tutorialId",
-        element: <UpdateTutorialPage />,
+        element: userRole && <UpdateTutorialPage />,
       },
       {
         path: "/formations/:formationId",
-        element: <SelectTutorialPage />,
+        element: userRole && <SelectTutorialPage />,
       },
       {
         path: "/formations/parcours",
-        element: <Parcours />,
+        element: userRole && <Parcours />,
       },
       {
         path: "/formations/tutorials/explication/:id",
-        element: <TutorialExplication />,
+        element: userRole && <TutorialExplication />,
       },
       {
         path: "/formations/tutorials/video/:id",
-        element: <TutorialExplication />,
+        element: userRole && <TutorialExplication />,
       },
       {
         path: "/formations/tutorials/quizz/:id",
-        element: <TutorialExplication />,
+        element: userRole && <TutorialExplication />,
       },
       {
         path: "/search",
-        element: <SearchPage />,
+        element: userRole && <SearchPage />,
       },
     ],
   },

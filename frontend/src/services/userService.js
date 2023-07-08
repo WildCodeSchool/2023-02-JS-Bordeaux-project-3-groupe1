@@ -32,8 +32,7 @@ export const fetcherUSerByIdTutorials = async (url, id, userId) => {
   }
 };
 
-export const sender = async (url, valuesUser, active) => {
-  const id = 1;
+export const sender = async (url, userId, valuesUser) => {
   try {
     const formData = new FormData();
     formData.append("lastname", valuesUser.lastname);
@@ -45,10 +44,9 @@ export const sender = async (url, valuesUser, active) => {
     formData.append("gender", valuesUser.gender);
     formData.append("file", valuesUser.picture);
     formData.append("newFilename", valuesUser.pictureUrl);
-    formData.append("active", active);
 
     const response = await axios.put(
-      `${import.meta.env.VITE_BASE_API}/${url}/${id}`,
+      `${import.meta.env.VITE_BASE_API}/${url}/${userId}`,
       formData
     );
     return response.data;

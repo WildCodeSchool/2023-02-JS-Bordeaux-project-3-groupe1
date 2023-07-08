@@ -23,7 +23,7 @@ function Register() {
       try {
         await axios.post(`${import.meta.env.VITE_BASE_API}/register`, body);
         toast.success("Utilisateur enregistré 🎉");
-        navigate("/profile");
+        navigate("/login");
       } catch (error) {
         toast.error(error.response.data.message);
       }

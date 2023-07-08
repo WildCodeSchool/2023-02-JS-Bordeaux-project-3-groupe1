@@ -74,9 +74,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'testnumberone'),
-(2, 'testnumberTwo'),
-(3, 'testnumberThree');
+(1, '441655156655116515451'),
+(2, '77788888999966666666111');
 
 -- --------------------------------------------------------
 

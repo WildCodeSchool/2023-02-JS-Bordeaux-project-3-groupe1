@@ -13,7 +13,7 @@ router.get(
 router.get("/", userControllers.getAll);
 router.get("/:id", userControllers.getOne);
 router.put(
-  "/:id",
+  "/:userId",
   upload,
   uploadFirebase,
   userValidator,

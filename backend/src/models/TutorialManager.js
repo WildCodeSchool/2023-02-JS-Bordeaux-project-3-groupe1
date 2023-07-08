@@ -17,7 +17,7 @@ const getAllTutorials = async () => {
 const getAllTutorialsByUserId = async (userId) => {
   try {
     const tutorials = await database.query(
-      `SELECT  tutorials.*, tutorials.id AS tutoId, steps.*, tags.name AS tagsName
+      `SELECT  tutorials.*, tutorials.id AS tutoId, COALESCE(stepOne,0) AS stepOne, COALESCE(stepTwo,0) AS stepTwo, COALESCE(stepThree,0) AS stepThree, tags.name AS tagsName
       FROM tutorials
       LEFT JOIN (SELECT * FROM userstutorials WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id 
       LEFT JOIN steps ON steps.id = user_tuto.step_id

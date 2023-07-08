@@ -26,6 +26,7 @@ function TutorialExplication() {
         console.error(error);
       });
   }, []);
+
   const handleTrueStep = (stepToUpdate, updatedValue) => {
     api
       .put(`/tutorialbyicon/${id}`, { stepToUpdate, updatedValue })
@@ -93,7 +94,7 @@ function TutorialExplication() {
                 Précédent
               </ButtonTutorial>
               <ButtonTutorial
-                path={`/formations/tutorials/${id}`}
+                path={`/formations/tutorials/${dataTutorial.formation_id}`}
                 nextOrPreview="validateTutorial"
                 handleTrueStep={() => handleTrueStep("stepThree", 1)}
               >

@@ -85,7 +85,7 @@ function NameTutorial(props) {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [nameFormation]);
 
   const newArrayNameFormation = nameFormation.map((item) => item.name);
   const uniqueValues = [...new Set(newArrayNameFormation)];

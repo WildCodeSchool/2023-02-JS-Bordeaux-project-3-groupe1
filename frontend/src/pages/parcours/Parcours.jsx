@@ -8,11 +8,11 @@ import SortMyReward from "../../components/sortMyReward/SortMyReward";
 function Parcours() {
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
-  const [tutorialByUser, setTutorialByUser] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
-  setNameMenu("Mon parcours");
 
   const userId = 2;
+
+  setNameMenu("Mon parcours");
 
   const buttonSortTextSections = [
     {
@@ -46,22 +46,16 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher(`tutorialbyicon`)
+    fetcherUSerById(`tutorialbyicon`, userId)
       .then((data) => {
         setTutorialByIcon(data);
       })
       .catch((error) => {
         console.error(error);
       });
-    fetcherUSerById(`users/usersparcours`, userId)
-      .then((data) => {
-        setTutorialByUser(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   }, []);
-  const steps = tutorialByUser.map((item) => ({
+
+  const steps = tutorialByIcon.map((item) => ({
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,
     stepThree: item.stepThree,
@@ -70,20 +64,34 @@ function Parcours() {
       (item.stepTwo ? 33 : 0) +
       (item.stepThree ? 34 : 0),
   }));
+
+  const uniqueValues = tutorialByIcon.reduce((accumulator, item) => {
+    const existingItem = accumulator.find(
+      (element) => element.formationID === item.formationID
+    );
+    if (!existingItem) {
+      accumulator.push({
+        formationID: item.formationID,
+        NB_tuto: item.NB_tuto,
+        iconURL: item.iconURL,
+        total_stepsTotal: parseInt(item.total_stepsTotal, 10),
+      });
+    }
+    return accumulator;
+  }, []);
+
   const iconOpacityLow = (icon) => {
-    const tutorialsForIcon = tutorialByIcon.filter(
+    const tutorialsForIcon = uniqueValues.filter(
       (item) => item.iconURL === icon.iconURL
     );
-    console.info(tutorialsForIcon);
-    // Vérifier si tous les tutoriels de la formation ont été terminés
+
     const allTutorialsFinished = tutorialsForIcon.every(
-      (tutorial) =>
-        tutorial.stepOne === 33 &&
-        tutorial.stepTwo === 33 &&
-        tutorial.stepThree === 34
+      (item) => item.NB_tuto === item.total_stepsTotal
     );
+
     return allTutorialsFinished ? "myRewardIconsChange" : "myRewardIcons";
   };
+
   return (
     <main className="parcours">
       <h2 className="titleIconSort">Mes récompenses</h2>
@@ -111,9 +119,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardNoBegin">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 1 &&
-            tutorialByUser.map((icon, index) => {
+            tutorialByIcon.map((icon, index) => {
               if (steps[index].total === 0) {
                 return (
                   <SortMyReward
@@ -136,9 +144,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardMiddle">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 2 &&
-            tutorialByUser.map((icon, index) => {
+            tutorialByIcon.map((icon, index) => {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
                   <SortMyReward
@@ -161,9 +169,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardFinish">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 3 &&
-            tutorialByUser.map((icon, index) => {
+            tutorialByIcon.map((icon, index) => {
               if (steps[index].total === 100) {
                 return (
                   <SortMyReward
@@ -186,9 +194,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardAll">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 4 &&
-            tutorialByUser.map((icon, index) => (
+            tutorialByIcon.map((icon, index) => (
               <SortMyReward
                 iconFormation={icon.iconURL}
                 nameTutorial={icon.name}
