@@ -34,7 +34,7 @@ LEFT JOIN (SELECT
 const getTutorialByIconFormation = async (formationId, userId) => {
   try {
     const rows = await database.query(
-      `SELECT  tutorials.*, tutorials.id AS tutoId, COALESCE(stepOne,0) AS stepOne, COALESCE(stepTwo,0) AS stepTwo, COALESCE(stepThree,0) AS stepThree, tags.name AS tagsName
+      `SELECT  tutorials.*, tutorials.id AS tutoId, steps.*, tags.name AS tagsName
       FROM tutorials
       LEFT JOIN (SELECT * FROM userstutorials WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id 
       LEFT JOIN steps ON steps.id = user_tuto.step_id
@@ -49,7 +49,7 @@ const getTutorialByIconFormation = async (formationId, userId) => {
   }
 };
 /* ---------- Get tutorial by id click  ----------- */
-const findTurorialByHerID = async (id) => {
+const findTurorialByHerID = async (id, userId) => {
   try {
     const rows = await database.query(
       `SELECT tutorials.name, tutorials.id AS tutoID, steps.*, users.email
@@ -58,15 +58,20 @@ const findTurorialByHerID = async (id) => {
       JOIN tutorials ON tutorials.id = id
       JOIN steps ON steps.id = tutorialsSteps.step_id
       JOIN users ON users.id = userstutorials.user_id
-      WHERE tutorials.formation_id = ? AND users.id = 2;`,
-      [id]
+      WHERE tutorials.formation_id = ? AND users.id = ;`,
+      [id, userId]
     );
     return rows[0];
   } catch (error) {
     throw new Error("Error get formation", error);
   }
 };
-const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
+const updateStepByIdOfTutorial = async (
+  id,
+  userId,
+  stepToUpdate,
+  updatedValue
+) => {
   try {
     const rows = await database.query(
       `UPDATE steps
@@ -75,8 +80,8 @@ const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
       JOIN users ON users.id = userstutorials.user_id
       JOIN formations ON tutorials.formation_id = formations.id
       SET ${stepToUpdate} = ?
-      WHERE users.id = 2 AND tutorials.id = ?;`,
-      [updatedValue, id]
+      WHERE users.id = ? AND tutorials.id = ?;`,
+      [updatedValue, userId, id]
     );
     return rows[0];
   } catch (error) {
@@ -86,68 +91,6 @@ const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
   }
 };
 
-// const getStepsByUserIdAndTutorialId = async (id) => {
-//   try {
-//     const rows = await database.query(
-//       `SELECT steps.stepOne, steps.stepTwo, steps.stepThree, users.email
-//       FROM userstutorials
-//       JOIN steps ON steps.id = userstutorials.step_id
-//       JOIN tutorials ON tutorials.id = userstutorials.tutorial_id
-//       JOIN users ON users.id = userstutorials.user_id
-//       JOIN formations ON tutorials.formation_id = formations.id
-//       WHERE users.id = 2 AND tutorials.id = ?;`,
-//       [id]
-//     );
-//     return rows[0];
-//   } catch (error) {
-//     console.error(error);
-//     console.info("manager");
-//     return null;
-//   }
-// };
-// const updateStepByIdOfTutorial = async (id, stepToUpdate, updatedValue) => {
-//   try {
-//     const currentSteps = await getStepsByUserIdAndTutorialId(id);
-//     const currentStepsMap = currentSteps.map((item) => ({
-//       stepOne: item.stepOne,
-//       stepTwo: item.stepTwo,
-//       stepThree: item.stepThree,
-//     }));
-//     console.info("currentSteps", currentSteps);
-//     console.info("currentStepsMap", currentStepsMap);
-//     // Trouver l'objet d'étapes correspondant à l'étape à mettre à jour
-//     const updatedStepObject = currentStepsMap.find(
-//       (step) => stepToUpdate in step
-//     );
-//     if (updatedStepObject) {
-//       // Mettre à jour la valeur de l'étape spécifiée
-//       updatedStepObject[stepToUpdate] = updatedValue;
-//       // Effectuer la mise à jour dans la base de données
-//       const rows = await database.query(
-//         `UPDATE steps
-//         JOIN userstutorials ON steps.id = userstutorials.step_id
-//         JOIN tutorials ON tutorials.id = userstutorials.tutorial_id
-//         JOIN users ON users.id = userstutorials.user_id
-//         JOIN formations ON tutorials.formation_id = formations.id
-//         SET steps.stepOne = ?, steps.stepTwo = ?, steps.stepThree = ?
-//         WHERE users.id = 2 AND tutorials.id = ?;`,
-//         [
-//           updatedStepObject.stepOne,
-//           updatedStepObject.stepTwo,
-//           updatedStepObject.stepThree,
-//           id,
-//         ]
-//       );
-//       console.info("rows", rows);
-//       console.info("updatedSteps", updatedStepObject);
-//       return rows[0];
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     console.info("manager");
-//     return null;
-//   }
-// };
 module.exports = {
   getTutorialByIconFormationNoId,
   getTutorialByIconFormation,

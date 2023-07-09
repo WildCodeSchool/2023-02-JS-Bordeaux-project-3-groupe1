@@ -4,12 +4,21 @@ import jwt_decode from "jwt-decode";
 export function decodeTokenAndExtractRole() {
   const token = localStorage.getItem("token");
 
-  const decodedToken = jwt_decode(token);
+  let adminRole = null;
+  let userRole = null;
+  let tokenIsValid = false;
+  let userId = null;
 
-  const adminRole = decodedToken.role === "77788888999966666666111";
-  const userRole = decodedToken.role === "441655156655116515451";
+  if (token) {
+    const decodedToken = jwt_decode(token);
 
-  const userId = decodedToken.userId;
+    adminRole = decodedToken.role === "77788888999966666666111";
+    userRole = decodedToken.role === "441655156655116515451";
+    tokenIsValid = true;
+    userId = decodedToken.userId;
+  } else {
+    console.error("Invalid token specified");
+  }
 
-  return { adminRole, userRole, userId };
+  return { adminRole, userRole, tokenIsValid, userId };
 }

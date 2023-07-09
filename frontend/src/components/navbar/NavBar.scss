@@ -90,12 +90,18 @@
   &.show-nav .burger_bar::after {
     transform: rotate(-45deg);
   }
-  .user-icon {
-    width: 27px;
+
+  button {
+    border: none;
+    background-color: transparent;
+    .user-icon {
+      width: 27px;
+    }
+    .admin-icon {
+      width: 27px;
+    }
   }
-  .admin-icon {
-    width: 27px;
-  }
+
   .loupe {
     width: 27px;
   }

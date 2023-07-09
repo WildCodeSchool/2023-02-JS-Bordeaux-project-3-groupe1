@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import arrow from "../../assets/pictures/arrowTutorial.svg";
 import capGreyOneStartBlue from "../../assets/pictures/capGreyOneStartBlue.svg";
 import capBlueOneStartBlue from "../../assets/pictures/capBlueOneStartBlue.svg";
 import chek from "../../assets/pictures/chek.svg";
-import { sender } from "../../services/api";
+import { senderStepsByUser } from "../../services/userService";
 
-function ModuleChooseTutorial({ item, steps, index }) {
+function ModuleChooseTutorial({ userId, item, steps, index }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { formationId } = useParams();
 
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
@@ -17,12 +16,12 @@ function ModuleChooseTutorial({ item, steps, index }) {
 
   const handleClick = () => {
     if (
-      item.stepOne === 0 &&
-      item.stepTwo === 0 &&
-      item.stepThree === 0 &&
+      item.stepOne === null &&
+      item.stepTwo === null &&
+      item.stepThree === null &&
       item.tutoId
     ) {
-      sender("steps", formationId, {
+      senderStepsByUser("steps", userId, {
         stepOne: false,
         stepTwo: false,
         stepThree: false,
@@ -107,5 +106,6 @@ ModuleChooseTutorial.propTypes = {
   item: PropTypes.string.isRequired,
   steps: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
+  userId: PropTypes.number.isRequired,
 };
 export default ModuleChooseTutorial;

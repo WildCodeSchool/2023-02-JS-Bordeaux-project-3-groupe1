@@ -1,15 +1,45 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetcherUSerByIdTutorials } from "../../services/userService";
+import { fetcher } from "../../services/api";
 import ModuleChooseTutorial from "../../components/moduleChooseTutorial/ModuleChooseTutorial";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import manDesk from "../../assets/pictures/manDesk.svg";
+import { decodeTokenAndExtractRole } from "../../services/authService";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function TutorialChoice() {
   const { id } = useParams();
+  const { userId } = decodeTokenAndExtractRole();
   const { isDesktop } = useContext(IsDesktopContext);
   const [dataTutorial, setDataTutorial] = useState([]);
-  const userId = 2;
+  const { setNameMenu } = useContext(NameMenuTopContext);
+  const [formations, setFormations] = useState([]);
+  const [nameFormation, setNameFormation] = useState("");
+
+  useEffect(() => {
+    setNameMenu(nameFormation);
+  }, [nameFormation]);
+
+  useEffect(() => {
+    fetcher("formations")
+      .then((data) => {
+        setFormations(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const selectedFormation = formations?.find(
+      (formation) => formation.id === parseInt(id, 10)
+    );
+    if (selectedFormation) {
+      const { name } = selectedFormation;
+      setNameFormation(name);
+    }
+  }, [formations, id]);
 
   useEffect(() => {
     fetcherUSerByIdTutorials("tutorialbyicon", id, userId)
@@ -40,12 +70,13 @@ function TutorialChoice() {
                 <ModuleChooseTutorial
                   key={item.id}
                   item={item}
+                  userId={userId}
                   steps={stepsMap}
                   index={index}
                 />
               ))
             ) : (
-              <p>Chargement de la page ...</p>
+              <h4>Cette formation ne contient pas encore de tutoriels</h4>
             )}
           </div>
         </>
@@ -56,12 +87,13 @@ function TutorialChoice() {
               <ModuleChooseTutorial
                 key={item.id}
                 item={item}
+                userId={userId}
                 steps={stepsMap}
                 index={index}
               />
             ))
           ) : (
-            <p>Chargement de la page ...</p>
+            <h4>Cette formation ne contient pas encore de tutoriels</h4>
           )}
         </div>
       )}

@@ -12,7 +12,7 @@ router.get(
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormations
 );
 
-router.get("/:id", tutorialByIconControllers.getTutorialByHerIdClick);
-router.put("/:id", tutorialByIconControllers.updateStepOnClick);
+router.get("/:id/:userId", tutorialByIconControllers.getTutorialByHerIdClick);
+router.put("/:id/:userId", tutorialByIconControllers.updateStepOnClick);
 
 module.exports = router;

@@ -4,12 +4,12 @@ import { fetcherAllTutorialsByUserId } from "../../services/tutorialService";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ModuleChooseTutorial from "../moduleChooseTutorial/ModuleChooseTutorial";
 import manDesk from "../../assets/pictures/manDesk.svg";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function ListTutorials({ search }) {
   const [tutorials, setTutorials] = useState([]);
   const { isDesktop } = useContext(IsDesktopContext);
-
-  const userId = 2;
+  const { userId } = decodeTokenAndExtractRole();
 
   useEffect(() => {
     fetcherAllTutorialsByUserId("tutorials/tutorials", userId)

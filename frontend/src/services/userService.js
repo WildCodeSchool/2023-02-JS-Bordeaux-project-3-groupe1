@@ -54,3 +54,26 @@ export const sender = async (url, userId, valuesUser) => {
     throw new Error("Error while sending the data");
   }
 };
+
+export const senderStepsByUser = async (
+  url,
+  id,
+  stepOne,
+  stepTwo,
+  stepThree,
+  tutoId
+) => {
+  const userId = parseInt(id, 10);
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_API}/${url}/${userId}`,
+      stepOne,
+      stepTwo,
+      stepThree,
+      tutoId
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while sending the data");
+  }
+};

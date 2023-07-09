@@ -4,14 +4,15 @@ import { fetcher } from "../../services/api";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
 import { fetcherUSerById } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function Parcours() {
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
-  setNameMenu("Mon parcours");
+  const { userId } = decodeTokenAndExtractRole();
 
-  const userId = 2;
+  setNameMenu("Mon parcours");
 
   const buttonSortTextSections = [
     {

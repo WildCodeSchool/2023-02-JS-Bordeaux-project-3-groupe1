@@ -8,6 +8,7 @@ import ContainerExplicationsTutorial from "../containerObjectifVideoQuizzInTutor
 import ContainerVideoTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerVideoTutorial";
 import ContainerQuizzTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerQuizzTutorial";
 import ButtonTutorial from "../containerObjectifVideoQuizzInTutorials/ButtonTutorial";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function TutorialExplication() {
   const { setNameMenu } = useContext(NameMenuTopContext);
@@ -18,6 +19,7 @@ function TutorialExplication() {
   const [key, setKey] = useState(0);
   const [order, setOrder] = useState([]);
   const location = useLocation();
+  const { userId } = decodeTokenAndExtractRole();
 
   useEffect(() => {
     const numbers = [1, 2, 3].sort(() => Math.random() - 0.5);
@@ -26,6 +28,7 @@ function TutorialExplication() {
   const [orderOne, orderTwo, orderThree] = order;
 
   setNameMenu(dataTutorial.name);
+
   useEffect(() => {
     fetcher(`tutorials/${id}`)
       .then((data) => {
@@ -38,7 +41,7 @@ function TutorialExplication() {
 
   const handleTrueStep = (stepToUpdate, updatedValue) => {
     api
-      .put(`/tutorialbyicon/${id}`, { stepToUpdate, updatedValue })
+      .put(`/tutorialbyicon/${id}/${userId}`, { stepToUpdate, updatedValue })
       .then((response) => {
         console.info(response.data);
       })

@@ -3,7 +3,7 @@
   flex-direction: column;
   row-gap: 10px;
   width: 100%;
-  padding-top: 5rem;
+  padding: 0;
   height: calc(100vh - 19px);
   overflow-y: auto;
   @include tablet {
