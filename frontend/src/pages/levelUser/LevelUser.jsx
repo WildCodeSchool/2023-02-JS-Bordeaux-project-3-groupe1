@@ -12,12 +12,14 @@ function LevelUser() {
   const { isDesktop } = useContext(IsDesktopContext);
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
+
   const handleMouseEnter = (buttonTrue) => {
     buttonTrue(true);
   };
   const handleMouseLeave = (buttonFalse) => {
     buttonFalse(false);
   };
+
   return (
     <div className="containerLevelUser">
       {isDesktop ? (
@@ -31,7 +33,7 @@ function LevelUser() {
         Quel est votre niveau en matière de nouvelles technologies ?
       </h3>
       <div className="containerButtonLevel">
-        <Link to="/formations">
+        <Link to="/formations?level=1">
           <button
             className="buttonLevel"
             type="button"
@@ -51,7 +53,7 @@ function LevelUser() {
             </div>
           </button>
         </Link>
-        <Link to="/formations">
+        <Link to="/formations?level=2">
           <button
             className="buttonLevel"
             type="button"
