@@ -29,9 +29,6 @@ import Profile from "./pages/profile/Profile";
 import ModificationProfile from "./pages/modificationProfile/ModificationProfile";
 import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
-import { decodeTokenAndExtractRole } from "./services/authService";
-
-const { userRole } = decodeTokenAndExtractRole();
 
 const router = createBrowserRouter([
   {
@@ -40,59 +37,59 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: userRole && <Home />,
+        element: <Home />,
       },
       {
         path: "/formations",
-        element: userRole && <Formation />,
+        element: <Formation />,
       },
       {
         path: "/formations/tutorials/:id",
-        element: userRole && <TutorialChoice />,
+        element: <TutorialChoice />,
       },
       {
         path: "/platformTutorial",
-        element: userRole && <PlatformTutorial />,
+        element: <PlatformTutorial />,
       },
       {
         path: "/levelUser",
-        element: userRole && <LevelUser />,
+        element: <LevelUser />,
       },
       {
         path: "/footer",
-        element: userRole && <Footer />,
+        element: <Footer />,
       },
       {
         path: "/legalNotice",
-        element: userRole && <LegalNotice />,
+        element: <LegalNotice />,
       },
       {
         path: "/personalData",
-        element: userRole && <PersonalData />,
+        element: <PersonalData />,
       },
       {
         path: "/register",
-        element: userRole && <Register />,
+        element: <Register />,
       },
       {
         path: "/login",
-        element: userRole && <Login />,
+        element: <Login />,
       },
       {
         path: "/profile",
-        element: userRole && <Profile />,
+        element: <Profile />,
       },
       {
         path: "/modificationProfile",
-        element: userRole && <ModificationProfile />,
+        element: <ModificationProfile />,
       },
       {
         path: "/admin/gestion",
-        element: userRole && <GestionUsers />,
+        element: <GestionUsers />,
       },
       {
         path: "/admin/user/:userId",
-        element: userRole && <UserInfo />,
+        element: <UserInfo />,
       },
     ],
   },
@@ -102,39 +99,40 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/tutorials/createTutorial",
-        element: userRole && <CreateTutorialPage />,
+        element: <CreateTutorialPage />,
       },
       {
         path: "/tutorials/updateTutorial/:tutorialId",
-        element: userRole && <UpdateTutorialPage />,
+        element: <UpdateTutorialPage />,
       },
       {
         path: "/formations/:formationId",
-        element: userRole && <SelectTutorialPage />,
+        element: <SelectTutorialPage />,
       },
       {
         path: "/formations/parcours",
-        element: userRole && <Parcours />,
+        element: <Parcours />,
       },
       {
         path: "/formations/tutorials/explication/:id",
-        element: userRole && <TutorialExplication />,
+        element: <TutorialExplication />,
       },
       {
         path: "/formations/tutorials/video/:id",
-        element: userRole && <TutorialExplication />,
+        element: <TutorialExplication />,
       },
       {
         path: "/formations/tutorials/quizz/:id",
-        element: userRole && <TutorialExplication />,
+        element: <TutorialExplication />,
       },
       {
         path: "/search",
-        element: userRole && <SearchPage />,
+        element: <SearchPage />,
       },
     ],
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <IsDesktopProvider>

@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import { fetcher } from "../../services/api";
-import { fetcherUSerById } from "../../services/userService";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
+import { fetcherUSerById } from "../../services/userService";
 
 function Parcours() {
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
+  setNameMenu("Mon parcours");
 
   const userId = 2;
-
-  setNameMenu("Mon parcours");
 
   const buttonSortTextSections = [
     {
@@ -65,39 +64,12 @@ function Parcours() {
       (item.stepThree ? 34 : 0),
   }));
 
-  const uniqueValues = tutorialByIcon.reduce((accumulator, item) => {
-    const existingItem = accumulator.find(
-      (element) => element.formationID === item.formationID
-    );
-    if (!existingItem) {
-      accumulator.push({
-        formationID: item.formationID,
-        NB_tuto: item.NB_tuto,
-        iconURL: item.iconURL,
-        total_stepsTotal: parseInt(item.total_stepsTotal, 10),
-      });
-    }
-    return accumulator;
-  }, []);
-
-  const iconOpacityLow = (icon) => {
-    const tutorialsForIcon = uniqueValues.filter(
-      (item) => item.iconURL === icon.iconURL
-    );
-
-    const allTutorialsFinished = tutorialsForIcon.every(
-      (item) => item.NB_tuto === item.total_stepsTotal
-    );
-
-    return allTutorialsFinished ? "myRewardIconsChange" : "myRewardIcons";
-  };
-
   return (
     <main className="parcours">
       <h2 className="titleIconSort">Mes récompenses</h2>
       <figure className="containerRewardIcons">
         {iconURL.map((icon) => (
-          <MyReward icon={icon} iconOpacityLow={iconOpacityLow(icon)} />
+          <MyReward key={icon.id} icon={icon} tutorialByIcon={tutorialByIcon} />
         ))}
       </figure>
       <h3 className="sortTitleIcon">Voulez-vous trier ? Cliquez ici</h3>

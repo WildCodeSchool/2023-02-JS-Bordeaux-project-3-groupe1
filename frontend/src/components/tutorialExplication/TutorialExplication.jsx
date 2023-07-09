@@ -13,9 +13,18 @@ function TutorialExplication() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { id } = useParams();
   const [dataTutorial, setDataTutorial] = useState([]);
+  const [quizzValidate, setQuizzValidate] = useState(true);
+  const [quizzSucceed, setQuizzSucceed] = useState(false);
+  const [key, setKey] = useState(0);
+  const [order, setOrder] = useState([]);
   const location = useLocation();
 
-  console.info(dataTutorial);
+  useEffect(() => {
+    const numbers = [1, 2, 3].sort(() => Math.random() - 0.5);
+    setOrder(numbers);
+  }, [key]);
+  const [orderOne, orderTwo, orderThree] = order;
+
   setNameMenu(dataTutorial.name);
   useEffect(() => {
     fetcher(`tutorials/${id}`)
@@ -32,12 +41,18 @@ function TutorialExplication() {
       .put(`/tutorialbyicon/${id}`, { stepToUpdate, updatedValue })
       .then((response) => {
         console.info(response.data);
-        // Faire quelque chose après la mise à jour réussie
       })
       .catch((error) => {
         console.error(error);
-        // Gérer l'erreur de la requête
       });
+  };
+  const handleTrueStepLast = (stepToUpdate, updatedValue) => {
+    if (quizzSucceed) {
+      handleTrueStep(stepToUpdate, updatedValue);
+    } else {
+      setKey((prevKey) => prevKey + 1);
+      console.info("rater");
+    }
   };
 
   return (
@@ -83,8 +98,13 @@ function TutorialExplication() {
         {location.pathname === `/formations/tutorials/quizz/${id}` && (
           <>
             <ContainerQuizzTutorial
-              validation={validation}
+              key={key}
+              orderOne={orderOne}
+              orderTwo={orderTwo}
+              orderThree={orderThree}
               dataTutorial={dataTutorial}
+              setQuizzValidate={setQuizzValidate}
+              setQuizzSucceed={setQuizzSucceed}
             />
             <div className="containerButtonVideo">
               <ButtonTutorial
@@ -96,7 +116,8 @@ function TutorialExplication() {
               <ButtonTutorial
                 path={`/formations/tutorials/${dataTutorial.formation_id}`}
                 nextOrPreview="validateTutorial"
-                handleTrueStep={() => handleTrueStep("stepThree", 1)}
+                handleTrueStep={() => handleTrueStepLast("stepThree", 1)}
+                disabled={quizzValidate}
               >
                 Valider le tutoriel
               </ButtonTutorial>
@@ -107,5 +128,4 @@ function TutorialExplication() {
     </div>
   );
 }
-
 export default TutorialExplication;
