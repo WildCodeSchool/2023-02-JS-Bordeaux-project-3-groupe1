@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import invisible from "../../assets/invisible.png";
 import visible from "../../assets/visible.png";
 
@@ -29,17 +30,22 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const body = { email, password };
-    console.info(body);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_API}/login`,
-        body
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       const token = response.data;
       localStorage.setItem("token", token);
+      toast.success("Bienvenue!");
       navigate("/");
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   };
   return (
