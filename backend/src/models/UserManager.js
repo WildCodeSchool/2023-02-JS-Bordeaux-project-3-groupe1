@@ -1,9 +1,14 @@
 const database = require("../../database");
 
-const getTutorialByUser = async () => {
+const getTutorialByUser = async (userId) => {
   try {
     const rows = await database.query(
-      `SELECT formations.iconURL, tutorials.name, steps.id AS stepID, steps.stepOne, steps.stepTwo, steps.stepThree, users.email FROM userstutorials JOIN users ON users.id = userstutorials.user_id JOIN tutorials ON tutorials.id = userstutorials.tutorial_id JOIN steps ON steps.id = userstutorials.step_id JOIN formations ON formations.id = tutorials.formation_id WHERE users.id = 2`
+      `SELECT formations.iconURL, tutorials.name, tutorials.id AS tutoId, steps.id AS stepID, steps.stepOne, steps.stepTwo, steps.stepThree, user_tuto.email 
+      FROM tutorials
+      LEFT JOIN (SELECT * FROM userstutorials LEFT JOIN users ON users.id = userstutorials.user_id WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id 
+      LEFT JOIN steps ON steps.id = user_tuto.step_id
+      LEFT JOIN formations ON formations.id = tutorials.formation_id`,
+      [userId]
     );
     return rows[0];
   } catch (error) {

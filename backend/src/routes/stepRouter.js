@@ -4,6 +4,6 @@ const router = express.Router();
 
 const stepControllers = require("../controllers/stepControllers");
 
-router.post("/:id", stepControllers.create);
+router.post("/:userId", stepControllers.create);
 
 module.exports = router;

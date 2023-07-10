@@ -79,6 +79,10 @@
       border-top: 2px solid $app-line-color;
     }
 
+    h3 {
+      color: $app-primary-fonts-color;
+    }
+
     input {
       width: 80%;
       height: 2.4rem;
@@ -97,7 +101,8 @@
       margin: 4%;
 
       p {
-        width: 70%;
+        width: 75%;
+        color: $app-secondary-fonts-color-60;
       }
 
       label {
@@ -130,10 +135,6 @@
         .space {
           height: 20px;
           width: 20px;
-        }
-
-        h3 {
-          color: $app-primary-fonts-color;
         }
 
         img {
@@ -169,6 +170,7 @@
           white-space: normal;
           resize: none;
           overflow: hidden;
+          color: $app-secondary-fonts-color;
         }
       }
     }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 import { sender, fetcherUSerById } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
@@ -13,8 +14,8 @@ function ModificationPage() {
   const [location, setLocation] = useState("");
   const [birthdayDate, setBirthdayDate] = useState("");
   const [gender, setGender] = useState("Masculin");
-  const [userId] = useState(1);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const { userId } = decodeTokenAndExtractRole();
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -99,7 +100,7 @@ function ModificationPage() {
       pictureUrl,
     };
 
-    sender("users", {
+    sender("users", userId, {
       ...valuesUser,
     })
       .then((data) => {

@@ -2,7 +2,7 @@ const UserManager = require("../models/UserManager");
 
 const getTutorialByUserJustOneUser = async (req, res) => {
   try {
-    const results = await UserManager.getTutorialByUser();
+    const results = await UserManager.getTutorialByUser(req.params.userId);
     if (results.length === 0) {
       res.status(404).send("no formations found");
     } else {
@@ -41,10 +41,9 @@ const getOne = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  const { id } = req.params;
   const user = req.body;
   try {
-    const response = await UserManager.updateUser(user, id);
+    const response = await UserManager.updateUser(user, req.params.userId);
     if (response.length === 0) {
       res.status(404).send("User not updated");
     } else {

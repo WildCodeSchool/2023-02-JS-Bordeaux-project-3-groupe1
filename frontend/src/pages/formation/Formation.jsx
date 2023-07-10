@@ -4,13 +4,18 @@ import { fetcher } from "../../services/api";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ModuleChooseFormation from "../../components/moduleChooseFormation/ModuleChooseFormation";
 import manComputer from "../../assets/manComputer.svg";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function Formation() {
   const { isDesktop } = useContext(IsDesktopContext);
+
+  const [iconURLAndDescription, setIconURLAndDescription] = useState([]);
+  const { setNameMenu } = useContext(NameMenuTopContext);
   const [searchParams] = useSearchParams();
   const level = searchParams.get("level");
 
-  const [iconURLAndDescription, setIconURLAndDescription] = useState([]);
+  setNameMenu("Les formations");
+
   useEffect(() => {
     fetcher("formations")
       .then((data) => {
@@ -20,9 +25,11 @@ function Formation() {
         console.error(error);
       });
   }, []);
+
   const filterFormations = iconURLAndDescription.filter(
     (formation) => formation.levelFormation === parseInt(level, 10)
   );
+
   return (
     <div className="formation">
       {isDesktop ? (

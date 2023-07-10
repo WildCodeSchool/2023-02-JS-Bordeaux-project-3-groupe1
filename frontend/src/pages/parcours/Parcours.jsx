@@ -3,11 +3,15 @@ import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import { fetcher } from "../../services/api";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
+import { fetcherUSerById } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function Parcours() {
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
+  const { userId } = decodeTokenAndExtractRole();
+
   setNameMenu("Mon parcours");
   console.info(tutorialByIcon);
   const buttonSortTextSections = [
@@ -42,7 +46,7 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher(`tutorialbyicon`)
+    fetcherUSerById(`tutorialbyicon`, userId)
       .then((data) => {
         setTutorialByIcon(data);
       })
@@ -50,6 +54,7 @@ function Parcours() {
         console.error(error);
       });
   }, []);
+
   const steps = tutorialByIcon.map((item) => ({
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,

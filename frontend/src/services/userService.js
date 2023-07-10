@@ -20,8 +20,19 @@ export const fetcherUSerById = async (url, userId) => {
   }
 };
 
-export const sender = async (url, valuesUser, active) => {
-  const id = 1;
+export const fetcherUSerByIdTutorials = async (url, id, userId) => {
+  const formationId = parseInt(id, 10);
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_API}/${url}/${formationId}/${userId}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while fetching data");
+  }
+};
+
+export const sender = async (url, userId, valuesUser) => {
   try {
     const formData = new FormData();
     formData.append("lastname", valuesUser.lastname);
@@ -33,11 +44,33 @@ export const sender = async (url, valuesUser, active) => {
     formData.append("gender", valuesUser.gender);
     formData.append("file", valuesUser.picture);
     formData.append("newFilename", valuesUser.pictureUrl);
-    formData.append("active", active);
 
     const response = await axios.put(
-      `${import.meta.env.VITE_BASE_API}/${url}/${id}`,
+      `${import.meta.env.VITE_BASE_API}/${url}/${userId}`,
       formData
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while sending the data");
+  }
+};
+
+export const senderStepsByUser = async (
+  url,
+  id,
+  stepOne,
+  stepTwo,
+  stepThree,
+  tutoId
+) => {
+  const userId = parseInt(id, 10);
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_API}/${url}/${userId}`,
+      stepOne,
+      stepTwo,
+      stepThree,
+      tutoId
     );
     return response.data;
   } catch (error) {

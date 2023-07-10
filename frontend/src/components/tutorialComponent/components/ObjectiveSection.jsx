@@ -16,7 +16,7 @@ function ObjectiveSection({
       </div>
       <div className="container-objectifText">
         {isUpdate && (
-          <label htmlFor="objectifTutorial">Ajoutez votre objectif ici :</label>
+          <label htmlFor="objectifTutorial">Ajouter votre objectif ici :</label>
         )}
         <textarea
           name="objectifTutorial"

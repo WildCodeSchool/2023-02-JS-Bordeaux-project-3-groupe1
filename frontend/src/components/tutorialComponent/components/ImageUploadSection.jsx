@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function ImageUploadSection({ handleFileChange }) {
   return (
     <div className="container-explications-upload">
-      <p>Insérer l'image ici :</p>
+      <p>Insérer une image ici :</p>
       <label htmlFor="fileInput" className="custom-file-input">
         Insérer
       </label>

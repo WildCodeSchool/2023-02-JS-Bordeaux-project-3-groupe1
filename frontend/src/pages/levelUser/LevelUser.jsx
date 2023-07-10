@@ -7,11 +7,35 @@ import pictureLevel from "../../assets/pictures/picture_level.png";
 import hatWhite1 from "../../assets/pictures/hatWhite1.png";
 import hatWhite2 from "../../assets/pictures/hatWhite2.png";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
+import { sender } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function LevelUser() {
   const { isDesktop } = useContext(IsDesktopContext);
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
+  const { userId } = decodeTokenAndExtractRole();
+  const [level, setLevel] = useState(1);
+
+  const handleSave = () => {
+    if (level !== 0) {
+      const valuesUser = {
+        level,
+      };
+
+      sender("users", userId, {
+        ...valuesUser,
+      })
+        .then((data) => {
+          console.warn(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.warn("Veuillez sélectionner un niveau avant de valider.");
+    }
+  };
 
   const handleMouseEnter = (buttonTrue) => {
     buttonTrue(true);
@@ -39,6 +63,10 @@ function LevelUser() {
             type="button"
             onMouseEnter={() => handleMouseEnter(setIsHovered)}
             onMouseLeave={() => handleMouseLeave(setIsHovered)}
+            onClick={() => {
+              setLevel(1);
+              handleSave();
+            }}
           >
             <div>
               <div className="level">
@@ -59,6 +87,10 @@ function LevelUser() {
             type="button"
             onMouseEnter={() => handleMouseEnter(setIsHovered2)}
             onMouseLeave={() => handleMouseLeave(setIsHovered2)}
+            onClick={() => {
+              setLevel(2);
+              handleSave();
+            }}
           >
             <div>
               <div className="level">

@@ -14,16 +14,19 @@ const verifyPassword = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    const [hashPassword] = await findByEmail(email);
-    console.info(hashPassword.hashedPassword, "hashed");
+    const [user] = await findByEmail(email);
     const response = await argon2.verify(
-      hashPassword.hashedPassword,
+      user.hashedPassword,
       password,
       hashingOptions
     );
     if (response) {
       const token = await jwt.sign(
-        { sub: req.body.id },
+        {
+          sub: req.body.id,
+          role: user.roleName,
+          userId: user.id,
+        },
         process.env.JWT_SECRET
       );
       res.status(200).send(token);

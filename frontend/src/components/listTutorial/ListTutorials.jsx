@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { fetcher } from "../../services/api";
-import student from "../../assets/student.png";
-import starGrey from "../../assets/starGrey.png";
+import { fetcherAllTutorialsByUserId } from "../../services/tutorialService";
+import { IsDesktopContext } from "../../contexts/IsDesktopContext";
+import ModuleChooseTutorial from "../moduleChooseTutorial/ModuleChooseTutorial";
+import manDesk from "../../assets/pictures/manDesk.svg";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function ListTutorials({ search }) {
   const [tutorials, setTutorials] = useState([]);
+  const { isDesktop } = useContext(IsDesktopContext);
+  const { userId } = decodeTokenAndExtractRole();
 
   useEffect(() => {
-    fetcher("tutorials")
+    fetcherAllTutorialsByUserId("tutorials/tutorials", userId)
       .then((data) => {
         setTutorials(data);
       })
@@ -18,43 +22,56 @@ function ListTutorials({ search }) {
   }, []);
 
   const filteredTutorials = tutorials.filter((item) => {
-    const tagsArray = item.nameTag.split(",").map((value) => value.trim());
+    const tagsArray = item.tagsName.split(",").map((value) => value.trim());
     return tagsArray.some((tag) =>
       tag.toLowerCase().includes(search.toLowerCase())
     );
   });
 
+  const stepsMap = filteredTutorials.map((item) => ({
+    ...item,
+    stepOne: item.stepOne,
+    stepTwo: item.stepTwo,
+    stepThree: item.stepThree,
+    total: item.stepOne + item.stepTwo + item.stepThree,
+  }));
+
   return (
     <div className="container-listTutorials">
-      <ul className="container-listTutorials-preview">
-        {filteredTutorials.map((item) => (
-          <li key={item.id}>
-            {item?.level === 1 ? (
-              <div className="container-icon">
-                <div className="icon-preview-tutorial">
-                  <div className="icon-preview-tutorial-star">
-                    <img src={starGrey} alt="starGrey" />
-                  </div>
-                  <img src={student} alt="student" />
-                </div>
-              </div>
+      {isDesktop ? (
+        <>
+          <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
+          <div className="moduleChooseTutorialDesktop">
+            {filteredTutorials.length > 0 ? (
+              filteredTutorials.map((item, index) => (
+                <ModuleChooseTutorial
+                  key={item.tutoId}
+                  item={item}
+                  steps={stepsMap}
+                  index={index}
+                />
+              ))
             ) : (
-              <div className="container-icon">
-                <div className="icon-preview-tutorial">
-                  <div className="icon-preview-tutorial-star">
-                    <img src={starGrey} alt="starGrey" />
-                    <img src={starGrey} alt="starGrey" />
-                  </div>
-                  <img src={student} alt="student" />
-                </div>
-              </div>
+              <p>Aucun tutoriel trouvé.</p>
             )}
-            <div className="container-selectTutorial-tutorialName">
-              {item.name}
-            </div>
-          </li>
-        ))}
-      </ul>
+          </div>
+        </>
+      ) : (
+        <div>
+          {filteredTutorials.length > 0 ? (
+            filteredTutorials.map((item, index) => (
+              <ModuleChooseTutorial
+                key={item.tutoId}
+                item={item}
+                steps={stepsMap}
+                index={index}
+              />
+            ))
+          ) : (
+            <p>Chargement de la page ...</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

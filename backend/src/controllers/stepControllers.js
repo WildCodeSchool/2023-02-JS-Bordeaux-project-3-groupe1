@@ -3,7 +3,7 @@ const StepManager = require("../models/StepManager");
 const create = async (req, res) => {
   try {
     const step = req.body;
-    const stepCreated = await StepManager.CreateSteps(step);
+    const stepCreated = await StepManager.CreateSteps(req.params.userId, step);
 
     if (stepCreated) {
       res.status(201).json(step);

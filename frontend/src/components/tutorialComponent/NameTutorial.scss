@@ -17,12 +17,19 @@
     color: $app-secondary-fonts-color;
   }
 
-  label {
+  label,
+  ul {
     width: 80%;
+    color: $app-secondary-fonts-color-60;
+  }
+
+  button {
+    color: $app-secondary-fonts-color-60;
   }
 
   p {
     width: 80%;
+    color: $app-secondary-fonts-color-60;
   }
 
   .container-input-tag {

@@ -4,15 +4,15 @@ const router = express.Router();
 const tutorialByIconControllers = require("../controllers/tutorialByIconControllers");
 
 router.get(
-  "/",
+  "/:userId",
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormationsNoId
 );
 router.get(
-  "/:id",
+  "/:formationId/:userId",
   tutorialByIconControllers.getTutorialsByIdWithJoinTableFormations
 );
 
-router.get("/:id", tutorialByIconControllers.getTutorialByHerIdClick);
-router.put("/:id", tutorialByIconControllers.updateStepOnClick);
+router.get("/:id/:userId", tutorialByIconControllers.getTutorialByHerIdClick);
+router.put("/:id/:userId", tutorialByIconControllers.updateStepOnClick);
 
 module.exports = router;
