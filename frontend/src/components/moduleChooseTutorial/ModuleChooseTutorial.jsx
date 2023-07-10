@@ -9,7 +9,7 @@ import { senderStepsByUser } from "../../services/userService";
 
 function ModuleChooseTutorial({ userId, item, steps, index }) {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
   };
