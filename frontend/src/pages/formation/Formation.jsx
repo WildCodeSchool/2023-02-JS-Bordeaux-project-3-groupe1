@@ -8,6 +8,7 @@ import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function Formation() {
   const { isDesktop } = useContext(IsDesktopContext);
+
   const [iconURLAndDescription, setIconURLAndDescription] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
   const [searchParams] = useSearchParams();

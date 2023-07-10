@@ -9,7 +9,7 @@ import { senderStepsByUser } from "../../services/userService";
 
 function ModuleChooseTutorial({ userId, item, steps, index }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   const handleArrowClick = () => {
     setIsOpen(!isOpen);
   };
@@ -103,9 +103,24 @@ function ModuleChooseTutorial({ userId, item, steps, index }) {
   );
 }
 ModuleChooseTutorial.propTypes = {
-  item: PropTypes.string.isRequired,
-  steps: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    stepOne: PropTypes.number.isRequired,
+    stepTwo: PropTypes.number.isRequired,
+    stepThree: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    tutoId: PropTypes.number.isRequired,
+  }).isRequired,
+  steps: PropTypes.arrayOf(
+    PropTypes.shape({
+      total: PropTypes.number.isRequired,
+      stepOne: PropTypes.number.isRequired,
+      stepTwo: PropTypes.number.isRequired,
+      stepThree: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   index: PropTypes.number.isRequired,
   userId: PropTypes.number.isRequired,
 };
+
 export default ModuleChooseTutorial;

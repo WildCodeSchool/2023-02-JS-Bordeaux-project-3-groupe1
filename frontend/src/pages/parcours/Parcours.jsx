@@ -13,7 +13,7 @@ function Parcours() {
   const { userId } = decodeTokenAndExtractRole();
 
   setNameMenu("Mon parcours");
-
+  console.info(tutorialByIcon);
   const buttonSortTextSections = [
     {
       text: "Non débutés",

@@ -57,7 +57,7 @@ function MenuTop() {
             <img src={backCross} alt="back cross" />
           </button>
         ) : (
-          <Link to="/">
+          <Link to={-1}>
             <img src={backCross} alt="back cross" />
           </Link>
         )}

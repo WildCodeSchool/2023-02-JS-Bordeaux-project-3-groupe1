@@ -57,7 +57,7 @@ function LevelUser() {
         Quel est votre niveau en matière de nouvelles technologies ?
       </h3>
       <div className="containerButtonLevel">
-        <Link to="/formations">
+        <Link to="/formations?level=1">
           <button
             className="buttonLevel"
             type="button"
@@ -81,7 +81,7 @@ function LevelUser() {
             </div>
           </button>
         </Link>
-        <Link to="/formations">
+        <Link to="/formations?level=2">
           <button
             className="buttonLevel"
             type="button"
