@@ -38,6 +38,7 @@
 @import "../src/components/listTutorial/ListTutorial.scss";
 @import "../src/components/tutorialComponent/components/SaveButton.scss";
 @import "../src/components/dropFile/DragAndDrop.scss";
+@import "../src/pages/sendEmailUser/SendEmailUser.scss";
 
 * {
   margin: 0;
@@ -70,6 +71,17 @@ a {
 
 li {
   list-style: none;
+}
+
+.Toastify__toast--info {
+}
+.Toastify__toast--success {
+  background-color: #a2f9a4;
+  border-radius: 10px;
+}
+.Toastify__toast--error {
+  background-color: #fbcecc;
+  border-radius: 10px;
 }
 
 // .titleNameMenu { à modifier je laisse commenté pour l'instant

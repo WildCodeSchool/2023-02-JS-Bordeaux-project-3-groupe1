@@ -29,6 +29,7 @@ import Profile from "./pages/profile/Profile";
 import ModificationProfile from "./pages/modificationProfile/ModificationProfile";
 import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
+import SendEmailUser from "./pages/sendEmailUser/SendEmailUser";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage />,
+      },
+      {
+        path: "/sendEmailUser",
+        element: <SendEmailUser />,
       },
     ],
   },

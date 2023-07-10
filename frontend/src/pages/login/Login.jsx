@@ -93,7 +93,7 @@ function Login() {
               </button>
             </div>
           </label>
-          <Link to="/" className="new-password-link">
+          <Link to="/sendEmailUser" className="new-password-link">
             MOT DE PASSE OUBLIÉ ?
           </Link>
           <br />
