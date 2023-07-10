@@ -35,7 +35,6 @@ function Navbar() {
         </Link>
         <input className="search-bar" type="text" />
         <img className="loupe" src={Loupe} alt="loupe recherche" />
-
         {!isLoggedIn && (
           <button className="button-connexion" type="button">
             <Link to="/register" className="se-connecter">
@@ -45,21 +44,21 @@ function Navbar() {
         )}
         {isLoggedIn &&
           (adminRole ? (
-            <button type="button" onClick={handleDisconnected}>
+            <Link type="button" to="/profile">
               <img
                 className="admin-icon"
                 src={AdminIcon}
                 alt="icon du profil admin"
               />
-            </button>
+            </Link>
           ) : (
-            <button type="button" onClick={handleDisconnected}>
+            <Link type="button" to="/profile">
               <img
                 className="user-icon"
                 src={UserIcon}
                 alt="icon du profil user"
               />
-            </button>
+            </Link>
           ))}
       </div>
       <ul className="navbar_links">
@@ -79,30 +78,28 @@ function Navbar() {
             </Link>
           </li>
         )}
-        {/* {isLoggedIn && adminRole && (
-          <li className="navbar_item">
-            <Link className="navbar_link" to="/formations">
-              Liste des tutoriels
-            </Link>
-          </li>
-        )} */}
         {isLoggedIn && userRole && (
-          <li className="navbar_item">
-            <Link className="navbar_link" to="/formations/parcours">
-              Mon parcours
-            </Link>
-          </li>
-        )}
-        {isLoggedIn && userRole && (
-          <li className="navbar_item">
-            <Link
-              to="/profile"
-              onClick={handleShowLinks}
-              className="navbar_link"
-            >
-              Mon profil
-            </Link>
-          </li>
+          <>
+            <li className="navbar_item">
+              <Link className="navbar_link" to="/formations/parcours">
+                Mon parcours
+              </Link>
+            </li>
+            <li className="navbar_item">
+              <Link
+                to="/profile"
+                onClick={handleShowLinks}
+                className="navbar_link"
+              >
+                Mon profil
+              </Link>
+            </li>
+            <li className="navbar_item">
+              <Link to="/" onClick={handleDisconnected} className="navbar_link">
+                Déconnexion
+              </Link>
+            </li>
+          </>
         )}
         {isLoggedIn && adminRole && (
           <>
@@ -118,6 +115,11 @@ function Navbar() {
             <li className="navbar_item">
               <Link className="navbar_link" to="/tutorials/createTutorial">
                 Ajouter un tutoriel
+              </Link>
+            </li>
+            <li className="navbar_item">
+              <Link to="/" onClick={handleDisconnected} className="navbar_link">
+                Déconnexion
               </Link>
             </li>
           </>
