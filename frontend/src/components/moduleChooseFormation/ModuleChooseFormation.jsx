@@ -39,7 +39,6 @@ ModuleChooseFormation.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.number.isRequired,
     iconURL: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   }),
 };
