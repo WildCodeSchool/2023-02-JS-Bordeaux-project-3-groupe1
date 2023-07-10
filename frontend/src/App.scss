@@ -16,6 +16,8 @@
 @import "../src/pages/personalData/PersonalData.scss";
 @import "../src/pages/admin/GestionUsers.scss";
 @import "../src/pages/admin/UserInfo.scss";
+@import "../src/pages/profile/ProfileDesk.scss";
+
 
 /* ----------------------------- import components -------------------------------- */
 
@@ -38,6 +40,7 @@
 @import "../src/components/listTutorial/ListTutorial.scss";
 @import "../src/components/tutorialComponent/components/SaveButton.scss";
 @import "../src/components/dropFile/DragAndDrop.scss";
+@import "../src/components/containerObjectifVideoQuizzInTutorials/ContainerBravoTutorial.scss";
 
 * {
   margin: 0;

@@ -8,6 +8,7 @@ import ContainerExplicationsTutorial from "../containerObjectifVideoQuizzInTutor
 import ContainerVideoTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerVideoTutorial";
 import ContainerQuizzTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerQuizzTutorial";
 import ButtonTutorial from "../containerObjectifVideoQuizzInTutorials/ButtonTutorial";
+import ContainerBravoTutorial from "../containerObjectifVideoQuizzInTutorials/ContainerBravoTutorial";
 import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function TutorialExplication() {
@@ -20,15 +21,12 @@ function TutorialExplication() {
   const [order, setOrder] = useState([]);
   const location = useLocation();
   const { userId } = decodeTokenAndExtractRole();
-
   useEffect(() => {
     const numbers = [1, 2, 3].sort(() => Math.random() - 0.5);
     setOrder(numbers);
   }, [key]);
   const [orderOne, orderTwo, orderThree] = order;
-
   setNameMenu(dataTutorial.name);
-
   useEffect(() => {
     fetcher(`tutorials/${id}`)
       .then((data) => {
@@ -38,7 +36,7 @@ function TutorialExplication() {
         console.error(error);
       });
   }, []);
-
+  console.info(dataTutorial);
   const handleTrueStep = (stepToUpdate, updatedValue) => {
     api
       .put(`/tutorialbyicon/${id}/${userId}`, { stepToUpdate, updatedValue })
@@ -57,7 +55,6 @@ function TutorialExplication() {
       console.info("rater");
     }
   };
-
   return (
     <div className="container-ObjectifTutorial">
       <ContainerObjectifTutorial dataTutorial={dataTutorial} />
@@ -117,12 +114,28 @@ function TutorialExplication() {
                 Précédent
               </ButtonTutorial>
               <ButtonTutorial
-                path={`/formations/tutorials/${dataTutorial.formation_id}`}
+                path={`/formations/tutorials/quizz/bravo/${id}`}
                 nextOrPreview="validateTutorial"
                 handleTrueStep={() => handleTrueStepLast("stepThree", 1)}
                 disabled={quizzValidate}
               >
                 Valider le tutoriel
+              </ButtonTutorial>
+            </div>
+          </>
+        )}
+        {location.pathname === `/formations/tutorials/quizz/bravo/${id}` && (
+          <>
+            <ContainerBravoTutorial
+              key={key}
+              dataTutorial={dataTutorial.name}
+            />
+            <div className="containerButtonVideo">
+              <ButtonTutorial
+                path={`/formations/tutorials/${dataTutorial.formation_id}`}
+                nextOrPreview="validateTutorial"
+              >
+                Valider
               </ButtonTutorial>
             </div>
           </>

@@ -1,21 +1,18 @@
 import { Link } from "react-router-dom";
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
 import Connexion from "../../assets/pictures/photo_profile.png";
 import { fetcherUSerById } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
-import { IsDesktopContext } from "../../contexts/IsDesktopContext";
-import ProfileDesk from "./ProfileDesk";
+import HommeProfil from "../../assets/pictures/homme-profil.png";
 
 function Profile() {
-  const { isDesktop } = useContext(IsDesktopContext);
   const { userId } = decodeTokenAndExtractRole();
   const [userGender, setUserGender] = useState("M");
   const [userLastname, setUserLastname] = useState("Lafond");
   const [userFirstname, setUserFirstname] = useState("Pierre");
   const [userMail, setUserMail] = useState("lafondpierre@gmail.com");
   const [userPicture, setUserPicture] = useState("");
-
   useEffect(() => {
     fetcherUSerById("users", userId)
       .then((data) => {
@@ -31,34 +28,44 @@ function Profile() {
         console.error(error);
       });
   }, [userId]);
-  return isDesktop ? (
-    <ProfileDesk />
-  ) : (
-    <main className="mainProfile">
-      <div className="titleProfile">
+  return (
+    <main className="main-profil">
+      <div className="titre-profil">
         <h2>Mon profil</h2>
       </div>
-      <div className="photoProfile">
-        {userPicture && <img src={userPicture} alt="" />}
-      </div>
-      <div className="nameProfile">
-        <img className="imgProfile" src={Connexion} alt="icone profile" />
-        <div className="NameProfile">
-          {userGender} {userLastname} {userFirstname}
+
+      <div className="container-img-form">
+        <img className="homme-profil" src={HommeProfil} alt="Homme profil" />
+        <div className="container-photo-form">
+          <div className="photo-profil">
+            {userPicture && <img src={userPicture} alt="" />}
+          </div>
+          <div className="container-formulaire">
+            <div className="identity-profil">
+              <img className="img-profil" src={Connexion} alt="icone profile" />
+              <p className="Nom-profil">
+                {userGender} {userLastname} {userFirstname}
+              </p>
+            </div>
+            <div className="mail-profil">
+              <img
+                className="img-mail-profil"
+                src={mailProfile}
+                alt="icone mail"
+              />
+              <p className="mail">{userMail}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="nameProfile">
-        <img className="imgMailProfile" src={mailProfile} alt="icone mail" />
-        <div className="MailProfile">{userMail}</div>
-      </div>
-      <div className="buttons_profile">
+      <div className="boutons-profil">
         <Link to="/modificationProfile">
-          <button className="button_edit_my_profile" type="button">
+          <button className="bouton-modifier" type="button">
             Modifier mon profil
           </button>
         </Link>
         <Link to="/formations/parcours">
-          <button className="button_see_my_journey" type="button">
+          <button className="bouton-voir-parcours" type="button">
             Voir mon parcours
           </button>
         </Link>
