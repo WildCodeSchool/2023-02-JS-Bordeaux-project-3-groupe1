@@ -33,8 +33,9 @@ function Navbar() {
         <Link to="/formations/parcours">
           <img className="points" src={Points} alt="points" />
         </Link>
-        <input className="search-bar" type="text" />
-        <img className="loupe" src={Loupe} alt="loupe recherche" />
+        <Link to="/search">
+          <img className="loupe" src={Loupe} alt="loupe recherche" />
+        </Link>
         {!isLoggedIn && (
           <button className="button-connexion" type="button">
             <Link to="/register" className="se-connecter">
