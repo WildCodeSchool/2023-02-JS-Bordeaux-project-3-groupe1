@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
 import Connexion from "../../assets/pictures/photo_profile.png";
 import { fetcherUSerById } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
+import { IsDesktopContext } from "../../contexts/IsDesktopContext";
+import ProfileDesk from "./ProfileDesk";
 
 function Profile() {
+  const { isDesktop } = useContext(IsDesktopContext);
   const { userId } = decodeTokenAndExtractRole();
   const [userGender, setUserGender] = useState("M");
   const [userLastname, setUserLastname] = useState("Lafond");
@@ -28,8 +31,9 @@ function Profile() {
         console.error(error);
       });
   }, [userId]);
-
-  return (
+  return isDesktop ? (
+    <ProfileDesk />
+  ) : (
     <main className="mainProfile">
       <div className="titleProfile">
         <h2>Mon profil</h2>
