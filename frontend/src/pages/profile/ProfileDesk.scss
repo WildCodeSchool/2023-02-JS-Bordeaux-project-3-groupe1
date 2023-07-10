@@ -1,0 +1,95 @@
+.main-profil {
+  .titre-profil {
+    text-align: center;
+    color: $app-primary-fonts-color;
+    font-style: $app-primary-font;
+    padding-top: 10px;
+  }
+  .photo-profil {
+    display: flex;
+    background-color: #d9d9d9;
+    height: 9rem;
+    width: 35%;
+    border-radius: 50%;
+    margin-left: 34%;
+  }
+  .container-formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    .identity-profil {
+      display: flex;
+      .img-profil {
+        width: 39px;
+      }
+      .Nom-profil {
+        margin-left: 8px;
+        margin-top: 10px;
+        font-style: $app-secondary-font;
+        font-weight: bold;
+        color: $app-primary-fonts-color;
+      }
+    }
+  }
+  .mail-profil {
+    display: flex;
+    .img-mail-profil {
+      width: 38px;
+    }
+    .mail {
+      margin-left: 9px;
+      margin-top: 5px;
+      font-style: $app-secondary-font;
+      font-weight: bold;
+      color: $app-primary-fonts-color;
+    }
+  }
+
+  .container-photo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+    width: 40%;
+  }
+  .container-img-form {
+    display: flex;
+    justify-content: space-between;
+    .homme-profil {
+      width: 300px;
+      margin-left: 70px;
+    }
+  }
+  .boutons-profil {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    .bouton-modifier {
+      width: 20%;
+      border: 0;
+      line-height: 2.5;
+      padding: 0 20px;
+      font-size: 1rem;
+      text-align: center;
+      color: $app-corporate-color;
+      border-radius: 10px;
+      background-color: $app-corporate-color-2;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+      margin: 2rem 0 0 5rem;
+    }
+    .bouton-voir-parcours {
+      width: 20%;
+      border: 0;
+      line-height: 2.5;
+      padding: 0 20px;
+      font-size: 1rem;
+      text-align: center;
+      color: $app-secondary-fonts-color-50;
+      border-radius: 10px;
+      background-color: $app-corporate-color;
+      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+      margin: 1rem 0 0 5rem;
+    }
+  }
+}
