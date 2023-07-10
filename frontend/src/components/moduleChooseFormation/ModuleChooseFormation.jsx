@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function ModuleChooseFormation({ item }) {
-  console.info(item);
   return (
     <Link to={`/formations/tutorials/${item.id}`}>
       <div className="moduleChooseFormation">
