@@ -65,6 +65,25 @@ function Parcours() {
       (item.stepThree ? 34 : 0),
   }));
 
+  // const totalStepsTotalLevel1 = tutorialByIcon.find(
+  //   (item) => item.levelTuto === 1
+  // )?.total_stepsTotal;
+
+  // const totalStepsTotalLevel2 = tutorialByIcon.find(
+  //   (item) => item.levelTuto === 2
+  // )?.total_stepsTotal;
+
+  // let isCompleted = false;
+
+  // if (totalStepsTotalLevel1 && totalStepsTotalLevel2) {
+  //   const totalSteps = parseInt(totalStepsTotalLevel1, 10) + parseInt(totalStepsTotalLevel2, 10);
+  //   isCompleted = totalSteps >= tutorial.NB_tuto;
+  // } else if (totalStepsTotalLevel2) {
+  //   isCompleted = parseInt(totalStepsTotalLevel2, 10) === tutorial.NB_tuto;
+  // }
+
+  // console.log(isCompleted);
+
   return (
     <main className="parcours">
       <h2 className="titleIconSort">Mes récompenses</h2>
@@ -98,6 +117,7 @@ function Parcours() {
               if (steps[index].total === 0) {
                 return (
                   <SortMyReward
+                    tutoId={icon.tutoId}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
                     index={index}
@@ -123,6 +143,7 @@ function Parcours() {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
                   <SortMyReward
+                    tutoId={icon.tutoId}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
                     index={index}

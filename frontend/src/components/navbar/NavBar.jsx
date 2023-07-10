@@ -38,7 +38,7 @@ function Navbar() {
         </Link>
         {!isLoggedIn && (
           <button className="button-connexion" type="button">
-            <Link to="/register" className="se-connecter">
+            <Link to="/login" className="se-connecter">
               Connexion
             </Link>
           </button>
