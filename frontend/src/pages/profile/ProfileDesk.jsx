@@ -1,22 +1,51 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
 import Connexion from "../../assets/pictures/photo_profile.png";
+import { fetcherUSerById } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 import HommeProfil from "../../assets/pictures/homme-profil.png";
 
 function Profile() {
+  const { userId } = decodeTokenAndExtractRole();
+  const [userGender, setUserGender] = useState("M");
+  const [userLastname, setUserLastname] = useState("Lafond");
+  const [userFirstname, setUserFirstname] = useState("Pierre");
+  const [userMail, setUserMail] = useState("lafondpierre@gmail.com");
+  const [userPicture, setUserPicture] = useState("");
+  useEffect(() => {
+    fetcherUSerById("users", userId)
+      .then((data) => {
+        if (data) {
+          setUserGender(data.gender === "Masculin" ? "M" : "Mme");
+          setUserLastname(data.lastname || "Lafond");
+          setUserFirstname(data.firstname || "Pierre");
+          setUserMail(data.email || "lafondpierre@gmail.com");
+          setUserPicture(data.picture);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [userId]);
   return (
     <main className="main-profil">
       <div className="titre-profil">
         <h2>Mon profil</h2>
       </div>
+
       <div className="container-img-form">
         <img className="homme-profil" src={HommeProfil} alt="Homme profil" />
         <div className="container-photo-form">
-          <div className="photo-profil" />
+          <div className="photo-profil">
+            {userPicture && <img src={userPicture} alt="" />}
+          </div>
           <div className="container-formulaire">
             <div className="identity-profil">
               <img className="img-profil" src={Connexion} alt="icone profile" />
-              <p className="Nom-profil">M Lafond Pierre</p>
+              <p className="Nom-profil">
+                {userGender} {userLastname} {userFirstname}
+              </p>
             </div>
             <div className="mail-profil">
               <img
@@ -24,7 +53,7 @@ function Profile() {
                 src={mailProfile}
                 alt="icone mail"
               />
-              <p className="mail">Lafond@gmail.com</p>
+              <p className="mail">{userMail}</p>
             </div>
           </div>
         </div>
