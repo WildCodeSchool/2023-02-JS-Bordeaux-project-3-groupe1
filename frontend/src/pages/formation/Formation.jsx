@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useSearchParams } from "react-router-dom";
 import { fetcher } from "../../services/api";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ModuleChooseFormation from "../../components/moduleChooseFormation/ModuleChooseFormation";
@@ -8,11 +7,8 @@ import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function Formation() {
   const { isDesktop } = useContext(IsDesktopContext);
-
   const [iconURLAndDescription, setIconURLAndDescription] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
-  const [searchParams] = useSearchParams();
-  const level = searchParams.get("level");
 
   setNameMenu("Les formations");
 
@@ -26,16 +22,12 @@ function Formation() {
       });
   }, []);
 
-  const filterFormations = iconURLAndDescription.filter(
-    (formation) => formation.levelFormation === parseInt(level, 10)
-  );
-
   return (
     <div className="formation">
       {isDesktop ? (
         <>
-          {filterFormations.length > 0 ? (
-            filterFormations.map((item) => (
+          {iconURLAndDescription.length > 0 ? (
+            iconURLAndDescription.map((item) => (
               <ModuleChooseFormation item={item} key={item.id} />
             ))
           ) : (
@@ -49,8 +41,8 @@ function Formation() {
         </>
       ) : (
         <div className="formation">
-          {filterFormations.length > 0 ? (
-            filterFormations.map((item) => (
+          {iconURLAndDescription.length > 0 ? (
+            iconURLAndDescription.map((item) => (
               <ModuleChooseFormation item={item} key={item.id} />
             ))
           ) : (

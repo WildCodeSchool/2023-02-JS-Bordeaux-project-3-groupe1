@@ -20,6 +20,8 @@ router.put(
   userControllers.update
 );
 
+router.put("/level/:userId", userControllers.updateLevel);
+
 router.delete("/:id", userControllers.destroy);
 
 module.exports = router;

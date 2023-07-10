@@ -131,6 +131,11 @@
     flex-wrap: nowrap;
     background-color: $app-secondary-fonts-color-2;
 
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+
     .quizzChooseAnswer {
       width: 100vw;
       height: 70px;

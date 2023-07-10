@@ -34,13 +34,14 @@ LEFT JOIN (SELECT
 const getTutorialByIconFormation = async (formationId, userId) => {
   try {
     const rows = await database.query(
-      `SELECT  tutorials.*, tutorials.id AS tutoId, steps.*, tags.name AS tagsName
+      `SELECT  tutorials.*, tutorials.id AS tutoId, steps.*, tags.name AS tagsName, users.level AS levelUser
       FROM tutorials
-      LEFT JOIN (SELECT * FROM userstutorials WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id 
+      LEFT JOIN (SELECT * FROM userstutorials WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id
+      LEFT JOIN users ON users.id = user_id
       LEFT JOIN steps ON steps.id = user_tuto.step_id
-	    LEFT JOIN tutorialstags ON tutorialstags.tutorial_id = tutorials.id
+	  LEFT JOIN tutorialstags ON tutorialstags.tutorial_id = tutorials.id
       LEFT JOIN tags ON tags.id = tutorialstags.tag_id
-      WHERE tutorials.formation_id = ?`,
+      WHERE tutorials.formation_id = ? `,
       [userId, formationId]
     );
     return rows[0];

@@ -7,7 +7,7 @@ import capBlueOneStartBlue from "../../assets/pictures/capBlueOneStartBlue.svg";
 import chek from "../../assets/pictures/chek.svg";
 import { senderStepsByUser } from "../../services/userService";
 
-function ModuleChooseTutorial({ userId, item, steps, index }) {
+function ModuleChooseTutorial({ userId, item, steps }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleArrowClick = () => {
@@ -40,7 +40,7 @@ function ModuleChooseTutorial({ userId, item, steps, index }) {
     <section className={isOpen ? "tutorialSectionShowList" : "tutorialSection"}>
       {steps.length > 0 && (
         <div className="tutorialStarsAndCap">
-          {steps[index].total === 3 ? (
+          {steps.find((step) => step.id === item.id)?.total === 3 ? (
             <img className="tutorialCap" src={capBlueOneStartBlue} alt="cap" />
           ) : (
             <img className="tutorialCap" src={capGreyOneStartBlue} alt="cap" />
@@ -68,10 +68,9 @@ function ModuleChooseTutorial({ userId, item, steps, index }) {
         >
           <li className="StepTutorial">
             Explication
-            {steps.length > 0 &&
-              (steps[index].stepOne ? (
-                <img className="checkStepTutorial" src={chek} alt="chek" />
-              ) : null)}
+            {steps.find((step) => step.id === item.id)?.stepOne ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null}
           </li>
         </Link>
         <Link
@@ -80,10 +79,9 @@ function ModuleChooseTutorial({ userId, item, steps, index }) {
         >
           <li className="StepTutorial">
             Vidéo
-            {steps.length > 0 &&
-              (steps[index].stepTwo ? (
-                <img className="checkStepTutorial" src={chek} alt="chek" />
-              ) : null)}
+            {steps.find((step) => step.id === item.id)?.stepTwo ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null}
           </li>
         </Link>
         <Link
@@ -92,16 +90,16 @@ function ModuleChooseTutorial({ userId, item, steps, index }) {
         >
           <li className="StepTutorial">
             Quizz
-            {steps.length > 0 &&
-              (steps[index].stepThree ? (
-                <img className="checkStepTutorial" src={chek} alt="chek" />
-              ) : null)}
+            {steps.find((step) => step.id === item.id)?.stepThree ? (
+              <img className="checkStepTutorial" src={chek} alt="chek" />
+            ) : null}
           </li>
         </Link>
       </ul>
     </section>
   );
 }
+
 ModuleChooseTutorial.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -113,13 +111,13 @@ ModuleChooseTutorial.propTypes = {
   }).isRequired,
   steps: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       total: PropTypes.number.isRequired,
       stepOne: PropTypes.number.isRequired,
       stepTwo: PropTypes.number.isRequired,
       stepThree: PropTypes.number.isRequired,
     })
   ).isRequired,
-  index: PropTypes.number.isRequired,
   userId: PropTypes.number.isRequired,
 };
 

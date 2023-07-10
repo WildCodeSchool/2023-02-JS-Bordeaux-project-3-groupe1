@@ -54,6 +54,20 @@ const update = async (req, res) => {
   }
 };
 
+const updateLevel = async (req, res) => {
+  const user = req.body;
+  try {
+    const response = await UserManager.updateUserLevel(user, req.params.userId);
+    if (response.length === 0) {
+      res.status(404).send("User not updated");
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 const destroy = async (req, res) => {
   try {
     const { id } = req.params;
@@ -69,9 +83,10 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
+  getTutorialByUserJustOneUser,
   getAll,
   getOne,
   update,
-  getTutorialByUserJustOneUser,
+  updateLevel,
   destroy,
 };
