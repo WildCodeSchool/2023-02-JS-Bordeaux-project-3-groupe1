@@ -164,6 +164,10 @@ const router = createBrowserRouter([
         element: <TutorialExplication />,
       },
       {
+        path: "/formations/tutorials/quizz/bravo/:id",
+        element: <TutorialExplication />,
+      },
+      {
         path: "/search",
         element: <SearchPage />,
       },
