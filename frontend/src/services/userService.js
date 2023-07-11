@@ -55,6 +55,21 @@ export const sender = async (url, userId, valuesUser) => {
   }
 };
 
+export const senderLevelUser = async (url, userId, valuesUser) => {
+  const form = {
+    level: parseInt(valuesUser.level, 10),
+  };
+  try {
+    const response = await axios.put(
+      `${import.meta.env.VITE_BASE_API}/${url}/${userId}`,
+      form
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while sending the data");
+  }
+};
+
 export const senderStepsByUser = async (
   url,
   id,

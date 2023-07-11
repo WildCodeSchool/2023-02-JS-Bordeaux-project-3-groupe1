@@ -129,7 +129,15 @@
     margin: 2rem 0;
     border-radius: 0.3rem;
     flex-wrap: nowrap;
-    background-color: $app-secondary-fonts-color-2;
+    display: flex;
+    background-color: #f5f5f5;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
 
     .quizzChooseAnswer {
       width: 100vw;
@@ -168,6 +176,9 @@
     p:last-child {
       padding: 4%;
       word-wrap: break-word;
+      text-align: center;
+      margin-top: 1rem;
+      color:$app-primary-fonts-color;
     }
   }
   @include tablet {
@@ -218,11 +229,19 @@
   font-size: 1.3rem;
   text-align: center;
   color: $app-primary-fonts-color;
-  font-family: $app-secondary-font;
+  font-family: $app-secondary-font; 
+}
+.explicationPicture{
+  height: 4rem;
+    margin-top: 1rem;
 }
 
 .container-Video-preview {
   overflow: hidden;
   margin: 1rem 0;
   border-radius: 5px;
+}
+
+.quizzChange {
+  color: red;
 }

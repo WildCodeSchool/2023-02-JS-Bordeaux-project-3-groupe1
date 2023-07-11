@@ -16,6 +16,8 @@ function TutorialChoice() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const [formations, setFormations] = useState([]);
   const [nameFormation, setNameFormation] = useState("");
+  const [dataFilterLevelUser, setDataFilterLevelUser] = useState([]);
+  const [isLevel1Completed, setIsLevel1Completed] = useState(false);
 
   useEffect(() => {
     setNameMenu(nameFormation);
@@ -59,20 +61,43 @@ function TutorialChoice() {
     total: item.stepOne + item.stepTwo + item.stepThree,
   }));
 
+  const levelUser = dataTutorial
+    .map((item) => item.levelUser)
+    .find((level) => level !== null);
+
+  const filteredTutorialsLevel1 = dataTutorial.filter(
+    (item) => item.level === levelUser
+  );
+  const filteredTutorialsLevel2 = dataTutorial.filter(
+    (item) => item.level === 2
+  );
+
+  useEffect(() => {
+    setDataFilterLevelUser(dataTutorial);
+    setDataFilterLevelUser(filteredTutorialsLevel1);
+    setIsLevel1Completed(
+      filteredTutorialsLevel1.every((item) => {
+        return item.stepOne === 1 && item.stepTwo === 1 && item.stepThree === 1;
+      })
+    );
+    if (isLevel1Completed) {
+      setDataFilterLevelUser(filteredTutorialsLevel2);
+    }
+  }, [dataTutorial]);
+
   return (
     <main className="tutorialChoice">
       {isDesktop ? (
         <>
           <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
           <div className="moduleChooseTutorialDesktop">
-            {dataTutorial.length > 0 ? (
-              dataTutorial.map((item, index) => (
+            {dataFilterLevelUser.length > 0 ? (
+              dataFilterLevelUser.map((item) => (
                 <ModuleChooseTutorial
                   key={item.id}
                   item={item}
                   userId={userId}
                   steps={stepsMap}
-                  index={index}
                 />
               ))
             ) : (
@@ -82,14 +107,13 @@ function TutorialChoice() {
         </>
       ) : (
         <div>
-          {dataTutorial.length > 0 ? (
-            dataTutorial.map((item, index) => (
+          {dataFilterLevelUser.length > 0 ? (
+            dataFilterLevelUser.map((item) => (
               <ModuleChooseTutorial
                 key={item.id}
                 item={item}
                 userId={userId}
                 steps={stepsMap}
-                index={index}
               />
             ))
           ) : (

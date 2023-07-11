@@ -7,7 +7,7 @@ import pictureLevel from "../../assets/pictures/picture_level.png";
 import hatWhite1 from "../../assets/pictures/hatWhite1.png";
 import hatWhite2 from "../../assets/pictures/hatWhite2.png";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
-import { sender } from "../../services/userService";
+import { senderLevelUser } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function LevelUser() {
@@ -23,7 +23,7 @@ function LevelUser() {
         level,
       };
 
-      sender("users", userId, {
+      senderLevelUser("users/level", userId, {
         ...valuesUser,
       })
         .then((data) => {
@@ -57,7 +57,7 @@ function LevelUser() {
         Quel est votre niveau en matière de nouvelles technologies ?
       </h3>
       <div className="containerButtonLevel">
-        <Link to="/formations?level=1">
+        <Link to="/formations">
           <button
             className="buttonLevel"
             type="button"
@@ -81,7 +81,7 @@ function LevelUser() {
             </div>
           </button>
         </Link>
-        <Link to="/formations?level=2">
+        <Link to="/formations">
           <button
             className="buttonLevel"
             type="button"

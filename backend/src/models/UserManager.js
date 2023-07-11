@@ -77,6 +77,23 @@ const updateUser = async (user, userId) => {
   }
 };
 
+const updateUserLevel = async (user, userId) => {
+  const { level } = user;
+
+  const userQuery = `UPDATE users SET level = ? WHERE id = ?`;
+
+  const valuesUser = [level, userId];
+  try {
+    await database.query(userQuery, valuesUser);
+    return {
+      userId,
+      valuesUser,
+    };
+  } catch (error) {
+    throw new Error("Error updating user with image", error);
+  }
+};
+
 const deleteUser = async (id) => {
   const userQuery = "DELETE users.* FROM users WHERE id = ?";
   try {
@@ -94,6 +111,7 @@ module.exports = {
   getAllUsers,
   getUserById,
   updateUser,
+  updateUserLevel,
   getTutorialByUser,
   deleteUser,
 };
