@@ -69,14 +69,13 @@ function TutorialExplication() {
       if (isWrongAnswerOne) {
         console.info("isWrongAnswerOne", isWrongAnswerOne);
         setIsWrongAnswerOneChangeClassname("quizzChange");
-        setLooser1(<h1>Rater !!!!!</h1>);
+        setLooser1(<h1 className="wrongAnswerTitle">Mauvaise réponse</h1>);
       }
       if (isWrongAnswerTwo) {
         console.info("isWrongAnswerTwo", isWrongAnswerTwo);
         setIsWrongAnswerTwoChangeClassname("quizzChange");
-        setLooser2(<h1>OMG tu es nul !!!!</h1>);
+        setLooser2(<h1 className="wrongAnswerTitle">Mauvaise réponse</h1>);
       }
-      console.info("rater");
     }
   };
   console.info(order);
