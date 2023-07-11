@@ -17,14 +17,24 @@ function TutorialExplication() {
   const [dataTutorial, setDataTutorial] = useState([]);
   const [quizzValidate, setQuizzValidate] = useState(true);
   const [quizzSucceed, setQuizzSucceed] = useState(false);
+  const [isWrongAnswerOne, setIsWrongAnswerOne] = useState(false);
+  const [isWrongAnswerTwo, setIsWrongAnswerTwo] = useState(false);
+  const [looser1, setLooser1] = useState("");
+  const [looser2, setLooser2] = useState("");
+  const [isWrongAnswerOneChangeClassname, setIsWrongAnswerOneChangeClassname] =
+    useState("");
+  const [isWrongAnswerTwoChangeClassname, setIsWrongAnswerTwoChangeClassname] =
+    useState("");
+  const [goNavigationGoodAnswer, setGoNavigationGoodAnswer] = useState("");
   const [key, setKey] = useState(0);
   const [order, setOrder] = useState([]);
   const location = useLocation();
   const { userId } = decodeTokenAndExtractRole();
+
   useEffect(() => {
     const numbers = [1, 2, 3].sort(() => Math.random() - 0.5);
     setOrder(numbers);
-  }, [key]);
+  }, []);
   const [orderOne, orderTwo, orderThree] = order;
   setNameMenu(dataTutorial.name);
   useEffect(() => {
@@ -50,11 +60,44 @@ function TutorialExplication() {
   const handleTrueStepLast = (stepToUpdate, updatedValue) => {
     if (quizzSucceed) {
       handleTrueStep(stepToUpdate, updatedValue);
+      setGoNavigationGoodAnswer(`/formations/tutorials/quizz/bravo/${id}`);
     } else {
       setKey((prevKey) => prevKey + 1);
+      setQuizzValidate(true);
+      setOrder(order);
+
+      if (isWrongAnswerOne) {
+        console.info("isWrongAnswerOne", isWrongAnswerOne);
+        setIsWrongAnswerOneChangeClassname("quizzChange");
+        setLooser1(<h1>Rater !!!!!</h1>);
+      }
+      if (isWrongAnswerTwo) {
+        console.info("isWrongAnswerTwo", isWrongAnswerTwo);
+        setIsWrongAnswerTwoChangeClassname("quizzChange");
+        setLooser2(<h1>OMG tu es nul !!!!</h1>);
+      }
       console.info("rater");
     }
   };
+  console.info(order);
+  const handleQuizz = (condition, setIsWrongAnswer) => {
+    setQuizzValidate(false);
+    setQuizzSucceed(condition);
+    if (condition === true) {
+      setIsWrongAnswer(false);
+    } else {
+      setIsWrongAnswer(true);
+    }
+  };
+  useEffect(() => {
+    if (quizzSucceed) {
+      setGoNavigationGoodAnswer(`/formations/tutorials/quizz/bravo/${id}`);
+    } else {
+      setIsWrongAnswerOne(false);
+      setIsWrongAnswerTwo(false);
+    }
+  }, [quizzSucceed]);
+
   return (
     <div className="container-ObjectifTutorial">
       <ContainerObjectifTutorial dataTutorial={dataTutorial} />
@@ -105,6 +148,14 @@ function TutorialExplication() {
               dataTutorial={dataTutorial}
               setQuizzValidate={setQuizzValidate}
               setQuizzSucceed={setQuizzSucceed}
+              looser1={looser1}
+              looser2={looser2}
+              quizzValidate={quizzValidate}
+              setIsWrongAnswerOne={setIsWrongAnswerOne}
+              setIsWrongAnswerTwo={setIsWrongAnswerTwo}
+              isWrongAnswerOneChangeClassname={isWrongAnswerOneChangeClassname}
+              isWrongAnswerTwoChangeClassname={isWrongAnswerTwoChangeClassname}
+              handleQuizz={handleQuizz}
             />
             <div className="containerButtonVideo">
               <ButtonTutorial
@@ -114,7 +165,7 @@ function TutorialExplication() {
                 Précédent
               </ButtonTutorial>
               <ButtonTutorial
-                path={`/formations/tutorials/quizz/bravo/${id}`}
+                path={goNavigationGoodAnswer}
                 nextOrPreview="validateTutorial"
                 handleTrueStep={() => handleTrueStepLast("stepThree", 1)}
                 disabled={quizzValidate}

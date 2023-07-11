@@ -6,14 +6,16 @@ function ContainerQuizzTutorial({
   orderOne,
   orderTwo,
   orderThree,
-  setQuizzValidate,
-  setQuizzSucceed,
+  quizzValidate,
+  setIsWrongAnswerOne,
+  setIsWrongAnswerTwo,
+  isWrongAnswerOneChangeClassname,
+  isWrongAnswerTwoChangeClassname,
+  handleQuizz,
+  looser1,
+  looser2,
 }) {
-  const handleQuizz = (condition) => {
-    setQuizzValidate(false);
-    setQuizzSucceed(condition);
-  };
-
+  console.info(quizzValidate);
   return (
     <>
       <div>
@@ -27,10 +29,10 @@ function ContainerQuizzTutorial({
               type="radio"
               name="quizz"
               id="one"
-              onClick={() => handleQuizz(false)}
+              onClick={() => handleQuizz(false, setIsWrongAnswerOne)}
             />
-            <label className="quizzLabelAnswer" htmlFor="one">
-              {dataTutorial.firstProposal}
+            <label className={isWrongAnswerOneChangeClassname} htmlFor="one">
+              {dataTutorial.firstProposal} {looser1}
             </label>
           </div>
           <div className="quizzChooseAnswer" style={{ order: orderTwo }}>
@@ -38,10 +40,10 @@ function ContainerQuizzTutorial({
               type="radio"
               name="quizz"
               id="two"
-              onClick={() => handleQuizz(false)}
+              onClick={() => handleQuizz(false, setIsWrongAnswerTwo)}
             />
-            <label className="quizzLabelAnswer" htmlFor="two">
-              {dataTutorial.secondProposal}
+            <label className={isWrongAnswerTwoChangeClassname} htmlFor="two">
+              {dataTutorial.secondProposal} {looser2}
             </label>
           </div>
           <div className="quizzChooseAnswer" style={{ order: orderThree }}>
@@ -67,11 +69,17 @@ ContainerQuizzTutorial.propTypes = {
     question: PropTypes.string.isRequired,
     response: PropTypes.string.isRequired,
   }).isRequired,
-  setQuizzValidate: PropTypes.func.isRequired,
-  setQuizzSucceed: PropTypes.func.isRequired,
+  quizzValidate: PropTypes.func.isRequired,
   orderOne: PropTypes.number.isRequired,
   orderTwo: PropTypes.number.isRequired,
   orderThree: PropTypes.number.isRequired,
+  setIsWrongAnswerOne: PropTypes.bool.isRequired,
+  setIsWrongAnswerTwo: PropTypes.bool.isRequired,
+  isWrongAnswerOneChangeClassname: PropTypes.string.isRequired,
+  isWrongAnswerTwoChangeClassname: PropTypes.string.isRequired,
+  looser1: PropTypes.string.isRequired,
+  looser2: PropTypes.string.isRequired,
+  handleQuizz: PropTypes.func.isRequired,
 };
 
 export default ContainerQuizzTutorial;
