@@ -19,11 +19,11 @@ function ContainerQuizzTutorial({
   return (
     <>
       <div>
-        <p>Quizz</p>
+        <p className="pTutoQuizz">Quizz</p>
       </div>
-      <div className="Space">
+      <div className="SpaceQuizz">
         <div className="container-Quizz-preview">
-          <h4>{dataTutorial.question}</h4>
+          <h4 className="TitleQuizz">{dataTutorial.question}</h4>
           <div className="quizzChooseAnswer" style={{ order: orderOne }}>
             <input
               type="radio"
