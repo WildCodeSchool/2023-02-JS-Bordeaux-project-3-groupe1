@@ -1,0 +1,38 @@
+.line-yellowPlateform {
+  margin-bottom: 4%;
+  margin-left: 1rem;
+  width: 90%;
+  border-top: 2px solid #ffcb03;
+  margin-top: -30px;
+}
+.pContainerTutoPlateform {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #003da5;
+  font-family: "Roboto", sans-serif;
+}
+.VideoPlateform {
+  background-color: $app-secondary-fonts-color-3;
+  width: 21rem;
+  height: 14rem;
+}
+
+.container-Explications-Plateform {
+  height: 13rem;
+  width: 21.5rem;
+  background-color: $app-secondary-fonts-color-3;
+  margin: 1rem;
+}
+.containerButtonVideoPlateform {
+  border: 0;
+  line-height: 2;
+  padding: 0 20px;
+  font-size: 1rem;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+  background-color: #003da5;
+  color: #ffffff;
+  border-radius: 0.3rem;
+  width: 25%;
+  margin-left: 1rem;
+}
