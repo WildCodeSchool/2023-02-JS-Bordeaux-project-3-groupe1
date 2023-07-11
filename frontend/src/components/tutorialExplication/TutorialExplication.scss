@@ -178,7 +178,7 @@
       word-wrap: break-word;
       text-align: center;
       margin-top: 1rem;
-      color:$app-primary-fonts-color;
+      color: $app-primary-fonts-color;
     }
   }
   @include tablet {
@@ -229,11 +229,11 @@
   font-size: 1.3rem;
   text-align: center;
   color: $app-primary-fonts-color;
-  font-family: $app-secondary-font; 
+  font-family: $app-secondary-font;
 }
-.explicationPicture{
+.explicationPicture {
   height: 4rem;
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .container-Video-preview {

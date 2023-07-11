@@ -21,9 +21,9 @@ function Profile() {
       .then((data) => {
         if (data) {
           setUserGender(data.gender === "Masculin" ? "M" : "Mme");
-          setUserLastname(data.lastname || "Lafond");
-          setUserFirstname(data.firstname || "Pierre");
-          setUserMail(data.email || "lafondpierre@gmail.com");
+          setUserLastname(data.lastname);
+          setUserFirstname(data.firstname);
+          setUserMail(data.email);
           setUserPicture(data.picture);
         }
       })
