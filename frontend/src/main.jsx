@@ -10,7 +10,6 @@ import { IsDesktopProvider } from "./contexts/IsDesktopContext";
 import Root from "./routes/Root";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
-import PlatformTutorial from "./pages/platformTutorial/PlatformTutorial";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
 import LevelUser from "./pages/levelUser/LevelUser";
 import Footer from "./components/footer/Footer";
@@ -33,6 +32,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Error404 from "./pages/Error404";
 import IsConnectUser from "./components/IsConnectUser";
 import IsConnectAdmin from "./components/IsConnectAdmin";
+import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 
 const router = createBrowserRouter([
   {
@@ -43,10 +43,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/platformTutorial",
-        element: <PlatformTutorial />,
       },
       {
         path: "/levelUser",
@@ -171,6 +167,7 @@ const router = createBrowserRouter([
         path: "/search",
         element: <SearchPage />,
       },
+      { path: "/platformTutorial", element: <ContainerTutoPlateform /> },
     ],
   },
   {
