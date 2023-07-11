@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { sender, fetcherAllUsers } from "../../services/userService";
+import { senderRoleUser, fetcherAllUsers } from "../../services/userService";
+import ButtonRoleUser from "./composants/ButtonRoleUser";
 
 function GestionUsers() {
   const [users, setUsers] = useState([]);
-  const [active, setActive] = useState(false);
+  const [roleUser, setRoleUser] = useState(2);
 
   useEffect(() => {
     fetcherAllUsers("users")
       .then((data) => {
         setUsers(data);
-        setActive(data.active);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
-  const handleActive = () => {
-    if (active) {
-      setActive(false);
+  const handleActive = (item) => {
+    if (roleUser === 2) {
+      setRoleUser(1);
     } else {
-      setActive(true);
+      setRoleUser(2);
     }
 
-    sender("users", {
-      active,
+    senderRoleUser("users/role", item, {
+      roleUser,
     })
       .then((data) => {
         console.warn(data);
@@ -38,20 +38,12 @@ function GestionUsers() {
   return (
     <div className="container-gestion">
       {users.map((item) => (
-        <div className="container-gestion-user">
-          <li key={item.id}>{item.email}</li>
+        <div className="container-gestion-user" key={item.id}>
+          <li>{item.email}</li>
+          <ButtonRoleUser handleActive={handleActive} item={item} />
           <Link to={`/admin/user/${item.id}`}>
-            <button type="button">Information</button>
+            <button type="button">Informations</button>
           </Link>
-          {active ? (
-            <button type="button" onClick={handleActive}>
-              Désactiver
-            </button>
-          ) : (
-            <button type="button" onClick={handleActive}>
-              Activer
-            </button>
-          )}
         </div>
       ))}
     </div>

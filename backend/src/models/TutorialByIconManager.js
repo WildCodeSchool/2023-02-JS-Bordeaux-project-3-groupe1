@@ -4,7 +4,7 @@ const database = require("../../database");
 const getTutorialByIconFormationNoId = async (userId) => {
   try {
     const rows = await database.query(
-      `SELECT total_steps_by_user_true.total_stepsTotal,  total_steps_per_formation.NB_tuto, formations.iconURL, formations.id AS formationID, tutorials.name, tutorials.level AS levelTuto, tutorials.formation_id AS tutoFormationID, tutorials.id AS tutoId, steps.id AS stepID, COALESCE(stepOne,0) AS stepOne, COALESCE(stepTwo,0) AS stepTwo, COALESCE(stepThree,0) AS stepThree, user_tuto.email 
+      `SELECT total_steps_by_user_true.total_stepsTotal, total_steps_per_formation.NB_tuto, formations.iconURL, formations.id AS formationID, tutorials.name, tutorials.level AS levelTuto, tutorials.formation_id AS tutoFormationID, tutorials.id AS tutoId, steps.id AS stepID, COALESCE(stepOne,0) AS stepOne, COALESCE(stepTwo,0) AS stepTwo, COALESCE(stepThree,0) AS stepThree, user_tuto.email 
       FROM tutorials
        LEFT JOIN (SELECT * FROM userstutorials LEFT JOIN users ON users.id = userstutorials.user_id WHERE userstutorials.user_id = ?) AS user_tuto  ON tutorials.id = user_tuto.tutorial_id 
        LEFT JOIN steps ON steps.id = user_tuto.step_id

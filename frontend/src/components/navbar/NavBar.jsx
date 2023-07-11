@@ -18,6 +18,7 @@ function Navbar() {
 
   const handleDisconnected = () => {
     localStorage.clear();
+    setShowLinks(!showLinks);
   };
 
   useEffect(() => {
@@ -82,7 +83,11 @@ function Navbar() {
         {isLoggedIn && userRole && (
           <>
             <li className="navbar_item">
-              <Link className="navbar_link" to="/formations/parcours">
+              <Link
+                className="navbar_link"
+                onClick={handleShowLinks}
+                to="/formations/parcours"
+              >
                 Mon parcours
               </Link>
             </li>
@@ -108,14 +113,27 @@ function Navbar() {
               <Link
                 className="navbar_link"
                 onClick={() => handleShowLinks()}
+                to="/tutorials/createTutorial"
+              >
+                Ajouter un tutoriel
+              </Link>
+            </li>
+            <li className="navbar_item">
+              <Link
+                className="navbar_link"
+                onClick={() => handleShowLinks()}
                 to="/formations"
               >
                 Liste des formations
               </Link>
             </li>
             <li className="navbar_item">
-              <Link className="navbar_link" to="/tutorials/createTutorial">
-                Ajouter un tutoriel
+              <Link
+                className="navbar_link"
+                onClick={() => handleShowLinks()}
+                to="/admin/gestion"
+              >
+                Liste de utilisateurs
               </Link>
             </li>
             <li className="navbar_item">
