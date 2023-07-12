@@ -6,12 +6,14 @@ export function decodeTokenAndExtractRole() {
 
   let adminRole = null;
   let userRole = null;
+  let role = null;
   let tokenIsValid = false;
   let userId = null;
 
   if (token) {
     const decodedToken = jwt_decode(token);
 
+    role = decodedToken.role;
     adminRole = decodedToken.role === "77788888999966666666111";
     userRole = decodedToken.role === "441655156655116515451";
     tokenIsValid = true;
@@ -20,5 +22,5 @@ export function decodeTokenAndExtractRole() {
     console.error("Invalid token specified");
   }
 
-  return { adminRole, userRole, tokenIsValid, userId };
+  return { role, adminRole, userRole, tokenIsValid, userId };
 }

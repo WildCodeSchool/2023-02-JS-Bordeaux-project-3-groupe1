@@ -12,8 +12,7 @@ function Parcours() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { userId } = decodeTokenAndExtractRole();
   const [userLevel, setUserLevel] = useState([]);
-  const [dataFilterLevelUser, setDataFilterLevelUser] = useState([]);
-  const [isLevel1Completed, setIsLevel1Completed] = useState(false);
+  const [filteredTutorialsLevel, setFilteredTutorialsLevel] = useState([]);
 
   setNameMenu("Mon parcours");
   const buttonSortTextSections = [
@@ -74,33 +73,15 @@ function Parcours() {
       (item.stepThree ? 34 : 0),
   }));
 
-  const filteredTutorialsLevel1 = tutorialByIcon.filter(
-    (item) => item.levelTuto === userLevel
-  );
-  const filteredTutorialsLevel2 = tutorialByIcon.filter(
-    (item) => item.levelTuto === 2
-  );
-
   useEffect(() => {
-    setDataFilterLevelUser(tutorialByIcon);
-    setDataFilterLevelUser(filteredTutorialsLevel1);
-    setIsLevel1Completed(
-      filteredTutorialsLevel1.every((item) => {
-        return item.stepOne === 1 && item.stepTwo === 1 && item.stepThree === 1;
-      })
-    );
-    if (isLevel1Completed) {
-      setDataFilterLevelUser(filteredTutorialsLevel2);
+    if (userLevel === 1) {
+      setFilteredTutorialsLevel(tutorialByIcon.map((item) => item));
+    } else if (userLevel === 2) {
+      setFilteredTutorialsLevel(
+        tutorialByIcon.filter((item) => item.levelTuto === 2)
+      );
     }
   }, [tutorialByIcon]);
-
-  const totalStepsTotalLevel1 = dataFilterLevelUser.find(
-    (item) => item.levelTuto === userLevel && item.levelTuto === 2
-  )?.total_stepsTotal;
-
-  const totalStepsTotalLevel2 = dataFilterLevelUser.find(
-    (item) => item.levelTuto === 2
-  )?.total_stepsTotal;
 
   return (
     <main className="parcours">
@@ -110,10 +91,9 @@ function Parcours() {
           <MyReward
             key={icon.id}
             icon={icon}
+            userLevel={userLevel}
             tutorialByIcon={tutorialByIcon}
-            totalStepsTotalLevel1={totalStepsTotalLevel1}
-            totalStepsTotalLevel2={totalStepsTotalLevel2}
-            dataFilterLevelUser={dataFilterLevelUser}
+            filteredTutorialsLevel={filteredTutorialsLevel}
           />
         ))}
       </figure>
@@ -136,9 +116,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardNoBegin">
-          {dataFilterLevelUser.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 1 &&
-            dataFilterLevelUser.map((icon, index) => {
+            filteredTutorialsLevel.map((icon, index) => {
               if (steps[index].total === 0) {
                 return (
                   <SortMyReward
@@ -162,9 +142,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardMiddle">
-          {dataFilterLevelUser.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 2 &&
-            dataFilterLevelUser.map((icon, index) => {
+            filteredTutorialsLevel.map((icon, index) => {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
                   <SortMyReward
@@ -188,9 +168,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardFinish">
-          {dataFilterLevelUser.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 3 &&
-            dataFilterLevelUser.map((icon, index) => {
+            filteredTutorialsLevel.map((icon, index) => {
               if (steps[index].total === 100) {
                 return (
                   <SortMyReward
@@ -213,9 +193,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardAll">
-          {dataFilterLevelUser.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 4 &&
-            dataFilterLevelUser.map((icon, index) => (
+            filteredTutorialsLevel.map((icon, index) => (
               <SortMyReward
                 iconFormation={icon.iconURL}
                 nameTutorial={icon.name}
