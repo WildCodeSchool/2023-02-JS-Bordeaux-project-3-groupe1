@@ -8,6 +8,9 @@
   display: flex;
   align-items: center;
   color: $app-secondary-fonts-color-5;
+  @include tablet{
+    font-size: 1.5rem;
+  }
   .titleMenuTop {
     margin-left: 1rem;
   }
