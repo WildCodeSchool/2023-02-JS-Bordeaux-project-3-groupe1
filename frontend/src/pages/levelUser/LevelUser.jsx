@@ -17,6 +17,7 @@ function LevelUser() {
   const { userId } = decodeTokenAndExtractRole();
 
   const handleSave = (levelChoice) => {
+    console.log(levelChoice);
     if (levelChoice) {
       const valuesUser = {
         levelChoice,
