@@ -111,6 +111,7 @@ export const senderStepsByUser = async (
 };
 
 export const deleteUser = async (url, id) => {
+  console.log(url, id);
   try {
     const response = await axios.delete(
       `${import.meta.env.VITE_BASE_API}/${url}/${id}`

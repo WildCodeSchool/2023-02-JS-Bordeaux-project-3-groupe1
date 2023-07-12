@@ -218,7 +218,7 @@ const deleteTutorialAndQuizzAndTags = async (id) => {
 
     const [responses] = await database.query(tutorialStepQuery, [id]);
 
-    const usersTutorialsQuery = "DELETE FROM userstutorials WHERE step_id = ?;";
+    const usersTutorialsQuery = "DELETE FROM userstutorials WHERE step_id = ?";
 
     if (response.affectedRows === 0) {
       throw new Error(`Tutorial with ID ${id} not found`);
