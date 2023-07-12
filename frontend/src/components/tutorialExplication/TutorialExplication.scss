@@ -9,7 +9,7 @@
       margin-left: 90%;
       margin-top: -14rem;
       position: absolute;
-          }
+    }
   }
 
   .container-Objectif {
@@ -68,58 +68,57 @@
       @include desktop {
         height: 16rem;
         width: 24rem;
-    }
       }
     }
   }
-  .container-Title-Tuto {
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    background-color: $app-corporate-color;
-    height: 2.5rem;
-    width: 100%;
-    padding-right: 10%;
-    @include desktop{
-      position: relative;
-      height: 4rem;
+}
+.container-Title-Tuto {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: $app-corporate-color;
+  height: 2.5rem;
+  width: 100%;
+  padding-right: 10%;
+  @include desktop {
+    position: relative;
+    height: 4rem;
+  }
+
+  .objectif {
+    color: $app-secondary-fonts-color-5;
+    @include desktop {
+      font-size: 2rem;
     }
-    
-    .objectif {
-      color: $app-secondary-fonts-color-5;
+  }
+}
+.container-ObjectifText {
+  width: 45%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7rem;
+  border-radius: 5%;
+
+  p {
+    color: $app-primary-fonts-color;
+    text-align: center;
+    font-size: $app-text-size;
+    margin-bottom: 2rem;
+    @include tablet {
+      font-size: 2rem;
       @include desktop {
-        font-size: 2rem;
+        width: 67%;
+        margin-right: -22rem;
+        font-size: 2.5rem;
       }
     }
   }
-  .container-ObjectifText {
-    width: 45%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 7rem;
-    border-radius: 5%;
-
-    p {
-      color: $app-primary-fonts-color;
-      text-align: center;
-      font-size: $app-text-size;
-      margin-bottom: 2rem;
-      @include tablet {
-        font-size: 2rem;
-        @include desktop {
-          width: 67%;
-    margin-right: -22rem;
-    font-size: 2.5rem;
-        }
-      }
-    }
-  }
-
+}
 
 .container-Explications {
   display: flex;
@@ -127,28 +126,27 @@
   align-items: center;
   width: 100%;
   padding: 4%;
-    .SpaceQuizz {
-        width: 100%;
-      }
-  
+  .SpaceQuizz {
+    width: 100%;
+  }
+
   .line-yellow {
     margin-bottom: 4%;
     width: 100%;
     border-top: 2px solid $app-line-color;
     margin-top: -30px;
-    
   }
   .containerButtonVideo {
     display: flex;
     align-items: flex-end;
-    
+
     .precedent {
       border: 0;
       line-height: 2;
       text-align: center;
       border-radius: 5px;
       box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-      inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
       font-weight: bold;
     }
   }
@@ -167,9 +165,8 @@
     width: 20px;
     height: 15px;
     margin: 0px 17px 0 25px;
-
   }
-  
+
   .container-Explications-preview,
   .container-Quizz-preview {
     width: 100%;
@@ -181,18 +178,17 @@
     background-color: #f5f5f5;
     flex-direction: column;
     align-items: center;
-    
+
     img {
       width: 2rem;
       height: 2rem;
     }
-    
+
     .quizzChooseAnswer {
       width: 100vw;
       height: 70px;
       display: flex;
       align-items: center;
-
 
       .quizzLabelAnswer {
         margin: 0 auto;
@@ -200,7 +196,7 @@
         padding-top: 1rem;
       }
     }
-    
+
     .container-Explications-preview-title,
     .container-video-preview-title,
     .container-quizz-preview-title {
@@ -208,13 +204,12 @@
       width: 100%;
       justify-content: space-between;
       padding: 2%;
-      
+
       .Space {
         height: 20px;
         width: 20px;
       }
-    
-      
+
       p {
         color: $app-primary-fonts-color;
       }
@@ -294,15 +289,13 @@
   border-radius: 5px;
 }
 
-.wrongAnswerTitle{
-    color: red;
-    font-size: 1rem;
-  }
+.wrongAnswerTitle {
+  color: red;
+  font-size: 1rem;
+}
 
-  
-.textObjectifPlateform{
-  @include tablet{
+.textObjectifPlateform {
+  @include tablet {
     font-size: 2rem;
   }
 }
-

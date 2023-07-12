@@ -8,7 +8,7 @@ function ConfirmDeleteUser({ isOpen, onClose, onConfirm }) {
   return (
     <div className={`modal ${isOpen ? "open" : ""}`}>
       <div className="modal-content-delete">
-        <p>Êtes-vous sûr de vouloir supprimer votre ?</p>
+        <p>Êtes-vous sûr de vouloir supprimer votre profil?</p>
         <div className="modal-actions-delete">
           <button type="button" onClick={onClose}>
             Annuler
