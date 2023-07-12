@@ -23,18 +23,18 @@ function Navbar() {
 
   useEffect(() => {
     setIsLoggedIn(tokenIsValid);
-  }, [tokenIsValid]);
+  }, [tokenIsValid, isLoggedIn]);
 
   return (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
-      <Link to="/">
+      <Link onClick={() => handleShowLinks()} to="/">
         <img className="logo" src={Logo} alt="logo ligne bleue" />
       </Link>
       <div className="container-icons">
-        <Link to="/formations/parcours">
+        <Link onClick={() => handleShowLinks()} to="/formations/parcours">
           <img className="points" src={Points} alt="points" />
         </Link>
-        <Link to="/search">
+        <Link onClick={() => handleShowLinks()} to="/search">
           <img className="loupe" src={Loupe} alt="loupe recherche" />
         </Link>
         {!isLoggedIn && (
@@ -46,7 +46,7 @@ function Navbar() {
         )}
         {isLoggedIn &&
           (adminRole ? (
-            <Link type="button" to="/profile">
+            <Link onClick={() => handleShowLinks()} type="button" to="/profile">
               <img
                 className="admin-icon"
                 src={AdminIcon}
@@ -54,7 +54,7 @@ function Navbar() {
               />
             </Link>
           ) : (
-            <Link type="button" to="/profile">
+            <Link onClick={() => handleShowLinks()} type="button" to="/profile">
               <img
                 className="user-icon"
                 src={UserIcon}
@@ -65,7 +65,11 @@ function Navbar() {
       </div>
       <ul className="navbar_links">
         <li className="navbar_item">
-          <Link className="navbar_link" to="/search">
+          <Link
+            onClick={() => handleShowLinks()}
+            className="navbar_link"
+            to="/search"
+          >
             Rechercher un tutoriel
           </Link>
         </li>

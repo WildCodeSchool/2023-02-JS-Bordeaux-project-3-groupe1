@@ -109,3 +109,14 @@ export const senderStepsByUser = async (
     throw new Error("Error while sending the data");
   }
 };
+
+export const deleteUser = async (url, id) => {
+  try {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BASE_API}/${url}/${id}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while sending the data");
+  }
+};

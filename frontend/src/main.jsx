@@ -32,6 +32,8 @@ import ErrorPage from "./pages/ErrorPage";
 import Error404 from "./pages/Error404";
 import IsConnectUser from "./components/IsConnectUser";
 import IsConnectAdmin from "./components/IsConnectAdmin";
+import IsConnectRole from "./components/IsConnectRole";
+
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 
 const router = createBrowserRouter([
@@ -71,9 +73,9 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: (
-          <IsConnectUser>
+          <IsConnectRole>
             <Profile />
-          </IsConnectUser>
+          </IsConnectRole>
         ),
       },
       {
