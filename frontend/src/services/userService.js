@@ -57,7 +57,7 @@ export const sender = async (url, userId, valuesUser) => {
 
 export const senderLevelUser = async (url, userId, valuesUser) => {
   const form = {
-    level: parseInt(valuesUser.level, 10),
+    level: parseInt(valuesUser.levelChoice, 10),
   };
   try {
     const response = await axios.put(
