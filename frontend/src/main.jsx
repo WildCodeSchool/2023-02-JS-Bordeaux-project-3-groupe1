@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
-import Root from "./routes/Root";
+import App from "./App";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
@@ -39,7 +39,7 @@ import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTuto
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/levelUser",
+        path: "/level",
         element: <LevelUser />,
       },
       {
@@ -169,7 +169,7 @@ const router = createBrowserRouter([
         path: "/search",
         element: <SearchPage />,
       },
-      { path: "/platformTutorial", element: <ContainerTutoPlateform /> },
+      { path: "/video-tutorial", element: <ContainerTutoPlateform /> },
     ],
   },
   {
