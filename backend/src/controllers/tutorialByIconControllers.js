@@ -7,7 +7,7 @@ const {
 
 const getTutorialsByIdWithJoinTableFormationsNoId = async (req, res) => {
   try {
-    const results = await getTutorialByIconFormationNoId();
+    const results = await getTutorialByIconFormationNoId(req.params.userId);
     if (results.length === 0) {
       res.status(404).send("no formations found");
     } else {
@@ -19,9 +19,11 @@ const getTutorialsByIdWithJoinTableFormationsNoId = async (req, res) => {
 };
 
 const getTutorialsByIdWithJoinTableFormations = async (req, res) => {
-  const { id } = req.params;
   try {
-    const results = await getTutorialByIconFormation(id);
+    const results = await getTutorialByIconFormation(
+      req.params.formationId,
+      req.params.userId
+    );
     if (results.length === 0) {
       res.status(404).send("no formations found");
     } else {
@@ -33,9 +35,8 @@ const getTutorialsByIdWithJoinTableFormations = async (req, res) => {
 };
 
 const getTutorialByHerIdClick = async (req, res) => {
-  const { id } = req.params;
   try {
-    const results = await findTurorialByHerID(id);
+    const results = await findTurorialByHerID(req.params.id, req.params.userId);
     if (results.length === 0) {
       res.status(404).send("no formations found");
     } else {
@@ -47,11 +48,12 @@ const getTutorialByHerIdClick = async (req, res) => {
 };
 
 const updateStepOnClick = async (req, res) => {
-  const { id } = req.params;
   const { stepToUpdate, updatedValue } = req.body;
+
   try {
     const results = await updateStepByIdOfTutorial(
-      id,
+      req.params.id,
+      req.params.userId,
       stepToUpdate,
       updatedValue
     );

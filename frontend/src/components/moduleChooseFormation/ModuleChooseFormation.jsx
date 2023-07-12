@@ -1,27 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function ModuleChooseFormation({ item }) {
-  console.info(item);
+  const { adminRole } = decodeTokenAndExtractRole();
+
   return (
-    <Link to={`/formations/tutorials/${item.id}`}>
-      <div className="moduleChooseFormation">
-        <img
-          className="iconFormationChoose"
-          src={item.iconURL}
-          alt={item.name}
-        />
-        <h3 className="textFormationChoose">{item.name}</h3>
-      </div>
-    </Link>
+    <div>
+      {adminRole ? (
+        <Link to={`/formations/${item.id}`}>
+          <div className="moduleChooseFormation">
+            <img
+              className="iconFormationChoose"
+              src={item.iconURL}
+              alt={item.name}
+            />
+            <h3 className="textFormationChoose">{item.name}</h3>
+          </div>
+        </Link>
+      ) : (
+        <Link to={`/formations/tutorials/${item.id}`}>
+          <div className="moduleChooseFormation">
+            <img
+              className="iconFormationChoose"
+              src={item.iconURL}
+              alt={item.name}
+            />
+            <h3 className="textFormationChoose">{item.name}</h3>
+          </div>
+        </Link>
+      )}
+    </div>
   );
 }
 
 ModuleChooseFormation.propTypes = {
   item: PropTypes.shape({
-    iconURL: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    iconURL: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }),
 };

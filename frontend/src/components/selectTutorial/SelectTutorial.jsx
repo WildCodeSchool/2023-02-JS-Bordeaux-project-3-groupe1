@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { fetcher } from "../../services/api";
 import { deleteTutorial } from "../../services/tutorialService";
 import student from "../../assets/student.png";
 import starGrey from "../../assets/starGrey.png";
 import ConfirmChoiceDelete from "../modal/ConfirmChoiceDelete";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function SelectTutorial(props) {
   const { dataTutorial } = props;
@@ -13,6 +15,33 @@ function SelectTutorial(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTutorialId, setSelectedTutorialId] = useState(null);
   const modalRef = useRef(null);
+  const { setNameMenu } = useContext(NameMenuTopContext);
+  const [formations, setFormations] = useState([]);
+  const [nameFormation, setNameFormation] = useState("");
+
+  useEffect(() => {
+    setNameMenu(nameFormation);
+  }, [nameFormation]);
+
+  useEffect(() => {
+    fetcher("formations")
+      .then((data) => {
+        setFormations(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const selectedFormation = formations?.find(
+      (formation) => formation.id === dataTutorial[0]?.formation_id
+    );
+    if (selectedFormation) {
+      const { name } = selectedFormation;
+      setNameFormation(name);
+    }
+  }, [formations]);
 
   const handleOpenModal = (tutorialId) => {
     setSelectedTutorialId(tutorialId);
@@ -116,6 +145,7 @@ SelectTutorial.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
+      formation_id: PropTypes.number.isRequired,
     })
   ),
 };

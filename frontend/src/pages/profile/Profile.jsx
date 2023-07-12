@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
 import Connexion from "../../assets/pictures/photo_profile.png";
 import { fetcherUSerById } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function Profile() {
-  const [userId] = useState(1);
+  const { userId } = decodeTokenAndExtractRole();
   const [userGender, setUserGender] = useState("M");
-  const [userLastname, setUserLastname] = useState("");
-  const [userFirstname, setUserFirstname] = useState("");
-  const [userMail, setUserMail] = useState("@gmail.com");
+  const [userLastname, setUserLastname] = useState("Lafond");
+  const [userFirstname, setUserFirstname] = useState("Pierre");
+  const [userMail, setUserMail] = useState("lafondpierre@gmail.com");
   const [userPicture, setUserPicture] = useState("");
 
   useEffect(() => {

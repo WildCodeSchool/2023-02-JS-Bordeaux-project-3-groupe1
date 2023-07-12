@@ -1,15 +1,20 @@
 const database = require("../../database");
 
 const createUser = async (register) => {
-  const query = "INSERT INTO users ( email, hashedPassword) VALUES (?,?)";
-
   const { email, hashedPassword } = register;
 
+  const query = "INSERT INTO users ( email, hashedPassword) VALUES (?,?)";
+
   const values = [email, hashedPassword];
+
   try {
     const RegisterResult = await database.query(query, values);
+
+    const updateUserRoleQuery = "UPDATE users SET role_id = 1 WHERE id = ?";
+    await database.query(updateUserRoleQuery, [RegisterResult[0].insertId]);
+
     return {
-      id: RegisterResult.insertId,
+      id: RegisterResult[0].insertId,
       email,
       hashedPassword,
     };

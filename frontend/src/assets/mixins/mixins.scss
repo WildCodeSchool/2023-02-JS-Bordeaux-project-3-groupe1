@@ -13,3 +13,63 @@
     @content;
   }
 }
+
+@mixin primary-button-desk {
+  width: 20%;
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: $app-corporate-color;
+  border-radius: 10px;
+  background-color: $app-corporate-color-2;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+  margin: 2rem 0 0 5rem;
+}
+
+@mixin secondary-button-desk {
+  width: 20%;
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: $app-secondary-fonts-color-50;
+  border-radius: 10px;
+  background-color: $app-corporate-color;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+  margin: 1rem 0 0 5rem;
+}
+
+@mixin primary-button-mobile {
+  width: 60%;
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: $app-corporate-color;
+  border-radius: 10px;
+  background-color: $app-corporate-color-2;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+  margin: 2rem 0 0 5rem;
+}
+
+@mixin primary-secondary-mobile {
+  width: 60%;
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: $app-secondary-fonts-color-50;
+  border-radius: 10px;
+  background-color: $app-corporate-color;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+  margin: 1rem 0 0 5rem;
+}

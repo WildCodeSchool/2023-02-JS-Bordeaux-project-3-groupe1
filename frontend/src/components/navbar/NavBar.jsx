@@ -1,132 +1,128 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import Loupe from "../../assets/loupe.png";
 import UserIcon from "../../assets/usericon.png";
 import Points from "../../assets/petitspoints.png";
 import AdminIcon from "../../assets/iconadmin.png";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
+  const { userRole, adminRole, tokenIsValid } = decodeTokenAndExtractRole();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleShowLinks = () => {
     setShowLinks(!showLinks);
-    console.info("menuBuger showLink");
   };
 
-  const user = {
-    role: "user",
+  const handleDisconnected = () => {
+    localStorage.clear();
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
-  };
+  useEffect(() => {
+    setIsLoggedIn(tokenIsValid);
+  }, [tokenIsValid]);
 
   return (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
       <Link to="/">
-        {" "}
         <img className="logo" src={Logo} alt="logo ligne bleue" />
       </Link>
       <div className="container-icons">
         <Link to="/formations/parcours">
-          {" "}
-          <img className="points" src={Points} alt="points " />
+          <img className="points" src={Points} alt="points" />
         </Link>
         <input className="search-bar" type="text" />
         <img className="loupe" src={Loupe} alt="loupe recherche" />
-
         {!isLoggedIn && (
-          <button
-            className="button-connexion"
-            type="button"
-            onClick={handleLogin}
-          >
-            <Link to="/register">
-              {" "}
-              <p className="se-connecter" href="/">
-                Connexion
-              </p>
+          <button className="button-connexion" type="button">
+            <Link to="/register" className="se-connecter">
+              Connexion
             </Link>
           </button>
         )}
         {isLoggedIn &&
-          (user.role === "admin" ? (
-            <img
-              className="admin-icon"
-              src={AdminIcon}
-              alt="icon du profil admin"
-            />
+          (adminRole ? (
+            <Link type="button" to="/profile">
+              <img
+                className="admin-icon"
+                src={AdminIcon}
+                alt="icon du profil admin"
+              />
+            </Link>
           ) : (
-            <img
-              className="user-icon"
-              src={UserIcon}
-              alt="icon du profil user"
-            />
+            <Link type="button" to="/profile">
+              <img
+                className="user-icon"
+                src={UserIcon}
+                alt="icon du profil user"
+              />
+            </Link>
           ))}
       </div>
       <ul className="navbar_links">
-        {(!isLoggedIn || user.role === "user") && (
-          <Link
-            className="navbar_link"
-            onClick={() => handleShowLinks()}
-            to="/formations"
-          >
-            <li className="navbar_item">Choisir une formation</li>
+        <li className="navbar_item">
+          <Link className="navbar_link" to="/search">
+            Rechercher un tutoriel
           </Link>
-        )}
-        {isLoggedIn && user.role === "admin" && (
+        </li>
+        {(!isLoggedIn || userRole) && (
           <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Ajouter une formation
-            </a>
+            <Link
+              className="navbar_link"
+              onClick={() => handleShowLinks()}
+              to="/formations"
+            >
+              Choisir une formation
+            </Link>
           </li>
         )}
-
-        {isLoggedIn && user.role === "admin" && (
-          <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Ajouter un tutoriel
-            </a>
-          </li>
-        )}
-
-        {isLoggedIn && user.role === "admin" && (
-          <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Liste des formations
-            </a>
-          </li>
-        )}
-
-        {isLoggedIn && user.role === "admin" && (
-          <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Liste des tutoriels
-            </a>
-          </li>
-        )}
-        <Link to="/search">
-          <li className="navbar_item">
-            <a className="navbar_link" href="/">
-              Rechercher un tutoriel
-            </a>
-          </li>
-        </Link>
-
-        {isLoggedIn && user.role !== "admin" && (
-          <Link className="navbar_link" to="/formations/parcours">
-            <li className="navbar_item">Mon parcours</li>
-          </Link>
-        )}
-        {isLoggedIn && (
-          <Link to="/profile" onClick={handleShowLinks}>
+        {isLoggedIn && userRole && (
+          <>
             <li className="navbar_item">
-              <a className="navbar_link" href="/">
-                Mon profil
-              </a>
+              <Link className="navbar_link" to="/formations/parcours">
+                Mon parcours
+              </Link>
             </li>
-          </Link>
+            <li className="navbar_item">
+              <Link
+                to="/profile"
+                onClick={handleShowLinks}
+                className="navbar_link"
+              >
+                Mon profil
+              </Link>
+            </li>
+            <li className="navbar_item">
+              <Link to="/" onClick={handleDisconnected} className="navbar_link">
+                Déconnexion
+              </Link>
+            </li>
+          </>
+        )}
+        {isLoggedIn && adminRole && (
+          <>
+            <li className="navbar_item">
+              <Link
+                className="navbar_link"
+                onClick={() => handleShowLinks()}
+                to="/formations"
+              >
+                Liste des formations
+              </Link>
+            </li>
+            <li className="navbar_item">
+              <Link className="navbar_link" to="/tutorials/createTutorial">
+                Ajouter un tutoriel
+              </Link>
+            </li>
+            <li className="navbar_item">
+              <Link to="/" onClick={handleDisconnected} className="navbar_link">
+                Déconnexion
+              </Link>
+            </li>
+          </>
         )}
       </ul>
       <button className="navbar_burger" type="button" onClick={handleShowLinks}>

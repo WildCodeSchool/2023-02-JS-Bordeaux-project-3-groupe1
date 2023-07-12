@@ -75,6 +75,17 @@ export const fetcherTutorialById = async (url, id) => {
   }
 };
 
+export const fetcherAllTutorialsByUserId = async (url, userId) => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_API}/${url}/${userId}`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while fetching data");
+  }
+};
+
 export const deleteTutorial = async (url, id) => {
   try {
     const response = await axios.delete(

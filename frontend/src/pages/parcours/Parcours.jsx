@@ -3,14 +3,17 @@ import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import { fetcher } from "../../services/api";
 import MyReward from "../../components/myReward/MyReward";
 import SortMyReward from "../../components/sortMyReward/SortMyReward";
+import { fetcherUSerById } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function Parcours() {
   const [iconURL, setIconURL] = useState([]);
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
-  const [tutorialByUser, setTutorialByUser] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
-  setNameMenu("Mon parcours");
+  const { userId } = decodeTokenAndExtractRole();
 
+  setNameMenu("Mon parcours");
+  console.info(tutorialByIcon);
   const buttonSortTextSections = [
     {
       text: "Non débutés",
@@ -43,22 +46,16 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
-    fetcher(`tutorialbyicon`)
+    fetcherUSerById(`tutorialbyicon`, userId)
       .then((data) => {
         setTutorialByIcon(data);
       })
       .catch((error) => {
         console.error(error);
       });
-    fetcher(`users/usersparcours`)
-      .then((data) => {
-        setTutorialByUser(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   }, []);
-  const steps = tutorialByUser.map((item) => ({
+
+  const steps = tutorialByIcon.map((item) => ({
     stepOne: item.stepOne,
     stepTwo: item.stepTwo,
     stepThree: item.stepThree,
@@ -67,26 +64,13 @@ function Parcours() {
       (item.stepTwo ? 33 : 0) +
       (item.stepThree ? 34 : 0),
   }));
-  const iconOpacityLow = (icon) => {
-    const tutorialsForIcon = tutorialByIcon.filter(
-      (item) => item.iconURL === icon.iconURL
-    );
-    console.info(tutorialsForIcon);
-    // Vérifier si tous les tutoriels de la formation ont été terminés
-    const allTutorialsFinished = tutorialsForIcon.every(
-      (tutorial) =>
-        tutorial.stepOne === 33 &&
-        tutorial.stepTwo === 33 &&
-        tutorial.stepThree === 34
-    );
-    return allTutorialsFinished ? "myRewardIconsChange" : "myRewardIcons";
-  };
+
   return (
     <main className="parcours">
       <h2 className="titleIconSort">Mes récompenses</h2>
       <figure className="containerRewardIcons">
         {iconURL.map((icon) => (
-          <MyReward icon={icon} iconOpacityLow={iconOpacityLow(icon)} />
+          <MyReward key={icon.id} icon={icon} tutorialByIcon={tutorialByIcon} />
         ))}
       </figure>
       <h3 className="sortTitleIcon">Voulez-vous trier ? Cliquez ici</h3>
@@ -108,9 +92,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardNoBegin">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 1 &&
-            tutorialByUser.map((icon, index) => {
+            tutorialByIcon.map((icon, index) => {
               if (steps[index].total === 0) {
                 return (
                   <SortMyReward
@@ -133,9 +117,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardMiddle">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 2 &&
-            tutorialByUser.map((icon, index) => {
+            tutorialByIcon.map((icon, index) => {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
                   <SortMyReward
@@ -158,9 +142,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardFinish">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 3 &&
-            tutorialByUser.map((icon, index) => {
+            tutorialByIcon.map((icon, index) => {
               if (steps[index].total === 100) {
                 return (
                   <SortMyReward
@@ -183,9 +167,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardAll">
-          {tutorialByUser.length > 0 &&
+          {tutorialByIcon.length > 0 &&
             selectionSection === 4 &&
-            tutorialByUser.map((icon, index) => (
+            tutorialByIcon.map((icon, index) => (
               <SortMyReward
                 iconFormation={icon.iconURL}
                 nameTutorial={icon.name}

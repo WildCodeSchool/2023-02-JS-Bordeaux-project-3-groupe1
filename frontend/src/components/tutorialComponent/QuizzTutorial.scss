@@ -7,6 +7,7 @@
 
   label {
     width: 80%;
+    color: $app-secondary-fonts-color-60;
   }
 
   label:first-child {
@@ -26,6 +27,11 @@
 
   #answer {
     border: 2px solid rgb(154, 198, 154);
+  }
+
+  #optionOne,
+  #optionTwo {
+    border: 2px solid rgb(240, 199, 172);
   }
 
   h3 {

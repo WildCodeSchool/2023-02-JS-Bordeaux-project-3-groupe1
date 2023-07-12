@@ -13,6 +13,21 @@ const getAll = async (req, res) => {
   }
 };
 
+const getAllByUserId = async (req, res) => {
+  try {
+    const tutorialsByUserId = await TutorialManager.getAllTutorialsByUserId(
+      req.params.userId
+    );
+    if (tutorialsByUserId.length === 0) {
+      res.status(404).send("No tutorials found");
+    } else {
+      res.status(200).send(tutorialsByUserId);
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 const getAllByFormation = async (req, res) => {
   try {
     const { id } = req.params;
@@ -108,6 +123,7 @@ const destroy = async (req, res) => {
 
 module.exports = {
   getAll,
+  getAllByUserId,
   getAllByFormation,
   getOne,
   getTutorialTag,

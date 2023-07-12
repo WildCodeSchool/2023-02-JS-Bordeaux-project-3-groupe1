@@ -85,7 +85,7 @@ function NameTutorial(props) {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [nameFormation]);
 
   const newArrayNameFormation = nameFormation.map((item) => item.name);
   const uniqueValues = [...new Set(newArrayNameFormation)];
@@ -165,7 +165,7 @@ function NameTutorial(props) {
         placeholder={nameTutoPlaceholder}
         onChange={handleInputChange}
       />
-      <label htmlFor="tagTutorial">{tagTutoPlaceholder}</label>
+      <label htmlFor="tagTutorial">{tagTutoPlaceholder} :</label>
       <div className="container-input-tag">
         <InputField
           name="tagTutorial"

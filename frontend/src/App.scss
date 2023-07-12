@@ -46,10 +46,6 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-}
-
 h1,
 h2,
 h3,
@@ -67,6 +63,7 @@ ul,
 li,
 a {
   font-family: $app-secondary-font;
+  text-decoration: none;
 }
 
 li {

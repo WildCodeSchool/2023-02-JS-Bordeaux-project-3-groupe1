@@ -6,7 +6,7 @@ function FormationSelector(props) {
 
   return (
     <>
-      <p>Choisissez votre formation :</p>
+      <p>Choisir votre formation :</p>
       <select
         value={selectedValue ?? undefined}
         onChange={(e) => setSelectedValue(e.target.value)}

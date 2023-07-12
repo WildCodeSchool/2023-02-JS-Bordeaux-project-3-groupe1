@@ -10,7 +10,6 @@ function TextSection({
     <div className="container-explications-preview">
       <div className="container-explications-preview-img">
         {previewUrl && <img src={previewUrl} alt="Preview" />}
-        <label htmlFor="explicationTutorial">Insérer les explications :</label>
         <textarea
           name="explicationTutorial"
           id="explicationTutorial"

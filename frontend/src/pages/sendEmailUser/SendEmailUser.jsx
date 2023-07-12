@@ -10,11 +10,16 @@ function SendEmailUser() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const body = { email };
-
     try {
-      await axios.post(`${import.meta.env.VITE_BASE_API}/sendEmailUser`, body);
-      toast.success("un email à été envoyé! 🎉");
-      navigate("/profile");
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_API}/sendEmailUser`,
+        body
+      );
+      if (response) {
+        toast.success("un email à été envoyé!");
+        navigate("/login");
+        console.info(response, "body ici");
+      }
     } catch (error) {
       toast.error(error.response.data.message);
     }

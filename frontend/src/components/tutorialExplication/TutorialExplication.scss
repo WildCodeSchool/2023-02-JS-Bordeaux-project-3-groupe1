@@ -110,6 +110,18 @@
       font-weight: bold;
     }
   }
+
+  .container-Quizz-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  input[type="radio"] {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+  }
+
   .container-Explications-preview,
   .container-Quizz-preview {
     width: 100%;
@@ -118,6 +130,17 @@
     border-radius: 0.3rem;
     flex-wrap: nowrap;
     background-color: $app-secondary-fonts-color-2;
+
+    .quizzChooseAnswer {
+      width: 100vw;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      .quizzLabelAnswer {
+        margin: 0 auto;
+        width: 80%;
+      }
+    }
 
     .container-Explications-preview-title,
     .container-video-preview-title,

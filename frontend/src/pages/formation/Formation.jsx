@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useSearchParams } from "react-router-dom";
 import { fetcher } from "../../services/api";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ModuleChooseFormation from "../../components/moduleChooseFormation/ModuleChooseFormation";
 import manComputer from "../../assets/manComputer.svg";
+import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function Formation() {
   const { isDesktop } = useContext(IsDesktopContext);
 
   const [iconURLAndDescription, setIconURLAndDescription] = useState([]);
-  console.info(iconURLAndDescription);
+  const { setNameMenu } = useContext(NameMenuTopContext);
+  const [searchParams] = useSearchParams();
+  const level = searchParams.get("level");
+
+  setNameMenu("Les formations");
+
   useEffect(() => {
     fetcher("formations")
       .then((data) => {
@@ -19,13 +26,17 @@ function Formation() {
       });
   }, []);
 
+  const filterFormations = iconURLAndDescription.filter(
+    (formation) => formation.levelFormation === parseInt(level, 10)
+  );
+
   return (
     <div className="formation">
       {isDesktop ? (
         <>
-          {iconURLAndDescription.length > 0 ? (
-            iconURLAndDescription.map((item, index) => (
-              <ModuleChooseFormation item={item} index={index} key={item.id} />
+          {filterFormations.length > 0 ? (
+            filterFormations.map((item) => (
+              <ModuleChooseFormation item={item} key={item.id} />
             ))
           ) : (
             <p>En cours de chargement</p>
@@ -38,9 +49,9 @@ function Formation() {
         </>
       ) : (
         <div className="formation">
-          {iconURLAndDescription.length > 0 ? (
-            iconURLAndDescription.map((item, index) => (
-              <ModuleChooseFormation item={item} index={index} key={item.id} />
+          {filterFormations.length > 0 ? (
+            filterFormations.map((item) => (
+              <ModuleChooseFormation item={item} key={item.id} />
             ))
           ) : (
             <p>En cours de chargement</p>

@@ -30,23 +30,20 @@ import ModificationProfile from "./pages/modificationProfile/ModificationProfile
 import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
 import SendEmailUser from "./pages/sendEmailUser/SendEmailUser";
+import ErrorPage from "./pages/ErrorPage";
+import Error404 from "./pages/Error404";
+import IsConnectUser from "./components/IsConnectUser";
+import IsConnectAdmin from "./components/IsConnectAdmin";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/formations",
-        element: <Formation />,
-      },
-      {
-        path: "/formations/tutorials/:id",
-        element: <TutorialChoice />,
       },
       {
         path: "/platformTutorial",
@@ -78,41 +75,82 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <IsConnectUser>
+            <Profile />
+          </IsConnectUser>
+        ),
       },
       {
         path: "/modificationProfile",
-        element: <ModificationProfile />,
+        element: (
+          <IsConnectUser>
+            <ModificationProfile />
+          </IsConnectUser>
+        ),
       },
       {
         path: "/admin/gestion",
-        element: <GestionUsers />,
+        element: (
+          <IsConnectAdmin>
+            <GestionUsers />
+          </IsConnectAdmin>
+        ),
       },
       {
         path: "/admin/user/:userId",
-        element: <UserInfo />,
+        element: (
+          <IsConnectAdmin>
+            <UserInfo />
+          </IsConnectAdmin>
+        ),
       },
     ],
   },
   {
     path: "/",
     element: <Child />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/tutorials/createTutorial",
-        element: <CreateTutorialPage />,
+        element: (
+          <IsConnectAdmin>
+            <CreateTutorialPage />
+          </IsConnectAdmin>
+        ),
+      },
+      {
+        path: "/formations",
+        element: <Formation />,
       },
       {
         path: "/tutorials/updateTutorial/:tutorialId",
-        element: <UpdateTutorialPage />,
+        element: (
+          <IsConnectAdmin>
+            <UpdateTutorialPage />
+          </IsConnectAdmin>
+        ),
       },
       {
         path: "/formations/:formationId",
-        element: <SelectTutorialPage />,
+        element: (
+          <IsConnectAdmin>
+            <SelectTutorialPage />
+          </IsConnectAdmin>
+        ),
       },
       {
         path: "/formations/parcours",
-        element: <Parcours />,
+        element: (
+          <IsConnectUser>
+            <Parcours />
+          </IsConnectUser>
+        ),
+      },
+      {
+        path: "/formations/tutorials/:id",
+        element: <TutorialChoice />,
       },
       {
         path: "/formations/tutorials/explication/:id",
@@ -136,7 +174,12 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <Error404 />,
+  },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <IsDesktopProvider>
