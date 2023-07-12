@@ -35,6 +35,7 @@ import IsConnectAdmin from "./components/IsConnectAdmin";
 import IsConnectRole from "./components/IsConnectRole";
 
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
+import ChoiceLevelUser from "./components/ChoiceLevelUser";
 
 const router = createBrowserRouter([
   {
@@ -119,7 +120,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/formations",
-        element: <Formation />,
+        element: (
+          <ChoiceLevelUser>
+            <Formation />
+          </ChoiceLevelUser>
+        ),
       },
       {
         path: "/tutorials/updateTutorial/:tutorialId",

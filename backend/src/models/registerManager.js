@@ -10,8 +10,7 @@ const createUser = async (register) => {
   try {
     const RegisterResult = await database.query(query, values);
 
-    const updateUserRoleQuery =
-      "UPDATE users SET role_id = 1, level = 1 WHERE id = ?";
+    const updateUserRoleQuery = "UPDATE users SET role_id = 1 WHERE id = ?";
     await database.query(updateUserRoleQuery, [RegisterResult[0].insertId]);
 
     return {
