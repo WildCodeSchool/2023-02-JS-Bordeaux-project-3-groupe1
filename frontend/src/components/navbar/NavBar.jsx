@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
 import Logo from "../../assets/logo.png";
 import Loupe from "../../assets/loupe.png";
 import UserIcon from "../../assets/usericon.png";
@@ -10,34 +11,51 @@ import { decodeTokenAndExtractRole } from "../../services/authService";
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
   const { userRole, adminRole, tokenIsValid } = decodeTokenAndExtractRole();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const { isLoggedIn, setIsLoggedIn } = useContext(
+    ButtonStateConnectionContext
+  );
+  const handleClickShowLinksIfIsOpen = () => {
+    if (showLinks) {
+      setShowLinks(false);
+    }
+  };
   const handleShowLinks = () => {
     setShowLinks(!showLinks);
   };
 
   const handleDisconnected = () => {
     localStorage.clear();
+    if (showLinks) {
+      setShowLinks(false);
+    }
   };
 
   useEffect(() => {
     setIsLoggedIn(tokenIsValid);
-  }, [tokenIsValid]);
-
+  }, [tokenIsValid, isLoggedIn]);
+  console.info("tokenIsValid", tokenIsValid);
+  console.info("isLoggedIn", isLoggedIn);
   return (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
-      <Link to="/">
+      <Link to="/" onClick={() => handleClickShowLinksIfIsOpen()}>
         <img className="logo" src={Logo} alt="logo ligne bleue" />
       </Link>
       <div className="container-icons">
-        <Link to="/formations/parcours">
+        <Link
+          to="/formations/parcours"
+          onClick={() => handleClickShowLinksIfIsOpen()}
+        >
           <img className="points" src={Points} alt="points" />
         </Link>
-        <Link to="/search">
+        <Link to="/search" onClick={() => handleClickShowLinksIfIsOpen()}>
           <img className="loupe" src={Loupe} alt="loupe recherche" />
         </Link>
         {!isLoggedIn && (
-          <button className="button-connexion" type="button">
+          <button
+            className="button-connexion"
+            type="button"
+            onClick={() => handleClickShowLinksIfIsOpen()}
+          >
             <Link to="/register" className="se-connecter">
               Connexion
             </Link>
@@ -53,7 +71,11 @@ function Navbar() {
               />
             </Link>
           ) : (
-            <Link type="button" to="/profile">
+            <Link
+              type="button"
+              to="/profile"
+              onClick={() => handleClickShowLinksIfIsOpen()}
+            >
               <img
                 className="user-icon"
                 src={UserIcon}
@@ -126,7 +148,11 @@ function Navbar() {
           </>
         )}
       </ul>
-      <button className="navbar_burger" type="button" onClick={handleShowLinks}>
+      <button
+        className="navbar_burger"
+        type="button"
+        onClick={() => handleShowLinks()}
+      >
         <span className="burger_bar" />
       </button>
     </nav>
