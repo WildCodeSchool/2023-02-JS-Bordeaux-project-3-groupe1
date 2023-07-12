@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { fetcher } from "../../services/api";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
-import ModuleChooseFormation from "../../components/moduleChooseFormation/ModuleChooseFormation";
+import CardFormation from "../../components/cardFormation/CardFormation";
 import manComputer from "../../assets/manComputer.svg";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
@@ -16,7 +16,7 @@ function Formation() {
       dataFormation.forEach((item, i) => {
         formationsArray.push(
           // eslint-disable-next-line react/no-array-index-key
-          <ModuleChooseFormation item={item} key={`${item.id}_${i}`} />
+          <CardFormation item={item} key={`${item.id}_${i}`} />
         );
         if (isDesktop) {
           formationsArray.push(
