@@ -7,50 +7,47 @@ import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function Formation() {
   const { isDesktop } = useContext(IsDesktopContext);
-  const [iconURLAndDescription, setIconURLAndDescription] = useState([]);
+  const [dataFormation, setDataFormation] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
 
-  setNameMenu("Les formations");
+  function renderFormation() {
+    if (dataFormation.length > 0) {
+      const formationsArray = [];
+      dataFormation.forEach((item, i) => {
+        formationsArray.push(
+          // eslint-disable-next-line react/no-array-index-key
+          <ModuleChooseFormation item={item} key={`${item.id}_${i}`} />
+        );
+        if (isDesktop) {
+          formationsArray.push(
+            <img
+              className="pictureManComputer"
+              src={manComputer}
+              alt="picturemancomputer"
+            />
+          );
+        }
+      });
+      return formationsArray;
+    }
+    return "";
+  }
+
+  useEffect(() => {
+    setNameMenu("Mes formations");
+  }, []);
 
   useEffect(() => {
     fetcher("formations")
       .then((data) => {
-        setIconURLAndDescription(data);
+        setDataFormation(data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
-  return (
-    <div className="formation">
-      {isDesktop ? (
-        <>
-          {iconURLAndDescription.length > 0 ? (
-            iconURLAndDescription.map((item) => (
-              <ModuleChooseFormation item={item} key={item.id} />
-            ))
-          ) : (
-            <p>En cours de chargement</p>
-          )}
-          <img
-            className="pictureManComputer"
-            src={manComputer}
-            alt="picturemancomputer"
-          />
-        </>
-      ) : (
-        <div className="formation">
-          {iconURLAndDescription.length > 0 ? (
-            iconURLAndDescription.map((item) => (
-              <ModuleChooseFormation item={item} key={item.id} />
-            ))
-          ) : (
-            <p>En cours de chargement</p>
-          )}
-        </div>
-      )}
-    </div>
-  );
+  return <div className="formation">{renderFormation()}</div>;
 }
+
 export default Formation;
