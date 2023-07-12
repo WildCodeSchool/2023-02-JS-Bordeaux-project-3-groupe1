@@ -3,6 +3,14 @@
   flex-direction: column;
   min-height: calc(100vh - 120px);
   width: 100vw;
+  .ciblePlateform {
+    @include desktop {
+      height: 13rem;
+      margin-left: 90%;
+      margin-top: -14rem;
+      position: absolute;
+    }
+  }
 
   .container-Objectif {
     padding: 4% 0;
@@ -14,6 +22,12 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 45px;
+    @include tablet {
+      width: 15rem;
+      @include desktop {
+        width: 30rem;
+      }
+    }
   }
 
   .container-button {
@@ -48,37 +62,60 @@
     padding-right: 10%;
     height: 100px;
     width: 130px;
-  }
-  .container-Title-Tuto {
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    background-color: $app-corporate-color;
-    height: 2.5rem;
-    width: 100%;
-    padding-right: 10%;
-
-    .objectif {
-      color: $app-secondary-fonts-color-5;
+    @include tablet {
+      height: 12rem;
+      width: 15rem;
+      @include desktop {
+        height: 16rem;
+        width: 24rem;
+      }
     }
   }
-  .container-ObjectifText {
-    width: 45%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 7rem;
-    border-radius: 5%;
+}
+.container-Title-Tuto {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: $app-corporate-color;
+  height: 2.5rem;
+  width: 100%;
+  padding-right: 10%;
+  @include desktop {
+    position: relative;
+    height: 4rem;
+  }
 
-    p {
-      color: $app-primary-fonts-color;
-      text-align: center;
-      font-size: $app-text-size;
-      margin-bottom: 2rem;
+  .objectif {
+    color: $app-secondary-fonts-color-5;
+    @include desktop {
+      font-size: 2rem;
+    }
+  }
+}
+.container-ObjectifText {
+  width: 45%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7rem;
+  border-radius: 5%;
+
+  p {
+    color: $app-primary-fonts-color;
+    text-align: center;
+    font-size: $app-text-size;
+    margin-bottom: 2rem;
+    @include tablet {
+      font-size: 2rem;
+      @include desktop {
+        width: 67%;
+        margin-right: -22rem;
+        font-size: 2.5rem;
+      }
     }
   }
 }
@@ -89,6 +126,9 @@
   align-items: center;
   width: 100%;
   padding: 4%;
+  .SpaceQuizz {
+    width: 100%;
+  }
 
   .line-yellow {
     margin-bottom: 4%;
@@ -115,11 +155,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    .TitleQuizz {
+      margin-top: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
   }
   input[type="radio"] {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
+    width: 20px;
+    height: 15px;
+    margin: 0px 17px 0 25px;
   }
 
   .container-Explications-preview,
@@ -144,9 +189,11 @@
       height: 70px;
       display: flex;
       align-items: center;
+
       .quizzLabelAnswer {
         margin: 0 auto;
-        width: 80%;
+        width: 83%;
+        padding-top: 1rem;
       }
     }
 
@@ -178,7 +225,7 @@
       word-wrap: break-word;
       text-align: center;
       margin-top: 1rem;
-      color:$app-primary-fonts-color;
+      color: $app-primary-fonts-color;
     }
   }
   @include tablet {
@@ -229,11 +276,11 @@
   font-size: 1.3rem;
   text-align: center;
   color: $app-primary-fonts-color;
-  font-family: $app-secondary-font; 
+  font-family: $app-secondary-font;
 }
-.explicationPicture{
+.explicationPicture {
   height: 4rem;
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .container-Video-preview {
@@ -242,6 +289,13 @@
   border-radius: 5px;
 }
 
-.quizzChange {
+.wrongAnswerTitle {
   color: red;
+  font-size: 1rem;
+}
+
+.textObjectifPlateform {
+  @include tablet {
+    font-size: 2rem;
+  }
 }

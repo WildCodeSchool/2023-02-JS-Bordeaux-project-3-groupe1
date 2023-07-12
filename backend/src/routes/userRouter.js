@@ -22,6 +22,8 @@ router.put(
 
 router.put("/level/:userId", userControllers.updateLevel);
 
+router.put("/role/:userId", userControllers.updateRole);
+
 router.delete("/:id", userControllers.destroy);
 
 module.exports = router;

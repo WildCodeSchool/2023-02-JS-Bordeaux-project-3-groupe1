@@ -26,17 +26,6 @@ INSERT INTO `formations` (`id`, `iconURL`, `name`, `fl_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pins`
---
-
-CREATE TABLE `pins` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `quizz`
 --
 
@@ -131,15 +120,6 @@ CREATE TABLE `users` (
   `picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Structure de la table `userspins`
---
-
-CREATE TABLE `userspins` (
-  `pin_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -161,12 +141,6 @@ CREATE TABLE `userstutorials` (
 -- Index pour la table `formations`
 --
 ALTER TABLE `formations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `pins`
---
-ALTER TABLE `pins`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -215,13 +189,6 @@ ALTER TABLE `users`
   ADD KEY `fk_users_roles` (`role_id`);
 
 --
--- Index pour la table `userspins`
---
-ALTER TABLE `userspins`
-  ADD KEY `fk_usersPins_pins` (`pin_id`),
-  ADD KEY `fk_usersPins_users` (`user_id`);
-
---
 -- Index pour la table `userstutorials`
 --
 ALTER TABLE `userstutorials`
@@ -238,12 +205,6 @@ ALTER TABLE `userstutorials`
 --
 ALTER TABLE `formations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
---
--- AUTO_INCREMENT pour la table `pins`
---
-ALTER TABLE `pins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `quizz`
@@ -306,13 +267,6 @@ ALTER TABLE `users`
   ADD CONSTRAINT `fk_users_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Contraintes pour la table `userspins`
---
-ALTER TABLE `userspins`
-  ADD CONSTRAINT `fk_usersPins_pins` FOREIGN KEY (`pin_id`) REFERENCES `pins` (`id`),
-  ADD CONSTRAINT `fk_usersPins_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
 -- Contraintes pour la table `userstutorials`
 --
 ALTER TABLE `userstutorials`
@@ -320,4 +274,5 @@ ALTER TABLE `userstutorials`
   ADD CONSTRAINT `fk_usersTutorials_steps_delete` FOREIGN KEY (`step_id`) REFERENCES `steps` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_usersTutorials_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_usersTutorials_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_usersTutorials_users_delete` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;

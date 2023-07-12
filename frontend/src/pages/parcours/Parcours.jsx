@@ -11,9 +11,10 @@ function Parcours() {
   const [tutorialByIcon, setTutorialByIcon] = useState([]);
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { userId } = decodeTokenAndExtractRole();
+  const [userLevel, setUserLevel] = useState([]);
+  const [filteredTutorialsLevel, setFilteredTutorialsLevel] = useState([]);
 
   setNameMenu("Mon parcours");
-  console.info(tutorialByIcon);
   const buttonSortTextSections = [
     {
       text: "Non débutés",
@@ -53,6 +54,13 @@ function Parcours() {
       .catch((error) => {
         console.error(error);
       });
+    fetcherUSerById(`users`, userId)
+      .then((data) => {
+        setUserLevel(data.level);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   const steps = tutorialByIcon.map((item) => ({
@@ -65,12 +73,30 @@ function Parcours() {
       (item.stepThree ? 34 : 0),
   }));
 
+  useEffect(() => {
+    if (userLevel === 1) {
+      // FILTER HERE
+      setFilteredTutorialsLevel(tutorialByIcon);
+    } else if (userLevel === 2) {
+      // FILTER HERE PLUS COMPLEXE
+      setFilteredTutorialsLevel(
+        tutorialByIcon.filter((item) => item.levelTuto === 2)
+      );
+    }
+  }, [tutorialByIcon]);
+
   return (
     <main className="parcours">
       <h2 className="titleIconSort">Mes récompenses</h2>
       <figure className="containerRewardIcons">
         {iconURL.map((icon) => (
-          <MyReward key={icon.id} icon={icon} tutorialByIcon={tutorialByIcon} />
+          <MyReward
+            key={icon.id}
+            icon={icon}
+            userLevel={userLevel}
+            tutorialByIcon={tutorialByIcon}
+            filteredTutorialsLevel={filteredTutorialsLevel}
+          />
         ))}
       </figure>
       <h3 className="sortTitleIcon">Voulez-vous trier ? Cliquez ici</h3>
@@ -92,12 +118,13 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardNoBegin">
-          {tutorialByIcon.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 1 &&
-            tutorialByIcon.map((icon, index) => {
+            filteredTutorialsLevel.map((icon, index) => {
               if (steps[index].total === 0) {
                 return (
                   <SortMyReward
+                    tutoId={icon.tutoId}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
                     index={index}
@@ -117,12 +144,13 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardMiddle">
-          {tutorialByIcon.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 2 &&
-            tutorialByIcon.map((icon, index) => {
+            filteredTutorialsLevel.map((icon, index) => {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
                   <SortMyReward
+                    tutoId={icon.tutoId}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
                     index={index}
@@ -142,9 +170,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardFinish">
-          {tutorialByIcon.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 3 &&
-            tutorialByIcon.map((icon, index) => {
+            filteredTutorialsLevel.map((icon, index) => {
               if (steps[index].total === 100) {
                 return (
                   <SortMyReward
@@ -167,9 +195,9 @@ function Parcours() {
           </h2>
         )}
         <div className="iconSortReward iconSortRewardAll">
-          {tutorialByIcon.length > 0 &&
+          {filteredTutorialsLevel.length > 0 &&
             selectionSection === 4 &&
-            tutorialByIcon.map((icon, index) => (
+            filteredTutorialsLevel.map((icon, index) => (
               <SortMyReward
                 iconFormation={icon.iconURL}
                 nameTutorial={icon.name}

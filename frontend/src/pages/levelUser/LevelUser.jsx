@@ -15,12 +15,11 @@ function LevelUser() {
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
   const { userId } = decodeTokenAndExtractRole();
-  const [level, setLevel] = useState(1);
 
-  const handleSave = () => {
-    if (level !== 0) {
+  const handleSave = (levelChoice) => {
+    if (levelChoice) {
       const valuesUser = {
-        level,
+        levelChoice,
       };
 
       senderLevelUser("users/level", userId, {
@@ -64,8 +63,7 @@ function LevelUser() {
             onMouseEnter={() => handleMouseEnter(setIsHovered)}
             onMouseLeave={() => handleMouseLeave(setIsHovered)}
             onClick={() => {
-              setLevel(1);
-              handleSave();
+              handleSave(1);
             }}
           >
             <div>
@@ -88,8 +86,7 @@ function LevelUser() {
             onMouseEnter={() => handleMouseEnter(setIsHovered2)}
             onMouseLeave={() => handleMouseLeave(setIsHovered2)}
             onClick={() => {
-              setLevel(2);
-              handleSave();
+              handleSave(2);
             }}
           >
             <div>
@@ -111,4 +108,5 @@ function LevelUser() {
     </div>
   );
 }
+
 export default LevelUser;
