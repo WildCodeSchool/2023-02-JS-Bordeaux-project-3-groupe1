@@ -78,7 +78,7 @@ function TutorialExplication() {
       }
     }
   };
-  console.info(order);
+
   const handleQuizz = (condition, setIsWrongAnswer) => {
     setQuizzValidate(false);
     setQuizzSucceed(condition);
