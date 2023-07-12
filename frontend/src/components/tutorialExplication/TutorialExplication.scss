@@ -3,6 +3,14 @@
   flex-direction: column;
   min-height: calc(100vh - 120px);
   width: 100vw;
+  .ciblePlateform {
+    @include desktop {
+      height: 13rem;
+      margin-left: 90%;
+      margin-top: -14rem;
+      position: absolute;
+          }
+  }
 
   .container-Objectif {
     padding: 4% 0;
@@ -14,6 +22,12 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 45px;
+    @include tablet {
+      width: 15rem;
+      @include desktop {
+        width: 30rem;
+      }
+    }
   }
 
   .container-button {
@@ -48,6 +62,15 @@
     padding-right: 10%;
     height: 100px;
     width: 130px;
+    @include tablet {
+      height: 12rem;
+      width: 15rem;
+      @include desktop {
+        height: 16rem;
+        width: 24rem;
+    }
+      }
+    }
   }
   .container-Title-Tuto {
     z-index: 2;
@@ -60,9 +83,16 @@
     height: 2.5rem;
     width: 100%;
     padding-right: 10%;
-
+    @include desktop{
+      position: relative;
+      height: 4rem;
+    }
+    
     .objectif {
       color: $app-secondary-fonts-color-5;
+      @include desktop {
+        font-size: 2rem;
+      }
     }
   }
   .container-ObjectifText {
@@ -79,9 +109,17 @@
       text-align: center;
       font-size: $app-text-size;
       margin-bottom: 2rem;
+      @include tablet {
+        font-size: 2rem;
+        @include desktop {
+          width: 67%;
+    margin-right: -22rem;
+    font-size: 2.5rem;
+        }
+      }
     }
   }
-}
+
 
 .container-Explications {
   display: flex;
@@ -98,6 +136,7 @@
     width: 100%;
     border-top: 2px solid $app-line-color;
     margin-top: -30px;
+    
   }
   .containerButtonVideo {
     display: flex;
@@ -259,3 +298,10 @@
     color: red;
     font-size: 1rem;
   }
+
+  
+.textObjectifPlateform{
+  @include tablet{
+    font-size: 2rem;
+  }
+}
