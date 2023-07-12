@@ -75,8 +75,10 @@ function Parcours() {
 
   useEffect(() => {
     if (userLevel === 1) {
-      setFilteredTutorialsLevel(tutorialByIcon.map((item) => item));
+      // FILTER HERE
+      setFilteredTutorialsLevel(tutorialByIcon);
     } else if (userLevel === 2) {
+      // FILTER HERE PLUS COMPLEXE
       setFilteredTutorialsLevel(
         tutorialByIcon.filter((item) => item.levelTuto === 2)
       );
