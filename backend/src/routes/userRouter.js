@@ -5,6 +5,7 @@ const userControllers = require("../controllers/userControllers");
 const upload = require("../middlewares/multer-config");
 const uploadFirebase = require("../middlewares/uploadFirebase");
 const { userValidator } = require("../validators/userValidator");
+const { verifyToken } = require("../middlewares/verifyToken");
 
 router.get(
   "/usersparcours/:userId",
@@ -19,6 +20,8 @@ router.put(
   userValidator,
   userControllers.update
 );
+
+router.post("/auth", verifyToken, userControllers.auth);
 
 router.put("/level/:userId", userControllers.updateLevel);
 

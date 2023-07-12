@@ -30,11 +30,11 @@ import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
 import ErrorPage from "./pages/ErrorPage";
 import Error404 from "./pages/Error404";
+import AuthProtected from "./services/AuthProtected";
 import IsConnectUser from "./components/IsConnectUser";
 import IsConnectAdmin from "./components/IsConnectAdmin";
-import IsConnectRole from "./components/IsConnectRole";
-
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
+import USER_ROLES from "./constants/user";
 
 const router = createBrowserRouter([
   {
@@ -73,25 +73,25 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: (
-          <IsConnectRole>
+          <AuthProtected roles={[USER_ROLES.user]}>
             <Profile />
-          </IsConnectRole>
+          </AuthProtected>
         ),
       },
       {
         path: "/modificationProfile",
         element: (
-          <IsConnectUser>
+          <AuthProtected roles={[USER_ROLES.user]}>
             <ModificationProfile />
-          </IsConnectUser>
+          </AuthProtected>
         ),
       },
       {
         path: "/admin/gestion",
         element: (
-          <IsConnectAdmin>
+          <AuthProtected roles={[USER_ROLES.admin]}>
             <GestionUsers />
-          </IsConnectAdmin>
+          </AuthProtected>
         ),
       },
       {
