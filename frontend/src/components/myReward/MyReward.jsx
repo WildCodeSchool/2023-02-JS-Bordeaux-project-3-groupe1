@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function MyReward({ icon, userLevel, filteredTutorialsLevel }) {
   const [isCompleted, setIsCompleted] = useState(false);
   const [iconUrl, setIconUrl] = useState(false);
+  const [formationId, setFormationId] = useState(0);
 
   const tutorialsByFormation = filteredTutorialsLevel.filter(
     (tutoriel) => tutoriel.formationID === icon.id
@@ -35,14 +37,17 @@ function MyReward({ icon, userLevel, filteredTutorialsLevel }) {
           .some((tutorial) => tutorial.iconURL === icon.iconURL)
       );
     }
+    setFormationId(icon.id);
   }, [tutorialsByFormation]);
 
   return (
-    <img
-      className={iconUrl ? "myRewardIcons" : "myRewardIconsChange"}
-      src={icon.iconURL}
-      alt={icon.name}
-    />
+    <Link to={`/formations/tutorials/${formationId}`}>
+      <img
+        className={iconUrl ? "myRewardIcons" : "myRewardIconsChange"}
+        src={icon.iconURL}
+        alt={icon.name}
+      />
+    </Link>
   );
 }
 

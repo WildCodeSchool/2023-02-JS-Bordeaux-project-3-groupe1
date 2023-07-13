@@ -75,10 +75,8 @@ function Parcours() {
 
   useEffect(() => {
     if (userLevel === 1) {
-      // FILTER HERE
       setFilteredTutorialsLevel(tutorialByIcon);
     } else if (userLevel === 2) {
-      // FILTER HERE PLUS COMPLEXE
       setFilteredTutorialsLevel(
         tutorialByIcon.filter((item) => item.levelTuto === 2)
       );
@@ -123,7 +121,7 @@ function Parcours() {
               if (steps[index].total === 0) {
                 return (
                   <SortMyReward
-                    tutoId={icon.tutoId}
+                    icon={icon}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
                     index={index}
@@ -149,7 +147,7 @@ function Parcours() {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
                   <SortMyReward
-                    tutoId={icon.tutoId}
+                    icon={icon}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
                     index={index}
@@ -175,6 +173,7 @@ function Parcours() {
               if (steps[index].total === 100) {
                 return (
                   <SortMyReward
+                    icon={icon}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
                     index={index}
@@ -198,6 +197,7 @@ function Parcours() {
             selectionSection === 4 &&
             filteredTutorialsLevel.map((icon, index) => (
               <SortMyReward
+                icon={icon}
                 iconFormation={icon.iconURL}
                 nameTutorial={icon.name}
                 index={index}
