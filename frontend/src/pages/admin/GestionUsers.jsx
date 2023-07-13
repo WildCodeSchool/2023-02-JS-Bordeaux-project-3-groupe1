@@ -39,11 +39,16 @@ function GestionUsers() {
     <div className="container-gestion">
       {users.map((item) => (
         <div className="container-gestion-user" key={item.id}>
-          <li>{item.email}</li>
-          <ButtonRoleUser handleActive={handleActive} item={item} />
-          <Link to={`/admin/user/${item.id}`}>
-            <button type="button">Informations</button>
-          </Link>
+          <div className="container-infos-user">
+            <p>Email de l'utilisateur :</p>
+            <li>{item.email}</li>
+          </div>
+          <div className="container-buttons">
+            <ButtonRoleUser handleActive={handleActive} item={item} />
+            <Link to={`/admin/user/${item.id}`}>
+              <button type="button">Informations</button>
+            </Link>
+          </div>
         </div>
       ))}
     </div>
