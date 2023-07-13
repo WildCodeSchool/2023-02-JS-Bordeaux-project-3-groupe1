@@ -94,7 +94,6 @@ function Parcours() {
             key={icon.id}
             icon={icon}
             userLevel={userLevel}
-            tutorialByIcon={tutorialByIcon}
             filteredTutorialsLevel={filteredTutorialsLevel}
           />
         ))}

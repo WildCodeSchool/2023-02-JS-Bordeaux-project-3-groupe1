@@ -75,7 +75,6 @@ export const senderRoleUser = async (url, userId, valuesUser) => {
     role: parseInt(valuesUser.roleUser, 10),
   };
 
-  console.log(form);
   try {
     const response = await axios.put(
       `${import.meta.env.VITE_BASE_API}/${url}/${userId}`,
@@ -111,7 +110,6 @@ export const senderStepsByUser = async (
 };
 
 export const deleteUser = async (url, id) => {
-  console.log(url, id);
   try {
     const response = await axios.delete(
       `${import.meta.env.VITE_BASE_API}/${url}/${id}`

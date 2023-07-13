@@ -273,6 +273,6 @@ ALTER TABLE `userstutorials`
   ADD CONSTRAINT `fk_usersTutorials_steps` FOREIGN KEY (`step_id`) REFERENCES `steps` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_usersTutorials_steps_delete` FOREIGN KEY (`step_id`) REFERENCES `steps` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_usersTutorials_tutorials` FOREIGN KEY (`tutorial_id`) REFERENCES `tutorials` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_usersTutorials_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_usersTutorials_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_usersTutorials_users_delete` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
