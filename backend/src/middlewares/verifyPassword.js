@@ -23,7 +23,6 @@ const verifyPassword = async (req, res, next) => {
     if (response) {
       const token = await jwt.sign(
         {
-          sub: req.body.id,
           role: user.roleName,
           userId: user.id,
         },
