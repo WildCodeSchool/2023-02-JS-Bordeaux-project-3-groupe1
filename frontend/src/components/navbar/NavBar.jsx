@@ -55,7 +55,7 @@ function Navbar() {
             type="button"
             onClick={() => handleClickShowLinksIfIsOpen()}
           >
-            <Link to="/register" className="se-connecter">
+            <Link to="/login" className="se-connecter">
               Connexion
             </Link>
           </button>
