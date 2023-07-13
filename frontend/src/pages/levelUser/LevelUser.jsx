@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../assets/styles/variables.scss";
 import hat2 from "../../assets/pictures/hat2.png";
 import hat from "../../assets/pictures/hat1.png";
 import pictureLevel from "../../assets/pictures/picture_level.png";
@@ -9,6 +8,7 @@ import hatWhite2 from "../../assets/pictures/hatWhite2.png";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import { senderLevelUser } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
+import "../../assets/styles/variables.scss";
 
 function LevelUser() {
   const { isDesktop } = useContext(IsDesktopContext);

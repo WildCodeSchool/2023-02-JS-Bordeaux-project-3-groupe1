@@ -43,7 +43,7 @@ function Home() {
             </button>
           </Link>
         ) : (
-          <Link to="/LevelUser">
+          <Link to="/level">
             <button className="button_Debuter_Formation" type="button">
               Débuter ma formation
             </button>
@@ -55,7 +55,7 @@ function Home() {
         <div className="bloc_presenter">
           <h2 className="text_presenter">
             Suivre notre tutoriel de prise en main de notre plateforme
-            <Link to="../platformTutorial" className="word_ici">
+            <Link to="/video-tutorial" className="word_ici">
               ici
             </Link>
           </h2>

@@ -7,8 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
+import App from "./App";
 import { ButtonStateConnectionProvider } from "./contexts/ButtonStateConnectionContext";
-import Root from "./routes/Root";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
@@ -32,13 +32,15 @@ import UserInfo from "./pages/admin/UserInfo";
 import ErrorPage from "./pages/ErrorPage";
 import Error404 from "./pages/Error404";
 import SendEmailUser from "./pages/sendEmailUser/SendEmailUser";
+import AuthProtected from "./services/AuthProtected";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
+import USER_ROLES from "./constants/user";
 import ChoiceLevelUser from "./components/ChoiceLevelUser";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/levelUser",
+        path: "/level",
         element: <LevelUser />,
       },
       {
@@ -71,19 +73,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.user]}>
+            <Profile />
+          </AuthProtected>
+        ),
       },
       {
         path: "/modificationProfile",
-        element: <ModificationProfile />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.user]}>
+            <ModificationProfile />
+          </AuthProtected>
+        ),
       },
       {
         path: "/admin/gestion",
-        element: <GestionUsers />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.admin]}>
+            <GestionUsers />
+          </AuthProtected>
+        ),
       },
       {
         path: "/admin/user/:userId",
-        element: <UserInfo />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.admin]}>
+            <UserInfo />
+          </AuthProtected>
+        ),
       },
     ],
   },
@@ -94,7 +112,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/tutorials/createTutorial",
-        element: <CreateTutorialPage />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.admin]}>
+            <CreateTutorialPage />
+          </AuthProtected>
+        ),
       },
       {
         path: "/formations",
@@ -106,15 +128,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/tutorials/updateTutorial/:tutorialId",
-        element: <UpdateTutorialPage />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.admin]}>
+            <UpdateTutorialPage />
+          </AuthProtected>
+        ),
       },
       {
         path: "/formations/:formationId",
-        element: <SelectTutorialPage />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.admin]}>
+            <SelectTutorialPage />
+          </AuthProtected>
+        ),
       },
       {
         path: "/formations/parcours",
-        element: <Parcours />,
+        element: (
+          <AuthProtected roles={[USER_ROLES.user]}>
+            <Parcours />
+          </AuthProtected>
+        ),
       },
       {
         path: "/formations/tutorials/:id",
@@ -140,7 +174,7 @@ const router = createBrowserRouter([
         path: "/search",
         element: <SearchPage />,
       },
-      { path: "/platformTutorial", element: <ContainerTutoPlateform /> },
+      { path: "/video-tutorial", element: <ContainerTutoPlateform /> },
       {
         path: "/sendEmailUser",
         element: <SendEmailUser />,
