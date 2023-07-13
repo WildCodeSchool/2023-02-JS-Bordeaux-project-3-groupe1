@@ -29,12 +29,12 @@ export const fetchUserWithToken = async () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
     return response.data;
   } catch (error) {
     throw new Error("Error while fetching data");
   }
-}
+};
 
 export const fetcherUSerByIdTutorials = async (url, id, userId) => {
   const formationId = parseInt(id, 10);
