@@ -34,7 +34,7 @@ import Error404 from "./pages/Error404";
 import AuthProtected from "./services/AuthProtected";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 import USER_ROLES from "./constants/user";
-
+import ChoiceLevelUser from "./components/ChoiceLevelUser";
 
 const router = createBrowserRouter([
   {
