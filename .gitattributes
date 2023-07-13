@@ -24,6 +24,3 @@
 
 
 
-10 h 35
-git config --global core.autocrlf input
- git config --global core.eol lf
