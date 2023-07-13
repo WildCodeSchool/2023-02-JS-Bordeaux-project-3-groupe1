@@ -21,7 +21,7 @@ function ContainerBravoTutorial({ dataTutorial }) {
 }
 
 ContainerBravoTutorial.propTypes = {
-	dataTutorial: PropTypes.string.isRequired,
+  dataTutorial: PropTypes.string.isRequired,
 };
 
 export default ContainerBravoTutorial;
