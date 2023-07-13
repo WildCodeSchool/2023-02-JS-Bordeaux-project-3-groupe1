@@ -143,7 +143,6 @@ function ModificationPage() {
         )}
       </div>
       <div className="containerBlocInputModificationProfile">
-
         <div className="firstBlocInput">
           <label className="denomination" htmlFor="name-user">
             Nom
