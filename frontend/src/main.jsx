@@ -31,9 +31,6 @@ import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
 import ErrorPage from "./pages/ErrorPage";
 import Error404 from "./pages/Error404";
-import IsConnectUser from "./components/IsConnectUser";
-import IsConnectAdmin from "./components/IsConnectAdmin";
-import IsConnectRole from "./components/IsConnectRole";
 import SendEmailUser from "./pages/sendEmailUser/SendEmailUser";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 import ChoiceLevelUser from "./components/ChoiceLevelUser";
@@ -74,35 +71,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: (
-          <IsConnectRole>
-            <Profile />
-          </IsConnectRole>
-        ),
+        element: <Profile />,
       },
       {
         path: "/modificationProfile",
-        element: (
-          <IsConnectUser>
-            <ModificationProfile />
-          </IsConnectUser>
-        ),
+        element: <ModificationProfile />,
       },
       {
         path: "/admin/gestion",
-        element: (
-          <IsConnectAdmin>
-            <GestionUsers />
-          </IsConnectAdmin>
-        ),
+        element: <GestionUsers />,
       },
       {
         path: "/admin/user/:userId",
-        element: (
-          <IsConnectAdmin>
-            <UserInfo />
-          </IsConnectAdmin>
-        ),
+        element: <UserInfo />,
       },
     ],
   },
@@ -113,11 +94,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/tutorials/createTutorial",
-        element: (
-          <IsConnectAdmin>
-            <CreateTutorialPage />
-          </IsConnectAdmin>
-        ),
+        element: <CreateTutorialPage />,
       },
       {
         path: "/formations",
@@ -129,27 +106,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/tutorials/updateTutorial/:tutorialId",
-        element: (
-          <IsConnectAdmin>
-            <UpdateTutorialPage />
-          </IsConnectAdmin>
-        ),
+        element: <UpdateTutorialPage />,
       },
       {
         path: "/formations/:formationId",
-        element: (
-          <IsConnectAdmin>
-            <SelectTutorialPage />
-          </IsConnectAdmin>
-        ),
+        element: <SelectTutorialPage />,
       },
       {
         path: "/formations/parcours",
-        element: (
-          <IsConnectUser>
-            <Parcours />
-          </IsConnectUser>
-        ),
+        element: <Parcours />,
       },
       {
         path: "/formations/tutorials/:id",
