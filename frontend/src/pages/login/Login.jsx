@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
 import invisible from "../../assets/invisible.png";
 import visible from "../../assets/visible.png";
@@ -38,10 +39,11 @@ function Login() {
       );
       const token = response.data;
       localStorage.setItem("token", token);
+      toast.success("Bienvenue!");
       setIsLoggedIn(true);
       navigate("/");
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   };
   return (

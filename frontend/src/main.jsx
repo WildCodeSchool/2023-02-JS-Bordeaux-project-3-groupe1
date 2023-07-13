@@ -34,7 +34,7 @@ import Error404 from "./pages/Error404";
 import IsConnectUser from "./components/IsConnectUser";
 import IsConnectAdmin from "./components/IsConnectAdmin";
 import IsConnectRole from "./components/IsConnectRole";
-
+import SendEmailUser from "./pages/sendEmailUser/SendEmailUser";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 import ChoiceLevelUser from "./components/ChoiceLevelUser";
 
@@ -176,6 +176,10 @@ const router = createBrowserRouter([
         element: <SearchPage />,
       },
       { path: "/platformTutorial", element: <ContainerTutoPlateform /> },
+      {
+        path: "/sendEmailUser",
+        element: <SendEmailUser />,
+      },
     ],
   },
   {
