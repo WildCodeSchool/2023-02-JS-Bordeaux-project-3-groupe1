@@ -13,6 +13,7 @@ router.get(
 );
 router.get("/", userControllers.getAll);
 router.get("/:id", userControllers.getOne);
+router.get("/auth/:user");
 router.put(
   "/:userId",
   upload,

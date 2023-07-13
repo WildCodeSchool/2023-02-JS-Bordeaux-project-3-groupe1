@@ -1,23 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import axios from "axios";
+import { fetchUserWithToken } from "./userService";
 
 export default function AuthProtected({ children, roles }) {
   const [access, setAccess] = useState(null);
   const navigate = useNavigate();
 
   const protectedRoute = () => {
-    const token = localStorage.getItem("token");
-    axios({
-      method: "POST",
-      url: `${import.meta.env.VITE_BASE_API}/users/auth`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetchUserWithToken()
       .then((result) => {
-        setAccess(result.data.token.role);
+        setAccess(result.token.role);
       })
       .catch(() => {
         navigate("/");
@@ -25,8 +18,11 @@ export default function AuthProtected({ children, roles }) {
   };
 
   useEffect(() => {
-    if (!roles.includes(access)) {
-      navigate("/");
+    if (access !== null) {
+      if (!roles.includes(access)) {
+        console.info("You are not allowed to", access);
+        navigate("/");
+      }
     }
   }, [access]);
 

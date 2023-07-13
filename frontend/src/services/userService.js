@@ -20,6 +20,22 @@ export const fetcherUSerById = async (url, userId) => {
   }
 };
 
+export const fetchUserWithToken = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios({
+      method: "POST",
+      url: `${import.meta.env.VITE_BASE_API}/users/auth`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data;
+  } catch (error) {
+    throw new Error("Error while fetching data");
+  }
+}
+
 export const fetcherUSerByIdTutorials = async (url, id, userId) => {
   const formationId = parseInt(id, 10);
   try {

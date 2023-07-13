@@ -31,8 +31,6 @@ import UserInfo from "./pages/admin/UserInfo";
 import ErrorPage from "./pages/ErrorPage";
 import Error404 from "./pages/Error404";
 import AuthProtected from "./services/AuthProtected";
-import IsConnectUser from "./components/IsConnectUser";
-import IsConnectAdmin from "./components/IsConnectAdmin";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 import USER_ROLES from "./constants/user";
 
@@ -97,9 +95,9 @@ const router = createBrowserRouter([
       {
         path: "/admin/user/:userId",
         element: (
-          <IsConnectAdmin>
+          <AuthProtected roles={[USER_ROLES.admin]}>
             <UserInfo />
-          </IsConnectAdmin>
+          </AuthProtected>
         ),
       },
     ],
@@ -112,9 +110,9 @@ const router = createBrowserRouter([
       {
         path: "/tutorials/createTutorial",
         element: (
-          <IsConnectAdmin>
+          <AuthProtected roles={[USER_ROLES.admin]}>
             <CreateTutorialPage />
-          </IsConnectAdmin>
+          </AuthProtected>
         ),
       },
       {
@@ -124,25 +122,25 @@ const router = createBrowserRouter([
       {
         path: "/tutorials/updateTutorial/:tutorialId",
         element: (
-          <IsConnectAdmin>
+          <AuthProtected roles={[USER_ROLES.admin]}>
             <UpdateTutorialPage />
-          </IsConnectAdmin>
+          </AuthProtected>
         ),
       },
       {
         path: "/formations/:formationId",
         element: (
-          <IsConnectAdmin>
+          <AuthProtected roles={[USER_ROLES.admin]}>
             <SelectTutorialPage />
-          </IsConnectAdmin>
+          </AuthProtected>
         ),
       },
       {
         path: "/formations/parcours",
         element: (
-          <IsConnectUser>
+          <AuthProtected roles={[USER_ROLES.user]}>
             <Parcours />
-          </IsConnectUser>
+          </AuthProtected>
         ),
       },
       {
