@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import Bravo from "../../assets/pictures/bravo 1.png";
 
 function ContainerBravoTutorial({ dataTutorial }) {
- return (
+  return (
     <div>
       <p className="pTutoBravo">Bravo</p>
       <div className="encartBravo">
