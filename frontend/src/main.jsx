@@ -31,6 +31,7 @@ import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
 import ErrorPage from "./pages/ErrorPage";
 import Error404 from "./pages/Error404";
+import SendEmailUser from "./pages/sendEmailUser/SendEmailUser";
 import AuthProtected from "./services/AuthProtected";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 import USER_ROLES from "./constants/user";
@@ -174,6 +175,10 @@ const router = createBrowserRouter([
         element: <SearchPage />,
       },
       { path: "/video-tutorial", element: <ContainerTutoPlateform /> },
+      {
+        path: "/sendEmailUser",
+        element: <SendEmailUser />,
+      },
     ],
   },
   {
