@@ -8,6 +8,7 @@ const registerRouter = require("./registerRouter");
 const loginRouter = require("./loginRouter");
 const stepRouter = require("./stepRouter");
 const userRouter = require("./userRouter");
+const sendEmailRouter = require("./sendEmailRouter");
 
 router.use("/tutorialbyicon", tutorialByIconRouter);
 router.use("/tutorials", tutorialRouter);
@@ -16,5 +17,6 @@ router.use("/register", registerRouter);
 router.use("/login", loginRouter);
 router.use("/steps", stepRouter);
 router.use("/users", userRouter);
+router.use("/sendEmailUser", sendEmailRouter);
 
 module.exports = router;
