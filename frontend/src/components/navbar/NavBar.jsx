@@ -33,8 +33,7 @@ function Navbar() {
   useEffect(() => {
     setIsLoggedIn(tokenIsValid);
   }, [tokenIsValid, isLoggedIn]);
-  console.info("tokenIsValid", tokenIsValid);
-  console.info("isLoggedIn", isLoggedIn);
+
   return (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
       <Link to="/" onClick={() => handleClickShowLinksIfIsOpen()}>
@@ -63,7 +62,11 @@ function Navbar() {
         )}
         {isLoggedIn &&
           (adminRole ? (
-            <Link type="button" to="/profile">
+            <Link
+              type="button"
+              onClick={() => handleClickShowLinksIfIsOpen()}
+              to="/profile"
+            >
               <img
                 className="admin-icon"
                 src={AdminIcon}

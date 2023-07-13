@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 
 function SortMyReward({
-  tutoId,
+  icon,
   iconFormation,
   nameTutorial,
   progress,
   selectionSection,
   sectionNumber,
 }) {
+  const [tutoId, setTutoId] = useState(0);
+
   if (selectionSection !== sectionNumber) {
     return null;
   }
+
+  useEffect(() => {
+    setTutoId(icon.tutoId);
+  }, [icon]);
 
   return (
     <div className="sortMyReward">
@@ -34,7 +40,9 @@ function SortMyReward({
 }
 export default SortMyReward;
 SortMyReward.propTypes = {
-  tutoId: PropTypes.number.isRequired,
+  icon: PropTypes.shape({
+    tutoId: PropTypes.number.isRequired,
+  }).isRequired,
   iconFormation: PropTypes.string.isRequired,
   nameTutorial: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,
