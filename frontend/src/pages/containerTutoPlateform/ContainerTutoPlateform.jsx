@@ -1,14 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import Pouce from "../../assets/pouce.png";
 import Cible from "../../assets/pictures/cible.png";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
+import { decodeTokenAndExtractRole } from "../../services/authService";
+import { fetcherUSerById } from "../../services/userService";
 
 function ContainerTutoPlateform() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { isDesktop } = useContext(IsDesktopContext);
+  const { userId } = decodeTokenAndExtractRole();
+  const [userLevel, setUserLevel] = useState(0);
+
   setNameMenu("Prise en main de la plateforme");
+
+  useEffect(() => {
+    fetcherUSerById(`users`, userId)
+      .then((data) => {
+        setUserLevel(data.level);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className="container-ObjectifTutorial">
       <div className="container-Objectif">
@@ -37,9 +53,21 @@ function ContainerTutoPlateform() {
         <div className="VideoPlateform" />
       </div>
       <div>
-        <ButtonTutorial nextOrPreview="containerButtonVideoPlateform" path="/">
-          Valider
-        </ButtonTutorial>
+        {userLevel !== null ? (
+          <ButtonTutorial
+            nextOrPreview="containerButtonVideoPlateform"
+            path="/formations"
+          >
+            Débuter ma formation
+          </ButtonTutorial>
+        ) : (
+          <ButtonTutorial
+            nextOrPreview="containerButtonVideoPlateform"
+            path="/LevelUser"
+          >
+            Débuter ma formation
+          </ButtonTutorial>
+        )}
       </div>
     </div>
   );
