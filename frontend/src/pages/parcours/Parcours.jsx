@@ -121,6 +121,7 @@ function Parcours() {
               if (steps[index].total === 0) {
                 return (
                   <SortMyReward
+                    userId={userId}
                     icon={icon}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
@@ -147,6 +148,7 @@ function Parcours() {
               if (steps[index].total > 1 && steps[index].total < 99) {
                 return (
                   <SortMyReward
+                    userId={userId}
                     icon={icon}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
@@ -173,6 +175,7 @@ function Parcours() {
               if (steps[index].total === 100) {
                 return (
                   <SortMyReward
+                    userId={userId}
                     icon={icon}
                     iconFormation={icon.iconURL}
                     nameTutorial={icon.name}
@@ -197,6 +200,7 @@ function Parcours() {
             selectionSection === 4 &&
             filteredTutorialsLevel.map((icon, index) => (
               <SortMyReward
+                userId={userId}
                 icon={icon}
                 iconFormation={icon.iconURL}
                 nameTutorial={icon.name}
