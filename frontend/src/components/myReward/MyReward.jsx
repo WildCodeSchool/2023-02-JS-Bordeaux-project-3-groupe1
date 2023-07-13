@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function MyReward({ icon, userLevel, filteredTutorialsLevel }) {
-  const [isCompleted, setIsCompleted] = useState([]);
-  const [iconUrl, setIconUrl] = useState([]);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [iconUrl, setIconUrl] = useState(false);
+  const [formationId, setFormationId] = useState(0);
 
-  const level1 = filteredTutorialsLevel.find(
-    (tuto) => tuto.levelTuto === 1 && tuto.total_stepsTotal1
-  )?.total_stepsTotal;
+  const tutorialsByFormation = filteredTutorialsLevel.filter(
+    (tutoriel) => tutoriel.formationID === icon.id
+  );
 
-  const level2 = filteredTutorialsLevel.find(
-    (tuto) => tuto.levelTuto === 2 && tuto.total_stepsTotal
-  )?.total_stepsTotal;
+  const level1 =
+    tutorialsByFormation.find((tuto) => tuto.levelTuto === 1)
+      ?.total_stepsTotal ?? 0;
 
-  const totalSteps = filteredTutorialsLevel.find(
-    (tuto) => tuto.NB_tuto
-  )?.NB_tuto;
+  const level2 =
+    tutorialsByFormation.find((tuto) => tuto.levelTuto === 2)
+      ?.total_stepsTotal ?? 0;
+
+  const totalSteps = tutorialsByFormation.find((tuto) => tuto.NB_tuto)?.NB_tuto;
 
   useEffect(() => {
     if (userLevel === 1) {
@@ -28,19 +32,22 @@ function MyReward({ icon, userLevel, filteredTutorialsLevel }) {
 
     if (isCompleted) {
       setIconUrl(
-        filteredTutorialsLevel
+        tutorialsByFormation
           .filter((tutorial) => tutorial.NB_tuto === totalSteps)
           .some((tutorial) => tutorial.iconURL === icon.iconURL)
       );
     }
-  }, [filteredTutorialsLevel]);
+    setFormationId(icon.id);
+  }, [tutorialsByFormation]);
 
   return (
-    <img
-      className={iconUrl ? "myRewardIcons" : "myRewardIconsChange"}
-      src={icon.iconURL}
-      alt={icon.name}
-    />
+    <Link to={`/formations/tutorials/${formationId}`}>
+      <img
+        className={iconUrl ? "myRewardIcons" : "myRewardIconsChange"}
+        src={icon.iconURL}
+        alt={icon.name}
+      />
+    </Link>
   );
 }
 
@@ -49,6 +56,7 @@ MyReward.propTypes = {
   icon: PropTypes.shape({
     iconURL: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
   filteredTutorialsLevel: PropTypes.arrayOf(
     PropTypes.shape({

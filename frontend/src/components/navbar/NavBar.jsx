@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
 import Logo from "../../assets/logo.png";
 import Loupe from "../../assets/loupe.png";
 import UserIcon from "../../assets/usericon.png";
@@ -10,15 +11,23 @@ import { decodeTokenAndExtractRole } from "../../services/authService";
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
   const { userRole, adminRole, tokenIsValid } = decodeTokenAndExtractRole();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const { isLoggedIn, setIsLoggedIn } = useContext(
+    ButtonStateConnectionContext
+  );
+  const handleClickShowLinksIfIsOpen = () => {
+    if (showLinks) {
+      setShowLinks(false);
+    }
+  };
   const handleShowLinks = () => {
     setShowLinks(!showLinks);
   };
 
   const handleDisconnected = () => {
     localStorage.clear();
-    setShowLinks(!showLinks);
+    if (showLinks) {
+      setShowLinks(false);
+    }
   };
 
   useEffect(() => {
@@ -27,18 +36,25 @@ function Navbar() {
 
   return (
     <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
-      <Link onClick={() => handleShowLinks()} to="/">
+      <Link to="/" onClick={() => handleClickShowLinksIfIsOpen()}>
         <img className="logo" src={Logo} alt="logo ligne bleue" />
       </Link>
       <div className="container-icons">
-        <Link onClick={() => handleShowLinks()} to="/formations/parcours">
+        <Link
+          to="/formations/parcours"
+          onClick={() => handleClickShowLinksIfIsOpen()}
+        >
           <img className="points" src={Points} alt="points" />
         </Link>
-        <Link onClick={() => handleShowLinks()} to="/search">
+        <Link to="/search" onClick={() => handleClickShowLinksIfIsOpen()}>
           <img className="loupe" src={Loupe} alt="loupe recherche" />
         </Link>
         {!isLoggedIn && (
-          <button className="button-connexion" type="button">
+          <button
+            className="button-connexion"
+            type="button"
+            onClick={() => handleClickShowLinksIfIsOpen()}
+          >
             <Link to="/login" className="se-connecter">
               Connexion
             </Link>
@@ -46,7 +62,11 @@ function Navbar() {
         )}
         {isLoggedIn &&
           (adminRole ? (
-            <Link onClick={() => handleShowLinks()} type="button" to="/profile">
+            <Link
+              type="button"
+              onClick={() => handleClickShowLinksIfIsOpen()}
+              to="/profile"
+            >
               <img
                 className="admin-icon"
                 src={AdminIcon}
@@ -54,7 +74,11 @@ function Navbar() {
               />
             </Link>
           ) : (
-            <Link onClick={() => handleShowLinks()} type="button" to="/profile">
+            <Link
+              type="button"
+              to="/profile"
+              onClick={() => handleClickShowLinksIfIsOpen()}
+            >
               <img
                 className="user-icon"
                 src={UserIcon}
@@ -65,11 +89,7 @@ function Navbar() {
       </div>
       <ul className="navbar_links">
         <li className="navbar_item">
-          <Link
-            onClick={() => handleShowLinks()}
-            className="navbar_link"
-            to="/search"
-          >
+          <Link className="navbar_link" to="/search">
             Rechercher un tutoriel
           </Link>
         </li>
@@ -87,11 +107,7 @@ function Navbar() {
         {isLoggedIn && userRole && (
           <>
             <li className="navbar_item">
-              <Link
-                className="navbar_link"
-                onClick={handleShowLinks}
-                to="/formations/parcours"
-              >
+              <Link className="navbar_link" to="/formations/parcours">
                 Mon parcours
               </Link>
             </li>
@@ -117,27 +133,14 @@ function Navbar() {
               <Link
                 className="navbar_link"
                 onClick={() => handleShowLinks()}
-                to="/tutorials/createTutorial"
-              >
-                Ajouter un tutoriel
-              </Link>
-            </li>
-            <li className="navbar_item">
-              <Link
-                className="navbar_link"
-                onClick={() => handleShowLinks()}
                 to="/formations"
               >
                 Liste des formations
               </Link>
             </li>
             <li className="navbar_item">
-              <Link
-                className="navbar_link"
-                onClick={() => handleShowLinks()}
-                to="/admin/gestion"
-              >
-                Liste de utilisateurs
+              <Link className="navbar_link" to="/tutorials/createTutorial">
+                Ajouter un tutoriel
               </Link>
             </li>
             <li className="navbar_item">
@@ -148,7 +151,11 @@ function Navbar() {
           </>
         )}
       </ul>
-      <button className="navbar_burger" type="button" onClick={handleShowLinks}>
+      <button
+        className="navbar_burger"
+        type="button"
+        onClick={() => handleShowLinks()}
+      >
         <span className="burger_bar" />
       </button>
     </nav>

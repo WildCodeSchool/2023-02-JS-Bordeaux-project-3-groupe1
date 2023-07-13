@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 import { sender, fetcherUSerById } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
+import { IsDesktopContext } from "../../contexts/IsDesktopContext";
+import profile from "../../assets/pictures/profil.png";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
@@ -16,6 +18,7 @@ function ModificationPage() {
   const [gender, setGender] = useState("Masculin");
   const [previewUrl, setPreviewUrl] = useState(null);
   const { userId } = decodeTokenAndExtractRole();
+  const { isDesktop } = useContext(IsDesktopContext);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -124,94 +127,105 @@ function ModificationPage() {
           style={{ display: "none" }}
           onChange={handleFile}
         />
-        <div className="rapha">
+        <div className="photoProfil">
           {previewUrl && (
-            <img className="imageRapha" src={previewUrl} alt="Preview" />
+            <img
+              className="photoProfilIdentification"
+              src={previewUrl}
+              alt="Preview"
+            />
           )}
         </div>
+        {isDesktop ? (
+          <img className="pictureProfile" src={profile} alt="profile" />
+        ) : (
+          <div />
+        )}
       </div>
-      <div className="firstBlocInput">
-        <label className="denomination" htmlFor="name-user">
-          Nom
-        </label>
-        <input
-          className="inputModificationProfile"
-          type="text"
-          placeholder="Lafond"
-          name="lastname"
-          value={lastname}
-          onChange={onChange}
-        />
-      </div>
-      <div className="secondBlocInput">
-        <label className="denomination" htmlFor="first-name-user">
-          Prénom
-        </label>
-        <input
-          className="inputModificationProfile"
-          type="text"
-          placeholder="Pierre"
-          name="firstname"
-          value={firstname}
-          onChange={onChange}
-        />
-      </div>
-      <div className="thirdBlocInput">
-        <label className="denomination" htmlFor="mail">
-          Mail
-        </label>
-        <input
-          className="inputModificationProfile"
-          id="email"
-          type="text"
-          placeholder="pierre.lafond@gmail.com"
-          name="email"
-          value={email}
-          onChange={onChange}
-        />
-      </div>
-      <div className="fourthBlocInput">
-        <label className="denomination" htmlFor="city">
-          Ville
-        </label>
-        <input
-          className="inputModificationProfile"
-          type="text"
-          placeholder="Paris"
-          name="city"
-          value={city}
-          onChange={onChange}
-        />
-      </div>
-      <div className="BlocPostalBirthday">
-        <div className="fifthBlocInput">
-          <label className="denomination" htmlFor="postal-code">
-            Code postal
+      <div className="containerBlocInputModificationProfile">
+        <div className="firstBlocInput">
+          <label className="denomination" htmlFor="name-user">
+            Nom
           </label>
           <input
-            className="inputModificationProfileBloc"
+            className="inputModificationProfile"
             type="text"
-            placeholder="75000"
-            name="location"
-            value={location}
+            placeholder="Lafond"
+            name="lastname"
+            value={lastname}
             onChange={onChange}
           />
         </div>
-        <div className="sixthBlocInput">
-          <label className="denomination" htmlFor="start">
-            Date de naissance
+        <div className="secondBlocInput">
+          <label className="denomination" htmlFor="first-name-user">
+            Prénom
           </label>
           <input
-            className="inputModificationProfileBloc"
-            type="date"
-            id="birthdayDate"
-            placeholder="1953-03-26"
-            min="1900-01-01"
-            max="2018-12-31"
-            name="birthdayDate"
-            value={birthdayDate}
+            className="inputModificationProfile"
+            type="text"
+            placeholder="Pierre"
+            name="firstname"
+            value={firstname}
             onChange={onChange}
           />
+        </div>
+        <div className="thirdBlocInput">
+          <label className="denomination" htmlFor="mail">
+            Mail
+          </label>
+          <input
+            className="inputModificationProfile"
+            id="email"
+            type="text"
+            placeholder="pierre.lafond@gmail.com"
+            name="email"
+            value={email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="fourthBlocInput">
+          <label className="denomination" htmlFor="city">
+            Ville
+          </label>
+          <input
+            className="inputModificationProfile"
+            type="text"
+            placeholder="Paris"
+            name="city"
+            value={city}
+            onChange={onChange}
+          />
+        </div>
+        <div className="BlocPostalBirthday">
+          <div className="fifthBlocInput">
+            <label className="denominationfifth" htmlFor="postal-code">
+              Code postal
+            </label>
+            <input
+              className="inputModificationProfileBloc"
+              type="text"
+              placeholder="75000"
+              name="location"
+              value={location}
+              onChange={onChange}
+            />
+          </div>
+          <div className="sixthBlocInput">
+            <label className="denominationBirthday" htmlFor="start">
+              Date de naissance
+            </label>
+            <input
+              className="inputModificationProfileBloc"
+              type="date"
+              id="birthdayDate"
+              placeholder="1953-03-26"
+              min="1900-01-01"
+              max="2018-12-31"
+              name="birthdayDate"
+              value={birthdayDate}
+              onChange={onChange}
+            />
+          </div>
         </div>
       </div>
       <div className="sixthBlocInput">
