@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
+import { ButtonStateConnectionProvider } from "./contexts/ButtonStateConnectionContext";
 import Root from "./routes/Root";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
@@ -185,9 +186,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <IsDesktopProvider>
-      <RouterProvider router={router} />
-      <ToastContainer />
-    </IsDesktopProvider>
+    <ButtonStateConnectionProvider>
+      <IsDesktopProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </IsDesktopProvider>
+    </ButtonStateConnectionProvider>
   </React.StrictMode>
 );
