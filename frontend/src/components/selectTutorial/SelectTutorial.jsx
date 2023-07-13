@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { fetcher } from "../../services/api";
 import { deleteTutorial } from "../../services/tutorialService";
 import student from "../../assets/student.png";
@@ -10,6 +10,7 @@ import ConfirmChoiceDelete from "../modal/ConfirmChoiceDelete";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 
 function SelectTutorial(props) {
+  const { formationId } = useParams();
   const { dataTutorial } = props;
   const [tutorialList, setTutorialList] = useState(dataTutorial);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,13 +36,13 @@ function SelectTutorial(props) {
 
   useEffect(() => {
     const selectedFormation = formations?.find(
-      (formation) => formation.id === dataTutorial[0]?.formation_id
+      (formation) => formation.id === parseInt(formationId, 10)
     );
     if (selectedFormation) {
       const { name } = selectedFormation;
       setNameFormation(name);
     }
-  }, [formations]);
+  }, [formations, formationId]);
 
   const handleOpenModal = (tutorialId) => {
     setSelectedTutorialId(tutorialId);

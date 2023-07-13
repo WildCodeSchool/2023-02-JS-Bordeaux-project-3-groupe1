@@ -96,6 +96,19 @@ const destroy = async (req, res) => {
   }
 };
 
+const auth = async (req, res) => {
+  try {
+    const { decodedToken } = req.body;
+    if (decodedToken) {
+      res.status(200).send({ token: decodedToken });
+    } else {
+      res.status(404).send({ message: "Invalid token" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   getTutorialByUserJustOneUser,
   getAll,
@@ -104,4 +117,5 @@ module.exports = {
   updateLevel,
   updateRole,
   destroy,
+  auth,
 };
