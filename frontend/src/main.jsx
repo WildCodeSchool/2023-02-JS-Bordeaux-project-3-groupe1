@@ -8,6 +8,7 @@ import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { IsDesktopProvider } from "./contexts/IsDesktopContext";
 import App from "./App";
+import { ButtonStateConnectionProvider } from "./contexts/ButtonStateConnectionContext";
 import Formation from "./pages/formation/Formation";
 import Home from "./pages/home/Home";
 import TutorialChoice from "./pages/tutorialChoice/TutorialChoice";
@@ -33,6 +34,7 @@ import Error404 from "./pages/Error404";
 import AuthProtected from "./services/AuthProtected";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
 import USER_ROLES from "./constants/user";
+
 
 const router = createBrowserRouter([
   {
@@ -117,7 +119,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/formations",
-        element: <Formation />,
+        element: (
+          <ChoiceLevelUser>
+            <Formation />
+          </ChoiceLevelUser>
+        ),
       },
       {
         path: "/tutorials/updateTutorial/:tutorialId",
@@ -178,9 +184,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <IsDesktopProvider>
-      <RouterProvider router={router} />
-      <ToastContainer />
-    </IsDesktopProvider>
+    <ButtonStateConnectionProvider>
+      <IsDesktopProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </IsDesktopProvider>
+    </ButtonStateConnectionProvider>
   </React.StrictMode>
 );

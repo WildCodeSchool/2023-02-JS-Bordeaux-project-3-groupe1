@@ -1,9 +1,25 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageAccueil from "../../assets/pictures/femmebureau.svg";
 import Presenter from "../../assets/pictures/presentatrice.png";
 import "../../assets/styles/variables.scss";
+import { fetcherUSerById } from "../../services/userService";
+import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function Home() {
+  const { userId } = decodeTokenAndExtractRole();
+  const [userLevel, setUserLevel] = useState(0);
+
+  useEffect(() => {
+    fetcherUSerById(`users`, userId)
+      .then((data) => {
+        setUserLevel(data.level);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <main className="mainHome">
       <div className="header">
@@ -20,11 +36,19 @@ function Home() {
         </h2>
       </div>
       <div className="button_debuter_formation">
-        <Link to="/level">
-          <button className="button_Debuter_Formation" type="button">
-            Débuter ma formation
-          </button>
-        </Link>
+        {userLevel !== null ? (
+          <Link to="/formations">
+            <button className="button_Debuter_Formation" type="button">
+              Débuter ma formation
+            </button>
+          </Link>
+        ) : (
+          <Link to="/level">
+            <button className="button_Debuter_Formation" type="button">
+              Débuter ma formation
+            </button>
+          </Link>
+        )}
       </div>
       <div className="presenter">
         <img className="presenter_img" src={Presenter} alt="présentatrice" />

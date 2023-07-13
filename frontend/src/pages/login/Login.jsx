@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
 import invisible from "../../assets/invisible.png";
 import visible from "../../assets/visible.png";
 
 function Login() {
+  const { setIsLoggedIn } = useContext(ButtonStateConnectionContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -36,6 +38,7 @@ function Login() {
       );
       const token = response.data;
       localStorage.setItem("token", token);
+      setIsLoggedIn(true);
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -91,7 +94,7 @@ function Login() {
           </Link>
           <br />
           <br />
-          <button className="login-btn" type="submit" onClick={handleSubmit}>
+          <button className="login-btn" type="submit">
             Connexion
           </button>
           <p className="sentence">Pas de compte?</p>

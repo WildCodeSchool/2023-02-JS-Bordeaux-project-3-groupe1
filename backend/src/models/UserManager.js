@@ -114,6 +114,10 @@ const updateUserRole = async (user, userId) => {
 const deleteUser = async (id) => {
   const userQuery = "DELETE users.* FROM users WHERE id = ?";
   try {
+    const usersTutorialsQuery = "DELETE FROM userstutorials WHERE user_id = ?";
+
+    await database.query(usersTutorialsQuery, [id]);
+
     const response = await database.query(userQuery, [id]);
     if (response.affectedRows === 0) {
       throw new Error(`User with ID ${id} not found`);
