@@ -130,6 +130,11 @@ function Navbar() {
         {isLoggedIn && adminRole && (
           <>
             <li className="navbar_item">
+              <Link className="navbar_link" to="/tutorials/createTutorial">
+                Ajouter un tutoriel
+              </Link>
+            </li>
+            <li className="navbar_item">
               <Link
                 className="navbar_link"
                 onClick={() => handleShowLinks()}
@@ -139,8 +144,12 @@ function Navbar() {
               </Link>
             </li>
             <li className="navbar_item">
-              <Link className="navbar_link" to="/tutorials/createTutorial">
-                Ajouter un tutoriel
+              <Link
+                className="navbar_link"
+                onClick={() => handleShowLinks()}
+                to="/admin/gestion"
+              >
+                Liste des utilisateurs
               </Link>
             </li>
             <li className="navbar_item">
