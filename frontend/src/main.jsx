@@ -74,7 +74,7 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: (
-          <AuthProtected roles={[USER_ROLES.user]}>
+          <AuthProtected roles={[USER_ROLES.user, USER_ROLES.admin]}>
             <Profile />
           </AuthProtected>
         ),
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
       {
         path: "/modificationProfile",
         element: (
-          <AuthProtected roles={[USER_ROLES.user]}>
+          <AuthProtected roles={[USER_ROLES.user, USER_ROLES.admin]}>
             <ModificationProfile />
           </AuthProtected>
         ),

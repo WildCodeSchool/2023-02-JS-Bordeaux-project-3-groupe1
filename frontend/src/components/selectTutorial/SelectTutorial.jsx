@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { fetcher } from "../../services/api";
@@ -8,6 +9,7 @@ import student from "../../assets/student.png";
 import starGrey from "../../assets/starGrey.png";
 import ConfirmChoiceDelete from "../modal/ConfirmChoiceDelete";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
+import formation3 from "../../assets/pictures/formation3.png";
 
 function SelectTutorial(props) {
   const { formationId } = useParams();
@@ -19,6 +21,10 @@ function SelectTutorial(props) {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const [formations, setFormations] = useState([]);
   const [nameFormation, setNameFormation] = useState("");
+
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
 
   useEffect(() => {
     setNameMenu(nameFormation);
@@ -91,6 +97,7 @@ function SelectTutorial(props) {
 
   return (
     <div className="container-selectTutorial">
+      {isDesktop && <img src={formation3} alt="formation-icon" />}
       <ul className="container-selectTutorial-preview">
         {tutorialList.map((item) => (
           <li key={item.id}>
