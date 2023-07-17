@@ -9,6 +9,10 @@
   label {
     width: 80%;
     color: $app-secondary-fonts-color-60;
+
+    @include tablet {
+      font-size: 1.4rem;
+      }
   }
 
   input {
@@ -20,10 +24,20 @@
     padding-left: 4%;
     font-size: 1.2rem;
     color: $app-secondary-fonts-color;
+
+    @include tablet {
+      font-size: 1.4rem;
+      height: 3rem;
+      }
   }
 
   h3 {
     color: $app-primary-fonts-color;
+
+      @include tablet {
+        margin: 2%;
+        font-size: 1.6rem;
+    }
   }
 
   .container-createVideoTutorial-preview {
@@ -34,9 +48,17 @@
     opacity: 67%;
     margin: 4% 0;
 
+    @include tablet {
+      height: 30rem;
+  }
+
     iframe {
       height: 20rem;
       width: 100%;
+
+      @include tablet {
+        height: 30rem;
+    }
     }
 
     .container-video-preview-logo {

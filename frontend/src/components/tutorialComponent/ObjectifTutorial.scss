@@ -15,10 +15,20 @@
       flex-direction: column;
       align-items: center;
 
+      @include tablet {
+        width: 30%;
+        font-size: 1.3rem;
+      }
+
       img {
         padding-right: 10%;
         height: 100px;
         width: 140px;
+
+        @include tablet {
+          height: 140px;
+          width: 180px;
+        }
       }
 
       .container-title-tuto {
@@ -50,9 +60,6 @@
       border-radius: 5%;
       background-color: $app-secondary-fonts-color-2;
 
-      label {
-        padding: 4%;
-      }
 
       textarea {
         width: 90%;
@@ -62,6 +69,10 @@
         white-space: normal;
         color: $app-secondary-fonts-color;
         resize: none;
+
+        @include tablet {
+          font-size: 1.2rem;
+        }
       }
     }
   }
@@ -103,6 +114,9 @@
       p {
         width: 75%;
         color: $app-secondary-fonts-color-60;
+        @include tablet {
+          font-size: 1.4rem;
+        }
       }
 
       label {
@@ -115,7 +129,20 @@
         align-items: center;
         justify-content: center;
         margin-left: 20%;
+
+        @include tablet {
+        width: 34%;
+        font-size: 1.4rem;
+        height: 2.2rem;
+        }
       }
+    }
+
+    h3 {
+      @include tablet {
+        margin: 2%;
+        font-size: 1.6rem;
+        }
     }
 
     .container-explications-preview {
@@ -131,16 +158,6 @@
         width: 100%;
         justify-content: space-between;
         padding: 2%;
-
-        .space {
-          height: 20px;
-          width: 20px;
-        }
-
-        img {
-          height: 20px;
-          width: 20px;
-        }
       }
 
       .container-explications-preview-img {
@@ -153,6 +170,10 @@
         img {
           height: 100px;
           width: 100px;
+          @include tablet {
+            height: 200px;
+            width: 200px;
+            }
         }
 
         label {
@@ -171,6 +192,10 @@
           resize: none;
           overflow: hidden;
           color: $app-secondary-fonts-color;
+
+          @include tablet {
+            font-size: 1.2rem;
+          }
         }
       }
     }

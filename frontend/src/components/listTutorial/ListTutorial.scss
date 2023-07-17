@@ -5,9 +5,10 @@
 
   @include desktop {
     display: flex;
+    justify-content: space-evenly;
     width: 100vw;
     .hommebureau2 {
-      width: 45%;
+      width: 50%;
       height: 45%;
     }
   }
