@@ -21,7 +21,7 @@ function NameTutorial(props) {
   const [isUpdate, setIsUpdate] = useState(false);
   const [updatedTags, setUpdatedTags] = useState([]);
   const [isValid, setIsValid] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("Utiliser ligne bleu");
+  const [selectedValue, setSelectedValue] = useState("Utiliser ligne bleue");
 
   const {
     nameTutoPlaceholder,

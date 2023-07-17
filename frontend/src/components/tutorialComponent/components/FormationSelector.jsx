@@ -4,6 +4,11 @@ import PropTypes from "prop-types";
 function FormationSelector(props) {
   const { selectedValue, filteredValues, setSelectedValue } = props;
 
+  const updatedValues = filteredValues.map(value => value === selectedValue ? null : value);
+
+  const filteredValuesWithoutSelected = updatedValues.filter(value => value !== null);
+  
+
   return (
     <>
       <p>Choisir votre formation :</p>
@@ -12,7 +17,7 @@ function FormationSelector(props) {
         onChange={(e) => setSelectedValue(e.target.value)}
       >
         <option value={selectedValue ?? undefined}>{selectedValue}</option>
-        {filteredValues.map((value) => (
+        {filteredValuesWithoutSelected.map((value) => (
           <option key={value} value={value}>
             {value}
           </option>
