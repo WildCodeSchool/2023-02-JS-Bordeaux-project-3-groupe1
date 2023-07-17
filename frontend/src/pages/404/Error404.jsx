@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Facteur } from "../../assets/pictures/facteur.svg";
+import Facteur from "../../assets/pictures/facteur.svg";
 
 function Error404() {
   return (
