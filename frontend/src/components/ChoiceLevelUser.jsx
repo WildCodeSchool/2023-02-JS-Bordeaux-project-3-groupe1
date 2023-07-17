@@ -21,9 +21,9 @@ function ChoiceLevelUser({ children }) {
   }, []);
 
   useEffect(() => {
-    if (userLevel === null || (userLevel === 0 && !adminRole)) {
+    if ((userLevel === null || userLevel === 0) && !adminRole) {
       navigate("/level");
-    } else if (userLevel === 1 || userLevel === 2) {
+    } else if ((userLevel === 1 || userLevel === 2) && adminRole) {
       navigate("/formations");
     }
   }, [userLevel, navigate]);
