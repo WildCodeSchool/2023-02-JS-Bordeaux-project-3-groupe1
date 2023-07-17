@@ -10,6 +10,11 @@
   flex-direction: column;
   text-align: center;
 
+  @include tablet {
+    font-size: 1.2rem;
+    height: 7rem;
+  }
+
   .modal-actions {
     padding: 4%;
     display: flex;
@@ -17,6 +22,9 @@
     width: 100%;
 
     button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border: none;
       background-color: $app-button-primary-color;
       color: $app-secondary-fonts-color-5;
@@ -25,9 +33,18 @@
       width: 30%;
       padding: 1.5%;
       font-size: 1rem;
+
+      @include tablet {
+        font-size: 1.2rem;
+        height: 2rem;
+        width: 25%;
+      }
     }
 
     a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-color: $app-button-primary-color;
       color: $app-secondary-fonts-color-5;
       height: 1.8rem;
@@ -35,6 +52,12 @@
       width: 30%;
       padding: 1.5%;
       font-size: 1rem;
+
+      @include tablet {
+        font-size: 1.2rem;
+        height: 2rem;
+        width: 25%;
+      }
     }
   }
 }

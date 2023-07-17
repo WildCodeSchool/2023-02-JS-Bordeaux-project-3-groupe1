@@ -12,7 +12,7 @@
 
     @include tablet {
       font-size: 1.4rem;
-      }
+    }
   }
 
   input {
@@ -28,15 +28,15 @@
     @include tablet {
       font-size: 1.4rem;
       height: 3rem;
-      }
+    }
   }
 
   h3 {
     color: $app-primary-fonts-color;
 
-      @include tablet {
-        margin: 2%;
-        font-size: 1.6rem;
+    @include tablet {
+      margin: 2%;
+      font-size: 1.6rem;
     }
   }
 
@@ -50,7 +50,7 @@
 
     @include tablet {
       height: 30rem;
-  }
+    }
 
     iframe {
       height: 20rem;
@@ -58,7 +58,7 @@
 
       @include tablet {
         height: 30rem;
-    }
+      }
     }
 
     .container-video-preview-logo {

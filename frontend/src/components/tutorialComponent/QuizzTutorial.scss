@@ -11,7 +11,7 @@
 
     @include tablet {
       font-size: 1.4rem;
-      }
+    }
   }
 
   label:first-child {
@@ -31,7 +31,7 @@
     @include tablet {
       font-size: 1.4rem;
       height: 3rem;
-      }
+    }
   }
 
   #answer {
@@ -49,7 +49,7 @@
     @include tablet {
       margin: 2%;
       font-size: 1.6rem;
-  }
+    }
   }
 
   .container-quizz-preview {
@@ -64,7 +64,7 @@
       padding: 2%;
       @include tablet {
         font-size: 1.4rem;
-    }
+      }
     }
 
     p {
@@ -73,7 +73,7 @@
 
       @include tablet {
         font-size: 1.2rem;
-    }
+      }
     }
 
     .container-quizz-preview-answer {
@@ -98,7 +98,7 @@
         @include tablet {
           font-size: 1.4rem;
           height: 3rem;
-      }
+        }
       }
 
       button:active {
