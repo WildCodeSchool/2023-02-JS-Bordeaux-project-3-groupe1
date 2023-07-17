@@ -4,10 +4,13 @@ import PropTypes from "prop-types";
 function FormationSelector(props) {
   const { selectedValue, filteredValues, setSelectedValue } = props;
 
-  const updatedValues = filteredValues.map(value => value === selectedValue ? null : value);
+  const updatedValues = filteredValues.map((value) =>
+    value === selectedValue ? null : value
+  );
 
-  const filteredValuesWithoutSelected = updatedValues.filter(value => value !== null);
-  
+  const filteredValuesWithoutSelected = updatedValues.filter(
+    (value) => value !== null
+  );
 
   return (
     <>
