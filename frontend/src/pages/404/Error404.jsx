@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import facteur from "../../assets/pictures/facteur.svg";
+import Facteur from "../../assets/pictures/facteur.svg";
 
 function Error404() {
   return (
     <div className="main404">
       <h2 className="title404">404</h2>
-      <img className="facteur" src={facteur} alt="facteur" />
+      <img className="facteur" src={Facteur} alt="facteur" />
       <div className="text404">
         <h2 className="textStart">
           Cliquez
