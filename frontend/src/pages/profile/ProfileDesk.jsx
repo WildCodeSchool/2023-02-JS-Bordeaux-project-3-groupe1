@@ -11,16 +11,16 @@ function Profile() {
   const [userGender, setUserGender] = useState("M");
   const [userLastname, setUserLastname] = useState("Lafond");
   const [userFirstname, setUserFirstname] = useState("Pierre");
-  const [userMail, setUserMail] = useState("lafondpierre@gmail.com");
+  const [userMail, setUserMail] = useState("lafondpierre@.com");
   const [userPicture, setUserPicture] = useState("");
   useEffect(() => {
     fetcherUSerById("users", userId)
       .then((data) => {
         if (data) {
           setUserGender(data.gender === "Masculin" ? "M" : "Mme");
-          setUserLastname(data.lastname || "Lafond");
-          setUserFirstname(data.firstname || "Pierre");
-          setUserMail(data.email || "lafondpierre@gmail.com");
+          setUserLastname(data.lastname);
+          setUserFirstname(data.firstname);
+          setUserMail(data.email);
           setUserPicture(data.picture);
         }
       })
