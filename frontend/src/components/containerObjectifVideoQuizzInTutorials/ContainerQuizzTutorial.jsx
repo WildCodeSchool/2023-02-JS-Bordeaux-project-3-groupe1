@@ -19,7 +19,7 @@ function ContainerQuizzTutorial({
   return (
     <>
       <div>
-        <p className="pTutoQuizz">Quizz</p>
+        <h3 className="pTutoQuizz">Quizz</h3>
       </div>
       <div className="SpaceQuizz">
         <div className="container-Quizz-preview">
