@@ -5,25 +5,17 @@
   margin: 10px auto 0 auto;
   justify-content: center;
   gap: 10px;
-  // padding-top: 4%;
-  // margin-bottom: 1rem;
-  // padding-bottom: 1rem;
 
-  // @include tablet {
-  //   width: 744px;
-  // }
   @include desktop {
-       /* border: 2px solid blue; */
        margin: 20px auto 20px auto;
        width: initial;
-       /* width: 80vw !important; */
        min-height: 650px;
-      //  height: 797px;
        display: grid;
        grid-template-columns: repeat(8, 1fr);
        grid-template-rows: repeat(4, 1fr);
        column-gap: 3vw;
   }
+  
   @include minHeight850px {
     column-gap: 10vw;
     height: 777px;
