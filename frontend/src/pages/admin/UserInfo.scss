@@ -1,10 +1,18 @@
 .container-userInfo {
   width: 100vw;
-  height: calc(100vh - 45px);
+  min-height: calc(100vh - 50px);
   padding-top: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  @include tablet {
+    padding-top: 14%;
+  }
+
+  @include desktop {
+    padding-top: 10%;
+  }
 
   .container-userInfo-picture {
     background-color: $app-supporting-color;
@@ -12,6 +20,16 @@
     width: 140px;
     height: 140px;
     border-radius: 50%;
+
+    @include tablet {
+      width: 180px;
+      height: 180px;
+    }
+
+    @include desktop {
+      width: 220px;
+      height: 220px;
+    }
   }
 
   img {
@@ -19,6 +37,18 @@
     width: 140px;
     height: 140px;
     border-radius: 50%;
+    
+    @include tablet {
+      width: 180px;
+      height: 180px;
+      margin: 5%;
+    }
+
+    @include desktop {
+      width: 220px;
+      height: 220px;
+      margin: 2%;
+    }
   }
 
   .container-userInfo-infos {
@@ -27,8 +57,30 @@
     font-size: 1.2rem;
     margin-top: 10%;
 
+    @include tablet {
+      margin-top: 2%;
+    }
+  
+    @include desktop {
+      margin-top: 2%;
+      width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
     h3 {
       margin: 6%;
+
+      @include tablet {
+        margin: 5%;
+        font-size: 1.6rem;
+      }
+    
+      @include desktop {
+        margin-top: 1%;
+        font-size: 1.4rem;
+        width: 40%;
+      }
     }
   }
 }
