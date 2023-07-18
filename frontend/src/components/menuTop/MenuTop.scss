@@ -3,11 +3,11 @@
 .container-menuTitle {
   width: 100vw;
   height: 75px;
-  padding-left: 4%;
   background-color: $app-menuTop-color;
   display: flex;
   align-items: center;
   color: $app-secondary-fonts-color-5;
+
   @include tablet {
     font-size: 1.5rem;
   }
@@ -16,7 +16,7 @@
     margin-left: 1rem;
     @include desktop {
       margin: 0;
-      width: 100%;
+      width: calc(100% - 14%);
       text-align: center;
     }
   }
@@ -24,6 +24,7 @@
   button {
     background-color: transparent;
     border: none;
+    padding-left: 4%;
 
     img {
       width: 1.5rem;
@@ -34,6 +35,7 @@
   a {
     background-color: transparent;
     border: none;
+    padding-left: 4%;
 
     img {
       width: 1.2rem;
