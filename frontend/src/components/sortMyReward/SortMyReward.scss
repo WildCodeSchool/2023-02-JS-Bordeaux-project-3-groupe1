@@ -1,9 +1,6 @@
 .sortMyReward {
   margin: 10px;
   width: 100px;
-  &:nth-child(2) {
-    margin-top: 1.8rem;
-  }
 
   .titleSortMyReward {
     text-align: center;
@@ -11,6 +8,11 @@
     font-size: 0.8rem;
     margin-left: -2rem;
     width: 169px;
+    height: 30px;
+    @include tablet {
+      font-size: $app-heading-four-tablet;
+      height: 60px;
+    }
   }
 }
 
@@ -23,8 +25,14 @@
 
 .iconFormationReward {
   position: absolute;
-  width: 70px;
+  width: $app-width-icon-formation-mobil;
   transform: translate(-50%, 50%);
   left: 50%;
   bottom: 55%;
+  @include tablet {
+    width: $app-width-icon-formation-tablet;
+  }
 }
+
+// $app-heading-two-tablet: 2rem;
+// $app-heading-three-tablet: 1.5rem;

@@ -13,6 +13,12 @@
   margin-bottom: 2rem;
   .bravoPicture {
     height: 12rem;
+    @include tablet {
+      height: 14rem;
+    }
+    @include desktop {
+      height: 21rem;
+    }
   }
   .pBravoPicture {
     text-align: center;

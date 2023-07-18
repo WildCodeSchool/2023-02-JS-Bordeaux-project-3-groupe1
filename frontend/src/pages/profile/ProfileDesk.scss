@@ -1,9 +1,10 @@
 .main-profil {
+  padding-top: 12%;
   .titre-profil {
     text-align: center;
     color: $app-primary-fonts-color;
     font-style: $app-primary-font;
-    padding-top: 10px;
+    font-size: 1.8rem;
   }
   .photo-profil {
     display: flex;
@@ -12,7 +13,24 @@
     width: 35%;
     border-radius: 50%;
     margin-left: 34%;
+
+    @include desktop {
+      margin: auto;
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+    }
+
+    img {
+      @include desktop {
+        margin: auto;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+      }
+    }
   }
+
   .container-formulaire {
     display: flex;
     flex-direction: column;
@@ -59,37 +77,56 @@
       margin-left: 70px;
     }
   }
+
   .boutons-profil {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    .bouton-modifier {
-      width: 20%;
-      border: 0;
-      line-height: 2.5;
-      padding: 0 20px;
-      font-size: 1rem;
-      text-align: center;
-      color: $app-corporate-color;
-      border-radius: 10px;
-      background-color: $app-corporate-color-2;
-      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-      margin: 2rem 0 0 5rem;
-    }
-    .bouton-voir-parcours {
-      width: 20%;
-      border: 0;
-      line-height: 2.5;
-      padding: 0 20px;
-      font-size: 1rem;
-      text-align: center;
-      color: $app-secondary-fonts-color-50;
-      border-radius: 10px;
-      background-color: $app-corporate-color;
-      box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-      margin: 1rem 0 0 5rem;
+    align-items: center;
+    width: 100%;
+    margin: 6% 0;
+
+    a {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin: 0;
+      .bouton-modifier {
+        width: 40%;
+        border: 0;
+        line-height: 2.5;
+        padding: 0 20px;
+        font-size: 1rem;
+        text-align: center;
+        color: $app-corporate-color;
+        border-radius: 10px;
+        background-color: $app-corporate-color-2;
+        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+          inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+        margin: 1% 0;
+
+        @include desktop {
+          width: 20%;
+        }
+      }
+
+      .bouton-voir-parcours {
+        width: 40%;
+        border: 0;
+        line-height: 2.5;
+        padding: 0 20px;
+        font-size: 1rem;
+        text-align: center;
+        color: $app-secondary-fonts-color-50;
+        border-radius: 10px;
+        background-color: $app-corporate-color;
+        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+          inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+        margin: 2% 0;
+
+        @include desktop {
+          width: 20%;
+        }
+      }
     }
   }
 }

@@ -1,11 +1,15 @@
 .mainProfile {
-  // height: calc(100vh - 51px);
-
+  min-height: 100vh;
+  padding-top: 20%;
   .titleProfile {
     padding-top: 1rem;
     text-align: center;
     color: $app-button-primary-color;
     font-size: 1.3rem;
+
+    @include tablet {
+      margin: 2% 0 4% 0;
+    }
   }
 
   .photoProfile {
@@ -13,14 +17,33 @@
     background-color: $app-supporting-color;
     height: 7rem;
     width: 31%;
-    border-radius: 73px;
+    border-radius: 50%;
     margin-top: 2rem;
     margin-left: 34%;
 
     img {
       height: 100%;
       width: 100%;
-      border-radius: 73px;
+      border-radius: 50%;
+
+      @include tablet {
+        height: 180px;
+        width: 180px;
+        border-radius: 50%;
+      }
+    }
+
+    @include tablet {
+      margin: auto;
+      height: 180px;
+      width: 180px;
+      border-radius: 50%;
+    }
+
+    @include desktop {
+      width: 48%;
+      margin: 1%;
+      height: 3.8rem;
     }
   }
 
@@ -41,9 +64,45 @@
   .buttons_profile {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 4%;
+
+    @include tablet {
+      margin-top: 12%;
+    }
+
+    a {
+      width: 60%;
+
+      @include tablet {
+        width: 50%;
+      }
+
+      .button_edit_my_profile {
+        width: 100%;
+        border: 0;
+        line-height: 2.5;
+        margin-top: 4%;
+        padding: 0 20px;
+        font-size: 1rem;
+        text-align: center;
+        color: $app-corporate-color;
+        border-radius: 10px;
+        background-color: $app-corporate-color-2;
+        box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+          inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+        @include tablet {
+          margin-top: 6%;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
     .button_edit_my_profile {
       width: 60%;
       border: 0;
+      margin-top: 4%;
       line-height: 2.5;
       padding: 0 20px;
       font-size: 1rem;
@@ -53,13 +112,19 @@
       background-color: $app-corporate-color-2;
       box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
         inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-      margin: 2rem 0 0 5rem;
+
+      @include tablet {
+        width: 50%;
+        margin-top: 4%;
+        font-size: 1.2rem;
+      }
     }
     .button_see_my_journey {
-      width: 60%;
+      width: 100%;
       border: 0;
       line-height: 2.5;
       padding: 0 20px;
+      margin-top: 4%;
       font-size: 1rem;
       text-align: center;
       color: $app-secondary-fonts-color-50;
@@ -67,7 +132,11 @@
       background-color: $app-corporate-color;
       box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
         inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-      margin: 1rem 0 0 5rem;
+
+      @include tablet {
+        margin-top: 6%;
+        font-size: 1.2rem;
+      }
     }
   }
 }

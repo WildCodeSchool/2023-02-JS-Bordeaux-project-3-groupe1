@@ -10,9 +10,14 @@
   flex-direction: column;
   text-align: center;
   position: fixed;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @include tablet {
+    font-size: 1.2rem;
+    height: 7rem;
+  }
 
   .modal-actions-delete {
     padding: 4%;
@@ -27,11 +32,23 @@
       height: 1.8rem;
       border-radius: 0.3rem;
       width: 30%;
+
+      @include tablet {
+        font-size: 1.2rem;
+        height: 2rem;
+        width: 25%;
+      }
     }
 
     button:last-child {
       background-color: red;
       color: $app-secondary-fonts-color-5;
+
+      @include tablet {
+        font-size: 1.2rem;
+        height: 2rem;
+        width: 25%;
+      }
     }
   }
 }

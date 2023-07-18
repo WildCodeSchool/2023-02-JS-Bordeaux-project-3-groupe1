@@ -18,6 +18,7 @@ $app-text-size-xs: 1rem;
 $app-heading-one-tablet: 2.5rem;
 $app-heading-two-tablet: 2rem;
 $app-heading-three-tablet: 1.5rem;
+$app-heading-four-tablet: 1.2rem;
 
 $app-heading-one-desktop: 3rem;
 $app-heading-two-desktop: 2rem;
@@ -112,4 +113,8 @@ $app-card-height-2: calc(
 /* width icon */
 
 $app-width-icon: calc(50% + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
-// $app-width-icon: 45px;
+
+/* Width icons formations */
+
+$app-width-icon-formation-mobil: 70px;
+$app-width-icon-formation-tablet: 90px;

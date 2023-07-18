@@ -5,7 +5,7 @@ import ButtonRoleUser from "./composants/ButtonRoleUser";
 
 function GestionUsers() {
   const [users, setUsers] = useState([]);
-  const [roleUser, setRoleUser] = useState(2);
+  const [roleUser, setRoleUser] = useState();
 
   useEffect(() => {
     fetcherAllUsers("users")
@@ -15,17 +15,13 @@ function GestionUsers() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [roleUser]);
 
-  const handleActive = (item) => {
-    if (roleUser === 2) {
-      setRoleUser(1);
-    } else {
-      setRoleUser(2);
-    }
+  const handleActive = (user) => {
+    const updateRole = user.role_id === 2 ? 1 : 2;
 
-    senderRoleUser("users/role", item, {
-      roleUser,
+    senderRoleUser("users/role", user.id, {
+      roleUser: updateRole,
     })
       .then((data) => {
         console.warn(data);
@@ -33,19 +29,21 @@ function GestionUsers() {
       .catch((error) => {
         console.error(error);
       });
+
+    setRoleUser(updateRole);
   };
 
   return (
     <div className="container-gestion">
-      {users.map((item) => (
-        <div className="container-gestion-user" key={item.id}>
+      {users.map((user) => (
+        <div className="container-gestion-user" key={user.id}>
           <div className="container-infos-user">
             <p>Email de l'utilisateur :</p>
-            <li>{item.email}</li>
+            <li>{user.email}</li>
           </div>
           <div className="container-buttons">
-            <ButtonRoleUser handleActive={handleActive} item={item} />
-            <Link to={`/admin/user/${item.id}`}>
+            <ButtonRoleUser handleActive={handleActive} user={user} />
+            <Link to={`/admin/user/${user.id}`}>
               <button type="button">Informations</button>
             </Link>
           </div>

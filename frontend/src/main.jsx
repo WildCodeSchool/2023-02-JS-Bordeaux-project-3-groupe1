@@ -29,8 +29,7 @@ import Profile from "./pages/profile/Profile";
 import ModificationProfile from "./pages/modificationProfile/ModificationProfile";
 import GestionUsers from "./pages/admin/GestionUsers";
 import UserInfo from "./pages/admin/UserInfo";
-import ErrorPage from "./pages/ErrorPage";
-import Error404 from "./pages/Error404";
+import Error404 from "./pages/404/Error404";
 import SendEmailUser from "./pages/sendEmailUser/SendEmailUser";
 import AuthProtected from "./services/AuthProtected";
 import ContainerTutoPlateform from "./pages/containerTutoPlateform/ContainerTutoPlateform";
@@ -41,11 +40,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "*",
+        element: <Error404 />,
       },
       {
         path: "/level",
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: (
-          <AuthProtected roles={[USER_ROLES.user]}>
+          <AuthProtected roles={[USER_ROLES.user, USER_ROLES.admin]}>
             <Profile />
           </AuthProtected>
         ),
@@ -82,7 +84,7 @@ const router = createBrowserRouter([
       {
         path: "/modificationProfile",
         element: (
-          <AuthProtected roles={[USER_ROLES.user]}>
+          <AuthProtected roles={[USER_ROLES.user, USER_ROLES.admin]}>
             <ModificationProfile />
           </AuthProtected>
         ),
@@ -108,7 +110,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Child />,
-    errorElement: <ErrorPage />,
     children: [
       {
         path: "/tutorials/createTutorial",
@@ -180,10 +181,6 @@ const router = createBrowserRouter([
         element: <SendEmailUser />,
       },
     ],
-  },
-  {
-    path: "*",
-    element: <Error404 />,
   },
 ]);
 

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import UpdateNameTutorial from "../../components/tutorialComponent/updateTutorial/UpdateNameTutorial";
 import UpdateObjectifTutorial from "../../components/tutorialComponent/updateTutorial/UpdateObjectifTutorial";
@@ -15,8 +16,32 @@ function UpdateTutorialPage() {
     setNameMenu("Modifier un tutoriel");
   }, [setNameMenu]);
 
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
+
   return (
     <div>
+      {isDesktop && (
+        <>
+          <UpdateNameTutorial
+            setCountStepTutorial={setCountStepTutorial}
+            tutorialId={tutorialId}
+          />
+          <UpdateObjectifTutorial
+            setCountStepTutorial={setCountStepTutorial}
+            tutorialId={tutorialId}
+          />
+          <UpdateVideoTutorial
+            setCountStepTutorial={setCountStepTutorial}
+            tutorialId={tutorialId}
+          />
+          <UpdateQuizzTutorial
+            setCountStepTutorial={setCountStepTutorial}
+            tutorialId={tutorialId}
+          />
+        </>
+      )}
       {countStepTutorial === 1 && (
         <UpdateNameTutorial
           setCountStepTutorial={setCountStepTutorial}

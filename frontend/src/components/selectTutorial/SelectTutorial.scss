@@ -3,11 +3,28 @@
   width: 100vw;
   padding: 4%;
 
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 40%;
+    }
+  }
+
   .container-selectTutorial-preview {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @include desktop {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      flex-direction: row;
+      align-items: flex-start;
+    }
 
     li {
       height: 4rem;
@@ -17,8 +34,23 @@
       width: 95%;
       margin: 4%;
 
+      @include tablet {
+        width: 90%;
+        height: 5rem;
+      }
+
+      @include desktop {
+        width: 48%;
+        margin: 1%;
+        height: 3.8rem;
+      }
+
       .container-icon {
         width: 15%;
+
+        @include tablet {
+          width: 10%;
+        }
 
         .icon-preview-tutorial {
           display: flex;
@@ -26,11 +58,27 @@
           padding: 1%;
           align-items: center;
 
+          @include tablet {
+            padding: 4%;
+          }
+
+          @include desktop {
+            padding: 4%;
+          }
+
           .icon-preview-tutorial-star {
             display: flex;
             width: 100%;
             justify-content: space-around;
             padding: 10% 1% 0 1%;
+
+            @include tablet {
+              padding: 20% 0 0 0;
+            }
+
+            @include desktop {
+              padding: 20% 0 0 0;
+            }
 
             img {
               width: 0.8rem;
@@ -51,6 +99,14 @@
         align-items: center;
         padding-left: 4%;
         word-wrap: break-word;
+
+        @include tablet {
+          width: 74%;
+        }
+
+        @include desktop {
+          width: 80%;
+        }
       }
 
       .container-selectTutorial-buttons {
@@ -58,6 +114,15 @@
         flex-direction: column;
         justify-content: center;
         width: 20%;
+
+        @include tablet {
+          width: 14%;
+        }
+
+        @include desktop {
+          width: 20%;
+        }
+
         button {
           margin: 4%;
           width: 100%;
@@ -66,6 +131,15 @@
           background-color: $app-button-primary-color;
           color: $app-secondary-fonts-color-5;
           border-radius: 0.3rem;
+
+          @include tablet {
+            height: 1.8rem;
+          }
+
+          @include desktop {
+            height: 1.4rem;
+            width: 80%;
+          }
         }
       }
     }

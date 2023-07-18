@@ -1,15 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useMediaQuery } from "react-responsive";
 import { fetcherAllTutorialsByUserId } from "../../services/tutorialService";
-import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ModuleChooseTutorial from "../moduleChooseTutorial/ModuleChooseTutorial";
-import manDesk from "../../assets/pictures/manDesk.svg";
+import hommebureau2 from "../../assets/pictures/hommebureau2.png";
 import { decodeTokenAndExtractRole } from "../../services/authService";
 
 function ListTutorials({ search }) {
   const [tutorials, setTutorials] = useState([]);
-  const { isDesktop } = useContext(IsDesktopContext);
   const { userId } = decodeTokenAndExtractRole();
+
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
 
   useEffect(() => {
     fetcherAllTutorialsByUserId("tutorials/tutorials", userId)
@@ -40,7 +43,11 @@ function ListTutorials({ search }) {
     <div className="container-listTutorials">
       {isDesktop ? (
         <>
-          <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
+          <img
+            className="hommebureau2"
+            src={hommebureau2}
+            alt="pictureManDesk"
+          />
           <div className="moduleChooseTutorialDesktop">
             {filteredTutorials.length > 0 ? (
               filteredTutorials.map((item, index) => (

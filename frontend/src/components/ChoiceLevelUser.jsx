@@ -6,7 +6,7 @@ import { fetcherUSerById } from "../services/userService";
 
 function ChoiceLevelUser({ children }) {
   const { userId, adminRole } = decodeTokenAndExtractRole();
-  const [userLevel, setUserLevel] = useState(0);
+  const [userLevel, setUserLevel] = useState();
 
   const navigate = useNavigate();
 
@@ -21,9 +21,9 @@ function ChoiceLevelUser({ children }) {
   }, []);
 
   useEffect(() => {
-    if (userLevel === null && !adminRole) {
-      navigate("/levelUser");
-    } else if (userLevel === 1 || userLevel === 2) {
+    if ((userLevel === null || userLevel === 0) && !adminRole) {
+      navigate("/level");
+    } else if ((userLevel === 1 || userLevel === 2) && adminRole) {
       navigate("/formations");
     }
   }, [userLevel, navigate]);

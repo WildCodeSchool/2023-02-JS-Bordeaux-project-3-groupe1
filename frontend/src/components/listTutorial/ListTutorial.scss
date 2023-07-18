@@ -3,6 +3,16 @@
   width: 100vw;
   padding: 4%;
 
+  @include desktop {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    .hommebureau2 {
+      width: 50%;
+      height: 45%;
+    }
+  }
+
   .container-listTutorials-preview {
     width: 100%;
     display: flex;
