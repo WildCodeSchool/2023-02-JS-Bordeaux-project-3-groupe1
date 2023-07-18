@@ -45,6 +45,15 @@
     display: block;
     color: $app-primary-fonts-color;
     font-family: $app-secondary-font;
+
+    @include tablet {
+      font-size: 1.8rem;
+      padding: 2.4rem;
+    }
+    @include desktop {
+      font-size: 1.4rem;
+      padding: 2rem;
+    }
   }
 
   .navbar_burger {
