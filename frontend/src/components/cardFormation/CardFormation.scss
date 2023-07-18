@@ -31,82 +31,56 @@
     
   }
   @include desktop {
-    // width: initial;
-    // height: 160px;
 
     &:nth-child(1) {
       grid-column: 3/4;
       grid-row: 1;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(2) {
       grid-column: 4/5;
       grid-row: 1;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(3) {
       grid-column: 5/6;
       grid-row: 1;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(4) {
       grid-column: 6/7;
       grid-row: 1;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(5) {
       grid-column: 6/7;
       grid-row: 2;
       justify-self: start;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(6) {
       grid-column: 6/7;
       grid-row: 3;
       justify-self: start;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(7) {
       grid-column: 6/7;
       grid-row: 4;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(8) {
       grid-column: 5/6;
       grid-row: 4;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(9) {
       grid-column: 4/5;
       grid-row: 4;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(10) {
       grid-column: 3/4;
       grid-row: 4;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(11) {
       grid-column: 3/4;
       grid-row: 3;
-      // width: 160px;
-      // height: 135px;
     }
     &:nth-child(12) {
       grid-column: 3/4;
       grid-row: 2;
-      // width: 160px;
-      // height: 135px;
     }
   }
 }
@@ -116,9 +90,6 @@
   grid-column: 1/-1;
   grid-row: 1;
   justify-self: center;
-  // @include desktop {
-  //   width: 50px;
-  // }
 }
 
 .textFormationChoose {
@@ -128,9 +99,6 @@
   font-size: $app-font-size-h3;
   margin: 0 -17%;
 
-  @include tablet {
-    // font-size: $app-text-size-xs;
-  }
   @include desktop {
     font-size: 20px;
     margin: 0 -50%;
