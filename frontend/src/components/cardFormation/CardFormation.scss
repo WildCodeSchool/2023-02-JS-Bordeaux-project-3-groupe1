@@ -18,7 +18,7 @@
     width: initial;
     width: $app-card-width-2;
     height: $app-card-height-2;
-    }
+  }
 
   .cardFormationChoose {
     display: grid;
@@ -27,11 +27,8 @@
     row-gap: 10px;
     width: $app-card-width;
     height: $app-card-height;
-
-    
   }
   @include desktop {
-
     &:nth-child(1) {
       grid-column: 3/4;
       grid-row: 1;

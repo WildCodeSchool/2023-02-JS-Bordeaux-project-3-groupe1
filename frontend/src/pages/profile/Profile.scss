@@ -138,7 +138,7 @@
       }
     }
 
-    a{
+    a {
       margin: 4% 0 0 0;
       .button_see_my_journey {
         width: 100%;
@@ -152,7 +152,7 @@
         background-color: $app-corporate-color;
         box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
           inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-  
+
         @include tablet {
           margin-top: 6%;
           font-size: 1.2rem;

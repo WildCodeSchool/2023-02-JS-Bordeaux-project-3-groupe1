@@ -135,7 +135,7 @@
   @include desktop {
     padding: 2%;
   }
- 
+
   .SpaceQuizz {
     width: 100%;
   }
@@ -216,84 +216,83 @@
           width: 15rem;
           height: 15rem;
           margin-top: 1rem;
+        }
       }
     }
+  }
+
+  .quizzChooseAnswer {
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    @include tablet {
+      height: 85px;
+      @include desktop {
+        margin-left: 40rem;
       }
     }
 
-    .quizzChooseAnswer {
-      width: 100vw;
-      height: 70px;
-      display: flex;
-      align-items: center;
+    .quizzLabelAnswer {
+      margin: 0 auto;
+      width: 83%;
+      padding-top: 1rem;
       @include tablet {
-        height: 85px;
-        @include desktop {
-          margin-left: 40rem;
-        }
-      }
-
-      .quizzLabelAnswer {
-        margin: 0 auto;
-        width: 83%;
-        padding-top: 1rem;
-        @include tablet {
-          margin-top: -1rem;
-        }
+        margin-top: -1rem;
       }
     }
+  }
 
-    .container-Explications-preview-title,
-    .container-video-preview-title,
-    .container-quizz-preview-title {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      padding: 2%;
+  .container-Explications-preview-title,
+  .container-video-preview-title,
+  .container-quizz-preview-title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 2%;
 
-      .Space {
-        height: 20px;
-        width: 20px;
-      }
-
-      p {
-        color: $app-primary-fonts-color;
-      }
-
-      img {
-        height: 20px;
-        width: 20px;
-      }
+    .Space {
+      height: 20px;
+      width: 20px;
     }
 
-    p:last-child {
-      padding: 4%;
-      word-wrap: break-word;
-      text-align: center;
-      margin-top: 1rem;
+    p {
       color: $app-primary-fonts-color;
     }
-  }
-  @include tablet {
-    .line-yellow {
-      margin-top: -83px;
+
+    img {
+      height: 20px;
+      width: 20px;
     }
-    .container-Explications-preview {
-      margin: 0;
-      min-height: 13rem;
-      width: 60%;
-    }
-  }
-  .suivant,
-  .precedent {
-    border: 0;
-    line-height: 2;
-    padding: 0 20px;
-    font-size: 1rem;
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-      inset -2px -2px 3px rgba(0, 0, 0, 0.6);
   }
 
+  p:last-child {
+    padding: 4%;
+    word-wrap: break-word;
+    text-align: center;
+    margin-top: 1rem;
+    color: $app-primary-fonts-color;
+  }
+}
+@include tablet {
+  .line-yellow {
+    margin-top: -83px;
+  }
+  .container-Explications-preview {
+    margin: 0;
+    min-height: 13rem;
+    width: 60%;
+  }
+}
+.suivant,
+.precedent {
+  border: 0;
+  line-height: 2;
+  padding: 0 20px;
+  font-size: 1rem;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
 
 .container-video-preview-logo {
   margin: 7rem 0 0 17.5rem;
