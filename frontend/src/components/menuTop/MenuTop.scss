@@ -11,8 +11,14 @@
   @include tablet {
     font-size: 1.5rem;
   }
+
   .titleMenuTop {
     margin-left: 1rem;
+    @include desktop {
+      margin: 0;
+      width: 100%;
+      text-align: center;
+    }
   }
 
   button {
@@ -32,6 +38,11 @@
     img {
       width: 1.2rem;
       height: 1.2rem;
+
+      @include desktop {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
     }
   }
 

@@ -8,6 +8,10 @@
     padding: 4% 0;
     display: flex;
 
+    @include desktop {
+      padding: 1%;
+    }
+
     .container-objectif-title {
       height: 100%;
       width: 40%;
@@ -17,6 +21,11 @@
 
       @include tablet {
         width: 30%;
+        font-size: 1.3rem;
+      }
+
+      @include desktop {
+        width: 20%;
         font-size: 1.3rem;
       }
 
@@ -57,8 +66,12 @@
       justify-content: center;
       align-items: center;
       height: 9rem;
-      border-radius: 5%;
+      border-radius: 0.3rem;
       background-color: $app-secondary-fonts-color-2;
+
+      @include desktop {
+        margin-left: 30%;
+      }
 
       textarea {
         width: 90%;
@@ -82,6 +95,10 @@
     align-items: center;
     width: 100%;
     padding: 4%;
+
+    @include desktop {
+      padding: 2%;
+    }
 
     .line {
       margin-bottom: 4%;
@@ -109,6 +126,10 @@
       align-items: center;
       width: 80%;
       margin: 4%;
+
+      @include desktop {
+        margin: 2%;
+      }
 
       p {
         width: 75%;
@@ -142,6 +163,11 @@
         margin: 2%;
         font-size: 1.6rem;
       }
+
+      @include desktop {
+        margin: 1% 0;
+        font-size: 2rem;
+      }
     }
 
     .container-explications-preview {
@@ -151,6 +177,11 @@
       margin: 4%;
       border-radius: 0.3rem;
       resize: vertical;
+
+      @include desktop {
+        width: 80%;
+        min-height: 15rem;
+      }
 
       .container-explications-preview-title {
         display: flex;
@@ -169,9 +200,15 @@
         img {
           height: 100px;
           width: 100px;
+
           @include tablet {
             height: 200px;
             width: 200px;
+          }
+
+          @include desktop {
+            height: 250px;
+            width: 250px;
           }
         }
 

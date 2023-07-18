@@ -15,9 +15,14 @@
       width: 30%;
 
       @include tablet {
-        width: 30%;
+        width: 25%;
+        margin-top: 4%;
         font-size: 1.4rem;
-        height: 2.2rem;
+        height: 2.4rem;
+      }
+
+      @include desktop {
+        margin: 2% 0;
       }
     }
 

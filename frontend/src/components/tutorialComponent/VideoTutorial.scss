@@ -38,6 +38,11 @@
       margin: 2%;
       font-size: 1.6rem;
     }
+
+    @include desktop {
+      margin: 1% 0;
+      font-size: 2rem;
+    }
   }
 
   .container-createVideoTutorial-preview {
@@ -50,6 +55,11 @@
 
     @include tablet {
       height: 30rem;
+    }
+
+    @include desktop {
+      height: 30rem;
+      width: 80%;
     }
 
     iframe {

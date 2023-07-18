@@ -1,10 +1,15 @@
 .container-createNameTutorial {
   width: 100vw;
-  height: calc(100vh - 126px);
+  min-height: calc(100vh - 126px);
   padding: 4%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @include desktop {
+    width: 70%;
+    margin: auto;
+  }
 
   #nameTutorial {
     width: 80%;
@@ -113,6 +118,7 @@
       color: $app-secondary-fonts-color;
       @include tablet {
         font-size: 1.4rem;
+        padding: 0 0 4% 0;
       }
     }
 
@@ -164,6 +170,10 @@
     background-color: $app-secondary-fonts-color-2;
     border-radius: 0.3rem;
 
+    @include tablet {
+      height: 5rem;
+    }
+
     .icon-preview-tutorial {
       display: flex;
       flex-direction: column;
@@ -181,11 +191,21 @@
           width: 0.8rem;
           height: 0.8rem;
         }
+
+        @include tablet {
+          width: 1.2rem;
+          height: 1.2rem;
+        }
       }
 
       img {
         width: 2.5rem;
         height: 2.5rem;
+
+        @include tablet {
+          width: 2.8rem;
+          height: 2.8rem;
+        }
       }
     }
 

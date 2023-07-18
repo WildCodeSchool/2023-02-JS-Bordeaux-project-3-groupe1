@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import CreateNameTutorial from "../../components/tutorialComponent/createTutorial/CreateNameTutorial";
 import CreateObjectifTutorial from "../../components/tutorialComponent/createTutorial/CreateObjectifTutorial";
 import CreateVideoTutorial from "../../components/tutorialComponent/createTutorial/CreateVideoTutorial";
@@ -16,24 +15,8 @@ function CreateTutorialPage() {
     setNameMenu("Ajouter un tutoriel");
   }, []);
 
-  const isDesktop = useMediaQuery({
-    query: "(min-width: 1024px)",
-  });
-
   return (
     <div>
-      {isDesktop && (
-        <>
-          <CreateNameTutorial
-            nameTutoPlaceholder={nameTutoPlaceholder}
-            tagTutoPlaceholder={tagTutoPlaceholder}
-            setCountStepTutorial={setCountStepTutorial}
-          />
-          <CreateObjectifTutorial setCountStepTutorial={setCountStepTutorial} />
-          <CreateVideoTutorial setCountStepTutorial={setCountStepTutorial} />
-          <CreateQuizzTutorial setCountStepTutorial={setCountStepTutorial} />
-        </>
-      )}
       {countStepTutorial === 1 && (
         <CreateNameTutorial
           nameTutoPlaceholder={nameTutoPlaceholder}

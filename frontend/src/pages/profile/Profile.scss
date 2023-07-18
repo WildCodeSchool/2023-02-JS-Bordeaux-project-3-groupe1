@@ -8,7 +8,7 @@
     font-size: 1.3rem;
 
     @include tablet {
-      margin-bottom: 2%;
+      margin: 2% 0 4% 0;
     }
   }
 
@@ -25,13 +25,19 @@
       height: 100%;
       width: 100%;
       border-radius: 73px;
+
+      @include tablet {
+        height: 180px;
+        width: 180px;
+        border-radius: 50%;
+      }
     }
 
     @include tablet {
       margin: auto;
       height: 180px;
       width: 180px;
-      border-radius: 100px;
+      border-radius: 50%;
     }
 
     @include desktop {
