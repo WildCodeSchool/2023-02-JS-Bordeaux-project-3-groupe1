@@ -15,6 +15,9 @@
   .container-Objectif {
     padding: 4% 0;
     display: flex;
+    @include desktop {
+      padding: 2% 0;
+    }
   }
   .container-Objectif-Title {
     height: 100%;
@@ -43,6 +46,9 @@
         border-radius: 0.3rem;
         width: 100%;
         margin-right: 1rem;
+        @include desktop {
+          margin-top: 2rem;
+        }
       }
     }
 
@@ -66,8 +72,8 @@
       height: 12rem;
       width: 15rem;
       @include desktop {
-        height: 16rem;
-        width: 24rem;
+        height: 10rem;
+        width: 15rem;
       }
     }
   }
@@ -126,6 +132,10 @@
   align-items: center;
   width: 100%;
   padding: 4%;
+  @include desktop {
+    padding: 2%;
+  }
+ 
   .SpaceQuizz {
     width: 100%;
   }
@@ -159,12 +169,22 @@
       margin-top: 1rem;
       text-align: center;
       margin-bottom: 1rem;
+      @include desktop {
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
     }
   }
   input[type="radio"] {
     width: 20px;
     height: 15px;
     margin: 0px 17px 0 25px;
+    @include tablet {
+      margin: 0px 17px 0 95px;
+      @include desktop {
+        margin: 0px 17px 0 290px;
+      }
+    }
   }
 
   .container-Explications-preview,
@@ -178,10 +198,27 @@
     background-color: #f5f5f5;
     flex-direction: column;
     align-items: center;
+    @include desktop {
+      width: 50rem;
+      height: 27rem;
+      margin: auto;
+    }
 
     img {
-      width: 2rem;
-      height: 2rem;
+      width: 6rem;
+      height: 6rem;
+      margin-top: 1rem;
+      @include tablet {
+        width: 9rem;
+        height: 9rem;
+        margin-top: 1rem;
+        @include desktop {
+          width: 15rem;
+          height: 15rem;
+          margin-top: 1rem;
+      }
+    }
+      }
     }
 
     .quizzChooseAnswer {
@@ -189,11 +226,20 @@
       height: 70px;
       display: flex;
       align-items: center;
+      @include tablet {
+        height: 85px;
+        @include desktop {
+          margin-left: 40rem;
+        }
+      }
 
       .quizzLabelAnswer {
         margin: 0 auto;
         width: 83%;
         padding-top: 1rem;
+        @include tablet {
+          margin-top: -1rem;
+        }
       }
     }
 
@@ -247,7 +293,7 @@
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
       inset -2px -2px 3px rgba(0, 0, 0, 0.6);
   }
-}
+
 
 .container-video-preview-logo {
   margin: 7rem 0 0 17.5rem;
@@ -277,6 +323,14 @@
   text-align: center;
   color: $app-primary-fonts-color;
   font-family: $app-secondary-font;
+  @include desktop {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.pTutoQuizz {
+  font-weight: initial;
 }
 .explicationPicture {
   height: 4rem;
@@ -286,7 +340,6 @@
 .container-Video-preview {
   overflow: hidden;
   margin: 1rem 0;
-  border-radius: 5px;
 }
 
 .wrongAnswerTitle {
