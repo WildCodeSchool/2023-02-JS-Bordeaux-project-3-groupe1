@@ -126,10 +126,10 @@ function SelectTutorial(props) {
             </div>
             <div className="container-selectTutorial-buttons">
               <Link to={`/tutorials/updateTutorial/${item.id}`}>
-                <button type="button">Update</button>
+                <button type="button">Modifier</button>
               </Link>
               <button type="button" onClick={() => handleOpenModal(item.id)}>
-                Delete
+                Supprimer
               </button>
             </div>
           </li>
