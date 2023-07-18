@@ -11,18 +11,16 @@ function CardFormation({ item }) {
     : `/formations/tutorials/${item.id}`;
 
   return (
-    <div>
-      <Link to={navigation}>
-        <div className="moduleChooseFormation">
-          <img
-            className="iconFormationChoose"
-            src={item.iconURL}
-            alt={item.name}
-          />
-          <h3 className="textFormationChoose">{item.name}</h3>
-        </div>
-      </Link>
-    </div>
+    <Link to={navigation} className="moduleChooseFormation">
+      <div className="cardFormationChoose">
+        <img
+          className="iconFormationChoose"
+          src={item.iconURL}
+          alt={item.name}
+        />
+        <h3 className="textFormationChoose">{item.name}</h3>
+      </div>
+    </Link>
   );
 }
 

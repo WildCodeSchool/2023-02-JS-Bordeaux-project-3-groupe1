@@ -13,6 +13,7 @@ $app-heading-two: 2rem;
 $app-heading-three: 1.5rem;
 $app-text-size: 1.125rem;
 $app-text-size-xl: 1.8rem;
+$app-text-size-xs: 1rem;
 
 $app-heading-one-tablet: 2.5rem;
 $app-heading-two-tablet: 2rem;
@@ -26,6 +27,13 @@ $app-heading-one-desktop-large: 6rem;
 $app-heading-two-desktop-large: 5rem;
 $app-heading-three-desktop-large: 4rem;
 
+$app-font-size-label: calc(14px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-h1: calc(40px + (50 - 40) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-h2: calc(32px + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-h3: calc(12px + (40 - 20) * ((80vw - 300px) / (1600 - 300)));
+$app-font-size-li: calc(25px + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-p: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-icon: calc(50px + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
 /* Website Color */
 
 $app-corporate-color: #003da5;
@@ -89,3 +97,19 @@ $app-button-padding-phone-large: 20px 30px;
 /* Website lin Color */
 
 $app-line-color: #ffcb03;
+
+/* width height card */
+
+$app-card-width: calc(100px + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
+$app-card-height: calc(
+  (35vh / 2) + (80 - 32) * ((100vw - 250px) / (1600 - 300))
+);
+$app-card-width-2: calc(220px + (40 - 32) * ((75vw - 300px) / (1600 - 300)));
+$app-card-height-2: calc(
+  (50vh / 2) + (80 - 32) * ((75vw - 250px) / (1600 - 300))
+);
+
+/* width icon */
+
+$app-width-icon: calc(50% + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
+// $app-width-icon: 45px;

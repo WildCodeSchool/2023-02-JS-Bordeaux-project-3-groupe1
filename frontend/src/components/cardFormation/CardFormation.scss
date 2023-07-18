@@ -2,83 +2,137 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 150px;
-  height: 120px;
+  width: 48%;
+  height: $app-card-height;
   background-color: $app-secondary-fonts-color-2;
   border-radius: 10px;
   font-size: 0.7rem;
-  color: black;
+  color: $app-secondary-fonts-color-60;
   padding-top: 0.5rem;
 
   @include tablet {
-    width: 300px;
+    max-width: 300px;
+    max-height: 150px;
   }
   @include desktop {
-    margin: 0 50px;
+    width: initial;
+    width: $app-card-width-2;
+    height: $app-card-height-2;
+    }
+
+  .cardFormationChoose {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: 10px;
+    width: $app-card-width;
+    height: $app-card-height;
+
+    
+  }
+  @include desktop {
+    // width: initial;
+    // height: 160px;
+
     &:nth-child(1) {
-      grid-column: 1/2;
-      grid-row: 1/2;
+      grid-column: 3/4;
+      grid-row: 1;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(2) {
-      grid-column: 3/4;
-      grid-row: 1/2;
+      grid-column: 4/5;
+      grid-row: 1;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(3) {
-      grid-column: 1/2;
-      grid-row: 2/3;
+      grid-column: 5/6;
+      grid-row: 1;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(4) {
       grid-column: 6/7;
-      grid-row: 1/2;
+      grid-row: 1;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(5) {
-      grid-column: 1/2;
-      grid-row: 3/4;
+      grid-column: 6/7;
+      grid-row: 2;
+      justify-self: start;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(6) {
-      grid-column: 7/8;
-      grid-row: 2/3;
+      grid-column: 6/7;
+      grid-row: 3;
+      justify-self: start;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(7) {
-      grid-column: 7/8;
-      grid-row: 1/2;
+      grid-column: 6/7;
+      grid-row: 4;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(8) {
-      grid-column: 7/8;
-      grid-row: 3/4;
+      grid-column: 5/6;
+      grid-row: 4;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(9) {
-      grid-column: 7/8;
-      grid-row: 4/5;
+      grid-column: 4/5;
+      grid-row: 4;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(10) {
-      grid-column: 5/6;
-      grid-row: 4/5;
+      grid-column: 3/4;
+      grid-row: 4;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(11) {
       grid-column: 3/4;
-      grid-row: 4/5;
+      grid-row: 3;
+      // width: 160px;
+      // height: 135px;
     }
     &:nth-child(12) {
-      grid-column: 1/2;
-      grid-row: 4/5;
+      grid-column: 3/4;
+      grid-row: 2;
+      // width: 160px;
+      // height: 135px;
     }
   }
 }
 
 .iconFormationChoose {
-  width: 55px;
-  margin-top: 5px;
-  @include tablet {
-    width: 75px;
-  }
+  width: $app-width-icon;
+  grid-column: 1/-1;
+  grid-row: 1;
+  justify-self: center;
+  // @include desktop {
+  //   width: 50px;
+  // }
 }
 
 .textFormationChoose {
   text-align: center;
-  margin-top: 10px;
+  grid-column: 1 / -1;
+  grid-row: 2 / -1;
+  font-size: $app-font-size-h3;
+  margin: 0 -17%;
+
   @include tablet {
-    margin-top: 20px;
-    font-size: $app-text-size;
+    // font-size: $app-text-size-xs;
+  }
+  @include desktop {
+    font-size: 20px;
+    margin: 0 -50%;
   }
 }

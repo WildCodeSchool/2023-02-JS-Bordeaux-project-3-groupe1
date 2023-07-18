@@ -14,6 +14,12 @@
   }
 }
 
+@mixin minHeight850px {
+  @media (min-height: 850px) {
+    @content;
+  }
+}
+
 @mixin primary-button-desk {
   width: 20%;
   border: 0;
@@ -73,3 +79,4 @@
     inset -2px -2px 3px rgba(0, 0, 0, 0.6);
   margin: 1rem 0 0 5rem;
 }
+

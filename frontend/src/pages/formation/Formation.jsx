@@ -18,15 +18,6 @@ function Formation() {
           // eslint-disable-next-line react/no-array-index-key
           <CardFormation item={item} key={`${item.id}_${i}`} />
         );
-        if (isDesktop) {
-          formationsArray.push(
-            <img
-              className="pictureManComputer"
-              src={manComputer}
-              alt="picturemancomputer"
-            />
-          );
-        }
       });
       return formationsArray;
     }
@@ -47,7 +38,18 @@ function Formation() {
       });
   }, []);
 
-  return <div className="formation">{renderFormation()}</div>;
+  return (
+    <div className="formation">
+      {renderFormation()}
+      {isDesktop && (
+        <img
+          className="pictureManComputer"
+          src={manComputer}
+          alt="picturemancomputer"
+        />
+      )}
+    </div>
+  );
 }
 
 export default Formation;
