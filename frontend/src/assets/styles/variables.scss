@@ -35,6 +35,15 @@ $app-font-size-h3: calc(12px + (40 - 20) * ((80vw - 300px) / (1600 - 300)));
 $app-font-size-li: calc(25px + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
 $app-font-size-p: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
 $app-font-size-icon: calc(50px + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-cap: calc(30px + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-xs: calc(13px + (80 - 40) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-xs-ul: calc(13px + (80 - 60) * ((100vw - 300px) / (1600 - 300)));
+$app-font-size-xs-to-xxl: calc(13px + ((100vw - 300px) / 100));
+$app-font-size-xs-to-xxl-more-longs: calc(13px + ((100vw - 300px) / 200));
+$app-font-size-xs-to-xxl-last-long: calc(13px + ((100vw - 300px) / 300));
+
+
+// calc(13px + 40 * (100vw - 300px) / 1300);
 /* Website Color */
 
 $app-corporate-color: #003da5;
@@ -109,10 +118,18 @@ $app-card-width-2: calc(220px + (40 - 32) * ((75vw - 300px) / (1600 - 300)));
 $app-card-height-2: calc(
   (50vh / 2) + (80 - 32) * ((75vw - 250px) / (1600 - 300))
 );
+$app-card-width-3: calc(520px + (40 - 32) * ((75vw - 300px) / (1600 - 300)));
+$app-card-height-3: calc(
+  (100vh / 2) + (80 - 32) * ((75vw - 250px) / (1600 - 300))
+);
 
 /* width icon */
 
 $app-width-icon: calc(50% + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
+
+/*  left ul */
+
+$app-left-ul-list:calc(13px + 40 * (100vw - 300px) / 1300);
 
 /* Width icons formations */
 
