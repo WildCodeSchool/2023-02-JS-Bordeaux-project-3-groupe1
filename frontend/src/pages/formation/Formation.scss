@@ -1,10 +1,12 @@
 .formation {
   display: flex;
   width: 90vw;
+  min-height: 100vh;
   flex-wrap: wrap;
   margin: 10px auto 0 auto;
   justify-content: center;
   gap: 10px;
+  padding-bottom: 10px;
 
   @include desktop {
        margin: 20px auto 20px auto;

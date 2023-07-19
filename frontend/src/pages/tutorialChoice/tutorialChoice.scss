@@ -4,23 +4,34 @@
   row-gap: 10px;
   width: 100%;
   padding: 0;
-  height: calc(100vh - 19px);
+  height: calc(84vh - 19px);
   overflow-y: auto;
   @include tablet {
     row-gap: 30px;
   }
   @include desktop {
     display: flex;
-    flex-direction: column;
-    .pictureManDesk {
-      height: 300px;
-    }
-    .moduleChooseTutorialDesktop {
-      max-width: 1024px;
-      display: grid;
-      grid-template-columns: 1fr 300px 20px 300px 1fr;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      justify-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 80%;
+    .articleDesktopModuleTutorial {
+      margin: 0 auto;
+      width: 90%;
+      display: inline-flex;
+      .pictureManDesk {
+        width: $app-card-width-3;
+        height: $app-card-height-3;
+        align-self: center;
+        margin-left: 1%;
+      }
+      .moduleChooseTutorialDesktop {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 }

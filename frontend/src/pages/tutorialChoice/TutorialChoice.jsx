@@ -86,9 +86,9 @@ function TutorialChoice() {
   }, [dataTutorial]);
 
   return (
-    <main className="tutorialChoice">
+    <main className="tutorialChoice tutorialChoiceUser">
       {isDesktop ? (
-        <>
+        <article className="articleDesktopModuleTutorial">
           <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
           <div className="moduleChooseTutorialDesktop">
             {dataFilterLevelUser.length > 0 ? (
@@ -104,7 +104,7 @@ function TutorialChoice() {
               <h4>Cette formation ne contient pas encore de tutoriels</h4>
             )}
           </div>
-        </>
+        </article>
       ) : (
         <div>
           {dataFilterLevelUser.length > 0 ? (
