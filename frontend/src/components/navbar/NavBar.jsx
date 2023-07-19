@@ -53,7 +53,6 @@ function Navbar() {
               <img className="points" src={Points} alt="points" />
             </Link>
           ))}
-
         <Link to="/search" onClick={() => handleClickShowLinksIfIsOpen()}>
           <img className="loupe" src={Loupe} alt="loupe recherche" />
         </Link>

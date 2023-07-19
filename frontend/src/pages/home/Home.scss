@@ -114,7 +114,6 @@
   .button_debuter_formation {
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
     @include tablet {
       margin-top: -3rem;
     }
@@ -136,6 +135,7 @@
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
       inset -2px -2px 3px rgba(0, 0, 0, 0.6);
     font-weight: bold;
+    margin: 0 !important;
 
     @include tablet {
       padding: 0 40px;
