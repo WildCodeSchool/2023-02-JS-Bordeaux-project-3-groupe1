@@ -1,9 +1,9 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 import { sender, fetcherUSerById } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
-import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import profile from "../../assets/pictures/profil.png";
 
 function ModificationPage() {
@@ -18,7 +18,10 @@ function ModificationPage() {
   const [gender, setGender] = useState("Masculin");
   const [previewUrl, setPreviewUrl] = useState(null);
   const { userId } = decodeTokenAndExtractRole();
-  const { isDesktop } = useContext(IsDesktopContext);
+
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -115,35 +118,57 @@ function ModificationPage() {
   };
 
   return (
-    <main>
-      <div className="photoLocation">
-        <label htmlFor="fileInput">
-          <img className="camera" src={AppareilPhoto} alt="appareil" />
-        </label>
-        <input
-          type="file"
-          name="file"
-          id="fileInput"
-          style={{ display: "none" }}
-          onChange={handleFile}
-        />
-        <div className="photoProfil">
-          {previewUrl && (
-            <img
-              className="photoProfilIdentification"
-              src={previewUrl}
-              alt="Preview"
-            />
-          )}
-        </div>
+    <div className="container-modification-profile">
+      <div className="container-top">
         {isDesktop ? (
-          <img className="pictureProfile" src={profile} alt="profile" />
+          <>
+            <div className="photoProfil">
+              <label htmlFor="fileInput">
+                <img className="camera" src={AppareilPhoto} alt="appareil" />
+              </label>
+              <input
+                type="file"
+                name="file"
+                id="fileInput"
+                style={{ display: "none" }}
+                onChange={handleFile}
+              />
+              {previewUrl && (
+                <img
+                  className="photoProfilIdentification"
+                  src={previewUrl}
+                  alt="Preview"
+                />
+              )}
+            </div>
+            <img className="pictureProfile" src={profile} alt="profile" />
+          </>
         ) : (
-          <div />
+          <>
+            <label htmlFor="fileInput">
+              <img className="camera" src={AppareilPhoto} alt="appareil" />
+            </label>
+            <input
+              type="file"
+              name="file"
+              id="fileInput"
+              style={{ display: "none" }}
+              onChange={handleFile}
+            />
+            <div className="photoProfil">
+              {previewUrl && (
+                <img
+                  className="photoProfilIdentification"
+                  src={previewUrl}
+                  alt="Preview"
+                />
+              )}
+            </div>
+          </>
         )}
       </div>
-      <div className="containerBlocInputModificationProfile">
-        <div className="firstBlocInput">
+      <div className="container-form">
+        <div className="container-form-infos">
           <label className="denomination" htmlFor="name-user">
             Nom
           </label>
@@ -156,7 +181,7 @@ function ModificationPage() {
             onChange={onChange}
           />
         </div>
-        <div className="secondBlocInput">
+        <div className="container-form-infos">
           <label className="denomination" htmlFor="first-name-user">
             Prénom
           </label>
@@ -169,7 +194,7 @@ function ModificationPage() {
             onChange={onChange}
           />
         </div>
-        <div className="thirdBlocInput">
+        <div className="container-form-infos">
           <label className="denomination" htmlFor="mail">
             Mail
           </label>
@@ -183,7 +208,7 @@ function ModificationPage() {
             onChange={onChange}
           />
         </div>
-        <div className="fourthBlocInput">
+        <div className="container-form-infos">
           <label className="denomination" htmlFor="city">
             Ville
           </label>
@@ -196,13 +221,13 @@ function ModificationPage() {
             onChange={onChange}
           />
         </div>
-        <div className="BlocPostalBirthday">
-          <div className="fifthBlocInput">
+        <div className="container-form-flex">
+          <div className="container-form-flex-infos">
             <label className="denominationfifth" htmlFor="postal-code">
               Code postal
             </label>
             <input
-              className="inputModificationProfileBloc"
+              className="first-input"
               type="text"
               placeholder="75000"
               name="location"
@@ -210,12 +235,12 @@ function ModificationPage() {
               onChange={onChange}
             />
           </div>
-          <div className="sixthBlocInput">
-            <label className="denominationBirthday" htmlFor="start">
+          <div className="container-form-flex-infos">
+            <label className="second-label" htmlFor="start">
               Date de naissance
             </label>
             <input
-              className="inputModificationProfileBloc"
+              className="second-input"
               type="date"
               id="birthdayDate"
               placeholder="1953-03-26"
@@ -227,39 +252,41 @@ function ModificationPage() {
             />
           </div>
         </div>
-      </div>
-      <div className="sixthBlocInput">
-        <label className="Gender" htmlFor="gender">
-          Genre
-        </label>
-        <div className="inputGenre">
-          <div className="inputRadioMale">
-            <input
-              className="MaleGenre"
-              type="radio"
-              id="male"
-              name="gender"
-              value="Masculin"
-              checked={gender === "Masculin"}
-              onChange={onChange}
-            />
-            <label className="nameInputMale" htmlFor="male">
-              Masculin
+        <div className="container-form-flex">
+          <div className="container-form-flex-radio">
+            <label className="Gender" htmlFor="gender">
+              Genre
             </label>
-          </div>
-          <div className="inputRadioFemale">
-            <input
-              className="FemaleGenre"
-              type="radio"
-              id="female"
-              name="gender"
-              value="Féminin"
-              checked={gender === "Féminin"}
-              onChange={onChange}
-            />
-            <label className="nameInputFemale" htmlFor="female">
-              Féminin
-            </label>
+            <div className="container-form-flex-radios">
+              <div className="container-form-flex-radio-first">
+                <input
+                  className="first-radio"
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  value="Masculin"
+                  checked={gender === "Masculin"}
+                  onChange={onChange}
+                />
+                <label className="nameInputMale" htmlFor="male">
+                  Masculin
+                </label>
+              </div>
+              <div className="container-form-flex-radio-second">
+                <input
+                  className="FemaleGenre"
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  value="Féminin"
+                  checked={gender === "Féminin"}
+                  onChange={onChange}
+                />
+                <label className="nameInputFemale" htmlFor="female">
+                  Féminin
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -270,7 +297,7 @@ function ModificationPage() {
       >
         Valider mon profil
       </ButtonTutorial>
-    </main>
+    </div>
   );
 }
 

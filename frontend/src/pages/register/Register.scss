@@ -38,11 +38,13 @@
         }
       }
       .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border: 0;
         line-height: 2.5;
         padding: 0 20px;
         font-size: 1rem;
-        text-align: center;
         color: $app-corporate-color;
         border-radius: 10px;
         background-color: $app-corporate-color-2;

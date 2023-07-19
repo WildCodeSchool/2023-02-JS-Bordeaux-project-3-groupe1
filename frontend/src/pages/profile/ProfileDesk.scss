@@ -1,5 +1,6 @@
 .main-profil {
   padding-top: 12%;
+  min-height: calc(100vh - 50px);
   .titre-profil {
     text-align: center;
     color: $app-primary-fonts-color;
@@ -107,7 +108,7 @@
       }
 
       .bouton-voir-parcours {
-        width: 40%;
+        width: 45%;
         border: 0;
         height: 2.4rem;
         line-height: 2.5;
@@ -120,12 +121,11 @@
         box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
           inset -2px -2px 3px rgba(0, 0, 0, 0.6);
         margin: 1% 0;
-
       }
     }
 
     .bouton-modifier {
-      width: 40%;
+      width: 45%;
       border: 0;
       height: 2.4rem;
       line-height: 2.5;

@@ -40,14 +40,19 @@ function Navbar() {
         <img className="logo" src={Logo} alt="logo ligne bleue" />
       </Link>
       <div className="container-icons">
-        {!adminRole && (
-          <Link
-            to="/formations/parcours"
-            onClick={() => handleClickShowLinksIfIsOpen()}
-          >
-            <img className="points" src={Points} alt="points" />
-          </Link>
-        )}
+        {!adminRole &&
+          (!isLoggedIn ? (
+            <Link to="/login" onClick={() => handleClickShowLinksIfIsOpen()}>
+              <img className="points" src={Points} alt="points" />
+            </Link>
+          ) : (
+            <Link
+              to="/formations/parcours"
+              onClick={() => handleClickShowLinksIfIsOpen()}
+            >
+              <img className="points" src={Points} alt="points" />
+            </Link>
+          ))}
 
         <Link to="/search" onClick={() => handleClickShowLinksIfIsOpen()}>
           <img className="loupe" src={Loupe} alt="loupe recherche" />
