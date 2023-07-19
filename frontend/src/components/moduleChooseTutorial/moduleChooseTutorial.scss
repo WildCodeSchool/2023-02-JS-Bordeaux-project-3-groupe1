@@ -22,7 +22,7 @@
   }
 
   @include minHeight850px {
-    max-width: 700px;
+    max-width: 550px;
     min-height: 50px;
     height: 5rem;
   }
@@ -104,7 +104,7 @@
   position: relative;
 
   @include minHeight850px {
-    max-width: 700px;
+    max-width: 550px;
     height: 9rem;
   }
 
