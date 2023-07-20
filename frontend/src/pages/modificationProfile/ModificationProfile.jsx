@@ -52,26 +52,28 @@ function ModificationPage() {
   };
 
   useEffect(() => {
-    fetcherUSerById("users", userId)
-      .then((data) => {
-        setFirstname(data.firstname);
-        setLastname(data.lastname);
-        setEmail(data.email);
-        setCity(data.city);
-        setLocation(data.location);
-        if (data.birthdayDate) {
-          const originalDate = data.birthdayDate;
-          const formattedDate = new Date(originalDate)
-            .toISOString()
-            .split("T")[0];
-          setBirthdayDate(formattedDate);
-        }
-        setGender(data.gender);
-        setPictureUrl(data.picture);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (userId) {
+      fetcherUSerById("users", userId)
+        .then((data) => {
+          setFirstname(data.firstname);
+          setLastname(data.lastname);
+          setEmail(data.email);
+          setCity(data.city);
+          setLocation(data.location);
+          if (data.birthdayDate) {
+            const originalDate = data.birthdayDate;
+            const formattedDate = new Date(originalDate)
+              .toISOString()
+              .split("T")[0];
+            setBirthdayDate(formattedDate);
+          }
+          setGender(data.gender);
+          setPictureUrl(data.picture);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, []);
 
   useEffect(() => {
