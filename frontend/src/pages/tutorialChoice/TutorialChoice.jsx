@@ -24,33 +24,39 @@ function TutorialChoice() {
   }, [nameFormation]);
 
   useEffect(() => {
-    fetcher("formations")
-      .then((data) => {
-        setFormations(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (dataFilterLevelUser.length > 0) {
+      fetcher("formations")
+        .then((data) => {
+          setFormations(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, [dataFilterLevelUser]);
 
   useEffect(() => {
-    const selectedFormation = formations?.find(
-      (formation) => formation.id === parseInt(id, 10)
-    );
-    if (selectedFormation) {
-      const { name } = selectedFormation;
-      setNameFormation(name);
+    if (formations.length > 0) {
+      const selectedFormation = formations?.find(
+        (formation) => formation.id === parseInt(id, 10)
+      );
+      if (selectedFormation) {
+        const { name } = selectedFormation;
+        setNameFormation(name);
+      }
     }
   }, [formations, id]);
 
   useEffect(() => {
-    fetcherUSerByIdTutorials("tutorialbyicon", id, userId)
-      .then((data) => {
-        setDataTutorial(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (userId) {
+      fetcherUSerByIdTutorials("tutorialbyicon", id, userId)
+        .then((data) => {
+          setDataTutorial(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, [id, userId]);
 
   const stepsMap = dataTutorial.map((item) => ({
@@ -73,15 +79,19 @@ function TutorialChoice() {
   );
 
   useEffect(() => {
-    setDataFilterLevelUser(dataTutorial);
-    setDataFilterLevelUser(filteredTutorialsLevel1);
-    setIsLevel1Completed(
-      filteredTutorialsLevel1.every((item) => {
-        return item.stepOne === 1 && item.stepTwo === 1 && item.stepThree === 1;
-      })
-    );
-    if (isLevel1Completed) {
-      setDataFilterLevelUser(filteredTutorialsLevel2);
+    if (dataTutorial.length > 0) {
+      setDataFilterLevelUser(dataTutorial);
+      setDataFilterLevelUser(filteredTutorialsLevel1);
+      setIsLevel1Completed(
+        filteredTutorialsLevel1.every((item) => {
+          return (
+            item.stepOne === 1 && item.stepTwo === 1 && item.stepThree === 1
+          );
+        })
+      );
+      if (isLevel1Completed) {
+        setDataFilterLevelUser(filteredTutorialsLevel2);
+      }
     }
   }, [dataTutorial]);
 
@@ -91,8 +101,8 @@ function TutorialChoice() {
         <article className="articleDesktopModuleTutorial">
           <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
           <div className="moduleChooseTutorialDesktop">
-            {dataFilterLevelUser?.length > 0 ? (
-              dataFilterLevelUser?.map((item) => (
+            {dataFilterLevelUser.length > 0 ? (
+              dataFilterLevelUser.map((item) => (
                 <ModuleChooseTutorial
                   key={item.id}
                   item={item}
@@ -107,8 +117,8 @@ function TutorialChoice() {
         </article>
       ) : (
         <div>
-          {dataFilterLevelUser?.length > 0 ? (
-            dataFilterLevelUser?.map((item) => (
+          {dataFilterLevelUser.length > 0 ? (
+            dataFilterLevelUser.map((item) => (
               <ModuleChooseTutorial
                 key={item.id}
                 item={item}
