@@ -42,7 +42,6 @@ $app-font-size-xs-to-xxl: calc(13px + ((100vw - 300px) / 100));
 $app-font-size-xs-to-xxl-more-longs: calc(13px + ((100vw - 300px) / 200));
 $app-font-size-xs-to-xxl-last-long: calc(13px + ((100vw - 300px) / 300));
 
-
 // calc(13px + 40 * (100vw - 300px) / 1300);
 /* Website Color */
 
@@ -129,7 +128,7 @@ $app-width-icon: calc(50% + (40 - 32) * ((100vw - 300px) / (1600 - 300)));
 
 /*  left ul */
 
-$app-left-ul-list:calc(13px + 40 * (100vw - 300px) / 1300);
+$app-left-ul-list: calc(13px + 40 * (100vw - 300px) / 1300);
 
 /* Width icons formations */
 

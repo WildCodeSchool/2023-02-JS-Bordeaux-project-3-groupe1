@@ -25,10 +25,10 @@ function SortMyReward({
   }, [icon]);
   const handleClick = () => {
     if (
-      icon.stepOne === null ||
-      (icon.stepOne === 0 && icon.stepTwo === null) ||
-      (icon.stepTwo === 0 && icon.stepThree === null) ||
-      (icon.stepThree === 0 && icon.tutoId)
+      icon.stepOne === 0 &&
+      icon.stepTwo === 0 &&
+      icon.stepThree === 0 &&
+      icon.tutoId
     ) {
       senderStepsByUser("steps", userId, {
         stepOne: false,
