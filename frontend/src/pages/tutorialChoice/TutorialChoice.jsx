@@ -31,7 +31,7 @@ function TutorialChoice() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [dataFilterLevelUser]);
 
   useEffect(() => {
     const selectedFormation = formations?.find(
@@ -91,8 +91,8 @@ function TutorialChoice() {
         <article className="articleDesktopModuleTutorial">
           <img className="pictureManDesk" src={manDesk} alt="pictureManDesk" />
           <div className="moduleChooseTutorialDesktop">
-            {dataFilterLevelUser.length > 0 ? (
-              dataFilterLevelUser.map((item) => (
+            {dataFilterLevelUser?.length > 0 ? (
+              dataFilterLevelUser?.map((item) => (
                 <ModuleChooseTutorial
                   key={item.id}
                   item={item}
@@ -107,8 +107,8 @@ function TutorialChoice() {
         </article>
       ) : (
         <div>
-          {dataFilterLevelUser.length > 0 ? (
-            dataFilterLevelUser.map((item) => (
+          {dataFilterLevelUser?.length > 0 ? (
+            dataFilterLevelUser?.map((item) => (
               <ModuleChooseTutorial
                 key={item.id}
                 item={item}
