@@ -61,9 +61,10 @@
       margin-top: 2rem;
       @include tablet {
         height: 5rem;
-        width: 65%;
+        width: 60%;
         @include desktop {
           margin-top: 6rem;
+          width: 45%;
         }
       }
     }
