@@ -157,53 +157,55 @@ function NameTutorial(props) {
 
   return (
     <div className="container-createNameTutorial">
-      <label htmlFor="nameTutorial">Nom du tutorial :</label>
-      <InputField
-        name="nameTutorial"
-        id="nameTutorial"
-        value={nameTutorial}
-        placeholder={nameTutoPlaceholder}
-        onChange={handleInputChange}
-      />
-      <label htmlFor="tagTutorial">{tagTutoPlaceholder} :</label>
-      <div className="container-input-tag">
+      <div className="container-createNameTutorial-preview">
+        <label htmlFor="nameTutorial">Nom du tutorial :</label>
         <InputField
-          name="tagTutorial"
-          id="tagTutorial"
-          value={tagTutorial}
-          placeholder={tagTutoPlaceholder}
+          name="nameTutorial"
+          id="nameTutorial"
+          value={nameTutorial}
+          placeholder={nameTutoPlaceholder}
           onChange={handleInputChange}
         />
-        <button type="button" onClick={handleAddValue}>
-          Ajouter
-        </button>
+        <label htmlFor="tagTutorial">{tagTutoPlaceholder} :</label>
+        <div className="container-input-tag">
+          <InputField
+            name="tagTutorial"
+            id="tagTutorial"
+            value={tagTutorial}
+            placeholder={tagTutoPlaceholder}
+            onChange={handleInputChange}
+          />
+          <button type="button" onClick={handleAddValue}>
+            Ajouter
+          </button>
+        </div>
+        <TagList
+          isUpdate={isUpdate}
+          updatedTags={updatedTags}
+          handleRemoveTagValue={handleRemoveTagValue}
+          valuesTag={valuesTag}
+        />
+        <LevelSelector
+          setLevelTutorial={setLevelTutorial}
+          setStarLevelStyle={setStarLevelStyle}
+          starLevelStyle={starLevelStyle}
+        />
+        <FormationSelector
+          filteredValues={filteredValues}
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
+        />
+        <PreviewNameTutorial
+          levelTutorial={levelTutorial}
+          nameTutorial={nameTutorial}
+        />
+        <SaveButton
+          isUpdate={isUpdate}
+          tutorialId={tutorialId}
+          handleSave={handleSave}
+          isValid={isValid}
+        />
       </div>
-      <TagList
-        isUpdate={isUpdate}
-        updatedTags={updatedTags}
-        handleRemoveTagValue={handleRemoveTagValue}
-        valuesTag={valuesTag}
-      />
-      <LevelSelector
-        setLevelTutorial={setLevelTutorial}
-        setStarLevelStyle={setStarLevelStyle}
-        starLevelStyle={starLevelStyle}
-      />
-      <FormationSelector
-        filteredValues={filteredValues}
-        selectedValue={selectedValue}
-        setSelectedValue={setSelectedValue}
-      />
-      <PreviewNameTutorial
-        levelTutorial={levelTutorial}
-        nameTutorial={nameTutorial}
-      />
-      <SaveButton
-        isUpdate={isUpdate}
-        tutorialId={tutorialId}
-        handleSave={handleSave}
-        isValid={isValid}
-      />
     </div>
   );
 }

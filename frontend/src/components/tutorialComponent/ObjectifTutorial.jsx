@@ -103,27 +103,29 @@ function ObjectifTutorial(props) {
 
   return (
     <div className="container-createObjectifTutorial">
-      <ObjectiveSection
-        isUpdate={isUpdate}
-        handleObjectifChange={handleObjectifChange}
-        objectifTutorial={objectifTutorial}
-      />
-      <div className="container-explications">
-        <div className="line" />
-        <ImageUploadSection handleFileChange={handleFileChange} />
-        <h3>Explications</h3>
-        <TextSection
-          previewUrl={previewUrl}
-          handleExplicationChange={handleExplicationChange}
-          adjustTextareaHeight={adjustTextareaHeight}
-          explicationTutorial={explicationTutorial}
-        />
-        <SaveButton
+      <div className="container-createObjectifTutorial-preview">
+        <ObjectiveSection
           isUpdate={isUpdate}
-          tutorialId={tutorialId}
-          handleSave={handleSave}
-          isValid={isValid}
+          handleObjectifChange={handleObjectifChange}
+          objectifTutorial={objectifTutorial}
         />
+        <div className="container-explications">
+          <div className="line" />
+          <ImageUploadSection handleFileChange={handleFileChange} />
+          <h3>Explications</h3>
+          <TextSection
+            previewUrl={previewUrl}
+            handleExplicationChange={handleExplicationChange}
+            adjustTextareaHeight={adjustTextareaHeight}
+            explicationTutorial={explicationTutorial}
+          />
+          <SaveButton
+            isUpdate={isUpdate}
+            tutorialId={tutorialId}
+            handleSave={handleSave}
+            isValid={isValid}
+          />
+        </div>
       </div>
     </div>
   );

@@ -5,104 +5,127 @@
   min-height: calc(100vh - 126px);
   width: 100vw;
 
-  @include desktop {
-    width: 80%;
-    margin: auto;
-  }
-
-  label {
-    width: 80%;
-    color: $app-secondary-fonts-color-60;
-
-    @include tablet {
-      font-size: 1.4rem;
-    }
-  }
-
-  label:first-child {
-    padding-top: 4%;
-  }
-
-  input {
-    width: 80%;
-    height: 2.4rem;
-    border-radius: 0.3rem;
-    border: 2px solid $app-input-primary-color;
-    margin: 4%;
-    padding-left: 4%;
-    font-size: 1.2rem;
-    color: $app-secondary-fonts-color;
-
-    @include tablet {
-      font-size: 1.4rem;
-      height: 3rem;
-    }
-  }
-
-  #answer {
-    border: 2px solid rgb(154, 198, 154);
-  }
-
-  #optionOne,
-  #optionTwo {
-    border: 2px solid rgb(240, 199, 172);
-  }
-
-  h3 {
-    color: $app-primary-fonts-color;
-
-    @include tablet {
-      margin: 2%;
-      font-size: 1.6rem;
-    }
-  }
-
-  .container-quizz-preview {
-    background-color: $app-secondary-fonts-color-2;
+  .container-createQuizz-desktop {
     width: 90%;
-    min-height: 8rem;
-    margin: 4%;
-    border-radius: 0.3rem;
-    padding: 2%;
-
-    h4 {
-      padding: 2%;
-      @include tablet {
-        font-size: 1.4rem;
-      }
+    @include desktop {
+      width: 90%;
+      min-height: calc(80vh - 136px);
+      margin: auto;
+      padding-top: 1%;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: row;
     }
 
-    p {
-      padding: 2%;
-      color: $app-secondary-fonts-color;
-
-      @include tablet {
-        font-size: 1.2rem;
-      }
-    }
-
-    .container-quizz-preview-answer {
+    .container-question {
+      width: 100%;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      width: 100%;
 
-      button {
-        cursor: pointer;
+      label {
         width: 80%;
+        color: $app-secondary-fonts-color-60;
+
+        @include tablet {
+          font-size: 1.4rem;
+        }
+      }
+
+      label:first-child {
+        padding-top: 4%;
+      }
+
+      input {
+        width: 90%;
         height: 2.4rem;
         border-radius: 0.3rem;
-        background-color: #fff;
         border: 2px solid $app-input-primary-color;
         margin: 4%;
         padding-left: 4%;
         font-size: 1.2rem;
         color: $app-secondary-fonts-color;
-        text-align: start;
 
         @include tablet {
           font-size: 1.4rem;
           height: 3rem;
+        }
+      }
+
+      #answer {
+        border: 2px solid rgb(154, 198, 154);
+      }
+
+      #optionOne,
+      #optionTwo {
+        border: 2px solid rgb(240, 199, 172);
+      }
+
+      h3 {
+        color: $app-primary-fonts-color;
+
+        @include tablet {
+          margin: 2%;
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .container-preview-quizz {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      .container-quizz-preview {
+        background-color: $app-secondary-fonts-color-2;
+        width: 90%;
+        min-height: 8rem;
+        margin: 4%;
+        border-radius: 0.3rem;
+        padding: 2%;
+
+        h4 {
+          padding: 2%;
+          @include tablet {
+            font-size: 1.4rem;
+          }
+        }
+
+        p {
+          padding: 2%;
+          color: $app-secondary-fonts-color;
+
+          @include tablet {
+            font-size: 1.2rem;
+          }
+        }
+
+        .container-quizz-preview-answer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+
+          button {
+            cursor: pointer;
+            width: 80%;
+            height: 2.4rem;
+            border-radius: 0.3rem;
+            background-color: #fff;
+            border: 2px solid $app-input-primary-color;
+            margin: 4%;
+            padding-left: 4%;
+            font-size: 1.2rem;
+            color: $app-secondary-fonts-color;
+            text-align: start;
+
+            @include tablet {
+              font-size: 1.4rem;
+              height: 3rem;
+            }
+          }
         }
       }
 

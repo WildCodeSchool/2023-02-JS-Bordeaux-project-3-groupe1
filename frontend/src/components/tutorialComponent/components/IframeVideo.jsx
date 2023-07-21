@@ -3,7 +3,7 @@ import youTubeLogo from "../../../assets/youTubeLogo.png";
 
 function IframeVideo({ videoId }) {
   return (
-    <div className="container-createVideoTutorial-preview">
+    <div className="container-createVideoTutorial-preview-iframe">
       {videoId ? (
         <iframe
           src={`https://www.youtube.com/embed/${videoId}`}

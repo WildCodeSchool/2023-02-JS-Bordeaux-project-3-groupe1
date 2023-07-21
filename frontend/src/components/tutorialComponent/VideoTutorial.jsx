@@ -59,22 +59,24 @@ function VideoTutorial(props) {
 
   return (
     <div className="container-createVideoTutorial">
-      <label htmlFor="videoUrl">Insérer l’url de votre vidéo :</label>
-      <InputField
-        name="videoUrl"
-        id="videoUrl"
-        value={videoUrl}
-        placeholder="Insérer l’url de votre vidéo"
-        onChange={handleInputChange}
-      />
-      <h3>Vidéo</h3>
-      <IframeVideo videoId={videoId} />
-      <SaveButton
-        isUpdate={isUpdate}
-        tutorialId={tutorialId}
-        handleSave={handleSave}
-        isValid={isValid}
-      />
+      <div className="container-createVideoTutorial-preview">
+        <label htmlFor="videoUrl">Insérer l’url de votre vidéo :</label>
+        <InputField
+          name="videoUrl"
+          id="videoUrl"
+          value={videoUrl}
+          placeholder="Insérer l’url de votre vidéo"
+          onChange={handleInputChange}
+        />
+        <h3>Vidéo</h3>
+        <IframeVideo videoId={videoId} />
+        <SaveButton
+          isUpdate={isUpdate}
+          tutorialId={tutorialId}
+          handleSave={handleSave}
+          isValid={isValid}
+        />
+      </div>
     </div>
   );
 }

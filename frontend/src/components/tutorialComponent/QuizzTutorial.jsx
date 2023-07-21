@@ -102,45 +102,51 @@ function QuizzTutorial(props) {
 
   return (
     <div className="container-createQuizzTutorial">
-      <label htmlFor="question">Question :</label>
-      <InputField
-        name="question"
-        id="question"
-        value={question}
-        placeholder="Ajouter une question"
-        onChange={handleInputChange}
-      />
-      <label htmlFor="answer">La réponse :</label>
-      <InputField
-        name="answer"
-        id="answer"
-        value={answer}
-        placeholder="Ajouter la réponse "
-        onChange={handleInputChange}
-      />
-      <label htmlFor="optionOne">Première option :</label>
-      <InputField
-        name="optionOne"
-        id="optionOne"
-        value={optionOne}
-        placeholder="Ajouter une option"
-        onChange={handleInputChange}
-      />
-      <label htmlFor="optionTwo">Deuxième option :</label>
-      <InputField
-        name="optionTwo"
-        id="optionTwo"
-        value={optionTwo}
-        placeholder="Ajouter une option"
-        onChange={handleInputChange}
-      />
-      <h3>Quizz</h3>
-      <PreviewQuizz
-        question={question}
-        optionOne={optionOne}
-        optionTwo={optionTwo}
-        answer={answer}
-      />
+      <div className="container-createQuizz-desktop">
+        <div className="container-question">
+          <label htmlFor="question">Question :</label>
+          <InputField
+            name="question"
+            id="question"
+            value={question}
+            placeholder="Ajouter une question"
+            onChange={handleInputChange}
+          />
+          <label htmlFor="answer">La réponse :</label>
+          <InputField
+            name="answer"
+            id="answer"
+            value={answer}
+            placeholder="Ajouter la réponse "
+            onChange={handleInputChange}
+          />
+          <label htmlFor="optionOne">Première option :</label>
+          <InputField
+            name="optionOne"
+            id="optionOne"
+            value={optionOne}
+            placeholder="Ajouter une option"
+            onChange={handleInputChange}
+          />
+          <label htmlFor="optionTwo">Deuxième option :</label>
+          <InputField
+            name="optionTwo"
+            id="optionTwo"
+            value={optionTwo}
+            placeholder="Ajouter une option"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="container-preview-quizz">
+          <h3>Quizz</h3>
+          <PreviewQuizz
+            question={question}
+            optionOne={optionOne}
+            optionTwo={optionTwo}
+            answer={answer}
+          />
+        </div>
+      </div>
       <Link to={`/formations/${forms.idFormation}`}>
         <button type="button" onClick={handleSaveTutorial} disabled={!isValid}>
           Valider le tutorial
