@@ -37,7 +37,7 @@ function Register() {
       <div className="secondeContainer">
         {" "}
         <form onSubmit={handleSubmit}>
-          <h2>S'incrire</h2>
+          <h2>S'inscrire</h2>
           <label>
             <p>Mail</p>
             <div className="dv-input">
