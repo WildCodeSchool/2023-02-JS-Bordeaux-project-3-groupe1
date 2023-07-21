@@ -63,7 +63,7 @@ function ContainerTutoPlateform() {
         ) : (
           <ButtonTutorial
             nextOrPreview="containerButtonVideoPlateform"
-            path="/LevelUser"
+            path="/level"
           >
             Débuter ma formation
           </ButtonTutorial>
