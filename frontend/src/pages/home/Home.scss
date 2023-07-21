@@ -49,6 +49,10 @@
       @include tablet {
         width: 60%;
       }
+
+      @include desktop {
+        width: 70%;
+      }
     }
 
     .decorative_rectangle {

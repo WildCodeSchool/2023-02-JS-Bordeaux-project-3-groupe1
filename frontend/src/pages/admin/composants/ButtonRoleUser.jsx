@@ -1,8 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
+import ConfirmAdmin from "../../../components/modal/ConfirmAdmin";
 
 function ButtonRoleUser({ handleActive, user }) {
   const [nameButton, setNameButton] = useState("Passer administrateur");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef(null);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleRole = () => {
     handleActive(user);
@@ -21,11 +32,33 @@ function ButtonRoleUser({ handleActive, user }) {
     }
   }, []);
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
     <div>
-      <button type="button" onClick={() => handleRole(user.id)}>
+      <button type="button" onClick={() => handleOpenModal(user.id)}>
         {nameButton}
       </button>
+      {isModalOpen && (
+        <div ref={modalRef}>
+          <ConfirmAdmin
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            onConfirm={handleRole}
+          />
+        </div>
+      )}
     </div>
   );
 }

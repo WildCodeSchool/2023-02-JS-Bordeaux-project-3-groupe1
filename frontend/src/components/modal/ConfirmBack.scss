@@ -1,79 +1,99 @@
-.modal-content {
-  margin: 4%;
-  padding: 2%;
-  height: 6.5rem;
-  border-radius: 0.3rem;
-  background-color: $app-secondary-fonts-color-2;
-  z-index: 1;
+.container-modal-content {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-
-  @include tablet {
-    font-size: 1.2rem;
-    height: 7rem;
-  }
+  justify-content: center;
+  width: 100%;
 
   @include desktop {
-    font-size: 1.4rem;
-    height: 10rem;
+    background-color: $app-secondary-fonts-color-2;
   }
 
-  .modal-actions {
-    padding: 4%;
+  .container-modal-content-preview {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      background-color: $app-button-primary-color;
-      color: $app-secondary-fonts-color-5;
-      height: 1.8rem;
-      border-radius: 0.3rem;
-      width: 30%;
-      padding: 1.5%;
-      font-size: 1rem;
-
-      @include tablet {
-        font-size: 1.2rem;
-        height: 2rem;
-        width: 25%;
-      }
-
-      @include desktop {
-        width: 20%;
-        font-size: 1.4rem;
-        height: 2.4rem;
-      }
+    justify-content: center;
+    width: 90%;
+    @include desktop {
+      width: 50%;
+      background-color: #ffff;
     }
-
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $app-button-primary-color;
-      color: $app-secondary-fonts-color-5;
-      height: 1.8rem;
+    .modal-content {
+      margin: 4%;
+      padding: 2%;
+      height: 6.5rem;
       border-radius: 0.3rem;
-      width: 30%;
-      padding: 1.5%;
-      font-size: 1rem;
+      background-color: $app-secondary-fonts-color-2;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
 
       @include tablet {
         font-size: 1.2rem;
-        height: 2rem;
-        width: 25%;
+        height: 7rem;
+        width: 80%;
       }
 
       @include desktop {
-        width: 20%;
         font-size: 1.4rem;
-        height: 2.4rem;
+        height: 9rem;
+      }
+
+      .modal-actions {
+        padding: 4%;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          background-color: $app-button-primary-color;
+          color: $app-secondary-fonts-color-5;
+          height: 1.8rem;
+          border-radius: 0.3rem;
+          width: 30%;
+          padding: 1.5%;
+          font-size: 1rem;
+
+          @include tablet {
+            font-size: 1.2rem;
+            height: 2rem;
+            width: 25%;
+          }
+
+          @include desktop {
+            width: 30%;
+            font-size: 1.4rem;
+            height: 2.4rem;
+          }
+        }
+
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: $app-button-primary-color;
+          color: $app-secondary-fonts-color-5;
+          height: 1.8rem;
+          border-radius: 0.3rem;
+          width: 30%;
+          padding: 1.5%;
+          font-size: 1rem;
+
+          @include tablet {
+            font-size: 1.2rem;
+            height: 2rem;
+            width: 25%;
+          }
+
+          @include desktop {
+            width: 30%;
+            font-size: 1.4rem;
+            height: 2.4rem;
+          }
+        }
       }
     }
   }
