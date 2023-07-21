@@ -19,9 +19,8 @@
   }
 }
 .VideoPlateform {
-  background-color: $app-secondary-fonts-color-3;
-  width: 21rem;
-  height: 14rem;
+  width: 17rem;
+  border: 1px solid $app-corporate-color;
   @include tablet {
     width: 45rem;
     height: 30rem;

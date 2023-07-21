@@ -6,13 +6,13 @@ import Cible from "../../assets/pictures/cible.png";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import { decodeTokenAndExtractRole } from "../../services/authService";
 import { fetcherUSerById } from "../../services/userService";
+import videoDemo from "../../assets/video/videoDemoProjet.mp4";
 
 function ContainerTutoPlateform() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const { isDesktop } = useContext(IsDesktopContext);
   const { userId } = decodeTokenAndExtractRole();
   const [userLevel, setUserLevel] = useState(0);
-
   setNameMenu("Prise en main de la plateforme");
 
   useEffect(() => {
@@ -50,7 +50,15 @@ function ContainerTutoPlateform() {
       <div className="line-yellowPlateform" />
       <p className="pContainerTutoPlateform">Vidéo</p>
       <div className="container-Explications">
-        <div className="VideoPlateform" />
+        <div className="container-Explications">
+          <video src={videoDemo} autoPlay className="VideoPlateform">
+            <track
+              kind="captions"
+              src="captions.vtt"
+              label="English captions"
+            />
+          </video>
+        </div>
       </div>
       <div>
         {userLevel !== null ? (
