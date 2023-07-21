@@ -8,6 +8,7 @@ import { decodeTokenAndExtractRole } from "../../services/authService";
 import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ProfileDesk from "./ProfileDesk";
 import ConfirmDeleteUser from "../../components/modal/ConfirmDeleteUser";
+import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
 
 function Profile() {
   const { isDesktop } = useContext(IsDesktopContext);
@@ -20,6 +21,7 @@ function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(ButtonStateConnectionContext);
 
   useEffect(() => {
     fetcherUSerById("users", userId)
@@ -52,6 +54,7 @@ function Profile() {
           console.warn(data);
           setIsModalOpen(false);
           localStorage.clear();
+          setIsLoggedIn(false);
           toast.success("Le profil a bien été supprimé");
           navigate("/");
         })
