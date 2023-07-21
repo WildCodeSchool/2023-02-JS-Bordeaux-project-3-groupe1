@@ -1,11 +1,7 @@
 import PropTypes from "prop-types";
 import pouce from "../../../assets/pouce.png";
 
-function ObjectiveSection({
-  isUpdate,
-  handleObjectifChange,
-  objectifTutorial,
-}) {
+function ObjectiveSection({ handleObjectifChange, objectifTutorial }) {
   return (
     <div className="container-objectif">
       <div className="container-objectif-title">
@@ -15,9 +11,6 @@ function ObjectiveSection({
         </div>
       </div>
       <div className="container-objectifText">
-        {isUpdate && (
-          <label htmlFor="objectifTutorial">Ajouter votre objectif ici :</label>
-        )}
         <textarea
           name="objectifTutorial"
           id="objectifTutorial"
@@ -32,7 +25,6 @@ function ObjectiveSection({
 }
 
 ObjectiveSection.propTypes = {
-  isUpdate: PropTypes.bool.isRequired,
   handleObjectifChange: PropTypes.func.isRequired,
   objectifTutorial: PropTypes.string.isRequired,
 };

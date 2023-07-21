@@ -6,19 +6,31 @@
 
   @include desktop {
     background-color: $app-secondary-fonts-color-2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .container-createObjectifTutorial-preview {
     background-color: $app-secondary-fonts-color-50;
+
+    @include tablet {
+      height: 70vh;
+    }
+
     @include desktop {
       width: 40%;
-      min-height: calc(80vh - 200px);
-      margin: auto;
+      height: 83vh;
+      padding: 0;
     }
 
     .container-objectif {
       padding: 4% 0;
       display: flex;
+
+      @include tablet {
+        padding: 1% 0 1% 0;
+      }
 
       @include desktop {
         padding: 1%;
@@ -93,7 +105,7 @@
 
         textarea {
           width: 90%;
-          min-height: 7rem;
+          min-height: 6rem;
           border: none;
           background-color: transparent;
           white-space: normal;
@@ -113,6 +125,10 @@
       align-items: center;
       width: 100%;
       padding: 4%;
+
+      @include tablet {
+        padding: 2%;
+      }
 
       @include desktop {
         padding: 2%;
@@ -196,9 +212,16 @@
         border-radius: 0.3rem;
         resize: vertical;
 
+        @include tablet {
+          width: 90%;
+          min-height: 20rem;
+          margin: 2%;
+        }
+
         @include desktop {
           width: 80%;
-          min-height: 15rem;
+          min-height: 10rem;
+          margin: 0 0 8% 0;
         }
 
         .container-explications-preview-title {
@@ -238,7 +261,7 @@
           textarea {
             margin: 4%;
             width: 90%;
-            min-height: 5rem;
+            min-height: 3rem;
             height: "auto";
             border: none;
             background-color: transparent;

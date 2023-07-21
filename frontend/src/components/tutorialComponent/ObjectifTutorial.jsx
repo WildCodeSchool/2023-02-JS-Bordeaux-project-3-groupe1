@@ -105,7 +105,6 @@ function ObjectifTutorial(props) {
     <div className="container-createObjectifTutorial">
       <div className="container-createObjectifTutorial-preview">
         <ObjectiveSection
-          isUpdate={isUpdate}
           handleObjectifChange={handleObjectifChange}
           objectifTutorial={objectifTutorial}
         />

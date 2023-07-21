@@ -4,14 +4,15 @@
   .container-createNameTutorial-preview {
     background-color: $app-secondary-fonts-color-50;
     width: 100vw;
-    min-height: calc(100vh - 135px);
+    min-height: calc(100vh - 125px);
     padding: 4%;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     @include desktop {
-      width: 40%;
-      height: calc(80vh - 200px);
+      width: 50%;
+      height: 80vh;
       margin: auto;
       padding-top: 1%;
     }
@@ -99,6 +100,10 @@
       flex-wrap: wrap;
       margin: 4%;
       width: 80%;
+
+      @include tablet {
+        margin: 2%;
+      }
 
       button {
         margin: 2%;

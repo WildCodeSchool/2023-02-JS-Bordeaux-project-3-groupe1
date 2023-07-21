@@ -10,10 +10,14 @@
     align-items: center;
     padding: 4%;
 
-    @include desktop {
-      width: 50%;
+    @include tablet {
+      padding: 6%;
+    }
 
+    @include desktop {
+      width: 40%;
       margin: auto;
+      padding: 2%;
     }
 
     label {
@@ -22,10 +26,6 @@
 
       @include tablet {
         font-size: 1.4rem;
-      }
-
-      @include desktop {
-        padding: 2%;
       }
     }
 
@@ -74,6 +74,7 @@
         height: 20rem;
         width: 80%;
         padding: 0;
+        margin: 0 0 4% 0;
       }
 
       iframe {
@@ -87,7 +88,7 @@
         @include desktop {
           height: 100%;
           width: 100%;
-          margin: 0;
+          margin: 0 0 4% 0;
         }
       }
 

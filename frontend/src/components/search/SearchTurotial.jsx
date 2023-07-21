@@ -18,7 +18,7 @@ function SearchTutorial() {
           id="search"
           onChange={handleInputChange}
           value={search}
-          placeholder="Recherche par tags ..."
+          placeholder="Recherche par mot clé ..."
         />
       </div>
       <ListTutorials search={search} />
