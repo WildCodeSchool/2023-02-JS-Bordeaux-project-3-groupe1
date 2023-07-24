@@ -20,7 +20,7 @@
 
   @include minHeight850px {
     column-gap: 10vw;
-    height: 777px;
+    min-height: calc(100vh - 180px);
   }
 }
 

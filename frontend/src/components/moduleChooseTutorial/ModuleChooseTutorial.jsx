@@ -63,6 +63,7 @@ function ModuleChooseTutorial({ userId, item, steps }) {
         className={isOpen ? "tutorialListDisplay" : "tutorialListDisplayNone"}
       >
         <Link
+          className="linkTextExplicationQuizz"
           onClick={handleClick}
           to={`/formations/tutorials/explication/${item.tutoId}`}
         >
@@ -74,6 +75,7 @@ function ModuleChooseTutorial({ userId, item, steps }) {
           </li>
         </Link>
         <Link
+          className="linkTextExplicationQuizz"
           onClick={handleClick}
           to={`/formations/tutorials/video/${item.tutoId}`}
         >
@@ -85,6 +87,7 @@ function ModuleChooseTutorial({ userId, item, steps }) {
           </li>
         </Link>
         <Link
+          className="linkTextExplicationQuizz"
           onClick={handleClick}
           to={`/formations/tutorials/quizz/${item.tutoId}`}
         >
