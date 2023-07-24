@@ -77,6 +77,19 @@ li {
   list-style: none;
 }
 
+.Toastify__toast--info {
+}
+.Toastify__toast--success {
+  background-color: #a2f9a4;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+.Toastify__toast--error {
+  background-color: #fbcecc;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
 // .titleNameMenu { à modifier je laisse commenté pour l'instant
 //   color: yellow;
 // }
