@@ -60,12 +60,12 @@ function VideoTutorial(props) {
   return (
     <div className="container-createVideoTutorial">
       <div className="container-createVideoTutorial-preview">
-        <label htmlFor="videoUrl">Insérer l’url de votre vidéo :</label>
+        <label htmlFor="videoUrl">Insérer votre vidéo :</label>
         <InputField
           name="videoUrl"
           id="videoUrl"
           value={videoUrl}
-          placeholder="Insérer l’url de votre vidéo"
+          placeholder="Insérer l’url ici"
           onChange={handleInputChange}
         />
         <h3>Vidéo</h3>

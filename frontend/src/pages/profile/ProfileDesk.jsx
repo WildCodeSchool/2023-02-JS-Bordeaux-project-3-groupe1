@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { toast } from "react-toastify";
 import mailProfile from "../../assets/pictures/mailPhoto.png";
 import Connexion from "../../assets/pictures/photo_profile.png";
@@ -7,6 +7,7 @@ import { fetcherUSerById, deleteUser } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
 import HommeProfil from "../../assets/pictures/homme-profil.png";
 import ConfirmDeleteUser from "../../components/modal/ConfirmDeleteUser";
+import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
 
 function Profile() {
   const { userId } = decodeTokenAndExtractRole();
@@ -18,6 +19,7 @@ function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalRef = useRef(null);
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(ButtonStateConnectionContext);
 
   useEffect(() => {
     fetcherUSerById("users", userId)
@@ -50,6 +52,7 @@ function Profile() {
           console.warn(data);
           setIsModalOpen(false);
           localStorage.clear();
+          setIsLoggedIn(false);
           toast.success("Le profil a bien été supprimé");
           navigate("/");
         })

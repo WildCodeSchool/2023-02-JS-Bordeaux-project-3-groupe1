@@ -189,7 +189,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ButtonStateConnectionProvider>
       <IsDesktopProvider>
         <RouterProvider router={router} />
-        <ToastContainer />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </IsDesktopProvider>
     </ButtonStateConnectionProvider>
   </React.StrictMode>

@@ -62,6 +62,11 @@
             height: 140px;
             width: 180px;
           }
+
+          @include desktop {
+            height: 120px;
+            width: 140px;
+          }
         }
 
         .container-title-tuto {
@@ -171,6 +176,10 @@
           @include tablet {
             font-size: 1.4rem;
           }
+
+          @include desktop {
+            font-size: 1rem;
+          }
         }
 
         label {
@@ -199,7 +208,7 @@
         }
 
         @include desktop {
-          margin: 1% 0;
+          margin: 4% 0;
           font-size: 2rem;
         }
       }

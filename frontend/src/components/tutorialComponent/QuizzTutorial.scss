@@ -59,16 +59,14 @@
 
       #optionOne,
       #optionTwo {
-        border: 2px solid rgb(240, 199, 172);
+        border: 2px solid rgb(187, 74, 66);
       }
+    }
+    h3 {
+      color: $app-primary-fonts-color;
 
-      h3 {
-        color: $app-primary-fonts-color;
-
-        @include tablet {
-          margin: 2%;
-          font-size: 1.6rem;
-        }
+      @include tablet {
+        font-size: 1.6rem;
       }
     }
 

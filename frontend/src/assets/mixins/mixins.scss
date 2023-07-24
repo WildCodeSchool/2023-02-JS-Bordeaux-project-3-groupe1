@@ -91,12 +91,10 @@
   margin: 1rem 0 0 5rem;
 }
 
-
 @mixin adjustHeight($height) {
   @if $height > $heightLimit {
     $space: calc(#{$heightLimit} + 177px);
-  }
-  @else {
+  } @else {
     $space: $height;
   }
 }

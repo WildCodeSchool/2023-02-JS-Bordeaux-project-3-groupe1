@@ -12,7 +12,7 @@
     justify-content: center;
     width: 90%;
     @include desktop {
-      width: 50%;
+      width: 40%;
       background-color: #ffff;
     }
     .modal-content {
@@ -36,6 +36,7 @@
       @include desktop {
         font-size: 1.4rem;
         height: 9rem;
+        width: 100%;
       }
 
       .modal-actions {

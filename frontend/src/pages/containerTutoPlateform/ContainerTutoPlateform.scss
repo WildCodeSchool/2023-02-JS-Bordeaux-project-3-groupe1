@@ -9,18 +9,48 @@
     width: 88%;
   }
 }
-.pContainerTutoPlateform {
-  font-size: 1.3rem;
-  text-align: center;
-  color: #003da5;
-  font-family: "Roboto", sans-serif;
-  @include tablet {
-    font-size: 3rem;
+.container-ObjectifText-platform {
+  width: 60%;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+
+  .textObjectifPlateform {
+    font-size: 1.3rem;
+    text-align: center;
+    color: #003da5;
+    font-family: "Roboto", sans-serif;
+    @include tablet {
+      font-size: 3rem;
+      margin: 4rem 0 0 4rem;
+      width: 100%;
+    }
+
+    @include desktop {
+      margin: 5rem 0 0 2rem;
+    }
   }
 }
+
+.container-title-platform {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  p {
+    font-size: 1.4rem;
+    color: #003da5;
+
+    @include tablet {
+      font-size: 2.5rem;
+    }
+  }
+}
+
 .VideoPlateform {
   width: 17rem;
-  border: 1px solid $app-corporate-color;
   @include tablet {
     width: 45rem;
     height: 30rem;
