@@ -105,7 +105,7 @@ function Profile() {
           type="button"
           onClick={() => handleOpenModal(userId)}
         >
-          Supprimer le profil
+          Supprimer mon profil
         </button>
         <Link to="/formations/parcours">
           <button className="button_see_my_journey" type="button">

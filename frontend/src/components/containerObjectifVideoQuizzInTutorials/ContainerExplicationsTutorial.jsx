@@ -7,7 +7,9 @@ function ContainerExplicationsTutorial({ dataTutorial }) {
       <p className="pTutoExplication">Explications</p>
       <div className="container-Explications-preview">
         <img src={dataTutorial.pictureTuto} alt="Preview" />
-        <p className="explication-text">{dataTutorial.explication}</p>
+        <p className="explication-text" style={{ textAlign: "justify" }}>
+          {dataTutorial.explication}
+        </p>
       </div>
     </div>
   );
