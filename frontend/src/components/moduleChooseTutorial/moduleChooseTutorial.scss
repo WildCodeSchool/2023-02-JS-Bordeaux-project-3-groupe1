@@ -162,7 +162,9 @@
 
     .checkStepTutorial {
       height: 1rem;
-      padding-left: 1rem;
+      position: absolute;
+      left: 150px;
+      margin-top: 3px;
     }
 
     .StepTutorial {
@@ -199,4 +201,9 @@
 
 .tutorialCap {
   width: $app-font-size-cap;
+}
+
+.linkTextExplicationQuizz {
+  color: $app-primary-fonts-color;
+  text-decoration: underline;
 }

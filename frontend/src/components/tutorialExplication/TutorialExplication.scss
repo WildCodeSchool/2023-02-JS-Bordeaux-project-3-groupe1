@@ -118,8 +118,8 @@
     @include tablet {
       font-size: 2rem;
       @include desktop {
-        width: 67%;
-        margin-right: -22rem;
+        width: initial;
+        margin-right: 0;
         font-size: 2.5rem;
       }
     }
@@ -138,6 +138,10 @@
 
   .SpaceQuizz {
     width: 100%;
+
+    @include desktop {
+      display: contents;
+    }
   }
 
   .line-yellow {
@@ -171,7 +175,9 @@
       margin-bottom: 1rem;
       @include desktop {
         font-size: 2rem;
-        margin-top: 2rem;
+        // margin-top: 2rem;
+        margin: 0 auto;
+        width: 100%;
       }
     }
   }
@@ -229,7 +235,9 @@
     @include tablet {
       height: 85px;
       @include desktop {
-        margin-left: 40rem;
+        // margin-left: 40rem;
+        // text-align: left;
+        width: 140%;
       }
     }
 
@@ -350,4 +358,8 @@
   @include tablet {
     font-size: 2rem;
   }
+}
+
+a {
+  color: yellow;
 }

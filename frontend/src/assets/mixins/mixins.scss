@@ -25,6 +25,12 @@
   }
 }
 
+@mixin miniPhone {
+  @media (min-width: 320px) and (max-width: 394px) {
+    @content;
+  }
+}
+
 @mixin primary-button-desk {
   width: 20%;
   border: 0;
@@ -83,4 +89,14 @@
   box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
     inset -2px -2px 3px rgba(0, 0, 0, 0.6);
   margin: 1rem 0 0 5rem;
+}
+
+
+@mixin adjustHeight($height) {
+  @if $height > $heightLimit {
+    $space: calc(#{$heightLimit} + 177px);
+  }
+  @else {
+    $space: $height;
+  }
 }
