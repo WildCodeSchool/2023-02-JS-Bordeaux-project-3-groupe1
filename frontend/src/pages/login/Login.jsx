@@ -91,9 +91,6 @@ function Login() {
               </button>
             </div>
           </label>
-          <Link to="/" className="new-password-link">
-            MOT DE PASSE OUBLIÉ ?
-          </Link>
           <br />
           <br />
           <button className="login-btn" type="submit">
