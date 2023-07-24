@@ -14,7 +14,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     width: 100vw;
-    height: 80%;
+    min-height: calc(100vh - 125px);
     .articleDesktopModuleTutorial {
       margin: 0 auto;
       width: 90%;
