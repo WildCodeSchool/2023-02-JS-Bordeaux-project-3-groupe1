@@ -12,8 +12,9 @@
 
   @include desktop {
     display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 10px;
+    grid-template-columns: auto auto;
+    align-content: baseline;
+    row-gap: 2rem;
   }
 
   .container-gestion-user {
