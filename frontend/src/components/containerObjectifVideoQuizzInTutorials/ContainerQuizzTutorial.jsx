@@ -16,6 +16,7 @@ function ContainerQuizzTutorial({
   looser2,
 }) {
   console.info(quizzValidate);
+
   return (
     <>
       <div>
