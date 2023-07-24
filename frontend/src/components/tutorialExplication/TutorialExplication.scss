@@ -3,7 +3,7 @@
   flex-direction: column;
   min-height: calc(100vh - 120px);
   width: 100vw;
-  
+
   .ciblePlateform {
     @include desktop {
       height: 13rem;
@@ -152,7 +152,7 @@
 
   .SpaceQuizz {
     width: 100%;
-   
+
     @include desktop {
       display: contents;
     }
@@ -202,7 +202,7 @@
 
       @include tablet {
         text-decoration: underline;
-        font-size: 20px; 
+        font-size: 20px;
       }
 
       @include desktop {
