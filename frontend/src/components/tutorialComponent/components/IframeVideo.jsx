@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import youTubeLogo from "../../../assets/youTubeLogo.png";
 
 function IframeVideo({ videoId }) {
   return (
@@ -10,9 +9,7 @@ function IframeVideo({ videoId }) {
           title="Video Preview"
         />
       ) : (
-        <div className="container-video-preview-logo">
-          <img src={youTubeLogo} alt="youTubeLogo" />
-        </div>
+        <div className="container-video-preview-logo" />
       )}
     </div>
   );

@@ -138,7 +138,7 @@ function QuizzTutorial(props) {
           />
         </div>
         <div className="container-preview-quizz">
-          <h3>Quizz</h3>
+          <h3>Quiz</h3>
           <PreviewQuizz
             question={question}
             optionOne={optionOne}
@@ -149,7 +149,7 @@ function QuizzTutorial(props) {
       </div>
       <Link to={`/formations/${forms.idFormation}`}>
         <button type="button" onClick={handleSaveTutorial} disabled={!isValid}>
-          Valider le tutorial
+          Valider le tutoriel
         </button>
       </Link>
     </div>

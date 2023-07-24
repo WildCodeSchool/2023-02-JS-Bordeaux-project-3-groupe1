@@ -37,12 +37,13 @@
       @include tablet {
         width: 90%;
         height: 5rem;
+        margin: 2%;
       }
 
       @include desktop {
         width: 48%;
         margin: 1%;
-        height: 3.8rem;
+        height: 4.5rem;
       }
 
       .container-icon {
@@ -137,9 +138,14 @@
           }
 
           @include desktop {
-            height: 1.4rem;
-            width: 80%;
+            height: 1.8rem;
+            width: 90%;
           }
+        }
+
+        .button-delete-tutorial {
+          background-color: $app-secondary-fonts-color-4;
+          color: $app-primary-fonts-color;
         }
       }
     }

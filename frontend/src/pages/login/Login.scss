@@ -60,10 +60,11 @@
         font-weight: bold;
         margin-bottom: 1rem;
         @include tablet {
+          width: 30%;
           font-size: $app-heading-three;
         }
         @include desktop {
-          width: 60%;
+          width: 40%;
           font-size: $app-heading-three;
           font-weight: bold;
           height: 6.5vh;

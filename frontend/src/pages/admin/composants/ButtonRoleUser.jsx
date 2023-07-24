@@ -5,6 +5,8 @@ import ConfirmAdmin from "../../../components/modal/ConfirmAdmin";
 function ButtonRoleUser({ handleActive, user }) {
   const [nameButton, setNameButton] = useState("Passer administrateur");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [buttonColor, setButtonColor] = useState("");
+  const [colorText, setColorText] = useState("");
   const modalRef = useRef(null);
 
   const handleOpenModal = () => {
@@ -19,16 +21,24 @@ function ButtonRoleUser({ handleActive, user }) {
     handleActive(user);
     if (nameButton === "Désactiver administrateur") {
       setNameButton("Passer administrateur");
+      setButtonColor("#ffcb03");
+      setColorText("#003da5");
     } else {
       setNameButton("Désactiver administrateur");
+      setButtonColor("#003da5");
+      setColorText("#ffffff");
     }
   };
 
   useEffect(() => {
     if (user.role_id === 2) {
       setNameButton("Désactiver administrateur");
+      setButtonColor("#003da5");
+      setColorText("#ffffff");
     } else if (user.role_id === 1) {
       setNameButton("Passer administrateur");
+      setButtonColor("#ffcb03");
+      setColorText("#003da5");
     }
   }, []);
 
@@ -47,7 +57,11 @@ function ButtonRoleUser({ handleActive, user }) {
 
   return (
     <div>
-      <button type="button" onClick={() => handleOpenModal(user.id)}>
+      <button
+        type="button"
+        onClick={() => handleOpenModal(user.id)}
+        style={{ backgroundColor: buttonColor, color: colorText }}
+      >
         {nameButton}
       </button>
       {isModalOpen && (

@@ -11,7 +11,9 @@
   }
 
   @include desktop {
-    padding-top: 8%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
   }
 
   .container-gestion-user {
@@ -19,19 +21,21 @@
     display: flex;
     align-items: center;
     width: 90%;
-    height: 5.2rem;
+    height: 5.5rem;
     border-radius: 0.3rem;
     background-color: $app-secondary-fonts-color-2;
     margin: 4%;
 
     @include tablet {
-      height: 7rem;
+      height: 7.4rem;
+      margin: 2%;
     }
 
     @include desktop {
-      width: 50%;
+      width: 80%;
       padding: 2%;
-      height: 9rem;
+      height: 8rem;
+      margin: auto;
     }
 
     .container-infos-user {
@@ -60,9 +64,9 @@
     width: 40%;
 
     button {
-      margin: 4%;
+      margin: 2%;
       width: 100%;
-      height: 2rem;
+      height: 2.2rem;
       border: none;
       background-color: $app-button-primary-color;
       color: $app-secondary-fonts-color-5;
@@ -71,7 +75,7 @@
       @include tablet {
         font-size: 1.1rem;
         width: 90%;
-        height: 2.2rem;
+        height: 2.8rem;
       }
 
       @include desktop {

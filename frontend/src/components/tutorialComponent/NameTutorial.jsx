@@ -158,7 +158,7 @@ function NameTutorial(props) {
   return (
     <div className="container-createNameTutorial">
       <div className="container-createNameTutorial-preview">
-        <label htmlFor="nameTutorial">Nom du tutorial :</label>
+        <label htmlFor="nameTutorial">Nom du tutoriel :</label>
         <InputField
           name="nameTutorial"
           id="nameTutorial"

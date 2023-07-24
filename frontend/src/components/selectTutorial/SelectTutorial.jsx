@@ -128,7 +128,11 @@ function SelectTutorial(props) {
               <Link to={`/tutorials/updateTutorial/${item.id}`}>
                 <button type="button">Modifier</button>
               </Link>
-              <button type="button" onClick={() => handleOpenModal(item.id)}>
+              <button
+                className="button-delete-tutorial"
+                type="button"
+                onClick={() => handleOpenModal(item.id)}
+              >
                 Supprimer
               </button>
             </div>

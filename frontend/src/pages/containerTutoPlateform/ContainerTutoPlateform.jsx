@@ -2,15 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 import ButtonTutorial from "../../components/containerObjectifVideoQuizzInTutorials/ButtonTutorial";
 import Pouce from "../../assets/pouce.png";
-import Cible from "../../assets/pictures/cible.png";
-import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import { decodeTokenAndExtractRole } from "../../services/authService";
 import { fetcherUSerById } from "../../services/userService";
 import videoDemo from "../../assets/video/videoDemoProjet.mp4";
 
 function ContainerTutoPlateform() {
   const { setNameMenu } = useContext(NameMenuTopContext);
-  const { isDesktop } = useContext(IsDesktopContext);
   const { userId } = decodeTokenAndExtractRole();
   const [userLevel, setUserLevel] = useState(0);
   setNameMenu("Prise en main de la plateforme");
@@ -32,23 +29,18 @@ function ContainerTutoPlateform() {
           <img className="pouce" src={Pouce} alt="pouce" />
           <div className="container-Title-Tuto">
             <h3 className="objectif">Objectif</h3>
-            {isDesktop ? (
-              <div>
-                <img src={Cible} className="ciblePlateform" alt="cible" />
-              </div>
-            ) : (
-              <div />
-            )}
           </div>
         </div>
-        <div className="container-ObjectifText">
+        <div className="container-ObjectifText-platform">
           <p className="textObjectifPlateform">
             Comprendre au mieux l’utilisation de notre plateforme
           </p>
         </div>
       </div>
       <div className="line-yellowPlateform" />
-      <p className="pContainerTutoPlateform">Vidéo</p>
+      <div className="container-title-platform">
+        <p>Vidéo</p>
+      </div>
       <div className="container-Explications">
         <div className="container-Explications">
           <video src={videoDemo} autoPlay className="VideoPlateform">
