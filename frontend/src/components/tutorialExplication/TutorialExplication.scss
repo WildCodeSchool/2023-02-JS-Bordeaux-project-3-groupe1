@@ -3,6 +3,7 @@
   flex-direction: column;
   min-height: calc(100vh - 120px);
   width: 100vw;
+  
   .ciblePlateform {
     @include desktop {
       height: 13rem;
@@ -15,10 +16,16 @@
   .container-Objectif {
     padding: 4% 0;
     display: flex;
+
     @include desktop {
-      padding: 2% 0;
+      padding: 0;
+    }
+
+    @include minHeight850px {
+      margin-bottom: -35px;
     }
   }
+
   .container-Objectif-Title {
     height: 100%;
     display: flex;
@@ -36,10 +43,12 @@
   .container-button {
     text-align: center;
     margin-right: 1rem;
+
     a {
       width: 100%;
       text-align: center;
       margin: 10px;
+
       .suivant {
         background-color: $app-button-primary-color;
         color: $app-secondary-fonts-color-5;
@@ -59,6 +68,7 @@
       margin-top: 2rem;
       font-weight: bold;
     }
+
     button:disabled {
       opacity: 0.5;
     }
@@ -68,9 +78,11 @@
     padding-right: 10%;
     height: 100px;
     width: 130px;
+
     @include tablet {
       height: 12rem;
       width: 15rem;
+
       @include desktop {
         height: 10rem;
         width: 15rem;
@@ -78,6 +90,7 @@
     }
   }
 }
+
 .container-Title-Tuto {
   z-index: 2;
   display: flex;
@@ -101,6 +114,7 @@
     }
   }
 }
+
 .container-ObjectifText {
   width: 45%;
   margin: auto;
@@ -120,7 +134,6 @@
       @include desktop {
         width: initial;
         margin-right: 0;
-        font-size: 2.5rem;
       }
     }
   }
@@ -132,13 +145,14 @@
   align-items: center;
   width: 100%;
   padding: 4%;
+
   @include desktop {
     padding: 2%;
   }
 
   .SpaceQuizz {
     width: 100%;
-
+   
     @include desktop {
       display: contents;
     }
@@ -149,6 +163,10 @@
     width: 100%;
     border-top: 2px solid $app-line-color;
     margin-top: -30px;
+
+    @include minHeight850px {
+      margin-bottom: 2%;
+    }
   }
   .containerButtonVideo {
     display: flex;
@@ -169,14 +187,27 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+    @include desktop {
+      margin: 5px auto 19px auto;
+      height: 250px;
+      max-height: 250px;
+      justify-content: space-evenly !important;
+    }
+
     .TitleQuizz {
       margin-top: 1rem;
       text-align: center;
       margin-bottom: 1rem;
+
+      @include tablet {
+        text-decoration: underline;
+        font-size: 20px; 
+      }
+
       @include desktop {
-        font-size: 2rem;
-        // margin-top: 2rem;
-        margin: 0 auto;
+        font-size: 1.5rem;
+        margin: 0 auto 15px auto;
         width: 100%;
       }
     }
@@ -204,9 +235,13 @@
     background-color: #f5f5f5;
     flex-direction: column;
     align-items: center;
+
+    @include tablet {
+      justify-content: space-between;
+    }
+
     @include desktop {
       width: 50rem;
-      height: 27rem;
       margin: auto;
     }
 
@@ -233,10 +268,8 @@
     display: flex;
     align-items: center;
     @include tablet {
-      height: 85px;
+      height: 20px;
       @include desktop {
-        // margin-left: 40rem;
-        // text-align: left;
         width: 140%;
       }
     }
@@ -330,15 +363,33 @@
   text-align: center;
   color: $app-primary-fonts-color;
   font-family: $app-secondary-font;
+
+  @include tablet {
+    font-size: xx-large;
+  }
+
   @include desktop {
-    font-size: 3rem;
     margin-bottom: 2rem;
   }
 }
 
 .pTutoQuizz {
   font-weight: initial;
+
+  @include tablet {
+    padding-top: 55%;
+  }
+
+  @include desktop {
+    padding: 0;
+  }
+
+  @include minHeight850px {
+    margin-top: -50px;
+    margin-bottom: 10px;
+  }
 }
+
 .explicationPicture {
   height: 4rem;
   margin-top: 1rem;
@@ -362,4 +413,11 @@
 
 a {
   color: yellow;
+}
+
+.container-Explications p:last-child {
+  @include desktop {
+    padding: 15px 95px;
+    margin-top: 0;
+  }
 }
