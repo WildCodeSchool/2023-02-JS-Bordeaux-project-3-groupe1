@@ -3,7 +3,7 @@
   flex-direction: column;
   min-height: calc(100vh - 120px);
   width: 100vw;
-  
+
   .ciblePlateform {
     @include desktop {
       height: 13rem;
@@ -152,7 +152,10 @@
 
   .SpaceQuizz {
     width: 100%;
-   
+    @include tablet {
+      margin-top: 30px;
+    }
+
     @include desktop {
       display: contents;
     }
@@ -172,6 +175,10 @@
     display: flex;
     align-items: flex-end;
 
+    @include tablet {
+      margin-top: 25px;
+    }
+
     .precedent {
       border: 0;
       line-height: 2;
@@ -188,6 +195,13 @@
     flex-direction: column;
     justify-content: space-evenly;
 
+    @include tablet {
+      // justify-content: space-between;
+      height: 32vh;
+      padding: 30px 0;
+      margin: 0 auto !important;
+    }
+
     @include desktop {
       margin: 5px auto 19px auto;
       height: 250px;
@@ -202,7 +216,7 @@
 
       @include tablet {
         text-decoration: underline;
-        font-size: 20px; 
+        font-size: 20px;
       }
 
       @include desktop {
@@ -242,7 +256,8 @@
 
     @include desktop {
       width: 50rem;
-      margin: auto;
+      row-gap: 30px;
+      padding: 11% 0;
     }
 
     img {
@@ -269,6 +284,8 @@
     align-items: center;
     @include tablet {
       height: 20px;
+      width: 90%;
+      margin-right: 60px;
       @include desktop {
         width: 140%;
       }
@@ -280,6 +297,10 @@
       padding-top: 1rem;
       @include tablet {
         margin-top: -1rem;
+      }
+      @include desktop {
+        width: 54%;
+        margin: -2rem 0;
       }
     }
   }
@@ -382,11 +403,6 @@
 
   @include desktop {
     padding: 0;
-  }
-
-  @include minHeight850px {
-    margin-top: -50px;
-    margin-bottom: 10px;
   }
 }
 

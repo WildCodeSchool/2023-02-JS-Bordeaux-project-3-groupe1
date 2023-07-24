@@ -17,6 +17,7 @@ function TutorialChoice() {
   const [formations, setFormations] = useState([]);
   const [nameFormation, setNameFormation] = useState("");
   const [dataFilterLevelUser, setDataFilterLevelUser] = useState([]);
+  const [justTutoId, setJustTutoId] = useState([]);
   const [isLevel1Completed, setIsLevel1Completed] = useState(false);
 
   useEffect(() => {
@@ -80,6 +81,8 @@ function TutorialChoice() {
 
   useEffect(() => {
     if (dataTutorial.length > 0) {
+      setJustTutoId(dataTutorial.map((item) => item.id));
+      console.info(justTutoId);
       setDataFilterLevelUser(dataTutorial);
       setDataFilterLevelUser(filteredTutorialsLevel1);
       setIsLevel1Completed(
@@ -94,7 +97,10 @@ function TutorialChoice() {
       }
     }
   }, [dataTutorial]);
-
+  const formationFinishOrNotExist =
+    justTutoId.length === 0
+      ? "Cette formation ne contient pas encore de tutoriels"
+      : "Bravo vous avez terminer cette formation";
   return (
     <main className="tutorialChoice tutorialChoiceUser">
       {isDesktop ? (
@@ -111,7 +117,7 @@ function TutorialChoice() {
                 />
               ))
             ) : (
-              <h4>Cette formation ne contient pas encore de tutoriels</h4>
+              <h4>{formationFinishOrNotExist}</h4>
             )}
           </div>
         </article>
@@ -127,7 +133,7 @@ function TutorialChoice() {
               />
             ))
           ) : (
-            <h4>Cette formation ne contient pas encore de tutoriels</h4>
+            <h4 className="noFormationH4">{formationFinishOrNotExist}</h4>
           )}
         </div>
       )}
