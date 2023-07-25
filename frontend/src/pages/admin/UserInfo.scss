@@ -15,7 +15,6 @@
   }
 
   .container-userInfo-picture {
-    background-color: $app-supporting-color;
     margin: 4%;
     width: 140px;
     height: 140px;
@@ -56,7 +55,7 @@
     width: 90%;
     color: $app-primary-fonts-color;
     font-size: 1.2rem;
-    margin-top: 10%;
+    margin-top: 6%;
 
     @include tablet {
       margin: 4% 0 4% 0;

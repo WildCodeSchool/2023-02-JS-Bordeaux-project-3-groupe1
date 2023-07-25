@@ -30,7 +30,7 @@
     height: 100vh;
     background-color: $app-bg;
     visibility: hidden;
-    transition: all .4s cubic-bezier(0, -0.11, 0.56, 1.03)
+    transition: all 0.4s cubic-bezier(0, -0.11, 0.56, 1.03);
   }
 
   &.show-nav .navbar_links {

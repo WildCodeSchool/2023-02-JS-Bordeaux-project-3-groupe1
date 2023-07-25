@@ -5,6 +5,7 @@ import AppareilPhoto from "../../assets/pictures/appareil_photo.png";
 import { sender, fetcherUSerById } from "../../services/userService";
 import { decodeTokenAndExtractRole } from "../../services/authService";
 import profile from "../../assets/pictures/profil.png";
+import profilpicture from "../../assets/pictures/profilpicture.webp";
 
 function ModificationPage() {
   const [picture, setPicture] = useState("");
@@ -135,10 +136,16 @@ function ModificationPage() {
                 style={{ display: "none" }}
                 onChange={handleFile}
               />
-              {previewUrl && (
+              {previewUrl ? (
                 <img
                   className="photoProfilIdentification"
                   src={previewUrl}
+                  alt="Preview"
+                />
+              ) : (
+                <img
+                  className="photoProfilIdentification"
+                  src={profilpicture}
                   alt="Preview"
                 />
               )}
@@ -158,10 +165,16 @@ function ModificationPage() {
               onChange={handleFile}
             />
             <div className="photoProfil">
-              {previewUrl && (
+              {previewUrl ? (
                 <img
                   className="photoProfilIdentification"
                   src={previewUrl}
+                  alt="Preview"
+                />
+              ) : (
+                <img
+                  className="photoProfilIdentification"
+                  src={profilpicture}
                   alt="Preview"
                 />
               )}

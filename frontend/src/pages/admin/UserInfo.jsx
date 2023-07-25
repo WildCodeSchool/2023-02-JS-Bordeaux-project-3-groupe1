@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetcherUSerById } from "../../services/userService";
+import profilpicture from "../../assets/pictures/profilpicture.webp";
 
 function UserInfo() {
   const [user, setUser] = useState({});
@@ -20,7 +21,9 @@ function UserInfo() {
       {user?.picture ? (
         <img src={user.picture} alt="preview user" />
       ) : (
-        <div className="container-userInfo-picture" />
+        <div className="container-userInfo-picture">
+          <img src={profilpicture} alt="preview user" />
+        </div>
       )}
       <div className="container-userInfo-infos">
         <h3>Prénom : {user.firstname}</h3>

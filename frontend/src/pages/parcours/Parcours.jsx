@@ -85,7 +85,7 @@ function Parcours() {
 
   return (
     <main className="parcours">
-      <h2 className="titleIconSort">Mes Badges</h2>
+      <h2 className="titleIconSort">Mes badges</h2>
       <figure className="containerRewardIcons">
         {iconURL.map((icon) => (
           <MyReward

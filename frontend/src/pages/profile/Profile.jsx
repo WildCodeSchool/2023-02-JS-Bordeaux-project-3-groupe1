@@ -9,6 +9,7 @@ import { IsDesktopContext } from "../../contexts/IsDesktopContext";
 import ProfileDesk from "./ProfileDesk";
 import ConfirmDeleteUser from "../../components/modal/ConfirmDeleteUser";
 import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
+import profilpicture from "../../assets/pictures/profilpicture.webp";
 
 function Profile() {
   const { isDesktop } = useContext(IsDesktopContext);
@@ -85,7 +86,11 @@ function Profile() {
         <h2>Mon profil</h2>
       </div>
       <div className="photoProfile">
-        {userPicture && <img src={userPicture} alt="" />}
+        {userPicture ? (
+          <img src={userPicture} alt="" />
+        ) : (
+          <img src={profilpicture} alt="" />
+        )}
       </div>
       <div className="nameProfile">
         <img className="imgProfile" src={Connexion} alt="icone profile" />

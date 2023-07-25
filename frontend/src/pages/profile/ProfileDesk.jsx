@@ -8,6 +8,7 @@ import { decodeTokenAndExtractRole } from "../../services/authService";
 import HommeProfil from "../../assets/pictures/homme-profil.png";
 import ConfirmDeleteUser from "../../components/modal/ConfirmDeleteUser";
 import { ButtonStateConnectionContext } from "../../contexts/ButtonStateConnectionContext";
+import profilpicture from "../../assets/pictures/profilpicture.webp";
 
 function Profile() {
   const { userId } = decodeTokenAndExtractRole();
@@ -85,7 +86,11 @@ function Profile() {
         <img className="homme-profil" src={HommeProfil} alt="Homme profil" />
         <div className="container-photo-form">
           <div className="photo-profil">
-            {userPicture && <img src={userPicture} alt="" />}
+            {userPicture ? (
+              <img src={userPicture} alt="" />
+            ) : (
+              <img src={profilpicture} alt="" />
+            )}{" "}
           </div>
           <div className="container-formulaire">
             <div className="identity-profil">
