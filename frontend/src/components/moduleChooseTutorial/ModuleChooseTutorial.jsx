@@ -92,7 +92,7 @@ function ModuleChooseTutorial({ userId, item, steps }) {
           to={`/formations/tutorials/quizz/${item.tutoId}`}
         >
           <li className="StepTutorial">
-            Quizz
+            Quiz
             {steps.find((step) => step.id === item.id)?.stepThree ? (
               <img className="checkStepTutorial" src={chek} alt="chek" />
             ) : null}
