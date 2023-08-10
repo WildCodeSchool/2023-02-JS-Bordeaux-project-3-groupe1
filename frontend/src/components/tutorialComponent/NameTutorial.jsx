@@ -11,8 +11,8 @@ import PreviewNameTutorial from "./components/PreviewNameTutorial";
 
 function NameTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
-  const [nameTutorial, setNameTutorial] = useState("");
-  const [tagTutorial, setTagTutorial] = useState("");
+  const [nameTutorial, setNameTutorial] = useState("Zoomer sur un écran tactile");
+  const [tagTutorial, setTagTutorial] = useState("zoom");
   const [levelTutorial, setLevelTutorial] = useState(1);
   const [starLevelStyle, setStarLevelStyle] = useState(false);
   const [nameFormation, setNameFormation] = useState([]);

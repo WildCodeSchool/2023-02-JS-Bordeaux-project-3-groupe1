@@ -8,7 +8,7 @@ import NameMenuTopContext from "../../contexts/NameMenuTopContext";
 function CreateTutorialPage() {
   const { setNameMenu } = useContext(NameMenuTopContext);
   const [nameTutoPlaceholder] = useState("Insérer le nom du tutoriel");
-  const [tagTutoPlaceholder] = useState("Insérer les tags");
+  const [tagTutoPlaceholder] = useState("Insérer les mots clés");
   const [countStepTutorial, setCountStepTutorial] = useState(1);
 
   useEffect(() => {

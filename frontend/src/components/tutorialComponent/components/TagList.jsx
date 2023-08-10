@@ -7,7 +7,7 @@ function TagList(props) {
   return (
     <ul>
       {" "}
-      Liste des tags :
+      Liste des mots clés :
       {isUpdate
         ? updatedTags?.map((tagName) => (
             <button

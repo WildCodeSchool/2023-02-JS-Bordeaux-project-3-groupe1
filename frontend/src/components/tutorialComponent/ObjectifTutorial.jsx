@@ -8,8 +8,8 @@ import TextSection from "./components/TextSection";
 
 function ObjectifTutorial(props) {
   const { setForms } = useContext(CreateTutorialContext);
-  const [objectifTutorial, setObjectifTutorial] = useState("");
-  const [explicationTutorial, setExplicationTutorial] = useState("");
+  const [objectifTutorial, setObjectifTutorial] = useState("Apprendre à zoomer sur un téléphone tactile");
+  const [explicationTutorial, setExplicationTutorial] = useState("Afin d'utiliser le zoom sur un téléphone etc ...");
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFileUrl, setSelectedFileUrl] = useState("");
   const [previewUrl, setPreviewUrl] = useState(null);

@@ -4,7 +4,7 @@ import NameTutorial from "../NameTutorial";
 
 function CreateNameTutorial({ setCountStepTutorial }) {
   const [nameTutoPlaceholder] = useState("Insérer le nom du tutoriel");
-  const [tagTutoPlaceholder] = useState("Insérer les tags");
+  const [tagTutoPlaceholder] = useState("Insérer les mots clés");
 
   return (
     <div>

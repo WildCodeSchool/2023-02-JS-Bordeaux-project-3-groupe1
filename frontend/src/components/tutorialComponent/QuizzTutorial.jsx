@@ -9,10 +9,10 @@ import PreviewQuizz from "./components/PreviewQuizz";
 
 function QuizzTutorial(props) {
   const { forms, setForms } = useContext(CreateTutorialContext);
-  const [question, setQuestion] = useState("");
-  const [optionOne, setOptionOne] = useState("");
-  const [optionTwo, setOptionTwo] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [question, setQuestion] = useState("Comment zoomer sur un écran tactile ?");
+  const [optionOne, setOptionOne] = useState("En appuyant sur les boutons");
+  const [optionTwo, setOptionTwo] = useState("En criant ZOOM");
+  const [answer, setAnswer] = useState("En cliquant deux fois");
   const [quizzId, setQuizzId] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [stepOne] = useState(false);
